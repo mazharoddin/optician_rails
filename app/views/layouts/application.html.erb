@@ -1,14 +1,152 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Optician</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+	<head>
+		<title>Home | Opticare Pro</title>
+		<%= stylesheet_link_tag    "application", :media => "all" %>
+		<%= javascript_include_tag "application" %>
+		<%= csrf_meta_tags %>
+	</head>
+	<body style="margin-top: 60px;">
+		<div class="navbar navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<a class="brand" href="#" style="font-size: 21px; font-weight: bold; font-family: Calibri;"><span style="color: #ffa500">Opticare</span> <span style="color: #ffffff">Pro</span></a>
+					<ul class="nav">
+						<li class="active"><a href="index.html">Dashboard</a></li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" >Sales<b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="sale_new.html">New</a></li>
+								<li><a href="#">Item 2</a></li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" >Patients<b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="patient_profile.html">New</a></li>
+								<li><a href="patients.html">Find</a></li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" >Appointments<b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="#">New</a></li>
+								<li><a href="#">Find</a></li>
+								<li><a href="#">Today</a></li>
+								<li><a href="#">This Week</a></li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" >Stock<b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="#">Item 1</a></li>
+								<li><a href="#">Item 2</a></li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" >Reports<b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="#">Item 1</a></li>
+								<li><a href="#">Item 2</a></li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" >Administration<b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="countries.html">Countries</a></li>
+								<li><a href="defaults.html">Defaults</a></li>
+								<li><a href="employees.html">Employees</a></li>
+								<li><a href="states.html">States</a></li>
+								<li><a href="store_profile.html">Store</a></li>
+								<li><a href="#">Taxes</a></li>
+							</ul>
+						</li>
+					</ul>
 
+					<ul class="nav pull-right">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" >Welcome, Rob<b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="#">Settings</a></li>
+								<li class="divider"></li>
+								<li><a href="employee_logout.html">Logout</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<div class="span12">
+					<ul class="breadcrumb">
+						<li class="active">
+						<a href="index.html">Home</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="row">
+				<div class="span3">
+					<address class="well">
+						<strong>Kanata Opticians</strong><br>
+						150 Katimavik Rd<br>
+						Kanata, ON.<br>
+						<abbr title="Phone">P:</abbr> (613) 592-1885<br>
+						<abbr title="Email">E:</abbr> <a href="mailto:info@kanataopticians.com">info@kanataopticians.com</a><br>
+						<abbr title="Web">W:</abbr> <a href="http://www.kanataopticians.com/">www.kanataopticians .com</a><br><br>
+					</address>
+					<address class="well">
+						<strong>Hours</strong><br>
+						<dl>
+						<dt style="float: left; clear: left; width: 12ex">Monday<dt><dd>9:30 - 8:00</dd>
+						<dt style="float: left; clear: left; width: 12ex">Tuesday<dt><dd>9:30 - 8:00</dd>
+						<dt style="float: left; clear: left; width: 12ex">Wednesday<dt><dd>9:30 - 8:00</dd>
+						<dt style="float: left; clear: left; width: 12ex">Thursday<dt><dd>9:30 - 8:00</dd>
+						<dt style="float: left; clear: left; width: 12ex">Friday<dt><dd>9:30 - 8:00</dd>
+						<dt style="float: left; clear: left; width: 12ex">Saturday<dt><dd>9:30 - 8:00</dd>
+						<dt style="float: left; clear: left; width: 12ex">Sunday<dt><dd>Closed</dd>
+						</dl>
+					</address>
+				</div>
+				<div class="span9">
 <%= yield %>
+				</div>
+			</div>
+		</div>
 
-</body>
+		<footer>
+			<div class="container">
+				<div class="row">
+					<div class="span3">
+						<h4>Product</h4>
+						<ul class="unstyled">
+							<li><a href="#">Feature Tour</a></li>
+							<li><a href="#">FAQ</a></li>
+							<li><a href="#">Support</a></li>
+						</ul>
+					</div>
+					<div class="span3">
+						<h4>More</h4>
+						<ul class="unstyled">
+							<li><a href="#">Brand Safety Blog</a></li>
+							<li><a href="#">API</a></li>
+						</ul>
+					</div>
+					<div class="span3">
+						<h4>Company</h4>
+						<ul class="unstyled">
+							<li><a href="#">About</a></li>
+							<li><a href="#">Contact Us</a></li>
+							<li><a href="#">Privacy</a></li>
+						</ul>
+					</div>
+					<div class="span3">
+						<a href="http://www.opticarepro.com">Opticare Pro</a> by <a href="http://www.zoombugmedia.com">Zoombug Pty Ltd</a><br />Copyright 2012
+					</div>
+				</div>
+			</div>
+		</footer>
+	</body>
 </html>
