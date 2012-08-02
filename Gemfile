@@ -38,3 +38,4 @@ gem 'jquery-rails'
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
 gem 'bootstrap-sass', '~> 2.0.4.0'
+gem "kaminari", "~> 0.13.0"

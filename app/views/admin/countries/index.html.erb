@@ -1,0 +1,26 @@
+<div class="page-header">
+	<h1>Find Country</h1>
+</div>
+<form class="well">
+	<input type="text" class="span5 search-query">
+	<button type"submit" class="btn">Find</button>
+</form>
+<table class="table table-condensed table-striped">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Abbreviation</th>
+			<th>Enabled</th>
+		</tr>
+	</thead>
+	<tbody>
+<% @countries.each do |country| %>
+		<tr>
+			<td><%= link_to country.name, [:admin, country] %></td>
+			<td><%= link_to country.abbreviation, [:admin, country] %></td>
+			<td><%= country.enabled %></td>
+		</tr>
+<% end %>
+	</tbody>
+</table>
+<%= paginate @countries %>
