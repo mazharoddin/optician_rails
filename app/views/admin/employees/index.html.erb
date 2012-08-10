@@ -1,0 +1,28 @@
+<div class="page-header">
+	<h1>Find Employee</h1>
+</div>
+<form class="well">
+	<input type="text" class="span5 search-query">
+	<button type"submit" class="btn">Find</button>
+</form>
+<table class="table table-condensed table-striped">
+	<thead>
+		<tr>
+			<th>Last Name</th>
+			<th>First Name</th>
+			<th>Preferred Name</th>
+			<th>Email</th>
+		</tr>
+	</thead>
+	<tbody>
+<% @employees.each do |employee| %>
+		<tr>
+			<td><%= link_to employee.last_name, [:admin, employee] %></td>
+			<td><%= link_to employee.first_name, [:admin, employee] %></td>
+			<td><%= link_to employee.preferred_name, [:admin, employee] %></td>
+			<td><%= link_to employee.email, [:admin, employee] %></td>
+		</tr>
+<% end %>
+	</tbody>
+</table>
+<%= paginate @employees %>
