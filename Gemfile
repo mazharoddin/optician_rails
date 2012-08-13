@@ -39,3 +39,4 @@ gem 'jquery-rails'
 
 gem 'bootstrap-sass', '~> 2.0.4.0'
 gem "kaminari", "~> 0.13.0"
+gem "simple_form", "~> 2.0.2"
