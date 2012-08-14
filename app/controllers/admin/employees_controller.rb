@@ -6,8 +6,8 @@ class Admin::EmployeesController < ApplicationController
 	def create
 		@employee = Employee.new(params[:employee])
 		if @employee.save then
-			flash[:notice] = "Employee has been created."
-			redirect_to [:admin, @employee]
+			flash[:success] = "Employee has been created."
+			redirect_to :action => 'index'
 		else
 			render "new"
 		end
@@ -29,10 +29,10 @@ class Admin::EmployeesController < ApplicationController
 	def update
 		@employee = Employee.find(params[:id])
 		if @employee.update_attributes(params[:employee]) then
-			flash[:notice] = "Employee has been updated."
-			redirect_to [:admin, @employee]
+			flash[:success] = "Employee has been updated."
+			redirect_to :action => 'index'
 		else
-			render "edit"
+			redirect_to :action => 'index'
 		end
 	end
 end
