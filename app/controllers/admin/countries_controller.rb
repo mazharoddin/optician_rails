@@ -6,8 +6,8 @@ class Admin::CountriesController < ApplicationController
 	def create
 		@country = Country.new(params[:country])
 		if @country.save then
-			flash[:notice] = "Country has been created."
-			redirect_to [:admin, @country]
+			flash[:success] = "Country has been created."
+			redirect_to :action => 'index'
 		else
 			render "new"
 		end
@@ -29,8 +29,8 @@ class Admin::CountriesController < ApplicationController
 	def update
 		@country = Country.find(params[:id])
 		if @country.update_attributes(params[:country]) then
-			flash[:notice] = "Country has been updated."
-			redirect_to [:admin, @country]
+			flash[:success] = "Country has been updated."
+			redirect_to :action => 'index'
 		else
 			render "edit"
 		end
