@@ -1,10 +1,14 @@
 <div class="page-header">
 	<h1>Find Employee</h1>
 </div>
-<form class="well">
-	<input type="text" class="span5 search-query">
-	<button type"submit" class="btn">Find</button>
+<form class="well form-search">
+	<input type="text" class="search-query">
+	<button type"submit" class="btn btn-info">Find</button>
 </form>
+<%= link_to "New Employee", :new_admin_employee, :class => "btn btn-primary" %>
+<% if @employees.empty? then %>
+<p>No employees found</p>
+<% else %>
 <table class="table table-condensed table-striped">
 	<thead>
 		<tr>
@@ -26,3 +30,4 @@
 	</tbody>
 </table>
 <%= paginate @employees %>
+<% end %>
