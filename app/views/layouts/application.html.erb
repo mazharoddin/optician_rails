@@ -5,11 +5,12 @@
 		<%= stylesheet_link_tag    "application", :media => "all" %>
 		<%= javascript_include_tag "application" %>
 		<%= csrf_meta_tags %>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	</head>
 	<body style="margin-top: 60px;">
 		<div class="navbar navbar-fixed-top">
 			<div class="navbar-inner">
-				<div class="container">
+				<div class="container-fluid">
 					<a class="brand" href="#" style="font-size: 21px; font-weight: bold; font-family: Calibri;"><span style="color: #ffa500">Opticare</span> <span style="color: #ffffff">Pro</span></a>
 					<ul class="nav">
 						<li class="active"><a href="index.html">Dashboard</a></li>
@@ -77,8 +78,8 @@
 			</div>
 		</div>
 
-		<div class="container">
-			<div class="row">
+		<div class="container-fluid">
+			<div class="row-fluid">
 				<div class="span12">
 					<ul class="breadcrumb">
 						<li class="active">
@@ -87,8 +88,8 @@
 					</ul>
 				</div>
 			</div>
-			<div class="row">
-				<div class="span3">
+			<div class="row-fluid">
+				<div class="span3 visible-desktop">
 					<address class="well">
 						<strong>Kanata Opticians</strong><br>
 						150 Katimavik Rd<br>
@@ -141,8 +142,8 @@
 		</div>
 
 		<footer>
-			<div class="container">
-				<div class="row">
+			<div class="container-fluid">
+				<div class="row-fluid">
 					<div class="span3">
 						<h4>Product</h4>
 						<ul class="unstyled">
