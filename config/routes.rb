@@ -59,7 +59,9 @@ Optician::Application.routes.draw do
   
   namespace :admin do
     resources :dashboard
-	resources :countries
+	resources :countries do
+	  resources :states
+	end
 	resources :employees
 	root :to => 'dashboard#index'
   end
