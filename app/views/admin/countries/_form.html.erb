@@ -1,6 +1,5 @@
 <%= simple_form_for [:admin, @country], :html => { :class => "form-horizontal" } do |f| %>
 	<%= f.input :name %>
-	<%= f.input :abbreviation %>
 	<%= f.input :enabled %>
 	<%= f.button :submit, :class => "btn btn-primary" %>
 <% end %>

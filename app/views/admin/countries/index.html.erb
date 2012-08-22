@@ -13,7 +13,6 @@
 	<thead>
 		<tr>
 			<th>Name</th>
-			<th>Abbreviation</th>
 			<th>Enabled</th>
 		</tr>
 	</thead>
@@ -21,7 +20,6 @@
 <% @countries.each do |country| %>
 		<tr>
 			<td><%= link_to country.name, [:admin, country] %></td>
-			<td><%= link_to country.abbreviation, [:admin, country] %></td>
 			<td><%= country.enabled %></td>
 		</tr>
 <% end %>
