@@ -13,12 +13,14 @@
 	<thead>
 		<tr>
 			<th>Name</th>
+			<th>Short Name</th>
 		</tr>
 	</thead>
 	<tbody>
 <% @states.each do |state| %>
 		<tr>
 			<td><%= link_to state.name, [:admin, @country, state] %></td>
+			<td><%= link_to state.short_name, [:admin, @country, state] %></td>
 		</tr>
 <% end %>
 	</tbody>
