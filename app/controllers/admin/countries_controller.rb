@@ -1,4 +1,10 @@
 class Admin::CountriesController < ApplicationController
+	before_filter :find_country, :only => [:edit, :show, :update]
+	
+	def find_country
+		@country = Country.find(params[:id])
+	end
+
 	def index
 		@countries = Country.page(params[:page])
 	end
@@ -14,7 +20,6 @@ class Admin::CountriesController < ApplicationController
 	end
 	
 	def edit
-		@country = Country.find(params[:id])
 	end
 	
 	def new
@@ -22,12 +27,11 @@ class Admin::CountriesController < ApplicationController
 	end
 	
 	def show
-		@country = Country.find(params[:id])
+		@states = @country.states.page(params[:page])
 		render "edit"
 	end
 	
 	def update
-		@country = Country.find(params[:id])
 		if @country.update_attributes(params[:country]) then
 			flash[:success] = "Country has been updated."
 			redirect_to :action => 'index'
