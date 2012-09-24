@@ -1,84 +1,51 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Home | Opticare Pro</title>
+		<title><%= @page_title %> | Opticare Pro</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<%= stylesheet_link_tag    "application", :media => "all" %>
 		<%= javascript_include_tag "application" %>
 		<%= csrf_meta_tags %>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	</head>
 	<body style="margin-top: 60px;">
 		<div class="navbar navbar-fixed-top">
 			<div class="navbar-inner">
-				<div class="container-fluid">
+				<div class="container">
+					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</a>
+	  
 					<a class="brand" href="#" style="font-size: 21px; font-weight: bold; font-family: Calibri;"><span style="color: #ffa500">Opticare</span> <span style="color: #ffffff">Pro</span></a>
-					<ul class="nav">
-						<li class="active"><%= link_to "Dashboard", root_path %></li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" >Sales<b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li><a href="sale_new.html">New</a></li>
-								<li><a href="#">Item 2</a></li>
-							</ul>
-						</li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" >Patients<b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li><a href="patient_profile.html">New</a></li>
-								<li><a href="patients.html">Find</a></li>
-							</ul>
-						</li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" >Appointments<b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li><a href="#">New</a></li>
-								<li><a href="#">Find</a></li>
-								<li><a href="#">Today</a></li>
-								<li><a href="#">This Week</a></li>
-							</ul>
-						</li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" >Stock<b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li><a href="#">Item 1</a></li>
-								<li><a href="#">Item 2</a></li>
-							</ul>
-						</li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" >Reports<b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li><a href="#">Item 1</a></li>
-								<li><a href="#">Item 2</a></li>
-							</ul>
-						</li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" >Administration<b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li><%= link_to "Countries", admin_countries_path %></li>
-								<li><a href="defaults.html">Defaults</a></li>
-								<li><%= link_to "Employees", admin_employees_path %></li>
-								<li><a href="store_profile.html">Store</a></li>
-								<li><a href="#">Taxes</a></li>
-							</ul>
-						</li>
-					</ul>
+					<div class="nav-collapse">
+						<ul class="nav">
+							<li><%= link_to "Dashboard", root_path %></li>
+							<li><%= link_to "Invoices", root_path %></li>
+							<li><%= link_to "Patients", root_path %></li>
+							<li><%= link_to "Appointments", root_path %></li>
+							<li><%= link_to "Inventory", root_path %></li>
+							<li><%= link_to "Marketing", root_path %></li>
+							<li class="active"><%= link_to "Administration", admin_root_path %></li>
+						</ul>
 
-					<ul class="nav pull-right">
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" >Welcome, Rob<b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li><a href="#">Settings</a></li>
-								<li class="divider"></li>
-								<li><a href="employee_logout.html">Logout</a></li>
-							</ul>
-						</li>
-					</ul>
+						<ul class="nav pull-right">
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" >Welcome, Rob<b class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<li><a href="#">Settings</a></li>
+									<li class="divider"></li>
+									<li><a href="employee_logout.html">Logout</a></li>
+								</ul>
+							</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
 
-		<div class="container-fluid">
-			<div class="row-fluid">
+		<div class="container">
+			<div class="row">
 				<div class="span12">
 					<ul class="breadcrumb">
 						<li class="active">
@@ -88,29 +55,7 @@
 				</div>
 			</div>
 			<div class="row-fluid">
-				<div class="span3 visible-desktop">
-					<address class="well">
-						<strong>Kanata Opticians</strong><br>
-						150 Katimavik Rd<br>
-						Kanata, ON.<br>
-						<abbr title="Phone">P:</abbr> (613) 592-1885<br>
-						<abbr title="Email">E:</abbr> <a href="mailto:info@kanataopticians.com">info@kanataopticians.com</a><br>
-						<abbr title="Web">W:</abbr> <a href="http://www.kanataopticians.com/">www.kanataopticians .com</a><br><br>
-					</address>
-					<address class="well">
-						<strong>Hours</strong><br>
-						<dl>
-						<dt style="float: left; clear: left; width: 12ex">Monday<dt><dd>9:30 - 8:00</dd>
-						<dt style="float: left; clear: left; width: 12ex">Tuesday<dt><dd>9:30 - 8:00</dd>
-						<dt style="float: left; clear: left; width: 12ex">Wednesday<dt><dd>9:30 - 8:00</dd>
-						<dt style="float: left; clear: left; width: 12ex">Thursday<dt><dd>9:30 - 8:00</dd>
-						<dt style="float: left; clear: left; width: 12ex">Friday<dt><dd>9:30 - 8:00</dd>
-						<dt style="float: left; clear: left; width: 12ex">Saturday<dt><dd>9:30 - 8:00</dd>
-						<dt style="float: left; clear: left; width: 12ex">Sunday<dt><dd>Closed</dd>
-						</dl>
-					</address>
-				</div>
-				<div class="span9">
+				<div class="span12">
 <% if flash[:error] %>
 					<div class="alert alert-error">
 						<button class="close" data-dismiss="alert">&times;</button>
@@ -141,9 +86,9 @@
 		</div>
 
 		<footer>
-			<div class="container-fluid">
-				<div class="row-fluid">
-					<div class="span3">
+			<div class="container">
+				<div class="row">
+					<div class="span3 visible-desktop">
 						<h4>Product</h4>
 						<ul class="unstyled">
 							<li><a href="#">Feature Tour</a></li>
@@ -151,7 +96,7 @@
 							<li><a href="#">Support</a></li>
 						</ul>
 					</div>
-					<div class="span3">
+					<div class="span3 visible-desktop">
 						<h4>More</h4>
 						<ul class="unstyled">
 							<li><a href="#">Brand Safety Blog</a></li>
@@ -171,6 +116,5 @@
 					</div>
 				</div>
 			</div>
-		</footer>
-	</body>
+		</footer>	</body>
 </html>
