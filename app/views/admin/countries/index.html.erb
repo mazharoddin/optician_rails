@@ -1,11 +1,11 @@
 <div class="page-header">
-	<h1>Find Country</h1>
+	<h1>Find Country <%= link_to "New Country", new_admin_country_path, :class => "btn btn-success pull-right" %></h1>
 </div>
 <form class="well form-search">
 	<input type="text" class="search-query">
 	<button type"submit" class="btn btn-info">Search</button>
 </form>
-<%= link_to "New Country", :new_admin_country, :class => "btn btn-primary" %>
+
 <% if @countries.empty? then %>
 <p>No countries found</p>
 <% else %>
@@ -19,7 +19,7 @@
 	<tbody>
 <% @countries.each do |country| %>
 		<tr>
-			<td><%= link_to country.name, [:admin, country] %></td>
+			<td><%= link_to country.name, admin_country_path(country) %></td>
 			<td><%= country.enabled %></td>
 		</tr>
 <% end %>
