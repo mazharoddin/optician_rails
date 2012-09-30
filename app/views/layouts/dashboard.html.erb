@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title><%= @page_title %> | Opticare Pro</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<%= stylesheet_link_tag    "application", :media => "all" %>
+		<%= javascript_include_tag "application" %>
+		<%= csrf_meta_tags %>
+	</head>
+	<body style="margin-top: 60px;">
+<%= render "shared/navbar" %>
+
+		<div class="container">
+			<div class="row">
+				<div class="span12">
+					<ul class="breadcrumb">
+						<li class="active">
+						<a href="index.html">Home</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="row">
+				<div class="span3 visible-desktop">
+					<address class="well">
+						<strong>Kanata Opticians</strong><br>
+						150 Katimavik Rd<br>
+						Kanata, ON.<br>
+						<abbr title="Phone">P:</abbr> (613) 592-1885<br>
+						<abbr title="Email">E:</abbr> <a href="mailto:info@kanataopticians.com">info@kanataopticians.com</a><br>
+						<abbr title="Web">W:</abbr> <a href="http://www.kanataopticians.com/">www.kanataopticians .com</a><br><br>
+					</address>
+					<address class="well">
+						<strong>Hours</strong><br>
+						<dl>
+						<dt style="float: left; clear: left; width: 12ex">Monday<dt><dd>9:30 - 8:00</dd>
+						<dt style="float: left; clear: left; width: 12ex">Tuesday<dt><dd>9:30 - 8:00</dd>
+						<dt style="float: left; clear: left; width: 12ex">Wednesday<dt><dd>9:30 - 8:00</dd>
+						<dt style="float: left; clear: left; width: 12ex">Thursday<dt><dd>9:30 - 8:00</dd>
+						<dt style="float: left; clear: left; width: 12ex">Friday<dt><dd>9:30 - 8:00</dd>
+						<dt style="float: left; clear: left; width: 12ex">Saturday<dt><dd>9:30 - 8:00</dd>
+						<dt style="float: left; clear: left; width: 12ex">Sunday<dt><dd>Closed</dd>
+						</dl>
+					</address>
+				</div>
+
+				<div class="span9">
+<% if flash[:error] %>
+					<div class="alert alert-error">
+						<button class="close" data-dismiss="alert">&times;</button>
+						<%= flash[:notice] %>
+					</div>
+<% end %>
+<% if flash[:alert] %>
+					<div class="alert alert">
+						<button class="close" data-dismiss="alert">&times;</button>
+						<%= flash[:alert] %>
+					</div>
+<% end %>
+<% if flash[:notice] %>
+					<div class="alert alert-info">
+						<button class="close" data-dismiss="alert">&times;</button>
+						<%= flash[:notice] %>
+					</div>
+<% end %>
+<% if flash[:success] %>
+					<div class="alert alert-success">
+						<button class="close" data-dismiss="alert">&times;</button>
+						<%= flash[:success] %>
+					</div>
+<% end %>
+<%= yield %>
+				</div>
+			</div>
+		</div>
+
+		<footer>
+			<div class="container">
+				<div class="row">
+					<div class="span3 visible-desktop">
+						<h4>Product</h4>
+						<ul class="unstyled">
+							<li><a href="#">Feature Tour</a></li>
+							<li><a href="#">FAQ</a></li>
+							<li><a href="#">Support</a></li>
+						</ul>
+					</div>
+					<div class="span3 visible-desktop">
+						<h4>More</h4>
+						<ul class="unstyled">
+							<li><a href="#">Brand Safety Blog</a></li>
+							<li><a href="#">API</a></li>
+						</ul>
+					</div>
+					<div class="span3">
+						<h4>Company</h4>
+						<ul class="unstyled">
+							<li><a href="#">About</a></li>
+							<li><a href="#">Contact Us</a></li>
+							<li><a href="#">Privacy</a></li>
+						</ul>
+					</div>
+					<div class="span3">
+						<a href="http://www.opticarepro.com">Opticare Pro</a> by <a href="http://www.zoombugmedia.com">Zoombug Pty Ltd</a><br />Copyright 2012
+					</div>
+				</div>
+			</div>
+		</footer>	</body>
+</html>
