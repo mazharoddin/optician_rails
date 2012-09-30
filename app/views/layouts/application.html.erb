@@ -8,41 +8,7 @@
 		<%= csrf_meta_tags %>
 	</head>
 	<body style="margin-top: 60px;">
-		<div class="navbar navbar-fixed-top">
-			<div class="navbar-inner">
-				<div class="container">
-					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</a>
-	  
-					<a class="brand" href="#" style="font-size: 21px; font-weight: bold; font-family: Calibri;"><span style="color: #ffa500">Opticare</span> <span style="color: #ffffff">Pro</span></a>
-					<div class="nav-collapse">
-						<ul class="nav">
-							<li><%= link_to "Dashboard", root_path %></li>
-							<li><%= link_to "Invoices", root_path %></li>
-							<li><%= link_to "Patients", root_path %></li>
-							<li><%= link_to "Appointments", root_path %></li>
-							<li><%= link_to "Inventory", root_path %></li>
-							<li><%= link_to "Marketing", root_path %></li>
-							<li class="active"><%= link_to "Administration", admin_root_path %></li>
-						</ul>
-
-						<ul class="nav pull-right">
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" >Welcome, Rob<b class="caret"></b></a>
-								<ul class="dropdown-menu">
-									<li><a href="#">Settings</a></li>
-									<li class="divider"></li>
-									<li><a href="employee_logout.html">Logout</a></li>
-								</ul>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
+<%= render "shared/navbar" %>
 
 		<div class="container">
 			<div class="row">
