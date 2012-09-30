@@ -3,7 +3,7 @@
 </div>
 <%= render "form" %>
 
-<%= link_to "New State", new_admin_country_state_path(@country), :class => "btn btn-primary" %>
+<h2>States <%= link_to "New State", new_admin_country_state_path(@country), :class => "btn btn-success pull-right" %></h2>
 <% if @country.states.empty? then %>
 <p>No states found</p>
 <% else %>
@@ -17,8 +17,8 @@
 	<tbody>
 <% @states.each do |state| %>
 		<tr>
-			<td><%= link_to state.name, [:admin, @country, state] %></td>
-			<td><%= link_to state.short_name, [:admin, @country, state] %></td>
+			<td><%= link_to state.name, admin_country_state_path(@country, state) %></td>
+			<td><%= link_to state.short_name, admin_country_state_path(@country, state) %></td>
 		</tr>
 <% end %>
 	</tbody>

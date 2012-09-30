@@ -1,21 +1,55 @@
-﻿<div class="span9">
-	<div class="page-header">
-		<h1>Administration</h1>
-	</div>
-	<dl>
-		<dt><a href="countries.html">Countries</a><dt>
-		<dd>Maintain countries<dd>
-		<dt><a href="defaults.html">Defaults</a><dt>
-		<dd>Maintain defaults<dd>
-		<dt><a href="employees.html">Employees</a><dt>
-		<dd>Maintain employees<dd>
-		<dt><a href="states.html">States</a><dt>
-		<dd>Maintain states<dd>
-		<dt><a href="store.html">Store</a><dt>
-		<dd>Maintain store<dd>
-		<dt><a href="suppliers.html">Suppliers</a><dt>
-		<dd>Maintain suppliers<dd>
-		<dt><a href="suppliers.html">Taxes</a><dt>
-		<dd>Maintain taxes<dd>
-	</dl>
-</div>
+﻿				<div class="span12">
+					<div class="page-header">
+						<h1>Administration</h1>
+					</div>
+					<div class="span3">
+						<h2>People</h2>
+						<dl>
+							<dt><a href="employees.html">Employees</a></dt>
+							<dd>Maintain employees<dd>
+							<dt><a href="optometrists.html">Optometrists</a></dt>
+							<dd>Maintain optometrists<dd>
+						</dl>
+						<h2>Geographic</h2>
+						<dl>
+							<dt><%= link_to "Countries", :admin_countries %><a href="countries.html"></a></dt>
+							<dd>Maintain countries<dd>
+							<dt><a href="stores.html">Stores</a></dt>
+							<dd>Maintain stores<dd>
+						</dl>
+					</div>
+					<div class="span3">
+						<h2>Inventory</h2>
+						<dl>
+							<dt><a href="inventory.html">Inventory</a></dt>
+							<dd>Manage inventory</dd>
+							<dt><a href="suppliers.html">Suppliers</a></dt>
+							<dd>Maintain suppliers<dd>
+							<dt><a href="stock_take.html">Stock Take</a></dt>
+							<dd>Maintain stock take<dd>
+						</dl>
+						<h2>Taxation</h2>
+						<dl>
+							<dt><a href="suppliers.html">Taxes</a></dt>
+							<dd>Maintain taxes<dd>
+							<dt><a href="tax_classes.html">Tax Classes</a></dt>
+							<dd>Maintain tax classes</dd>
+						</dl>
+					</div>
+					<div class="span3">
+						<h2>Contacts</h2>
+						<dl>
+							<dt><a href="lense_types.html">Brands</a></dt>
+							<dd>Brands</dd>
+						</dl>
+						<h2>Lenses</h2>
+						<dl>
+							<dt><a href="lens_materials.html">Materials</a></dt>
+							<dd>Manage lens materials</dd>
+							<dt><a href="lens_styles.html">Styles</a></dt>
+							<dd>Manage lens styles</dd>
+							<dt><a href="lens_types.html">Types</a></dt>
+							<dd>Manage lens types</dd>
+						</dl>
+					</div>
+				</div>
