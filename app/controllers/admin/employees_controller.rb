@@ -1,4 +1,6 @@
-class Admin::EmployeesController < ApplicationController
+class Admin::EmployeesController < Admin::ApplicationController
+	add_breadcrumb "Employees", :admin_employees_path
+
 	def index
 		@page_title = "Employees"
 		@employees = Employee.page(params[:page])
