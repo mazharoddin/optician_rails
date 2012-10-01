@@ -1,6 +1,8 @@
-class Admin::CountriesController < ApplicationController
+class Admin::CountriesController < Admin::ApplicationController
 	before_filter :find_country, :only => [:edit, :show, :update]
 	
+	add_breadcrumb "Countries", :admin_countries_path
+
 	def find_country
 		@page_title = "Find Country"
 		@country = Country.find(params[:id])
@@ -12,6 +14,8 @@ class Admin::CountriesController < ApplicationController
 	end
 	
 	def create
+		add_breadcrumb "New", :new_admin_country_path
+
 		@page_title = "Create Country"
 		@country = Country.new(params[:country])
 		if @country.save then
@@ -23,21 +27,29 @@ class Admin::CountriesController < ApplicationController
 	end
 	
 	def edit
+		add_breadcrumb @country.name, admin_country_path(@country)
+
 		@page_title = "Edit Country"
 	end
 	
 	def new
+		add_breadcrumb "New", :new_admin_country_path
+
 		@page_title = "New Country"
 		@country = Country.new
 	end
 	
 	def show
+		add_breadcrumb @country.name, admin_country_path(@country)
+
 		@page_title = "Show Country"
 		@states = @country.states.page(params[:page])
 		render "edit"
 	end
 	
 	def update
+		add_breadcrumb @country.name, admin_country_path(@country)
+
 		@page_title = "Update Country"
 		if @country.update_attributes(params[:country]) then
 			flash[:success] = "Country has been updated."

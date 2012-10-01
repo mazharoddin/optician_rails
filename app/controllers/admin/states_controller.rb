@@ -1,6 +1,10 @@
-class Admin::StatesController < ApplicationController
+class Admin::StatesController < Admin::ApplicationController
 	before_filter :find_country
 	
+	add_breadcrumb "Countries", :admin_countries_path
+	add_breadcrumb "Countries", :admin_countries_path(params[:country_id])
+	add_breadcrumb "States", :admin_countries_states_path
+
 	def find_country
 		@page_title = "Find State"
 		@country = Country.find(params[:country_id])
@@ -28,11 +32,13 @@ class Admin::StatesController < ApplicationController
 	end
 	
 	def new
+		add_breadcrumb "New", :root_path
 		@page_title = "New State"
 		@state = @country.states.build
 	end
 	
 	def show
+		add_breadcrumb "New", :new_admin_country_path
 		@page_title = "Show State"
 		@state = @country.states.find(params[:id])
 		render "edit"
