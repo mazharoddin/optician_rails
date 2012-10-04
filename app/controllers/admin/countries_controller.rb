@@ -28,6 +28,7 @@ class Admin::CountriesController < Admin::ApplicationController
 	
 	def edit
 		add_breadcrumb @country.name, admin_country_path(@country)
+		add_breadcrumb "Edit", edit_admin_country_path(@country)
 
 		@page_title = "Edit Country"
 	end
@@ -44,7 +45,6 @@ class Admin::CountriesController < Admin::ApplicationController
 
 		@page_title = "Show Country"
 		@states = @country.states.page(params[:page])
-		render "edit"
 	end
 	
 	def update
