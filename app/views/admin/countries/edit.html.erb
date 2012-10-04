@@ -2,26 +2,3 @@
 	<h1><%= @country.name %> (Country)</h1>
 </div>
 <%= render "form" %>
-
-<h2>States <%= link_to "New State", new_admin_country_state_path(@country), :class => "btn btn-success pull-right" %></h2>
-<% if @country.states.empty? then %>
-<p>No states found</p>
-<% else %>
-<table class="table table-condensed table-striped">
-	<thead>
-		<tr>
-			<th>Name</th>
-			<th>Short Name</th>
-		</tr>
-	</thead>
-	<tbody>
-<% @states.each do |state| %>
-		<tr>
-			<td><%= link_to state.name, admin_country_state_path(@country, state) %></td>
-			<td><%= link_to state.short_name, admin_country_state_path(@country, state) %></td>
-		</tr>
-<% end %>
-	</tbody>
-</table>
-<%= paginate @states %>
-<% end %>
