@@ -1,11 +1,11 @@
 <div class="page-header">
-	<h1>Find Employee</h1>
+	<h1>Find Employee <%= link_to "New Employee", new_admin_employee_path, :class => "btn btn-success pull-right" %></h1>
 </div>
 <form class="well form-search">
 	<input type="text" class="search-query">
-	<button type"submit" class="btn btn-info">Find</button>
+	<button type"submit" class="btn btn-info">Search</button>
 </form>
-<%= link_to "New Employee", :new_admin_employee, :class => "btn btn-primary" %>
+
 <% if @employees.empty? then %>
 <p>No employees found</p>
 <% else %>
@@ -14,17 +14,19 @@
 		<tr>
 			<th>Last Name</th>
 			<th>First Name</th>
-			<th>Preferred Name</th>
 			<th>Email</th>
+			<th>Active</th>
+			<th>Dispensing Optician</th>
 		</tr>
 	</thead>
 	<tbody>
 <% @employees.each do |employee| %>
 		<tr>
-			<td><%= link_to employee.last_name, [:admin, employee] %></td>
-			<td><%= link_to employee.first_name, [:admin, employee] %></td>
-			<td><%= link_to employee.preferred_name, [:admin, employee] %></td>
-			<td><%= link_to employee.email, [:admin, employee] %></td>
+			<td><%= link_to employee.last_name, admin_employee_path(employee) %></td>
+			<td><%= link_to employee.first_name, admin_employee_path(employee) %></td>
+			<td><%= link_to employee.email, admin_employee_path(employee) %></td>
+			<td><%= employee.active %></td>
+			<td><%= employee.dispensing_optician %></td>
 		</tr>
 <% end %>
 	</tbody>
