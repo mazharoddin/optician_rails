@@ -8,5 +8,13 @@
 	<%= f.input :active %>
 	<%= f.input :administrator %>
 	<%= f.input :dispensing_optician %>
-	<%= f.button :submit, :class => "btn btn-primary" %>
+
+	<div class="form-actions">
+		<%= f.button :submit, :class => "btn btn-primary" %>
+<% if @employee.new_record? %>
+		<%= link_to "Discard Changes", admin_employees_path, :class => "btn" %>
+<% else %>
+		<%= link_to "Discard Changes", admin_employee_path(@employee), :class => "btn" %>
+<% end %>
+	</div>
 <% end %>
