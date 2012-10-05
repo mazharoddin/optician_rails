@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120818002728) do
+ActiveRecord::Schema.define(:version => 20121005072033) do
 
   create_table "countries", :force => true do |t|
     t.string   "name",       :limit => 60
@@ -21,14 +21,16 @@ ActiveRecord::Schema.define(:version => 20120818002728) do
   end
 
   create_table "employees", :force => true do |t|
-    t.string   "title",          :limit => 10
-    t.string   "first_name",     :limit => 40
-    t.string   "last_name",      :limit => 40
-    t.string   "preferred_name", :limit => 40
+    t.string   "title",               :limit => 10
+    t.string   "first_name",          :limit => 40
+    t.string   "last_name",           :limit => 40
     t.string   "email"
-    t.string   "password",       :limit => 40
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
+    t.string   "password",            :limit => 40
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+    t.boolean  "active"
+    t.boolean  "administrator"
+    t.boolean  "dispensing_optician"
   end
 
   create_table "states", :force => true do |t|
