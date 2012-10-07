@@ -1,0 +1,27 @@
+<div class="page-header">
+	<h1><%= @store.name %> (Store) <%= link_to "Edit Store", edit_admin_store_path(@store), :class => "btn btn-primary pull-right" %></h1>
+</div>
+
+
+<dl class="dl-horizontal">
+	<dt>Name</dt>
+	<dd><%= @store.name %></dd>
+	<dt>Email</dt>
+	<dd><%= @store.email %></dd>
+	<dt>Website</dt>
+	<dd><%= @store.url %></dd>
+	<dt>Phone</dt>
+	<dd><%= @store.phone %></dd>
+	<dt>Fax</dt>
+	<dd><%= @store.fax %></dd>
+	<dt>Address</dt>
+	<dd><%= @store.address %></dd>
+	<dt>City</dt>
+	<dd><%= @store.city %></dd>
+	<dt>State</dt>
+	<dd><%= @store.state %></dd>
+	<dt>Postal Code</dt>
+	<dd><%= @store.postal_code %></dd>
+	<dt>Country</dt>
+	<dd><%= @store.country %></dd>
+</dl>

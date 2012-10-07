@@ -1,0 +1,19 @@
+<%= simple_form_for [:admin, @store], :html => { :class => "form-horizontal" } do |f| %>
+	<%= f.input :name %>
+	<%= f.input :email %>
+	<%= f.input :url %>
+	<%= f.input :phone %>
+	<%= f.input :fax %>
+	<%= f.input :address %>
+	<%= f.input :city %>
+	<%= f.input :postal_code %>
+
+	<div class="form-actions">
+		<%= f.button :submit, :class => "btn btn-primary" %>
+<% if @store.new_record? %>
+		<%= link_to "Discard Changes", admin_stores_path, :class => "btn" %>
+<% else %>
+		<%= link_to "Discard Changes", admin_store_path(@store), :class => "btn" %>
+<% end %>
+	</div>
+<% end %>
