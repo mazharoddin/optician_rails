@@ -1,0 +1,53 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  email: MyString
+  url: MyString
+  phone: MyString
+  fax: MyString
+  address: MyString
+  city: MyString
+  state: 
+  postal_code: MyString
+  country: 
+  monday_open: 2012-10-07 21:30:30
+  monday_close: 2012-10-07 21:30:30
+  tuesday_open: 2012-10-07 21:30:30
+  tuesday_close: 2012-10-07 21:30:30
+  wednesday_open: 2012-10-07 21:30:30
+  wednesday_close: 2012-10-07 21:30:30
+  thursday_open: 2012-10-07 21:30:30
+  thursday_close: 2012-10-07 21:30:30
+  friday_open: 2012-10-07 21:30:30
+  friday_close: 2012-10-07 21:30:30
+  saturday_open: 2012-10-07 21:30:30
+  saturday_close: 2012-10-07 21:30:30
+  sunday_open: 2012-10-07 21:30:30
+  sunday_close: 2012-10-07 21:30:30
+
+two:
+  name: MyString
+  email: MyString
+  url: MyString
+  phone: MyString
+  fax: MyString
+  address: MyString
+  city: MyString
+  state: 
+  postal_code: MyString
+  country: 
+  monday_open: 2012-10-07 21:30:30
+  monday_close: 2012-10-07 21:30:30
+  tuesday_open: 2012-10-07 21:30:30
+  tuesday_close: 2012-10-07 21:30:30
+  wednesday_open: 2012-10-07 21:30:30
+  wednesday_close: 2012-10-07 21:30:30
+  thursday_open: 2012-10-07 21:30:30
+  thursday_close: 2012-10-07 21:30:30
+  friday_open: 2012-10-07 21:30:30
+  friday_close: 2012-10-07 21:30:30
+  saturday_open: 2012-10-07 21:30:30
+  saturday_close: 2012-10-07 21:30:30
+  sunday_open: 2012-10-07 21:30:30
+  sunday_close: 2012-10-07 21:30:30

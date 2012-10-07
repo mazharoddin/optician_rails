@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121005072033) do
+ActiveRecord::Schema.define(:version => 20121007103030) do
 
   create_table "countries", :force => true do |t|
     t.string   "name",       :limit => 60
@@ -42,5 +42,37 @@ ActiveRecord::Schema.define(:version => 20121005072033) do
   end
 
   add_index "states", ["country_id"], :name => "index_states_on_country_id"
+
+  create_table "stores", :force => true do |t|
+    t.string   "name",            :limit => 60
+    t.string   "email"
+    t.string   "url"
+    t.string   "phone",           :limit => 30
+    t.string   "fax",             :limit => 30
+    t.string   "address"
+    t.string   "city",            :limit => 60
+    t.integer  "state_id"
+    t.string   "postal_code",     :limit => 20
+    t.integer  "country_id"
+    t.time     "monday_open"
+    t.time     "monday_close"
+    t.time     "tuesday_open"
+    t.time     "tuesday_close"
+    t.time     "wednesday_open"
+    t.time     "wednesday_close"
+    t.time     "thursday_open"
+    t.time     "thursday_close"
+    t.time     "friday_open"
+    t.time     "friday_close"
+    t.time     "saturday_open"
+    t.time     "saturday_close"
+    t.time     "sunday_open"
+    t.time     "sunday_close"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
+
+  add_index "stores", ["country_id"], :name => "index_stores_on_country_id"
+  add_index "stores", ["state_id"], :name => "index_stores_on_state_id"
 
 end
