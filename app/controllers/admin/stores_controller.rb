@@ -4,19 +4,16 @@ class Admin::StoresController < Admin::ApplicationController
 	add_breadcrumb "Stores", :admin_stores_path
 
 	def find_store
-		@page_title = "Find Store"
 		@store = Store.find(params[:id])
 	end
 
 	def index
-		@page_title = "Countries"
 		@stores = Store.page(params[:page])
 	end
 	
 	def create
 		add_breadcrumb "New", new_admin_store_path
 
-		@page_title = "Create Store"
 		@store = Store.new(params[:store])
 		if @store.save then
 			flash[:success] = "Store has been created."
@@ -29,27 +26,21 @@ class Admin::StoresController < Admin::ApplicationController
 	def edit
 		add_breadcrumb @store.name, admin_store_path(@store)
 		add_breadcrumb "Edit", edit_admin_store_path(@store)
-
-		@page_title = "Edit Store"
 	end
 	
 	def new
 		add_breadcrumb "New", new_admin_store_path
 
-		@page_title = "New Store"
 		@store = Store.new
 	end
 	
 	def show
 		add_breadcrumb @store.name, admin_store_path(@store)
-
-		@page_title = "Show Store"
 	end
 	
 	def update
 		add_breadcrumb @store.name, admin_store_path(@store)
 
-		@page_title = "Update Store"
 		if @store.update_attributes(params[:store]) then
 			flash[:success] = "Store has been updated."
 			redirect_to :action => 'index'
