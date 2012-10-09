@@ -24,7 +24,7 @@ class Admin::EmployeesController < Admin::ApplicationController
 	end
 	
 	def edit
-		add_breadcrumb @employee.last_name + ", " + @employee.first_name, admin_employee_path(@employee)
+		add_breadcrumb @employee.full_name, admin_employee_path(@employee)
 		add_breadcrumb "Edit", edit_admin_employee_path(@employee)
 	end
 	
@@ -35,11 +35,11 @@ class Admin::EmployeesController < Admin::ApplicationController
 	end
 	
 	def show
-		add_breadcrumb @employee.last_name + ", " + @employee.first_name, admin_employee_path(@employee)
+		add_breadcrumb @employee.full_name, admin_employee_path(@employee)
 	end
 	
 	def update
-		add_breadcrumb @employee.last_name + ", " + @employee.first_name, admin_employee_path(@employee)
+		add_breadcrumb @employee.full_name, admin_employee_path(@employee)
 
 		if @employee.update_attributes(params[:employee]) then
 			flash[:success] = "Employee has been updated."
