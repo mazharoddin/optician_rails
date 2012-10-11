@@ -1,6 +1,6 @@
 ﻿<% @title = "Home" %>
 					<div class="page-header">
-						<h1>Hi Rob!</h1>
+						<h1><% if employee_signed_in? %>Hi <%= current_employee.first_name %><% else %>Not Logged In<% end %>!</h1>
 					</div>
 					<div class="row">
 						<div class="span9">

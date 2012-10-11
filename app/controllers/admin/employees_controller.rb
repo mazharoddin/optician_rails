@@ -41,6 +41,10 @@ class Admin::EmployeesController < Admin::ApplicationController
 	def update
 		add_breadcrumb @employee.full_name, admin_employee_path(@employee)
 
+		if params[:employee][:password].blank?
+			params[:employee].delete(:password)
+			params[:employee].delete(:password_confirmation)
+		end
 		if @employee.update_attributes(params[:employee]) then
 			flash[:success] = "Employee has been updated."
 			redirect_to :action => 'index'

@@ -42,3 +42,4 @@ gem 'bootstrap-sass', '~> 2.1.0.0'
 gem "kaminari", "~> 0.13.0"
 gem "simple_form", "~> 2.0.2"
 gem "breadcrumbs_on_rails", "~> 2.2.0"
+gem "devise"

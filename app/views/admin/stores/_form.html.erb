@@ -6,7 +6,9 @@
 	<%= f.input :fax %>
 	<%= f.input :address %>
 	<%= f.input :city %>
+	<%= f.association :state %>
 	<%= f.input :postal_code %>
+	<%= f.association :country %>
 
 	<div class="form-actions">
 		<%= f.button :submit, :class => "btn btn-primary" %>

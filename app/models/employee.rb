@@ -1,5 +1,13 @@
 class Employee < ActiveRecord::Base
-	validates :title, :first_name, :last_name, :email, :presence => true
+  # Include default devise modules. Others available are:
+  # :token_authenticatable, :confirmable, :registerable,
+  # and :omniauthable
+  devise :database_authenticatable, :timeoutable, :lockable,
+         :recoverable, :rememberable, :trackable, :validatable
+
+  # Setup accessible (or protected) attributes for your model
+  attr_accessible :title, :first_name, :last_name, :active, :administrator, :dispensing_optician, :email, :password, :password_confirmation, :remember_me
+  validates :title, :first_name, :last_name, :email, :presence => true
 	
 	validates :password, :confirmation => true
 	
