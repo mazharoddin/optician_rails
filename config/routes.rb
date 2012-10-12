@@ -1,5 +1,8 @@
 Optician::Application.routes.draw do
-  devise_for :employees
+  devise_for :employees do
+    get "/login" => "devise/sessions#new"
+	delete "/logout" => "devise/sessions#destroy"
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

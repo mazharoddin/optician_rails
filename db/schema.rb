@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(:version => 20121011085242) do
     t.string   "first_name",             :limit => 40
     t.string   "last_name",              :limit => 40
     t.string   "email",                                :default => "", :null => false
-    t.string   "password",               :limit => 40
     t.datetime "created_at",                                           :null => false
     t.datetime "updated_at",                                           :null => false
     t.boolean  "active"
@@ -47,6 +46,7 @@ ActiveRecord::Schema.define(:version => 20121011085242) do
 
   add_index "employees", ["email"], :name => "index_employees_on_email", :unique => true
   add_index "employees", ["reset_password_token"], :name => "index_employees_on_reset_password_token", :unique => true
+  add_index "employees", ["unlock_token"], :name => "index_employees_on_unlock_token", :unique => true
 
   create_table "states", :force => true do |t|
     t.string   "name",       :limit => 60
