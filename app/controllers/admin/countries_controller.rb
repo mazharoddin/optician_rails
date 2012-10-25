@@ -8,7 +8,7 @@ class Admin::CountriesController < Admin::ApplicationController
 	end
 
 	def index
-		@countries = Country.page(params[:page])
+		@countries = Country.order(:name).page(params[:page])
 	end
 	
 	def create
@@ -37,7 +37,7 @@ class Admin::CountriesController < Admin::ApplicationController
 	def show
 		add_breadcrumb @country.name, admin_country_path(@country)
 
-		@states = @country.states.page(params[:page])
+		@states = @country.states.order(:name).page(params[:page])
 	end
 	
 	def update
