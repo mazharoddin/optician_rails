@@ -3,10 +3,6 @@ class Admin::CountriesController < Admin::ApplicationController
 	
 	add_breadcrumb "Countries", :admin_countries_path
 
-	def find_country
-		@country = Country.find(params[:id])
-	end
-
 	def index
 		@countries = Country.order(:name).page(params[:page])
 	end
@@ -49,5 +45,10 @@ class Admin::CountriesController < Admin::ApplicationController
 		else
 			render "edit"
 		end
+	end
+
+	private
+	def find_country
+		@country = Country.find(params[:id])
 	end
 end
