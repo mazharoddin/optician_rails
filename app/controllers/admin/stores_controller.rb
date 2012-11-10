@@ -3,9 +3,6 @@ class Admin::StoresController < Admin::ApplicationController
 	
 	add_breadcrumb "Stores", :admin_stores_path
 
-	def find_store
-		@store = Store.find(params[:id])
-	end
 
 	def index
 		@stores = Store.page(params[:page])
@@ -47,5 +44,10 @@ class Admin::StoresController < Admin::ApplicationController
 		else
 			render "edit"
 		end
+	end
+
+	private
+	def find_store
+		@store = Store.find(params[:id])
 	end
 end

@@ -3,14 +3,6 @@ class Admin::StatesController < Admin::ApplicationController
 	before_filter :find_state, :only => [:edit, :show, :update]
 	
 	add_breadcrumb "Countries", :admin_countries_path
-
-	def find_country
-		@country = Country.find(params[:country_id])
-	end
-
-	def find_state
-		@state = @country.states.find(params[:id])
-	end
 	
 	def index
 		add_breadcrumb @country.name, admin_country_path(@country)
@@ -70,5 +62,14 @@ class Admin::StatesController < Admin::ApplicationController
 		else
 			render "edit"
 		end
+	end
+
+	private
+	def find_country
+		@country = Country.find(params[:country_id])
+	end
+
+	def find_state
+		@state = @country.states.find(params[:id])
 	end
 end
