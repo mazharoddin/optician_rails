@@ -3,10 +3,6 @@ class Admin::EmployeesController < Admin::ApplicationController
 	
 	add_breadcrumb "Employees", :admin_employees_path
 
-	def find_employee
-		@employee = Employee.find(params[:id])
-	end
-
 	def index
 		@employees = Employee.page(params[:page])
 	end
@@ -32,6 +28,7 @@ class Admin::EmployeesController < Admin::ApplicationController
 		add_breadcrumb "New", new_admin_employee_path
 
 		@employee = Employee.new
+		@employee.active = true
 	end
 	
 	def show
@@ -51,5 +48,10 @@ class Admin::EmployeesController < Admin::ApplicationController
 		else
 			render "edit"
 		end
+	end
+
+	private
+	def find_employee
+		@employee = Employee.find(params[:id])
 	end
 end
