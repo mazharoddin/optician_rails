@@ -1,4 +1,4 @@
-class Admin::PersonalTitlesController < ApplicationController
+class Admin::PersonalTitlesController < Admin::ApplicationController
 	before_filter :find_personal_title, :only => [:edit, :show, :update]
 	
 	add_breadcrumb "Personal Titles", :admin_personal_titles_path
