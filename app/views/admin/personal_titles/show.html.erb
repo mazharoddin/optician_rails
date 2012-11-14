@@ -1,0 +1,10 @@
+<% @title = "Show Personal Title" %>
+<div class="page-header">
+	<h1><%= @personal_title.title %> (Personal Title) <%= link_to "Edit Personal Title", edit_admin_personal_title_path(@personal_title), :class => "btn btn-primary pull-right" %></h1>
+</div>
+
+
+<dl class="dl-horizontal">
+	<dt>Title</dt>
+	<dd><%= @personal_title.title %></dd>
+</dl>

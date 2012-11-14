@@ -1,0 +1,28 @@
+<% @title = "Personal Titles" %>
+<div class="page-header">
+	<h1>Find Personal Title <%= link_to "New Personal Title", new_admin_personal_title_path, :class => "btn btn-success pull-right" %></h1>
+</div>
+<form class="well form-search">
+	<input type="text" class="search-query">
+	<button type"submit" class="btn btn-info">Search</button>
+</form>
+
+<% if @personal_titles.empty? then %>
+<p>No personal titles found</p>
+<% else %>
+<table class="table table-condensed table-striped">
+	<thead>
+		<tr>
+			<th>Title</th>
+		</tr>
+	</thead>
+	<tbody>
+<% @personal_titles.each do |personal_title| %>
+		<tr>
+			<td><%= link_to personal_title.title, admin_personal_title_path(personal_title) %></td>
+		</tr>
+<% end %>
+	</tbody>
+</table>
+<%= paginate @personal_titles %>
+<% end %>
