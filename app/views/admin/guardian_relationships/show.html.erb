@@ -1,0 +1,10 @@
+<% @title = "Show Guardian Relationships" %>
+<div class="page-header">
+	<h1><%= @guardian_relationship.name %> (Guardian Relationship) <%= link_to "Edit Guardian Relationship", edit_admin_guardian_relationship_path(@guardian_relationship), :class => "btn btn-primary pull-right" %></h1>
+</div>
+
+
+<dl class="dl-horizontal">
+	<dt>Name</dt>
+	<dd><%= @guardian_relationship.name %></dd>
+</dl>

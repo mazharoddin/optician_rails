@@ -70,6 +70,7 @@ Optician::Application.routes.draw do
 	resources :employees
 	resources :employment_types
 	resources :genders
+	resources :guardian_relationships
 	resources :optometrists
 	resources :personal_titles
 	resources :stores

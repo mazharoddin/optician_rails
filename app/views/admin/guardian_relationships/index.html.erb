@@ -1,0 +1,28 @@
+<% @title = "Guardian Relationships" %>
+<div class="page-header">
+	<h1>Find Guardian Relationships <%= link_to "New Guardian Relationship", new_admin_guardian_relationship_path, :class => "btn btn-success pull-right" %></h1>
+</div>
+<form class="well form-search">
+	<input type="text" class="search-query">
+	<button type"submit" class="btn btn-info">Search</button>
+</form>
+
+<% if @guardian_relationships.empty? then %>
+<p>No guardian relationships found</p>
+<% else %>
+<table class="table table-condensed table-striped">
+	<thead>
+		<tr>
+			<th>Relationship</th>
+		</tr>
+	</thead>
+	<tbody>
+<% @guardian_relationships.each do |guardian_relationship| %>
+		<tr>
+			<td><%= link_to guardian_relationship.name, admin_guardian_relationship_path(guardian_relationship) %></td>
+		</tr>
+<% end %>
+	</tbody>
+</table>
+<%= paginate @guardian_relationships %>
+<% end %>
