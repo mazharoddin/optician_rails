@@ -68,6 +68,7 @@ Optician::Application.routes.draw do
 	  resources :states
 	end
 	resources :employees
+	resources :employment_types
 	resources :genders
 	resources :optometrists
 	resources :personal_titles

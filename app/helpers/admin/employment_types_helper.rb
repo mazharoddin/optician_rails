@@ -1,0 +1,2 @@
+module Admin::EmploymentTypesHelper
+end
