@@ -1,0 +1,29 @@
+<%= simple_form_for [:admin, @optometrist], :html => { :class => "form-horizontal" } do |f| %>
+	<div class="row">
+		<div class="span6">
+			<%= f.association :personal_title %>
+			<%= f.input :first_name %>
+			<%= f.input :last_name %>
+			<%= f.input :business_name %>
+			<%= f.input :email %>
+			<%= f.input :phone %>
+			<%= f.input :fax %>
+		</div>
+		<div class="span6">
+			<%= f.input :business_address, :as => :text, :input_html => { :rows => 3 } %>
+			<%= f.input :business_city %>
+			<%= f.association :business_state %>
+			<%= f.input :business_postal_code %>
+			<%= f.association :business_country %>
+		</div>
+	</div>
+
+	<div class="form-actions">
+		<%= f.button :submit, :class => "btn btn-primary" %>
+<% if @optometrist.new_record? %>
+		<%= link_to "Discard Changes", admin_optometrists_path, :class => "btn" %>
+<% else %>
+		<%= link_to "Discard Changes", admin_optometrist_path(@optometrist), :class => "btn" %>
+<% end %>
+	</div>
+<% end %>

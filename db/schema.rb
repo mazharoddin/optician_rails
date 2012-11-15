@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121115092315) do
+ActiveRecord::Schema.define(:version => 20121115101013) do
 
   create_table "countries", :force => true do |t|
     t.string   "name",       :limit => 60
@@ -53,6 +53,28 @@ ActiveRecord::Schema.define(:version => 20121115092315) do
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
   end
+
+  create_table "optometrists", :force => true do |t|
+    t.integer  "personal_title_id"
+    t.string   "last_name",            :limit => 40
+    t.string   "first_name",           :limit => 40
+    t.string   "business_name",        :limit => 80
+    t.string   "email"
+    t.string   "website"
+    t.string   "phone",                :limit => 40
+    t.string   "fax",                  :limit => 40
+    t.string   "business_address"
+    t.string   "business_city",        :limit => 80
+    t.integer  "business_state_id"
+    t.string   "business_postal_code", :limit => 20
+    t.integer  "business_country_id"
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+  end
+
+  add_index "optometrists", ["business_country_id"], :name => "index_optometrists_on_business_country_id"
+  add_index "optometrists", ["business_state_id"], :name => "index_optometrists_on_business_state_id"
+  add_index "optometrists", ["personal_title_id"], :name => "index_optometrists_on_personal_title_id"
 
   create_table "personal_titles", :force => true do |t|
     t.string   "title",      :limit => 20

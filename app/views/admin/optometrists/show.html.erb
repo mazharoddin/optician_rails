@@ -1,0 +1,32 @@
+<% @title = "Show Optometrist" %>
+<div class="page-header">
+	<h1><%= @optometrist.full_name %> (Optometrist) <%= link_to "Edit Optometrist", edit_admin_optometrist_path(@optometrist), :class => "btn btn-primary pull-right" %></h1>
+</div>
+
+
+<dl class="dl-horizontal">
+	<dt>Title</dt>
+	<dd><%= @optometrist.personal_title %></dd>
+	<dt>Last Name</dt>
+	<dd><%= @optometrist.last_name %></dd>
+	<dt>First Name</dt>
+	<dd><%= @optometrist.first_name %></dd>
+	<dt>Business Name</dt>
+	<dd><%= @optometrist.business_name %></dd>
+	<dt>Email</dt>
+	<dd><%= @optometrist.email %></dd>
+	<dt>Phone</dt>
+	<dd><%= @optometrist.phone %></dd>
+	<dt>Fax</dt>
+	<dd><%= @optometrist.fax %></dd>
+	<dt>Address</dt>
+	<dd><%= @optometrist.business_address %></dd>
+	<dt>City</dt>
+	<dd><%= @optometrist.business_city %></dd>
+	<dt>State</dt>
+	<dd><%= @optometrist.business_state %></dd>
+	<dt>Postal Code</dt>
+	<dd><%= @optometrist.business_postal_code %></dd>
+	<dt>Country</dt>
+	<dd><%= @optometrist.business_country %></dd>
+</dl>

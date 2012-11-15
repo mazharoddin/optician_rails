@@ -1,0 +1,36 @@
+<% @title = "Optometrists" %>
+<div class="page-header">
+	<h1>Find Optometrist <%= link_to "New Optometrist", new_admin_optometrist_path, :class => "btn btn-success pull-right" %></h1>
+</div>
+<form class="well form-search">
+	<input type="text" class="search-query">
+	<button type"submit" class="btn btn-info">Search</button>
+</form>
+
+<% if @optometrists.empty? then %>
+<p>No optometrists found</p>
+<% else %>
+<table class="table table-condensed table-striped">
+	<thead>
+		<tr>
+			<th>Last Name</th>
+			<th>First Name</th>
+			<th>Business Name</th>
+			<th>City</th>
+			<th>Phone</th>
+		</tr>
+	</thead>
+	<tbody>
+<% @optometrists.each do |optometrist| %>
+		<tr>
+			<td><%= link_to optometrist.last_name, admin_optometrist_path(optometrist) %></td>
+			<td><%= link_to optometrist.first_name, admin_optometrist_path(optometrist) %></td>
+			<td><%= optometrist.business_name %></td>
+			<td><%= optometrist.business_city %></td>
+			<td><%= optometrist.phone %></td>
+		</tr>
+<% end %>
+	</tbody>
+</table>
+<%= paginate @optometrists %>
+<% end %>
