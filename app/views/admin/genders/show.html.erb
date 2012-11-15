@@ -1,0 +1,10 @@
+<% @title = "Show Gender" %>
+<div class="page-header">
+	<h1><%= @gender.name %> (Gender) <%= link_to "Edit Gender", edit_admin_gender_path(@gender), :class => "btn btn-primary pull-right" %></h1>
+</div>
+
+
+<dl class="dl-horizontal">
+	<dt>Name</dt>
+	<dd><%= @gender.name %></dd>
+</dl>

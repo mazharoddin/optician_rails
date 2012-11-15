@@ -6,3 +6,4 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 PersonalTitle.create([{title: 'Dr'}, {title: 'Miss'}, {title: 'Mr'}, {title: 'Mrs'}, {title: 'Ms'}])
+Gender.create([{name: 'Female'}, {name: 'Male'}])

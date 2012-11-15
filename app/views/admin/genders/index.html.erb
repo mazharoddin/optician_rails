@@ -1,0 +1,28 @@
+<% @title = "Genders" %>
+<div class="page-header">
+	<h1>Find Genders <%= link_to "New Genders", new_admin_gender_path, :class => "btn btn-success pull-right" %></h1>
+</div>
+<form class="well form-search">
+	<input type="text" class="search-query">
+	<button type"submit" class="btn btn-info">Search</button>
+</form>
+
+<% if @genders.empty? then %>
+<p>No genders found</p>
+<% else %>
+<table class="table table-condensed table-striped">
+	<thead>
+		<tr>
+			<th>Gender</th>
+		</tr>
+	</thead>
+	<tbody>
+<% @genders.each do |gender| %>
+		<tr>
+			<td><%= link_to gender.name, admin_gender_path(gender) %></td>
+		</tr>
+<% end %>
+	</tbody>
+</table>
+<%= paginate @genders %>
+<% end %>
