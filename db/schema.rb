@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121114213051) do
+ActiveRecord::Schema.define(:version => 20121114215405) do
 
   create_table "countries", :force => true do |t|
     t.string   "name",       :limit => 60
@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(:version => 20121114213051) do
   end
 
   create_table "employees", :force => true do |t|
-    t.string   "title",                  :limit => 10
     t.string   "first_name",             :limit => 40
     t.string   "last_name",              :limit => 40
     t.string   "email",                                :default => "", :null => false
@@ -42,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20121114213051) do
     t.integer  "failed_attempts",                      :default => 0
     t.string   "unlock_token"
     t.datetime "locked_at"
+    t.integer  "personal_title_id"
   end
 
   add_index "employees", ["email"], :name => "index_employees_on_email", :unique => true
@@ -49,9 +49,9 @@ ActiveRecord::Schema.define(:version => 20121114213051) do
   add_index "employees", ["unlock_token"], :name => "index_employees_on_unlock_token", :unique => true
 
   create_table "personal_titles", :force => true do |t|
-    t.string   "title"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "title",      :limit => 20
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
   end
 
   create_table "states", :force => true do |t|

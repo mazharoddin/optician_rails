@@ -1,5 +1,5 @@
 <%= simple_form_for [:admin, @employee], :html => { :class => "form-horizontal" } do |f| %>
-	<%= f.input :title, :collection => ["Dr", "Mr", "Mrs", "Ms"] %>
+	<%= f.association :personal_title %>
 	<%= f.input :first_name %>
 	<%= f.input :last_name %>
 	<%= f.input :email %>
