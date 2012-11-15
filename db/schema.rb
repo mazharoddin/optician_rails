@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121115115042) do
+ActiveRecord::Schema.define(:version => 20121115122148) do
 
   create_table "countries", :force => true do |t|
     t.string   "name",       :limit => 60
@@ -87,6 +87,53 @@ ActiveRecord::Schema.define(:version => 20121115115042) do
   add_index "optometrists", ["business_country_id"], :name => "index_optometrists_on_business_country_id"
   add_index "optometrists", ["business_state_id"], :name => "index_optometrists_on_business_state_id"
   add_index "optometrists", ["personal_title_id"], :name => "index_optometrists_on_personal_title_id"
+
+  create_table "patients", :force => true do |t|
+    t.integer  "personal_title_id"
+    t.string   "last_name",                :limit => 40
+    t.string   "first_name",               :limit => 40
+    t.string   "preferred_name",           :limit => 40
+    t.integer  "gender_id"
+    t.date     "birthday"
+    t.string   "home_phone",               :limit => 20
+    t.string   "work_phone",               :limit => 20
+    t.string   "work_ext",                 :limit => 5
+    t.string   "mobile_phone",             :limit => 20
+    t.string   "email"
+    t.string   "home_address"
+    t.string   "home_city",                :limit => 80
+    t.integer  "home_state_id"
+    t.string   "home_postal_code",         :limit => 20
+    t.integer  "home_country_id"
+    t.string   "postal_address"
+    t.string   "postal_city",              :limit => 80
+    t.integer  "postal_state_id"
+    t.string   "postal_postal_code",       :limit => 20
+    t.integer  "postal_country_id"
+    t.text     "note"
+    t.integer  "optometrist_id"
+    t.boolean  "smoker"
+    t.text     "alergies"
+    t.text     "medical_other"
+    t.integer  "employment_type_id"
+    t.string   "occupation",               :limit => 80
+    t.string   "guardian_name",            :limit => 80
+    t.integer  "guardian_relationship_id"
+    t.string   "guardian_phone",           :limit => 20
+    t.string   "guardian_alt_phone",       :limit => 20
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+  end
+
+  add_index "patients", ["employment_type_id"], :name => "index_patients_on_employment_type_id"
+  add_index "patients", ["gender_id"], :name => "index_patients_on_gender_id"
+  add_index "patients", ["guardian_relationship_id"], :name => "index_patients_on_guardian_relationship_id"
+  add_index "patients", ["home_country_id"], :name => "index_patients_on_home_country_id"
+  add_index "patients", ["home_state_id"], :name => "index_patients_on_home_state_id"
+  add_index "patients", ["optometrist_id"], :name => "index_patients_on_optometrist_id"
+  add_index "patients", ["personal_title_id"], :name => "index_patients_on_personal_title_id"
+  add_index "patients", ["postal_country_id"], :name => "index_patients_on_postal_country_id"
+  add_index "patients", ["postal_state_id"], :name => "index_patients_on_postal_state_id"
 
   create_table "personal_titles", :force => true do |t|
     t.string   "title",      :limit => 20

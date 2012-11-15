@@ -1,0 +1,69 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  personal_title: 
+  last_name: MyString
+  first_name: MyString
+  preferred_name: MyString
+  gender: 
+  birthday: 2012-11-15
+  home_phone: MyString
+  work_phone: MyString
+  work_ext: MyString
+  mobile_phone: MyString
+  email: MyString
+  home_address: MyString
+  home_city: MyString
+  home_state: 
+  home_postal_code: MyString
+  home_country: 
+  postal_address: MyString
+  postal_city: MyString
+  postal_state: 
+  postal_postal_code: MyString
+  postal_country: 
+  note: MyText
+  optometrist: 
+  smoker: false
+  alergies: MyText
+  medical_other: MyText
+  employment_type: 
+  occupation: MyString
+  guardian_name: MyString
+  guardian_relationship: 
+  guardian_phone: MyString
+  guardian_alt_phone: MyString
+
+two:
+  personal_title: 
+  last_name: MyString
+  first_name: MyString
+  preferred_name: MyString
+  gender: 
+  birthday: 2012-11-15
+  home_phone: MyString
+  work_phone: MyString
+  work_ext: MyString
+  mobile_phone: MyString
+  email: MyString
+  home_address: MyString
+  home_city: MyString
+  home_state: 
+  home_postal_code: MyString
+  home_country: 
+  postal_address: MyString
+  postal_city: MyString
+  postal_state: 
+  postal_postal_code: MyString
+  postal_country: 
+  note: MyText
+  optometrist: 
+  smoker: false
+  alergies: MyText
+  medical_other: MyText
+  employment_type: 
+  occupation: MyString
+  guardian_name: MyString
+  guardian_relationship: 
+  guardian_phone: MyString
+  guardian_alt_phone: MyString

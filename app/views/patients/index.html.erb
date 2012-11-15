@@ -1,0 +1,40 @@
+<% @title = "Patients" %>
+<div class="page-header">
+	<h1>Find Patient <%= link_to "New Patient", new_patient_path, :class => "btn btn-success pull-right" %></h1>
+</div>
+<form class="well form-search">
+	<input type="text" class="search-query">
+	<button type"submit" class="btn btn-info">Search</button>
+</form>
+
+<% if @patients.empty? then %>
+<p>No patients found</p>
+<% else %>
+<table class="table table-condensed table-striped">
+	<thead>
+		<tr>
+			<th>Last Name</th>
+			<th>First Name</th>
+			<th>Address</th>
+			<th>City</th>
+			<th>Postal Code</th>
+			<th>State</th>
+			<th>Telephone</th>
+		</tr>
+	</thead>
+	<tbody>
+<% @patients.each do |patient| %>
+		<tr>
+			<td><%= link_to patient.last_name, edit_patient_path(patient) %></td>
+			<td><%= link_to patient.first_name, edit_patient_path(patient) %></td>
+			<td><%= patient.home_address %></td>
+			<td><%= patient.home_city %></td>
+			<td><%= patient.home_postal_code %></td>
+			<td><%= patient.home_state %></td>
+			<td><%= patient.home_phone %></td>
+		</tr>
+<% end %>
+	</tbody>
+</table>
+<%= paginate @patients %>
+<% end %>
