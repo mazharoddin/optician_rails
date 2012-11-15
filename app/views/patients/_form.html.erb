@@ -1,7 +1,6 @@
 <% if @patient.new_record? %>
 <ul class="nav nav-tabs">
 	<li class="active"><a href="#">Profile</a></li>
-	<li class="disabled"><a href="patients_medical.html">Medical</a></li>
 	<li class="disabled"><a href="patients_glasses.html">Glasses</a></li>
 	<li class="disabled"><a href="patients_contacts.html">Contacts</a></li>
 	<li class="disabled"><a href="patients_dispensing.html">Dispensing</a></li>
@@ -11,7 +10,6 @@
 <% else %>
 <ul class="nav nav-tabs">
 	<li class="active"><%= link_to "Profile", edit_patient_path(@patient) %></li>
-	<li><a href="patients_medical.html">Medical</a></li>
 	<li><a href="patients_glasses.html">Glasses</a></li>
 	<li><a href="patients_contacts.html">Contacts</a></li>
 	<li><a href="patients_dispensing.html">Dispensing</a></li>
@@ -20,33 +18,74 @@
 </ul>
 <% end %>
 <%= simple_form_for @patient, :html => { :class => "form-horizontal" } do |f| %>
-<legend>General</legend>
-	<%= f.association :personal_title %>
-	<%= f.input :first_name %>
-	<%= f.input :last_name %>
-	<%= f.input :preferred_name %>
-	<%= f.association :gender %>
-	<%= f.input :birthday %>
-<legend>Contact</legend>
-	<%= f.input :home_phone %>
-	<%= f.input :work_phone %>
-	<%= f.input :mobile_phone %>
-	<%= f.input :email %>
-<legend>Home Address</legend>
-	<%= f.input :home_address %>
-	<%= f.input :home_city %>
-	<%= f.association :home_state %>
-	<%= f.input :home_postal_code %>
-	<%= f.association :home_country %>
-<legend>Postal Address</legend>
-	<%= f.input :postal_address %>
-	<%= f.input :postal_city %>
-	<%= f.association :postal_state %>
-	<%= f.input :postal_postal_code %>
-	<%= f.association :postal_country %>
-<legend>Other</legend>
-	<%= f.input :note %>
-
+<div class="row">
+	<div class="span6">
+	<legend>General</legend>
+		<%= f.association :personal_title %>
+		<%= f.input :first_name %>
+		<%= f.input :last_name %>
+		<%= f.input :preferred_name %>
+		<%= f.association :gender %>
+		<%= f.input :birthday %>
+	</div>
+	<div class="span6">
+	<legend>Contact</legend>
+		<%= f.input :home_phone %>
+		<%= f.input :work_phone %>
+		<%= f.input :mobile_phone %>
+		<%= f.input :email %>
+	</div>
+</div>
+<div class="row">
+	<div class="span6">
+	<legend>Home Address</legend>
+		<%= f.input :home_address %>
+		<%= f.input :home_city %>
+		<%= f.association :home_state %>
+		<%= f.input :home_postal_code %>
+		<%= f.association :home_country %>
+	</div>
+	<div class="span6">
+	<legend>Postal Address</legend>
+		<%= f.input :postal_address %>
+		<%= f.input :postal_city %>
+		<%= f.association :postal_state %>
+		<%= f.input :postal_postal_code %>
+		<%= f.association :postal_country %>
+	</div>
+</div>
+<div class="row">
+	<div class="span6">
+	<legend>Employment</legend>
+		<%= f.association :employment_type %>
+		<%= f.input :occupation %>
+	</div>
+	<div class="span6">
+	<legend>Guardian</legend>
+		<%= f.input :guardian_name %>
+		<%= f.association :guardian_relationship %>
+		<%= f.input :guardian_phone %>
+		<%= f.input :guardian_alt_phone %>
+</div>
+</div>
+<div class="row">
+	<div class="span6">
+	<legend>Doctors</legend>
+	<%= f.association :optometrist %>
+	</div>
+	<div class="span6">
+	<legend>Medical Conditions</legend>
+	<%= f.input :smoker %>
+	<%= f.input :alergies %>
+	<%= f.input :medical_other %>
+	</div>
+</div>
+<div class="row">
+	<div class="span12">
+	<legend>Other</legend>
+		<%= f.input :note %>
+	</div>
+</div>
 	<div class="form-actions">
 		<%= f.button :submit, :class => "btn btn-primary" %>
 <% if @patient.new_record? %>
