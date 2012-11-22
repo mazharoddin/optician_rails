@@ -20,8 +20,7 @@ class PatientsController < ApplicationController
 	end
 	
 	def edit
-		add_breadcrumb @patient.full_name, patient_path(@patient)
-		add_breadcrumb "Edit", edit_patient_path(@patient)
+		redirect_to :action => 'show'
 	end
 	
 	def new

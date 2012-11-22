@@ -25,8 +25,8 @@
 	<tbody>
 <% @patients.each do |patient| %>
 		<tr>
-			<td><%= link_to patient.last_name, edit_patient_path(patient) %></td>
-			<td><%= link_to patient.first_name, edit_patient_path(patient) %></td>
+			<td><%= link_to patient.last_name, patient_path(patient) %></td>
+			<td><%= link_to patient.first_name, patient_path(patient) %></td>
 			<td><%= patient.home_address %></td>
 			<td><%= patient.home_city %></td>
 			<td><%= patient.home_postal_code %></td>

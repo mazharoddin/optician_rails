@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121115122148) do
+ActiveRecord::Schema.define(:version => 20121116071501) do
 
   create_table "countries", :force => true do |t|
     t.string   "name",       :limit => 60
@@ -140,6 +140,36 @@ ActiveRecord::Schema.define(:version => 20121115122148) do
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
   end
+
+  create_table "spectacles_prescriptions", :force => true do |t|
+    t.integer  "patient_id"
+    t.integer  "optometrist_id"
+    t.date     "rx_date"
+    t.date     "expiry_date"
+    t.string   "description",    :limit => 80
+    t.text     "notes"
+    t.decimal  "od_sphere",                    :precision => 10, :scale => 0
+    t.decimal  "od_cylinder",                  :precision => 10, :scale => 0
+    t.decimal  "od_axis",                      :precision => 10, :scale => 0
+    t.decimal  "od_add",                       :precision => 10, :scale => 0
+    t.string   "od_prism1",      :limit => 20
+    t.string   "od_base1",       :limit => 20
+    t.string   "od_prism2",      :limit => 20
+    t.string   "od_base2",       :limit => 20
+    t.decimal  "os_sphere",                    :precision => 10, :scale => 0
+    t.decimal  "os_cylinder",                  :precision => 10, :scale => 0
+    t.decimal  "os_axis",                      :precision => 10, :scale => 0
+    t.decimal  "os_add",                       :precision => 10, :scale => 0
+    t.string   "os_prism1",      :limit => 20
+    t.string   "os_base1",       :limit => 20
+    t.string   "os_prism2",      :limit => 20
+    t.string   "os_base2",       :limit => 20
+    t.datetime "created_at",                                                  :null => false
+    t.datetime "updated_at",                                                  :null => false
+  end
+
+  add_index "spectacles_prescriptions", ["optometrist_id"], :name => "index_spectacles_prescriptions_on_optometrist_id"
+  add_index "spectacles_prescriptions", ["patient_id"], :name => "index_spectacles_prescriptions_on_patient_id"
 
   create_table "states", :force => true do |t|
     t.string   "name",       :limit => 60

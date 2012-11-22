@@ -61,7 +61,11 @@ Optician::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
   resources :dashboard
-  resources :patients
+  resources :patients do
+    resources :spectacles_prescriptions do
+		get 'current', :on => :collection
+	end
+  end
   namespace :admin do
     resources :dashboard
 	resources :countries do

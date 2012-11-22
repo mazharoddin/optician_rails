@@ -9,8 +9,8 @@
 </ul>
 <% else %>
 <ul class="nav nav-tabs">
-	<li class="active"><%= link_to "Profile", edit_patient_path(@patient) %></li>
-	<li><a href="patients_glasses.html">Glasses</a></li>
+	<li class="active"><%= link_to "Profile", patient_path(@patient) %></li>
+	<li><%= link_to "Spectacles", current_patient_spectacles_prescriptions_path(@patient) %></li>
 	<li><a href="patients_contacts.html">Contacts</a></li>
 	<li><a href="patients_dispensing.html">Dispensing</a></li>
 	<li><a href="patients_appointments.html">Appointments</a></li>
@@ -21,12 +21,12 @@
 <div class="row">
 	<div class="span6">
 	<legend>General</legend>
-		<%= f.association :personal_title %>
+		<%= f.association :personal_title, :input_html => { :class => 'input-small' } %>
 		<%= f.input :first_name %>
 		<%= f.input :last_name %>
 		<%= f.input :preferred_name %>
-		<%= f.association :gender %>
-		<%= f.input :birthday %>
+		<%= f.association :gender, :input_html => { :class => 'input-medium' } %>
+		<%= f.input :birthday, :input_html => { :class => 'input-small' }, :start_year => 1900 %>
 	</div>
 	<div class="span6">
 	<legend>Contact</legend>
@@ -76,14 +76,14 @@
 	<div class="span6">
 	<legend>Medical Conditions</legend>
 	<%= f.input :smoker %>
-	<%= f.input :alergies %>
-	<%= f.input :medical_other %>
+	<%= f.input :alergies, :input_html => { :class => 'input-xlarge', :rows => 5 } %>
+	<%= f.input :medical_other, :input_html => { :class => 'input-xlarge', :rows => 5 } %>
 	</div>
 </div>
 <div class="row">
 	<div class="span12">
 	<legend>Other</legend>
-		<%= f.input :note %>
+		<%= f.input :note, :input_html => { :class => 'input-xxlarge', :rows => 5 } %>
 	</div>
 </div>
 	<div class="form-actions">

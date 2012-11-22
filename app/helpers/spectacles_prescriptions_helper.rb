@@ -1,0 +1,2 @@
+module SpectaclesPrescriptionsHelper
+end
