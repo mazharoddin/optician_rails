@@ -52,7 +52,7 @@ class SpectaclesPrescriptionsController < ApplicationController
 
 		if @spectacles_prescription.update_attributes(params[:spectacles_prescription]) then
 			flash[:success] = "Spectacles prescription has been updated."
-			redirect_to patient_path(@patient)
+			redirect_to patient_spectacles_prescription_path(@patient, @spectacles_prescription)
 		else
 			render "edit"
 		end
