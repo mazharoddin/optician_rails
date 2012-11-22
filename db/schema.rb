@@ -11,7 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121116071501) do
+ActiveRecord::Schema.define(:version => 20121122214553) do
+
+  create_table "brands", :force => true do |t|
+    t.string   "name",       :limit => 60
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
 
   create_table "countries", :force => true do |t|
     t.string   "name",       :limit => 60
@@ -148,7 +154,7 @@ ActiveRecord::Schema.define(:version => 20121116071501) do
     t.date     "expiry_date"
     t.string   "description",    :limit => 80
     t.text     "notes"
-    t.decimal  "od_sphere",                    :precision => 10, :scale => 0
+    t.decimal  "od_sphere",                    :precision => 10, :scale => 2
     t.decimal  "od_cylinder",                  :precision => 10, :scale => 0
     t.decimal  "od_axis",                      :precision => 10, :scale => 0
     t.decimal  "od_add",                       :precision => 10, :scale => 0

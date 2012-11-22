@@ -67,6 +67,7 @@ Optician::Application.routes.draw do
 	end
   end
   namespace :admin do
+    resources :brands
     resources :dashboard
 	resources :countries do
 	  resources :states
