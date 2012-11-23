@@ -35,8 +35,6 @@ class SpectaclesPrescriptionsController < ApplicationController
 		add_breadcrumb "New", new_patient_spectacles_prescription_path(@patient)
 		
 		@spectacles_prescription = @patient.spectacles_prescriptions.build
-		
-		@sphere_collection = (30..-30).to_a
 	end
 	
 	def show
