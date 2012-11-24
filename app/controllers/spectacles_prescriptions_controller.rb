@@ -14,12 +14,12 @@ class SpectaclesPrescriptionsController < ApplicationController
 	def create
 		add_breadcrumb @patient.full_name, patient_path(@patient)
 		add_breadcrumb "Spectacles Prescriptions", patient_spectacles_prescriptions_path(@patient)
-		add_breadcrumb "New", new_patient_spectacle_prescription_path(@patient)
+		add_breadcrumb "New", new_patient_spectacles_prescription_path(@patient)
 
 		@spectacles_prescription = @patient.spectacles_prescriptions.build(params[:spectacles_prescription])
 		if @spectacles_prescription.save then
 			flash[:success] = "Spectacles prescription has been created."
-			redirect_to patient_path(@patient)
+			redirect_to patient_spectacles_prescription_path(@patient, @spectacles_prescription)
 		else
 			render "new"
 		end
