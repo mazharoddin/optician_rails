@@ -11,13 +11,41 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121122214553) do
+ActiveRecord::Schema.define(:version => 20121122220435) do
 
   create_table "brands", :force => true do |t|
     t.string   "name",       :limit => 60
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
   end
+
+  create_table "contacts_prescriptions", :force => true do |t|
+    t.integer  "patient_id"
+    t.integer  "optometrist_id"
+    t.date     "rx_date"
+    t.date     "expiry_date"
+    t.string   "description",    :limit => 80
+    t.text     "notes"
+    t.decimal  "od_sphere",                    :precision => 10, :scale => 0
+    t.decimal  "od_cylinder",                  :precision => 10, :scale => 0
+    t.decimal  "od_axis",                      :precision => 10, :scale => 0
+    t.decimal  "od_add",                       :precision => 10, :scale => 0
+    t.string   "od_base_curve",  :limit => 20
+    t.string   "od_diameter",    :limit => 20
+    t.integer  "od_brand_id"
+    t.decimal  "os_sphere",                    :precision => 10, :scale => 0
+    t.decimal  "os_cylinder",                  :precision => 10, :scale => 0
+    t.decimal  "os_axis",                      :precision => 10, :scale => 0
+    t.decimal  "os_add",                       :precision => 10, :scale => 0
+    t.string   "os_base_curve",  :limit => 20
+    t.string   "os_diameter",    :limit => 20
+    t.integer  "os_brand_id"
+    t.datetime "created_at",                                                  :null => false
+    t.datetime "updated_at",                                                  :null => false
+  end
+
+  add_index "contacts_prescriptions", ["optometrist_id"], :name => "index_contacts_prescriptions_on_optometrist_id"
+  add_index "contacts_prescriptions", ["patient_id"], :name => "index_contacts_prescriptions_on_patient_id"
 
   create_table "countries", :force => true do |t|
     t.string   "name",       :limit => 60

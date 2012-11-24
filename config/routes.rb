@@ -62,6 +62,9 @@ Optician::Application.routes.draw do
   # match ':controller(/:action(/:id))(.:format)'
   resources :dashboard
   resources :patients do
+	resources :contacts_prescriptions do
+		get 'current', :on => :collection
+	end
     resources :spectacles_prescriptions do
 		get 'current', :on => :collection
 	end

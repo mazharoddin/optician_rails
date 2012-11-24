@@ -1,0 +1,50 @@
+<% @title = "Patient Contacts" %>
+<div class="page-header">
+	<h1><%= @patient.full_name %> (Patient)</h1>
+</div>
+
+
+
+
+<ul class="nav nav-tabs">
+	<li><%= link_to "Profile", patient_path(@patient) %></li>
+	<li><%= link_to "Spectacles", patient_spectacles_prescriptions_path(@patient, @spectacles_prescription) %></li>
+	<li class="active"><%= link_to "Contacts", patient_contacts_prescriptions_path(@patient, @contacts_prescription) %></li>
+	<li><a href="patients_dispensing.html">Dispensing</a></li>
+	<li><a href="patients_appointments.html">Appointments</a></li>
+	<li><a href="patients_sales.html">Sales</a></li>
+</ul>
+
+<div class="btn-toolbar">
+	<div class="btn-group">
+		<%= link_to "Current", current_patient_contacts_prescriptions_path(@patient), :class => "btn" %>
+		<%= link_to "History", patient_contacts_prescriptions_path(@patient), :class => "btn btn-primary" %>
+	</div>
+	<div class="btn-group pull-right">
+		<%= link_to "New Prescription", :new_patient_contacts_prescription, :class => "btn btn-success" %>
+	</div>
+</div>
+
+<% if @contacts_prescriptions.empty? then %>
+<p>No contacts prescriptions found</p>
+<% else %>
+<table class="table table-condensed table-striped">
+	<thead>
+		<tr>
+			<th>Rx Date</th>
+			<th>Optician</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+<% @contacts_prescriptions.each do |contacts_prescription| %>
+		<tr>
+			<td><%= link_to contacts_prescription.rx_date, patient_contacts_prescription_path(@patient, contacts_prescription) %></td>
+			<td><%= link_to contacts_prescription.optometrist, patient_contacts_prescription_path(@patient, contacts_prescription) %></td>
+			<td><%= contacts_prescription.description %></td>
+		</tr>
+<% end %>
+	</tbody>
+</table>
+<%= paginate @contacts_prescriptions %>
+<% end %>

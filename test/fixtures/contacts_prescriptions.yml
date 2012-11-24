@@ -1,0 +1,53 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  patient: 
+  optometrist: 
+  rx_date: 2012-11-23
+  expiry_date: 2012-11-23
+  description: MyString
+  notes: MyText
+  od_sphere: 9.99
+  od_cylinder: 9.99
+  od_axis: 9.99
+  od_add: 9.99
+  os_base_curve: MyString
+  os_diameter: MyString
+  os_brand: 
+  : 
+  =: MyString
+  os_sphere: 9.99
+  os_cylinder: 9.99
+  os_axis: 9.99
+  os_add: 9.99
+  os_base_curve: MyString
+  os_diameter: MyString
+  os_brand: 
+  : 
+  =: MyString
+
+two:
+  patient: 
+  optometrist: 
+  rx_date: 2012-11-23
+  expiry_date: 2012-11-23
+  description: MyString
+  notes: MyText
+  od_sphere: 9.99
+  od_cylinder: 9.99
+  od_axis: 9.99
+  od_add: 9.99
+  os_base_curve: MyString
+  os_diameter: MyString
+  os_brand: 
+  : 
+  =: MyString
+  os_sphere: 9.99
+  os_cylinder: 9.99
+  os_axis: 9.99
+  os_add: 9.99
+  os_base_curve: MyString
+  os_diameter: MyString
+  os_brand: 
+  : 
+  =: MyString
