@@ -1,0 +1,12 @@
+<%= simple_form_for [:admin, @company], :html => { :class => "form-horizontal" } do |f| %>
+	<%= f.input :name %>
+
+	<div class="form-actions">
+		<%= f.button :submit, :class => "btn btn-primary" %>
+<% if @company.new_record? %>
+		<%= link_to "Discard Changes", admin_companies_path, :class => "btn" %>
+<% else %>
+		<%= link_to "Discard Changes", admin_company_path(@company), :class => "btn" %>
+<% end %>
+	</div>
+<% end %>

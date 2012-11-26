@@ -11,10 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121126074807) do
+ActiveRecord::Schema.define(:version => 20121126102615) do
 
   create_table "brands", :force => true do |t|
     t.string   "name",       :limit => 60
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
+
+  create_table "companies", :force => true do |t|
+    t.string   "type",       :limit => 60
+    t.string   "name"
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
   end
@@ -260,11 +267,11 @@ ActiveRecord::Schema.define(:version => 20121126074807) do
   add_index "tax_classes", ["tax_b_id"], :name => "index_tax_classes_on_tax_b_id"
 
   create_table "taxes", :force => true do |t|
-    t.string   "name"
-    t.decimal  "amount",     :precision => 10, :scale => 0
+    t.string   "name",       :limit => 40
+    t.decimal  "amount",                   :precision => 10, :scale => 0
     t.float    "rate"
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
+    t.datetime "created_at",                                              :null => false
+    t.datetime "updated_at",                                              :null => false
   end
 
 end

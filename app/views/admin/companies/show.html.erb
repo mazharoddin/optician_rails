@@ -1,0 +1,10 @@
+<% @title = "Show Company" %>
+<div class="page-header">
+	<h1><%= @company.name %> (Company) <%= link_to "Edit Company", edit_admin_company_path(@company), :class => "btn btn-primary pull-right" %></h1>
+</div>
+
+
+<dl class="dl-horizontal">
+	<dt>Name</dt>
+	<dd><%= @company.name %></dd>
+</dl>
