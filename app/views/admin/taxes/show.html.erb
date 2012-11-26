@@ -1,0 +1,14 @@
+<% @title = "Show Tax" %>
+<div class="page-header">
+	<h1><%= @tax.name %> (Tax) <%= link_to "Edit Tax", edit_admin_tax_path(@tax), :class => "btn btn-primary pull-right" %></h1>
+</div>
+
+
+<dl class="dl-horizontal">
+	<dt>Name</dt>
+	<dd><%= @tax.name %></dd>
+	<dt>Amount</dt>
+	<dd><%= @tax.amount %></dd>
+	<dt>Rate</dt>
+	<dd><%= @tax.rate %></dd>
+</dl>

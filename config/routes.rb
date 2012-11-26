@@ -82,6 +82,7 @@ Optician::Application.routes.draw do
 	resources :optometrists
 	resources :personal_titles
 	resources :stores
+	resources :taxes
 	root :to => 'dashboard#index'
   end
   

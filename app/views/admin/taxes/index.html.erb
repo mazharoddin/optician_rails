@@ -1,0 +1,32 @@
+<% @title = "Taxes" %>
+<div class="page-header">
+	<h1>Find Taxes <%= link_to "New Tax", new_admin_tax_path, :class => "btn btn-success pull-right" %></h1>
+</div>
+<form class="well form-search">
+	<input type="text" class="search-query">
+	<button type"submit" class="btn btn-info">Search</button>
+</form>
+
+<% if @taxes.empty? then %>
+<p>No taxes found</p>
+<% else %>
+<table class="table table-condensed table-striped">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Amount</th>
+			<th>Rate</th>
+		</tr>
+	</thead>
+	<tbody>
+<% @taxes.each do |tax| %>
+		<tr>
+			<td><%= link_to tax.name, admin_tax_path(tax) %></td>
+			<td><%= tax.amount %></td>
+			<td><%= tax.rate %>%</td>
+		</tr>
+<% end %>
+	</tbody>
+</table>
+<%= paginate @taxes %>
+<% end %>

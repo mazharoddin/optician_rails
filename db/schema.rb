@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121122220435) do
+ActiveRecord::Schema.define(:version => 20121125220127) do
 
   create_table "brands", :force => true do |t|
     t.string   "name",       :limit => 60
@@ -246,5 +246,13 @@ ActiveRecord::Schema.define(:version => 20121122220435) do
 
   add_index "stores", ["country_id"], :name => "index_stores_on_country_id"
   add_index "stores", ["state_id"], :name => "index_stores_on_state_id"
+
+  create_table "taxes", :force => true do |t|
+    t.string   "name"
+    t.decimal  "amount",     :precision => 10, :scale => 0
+    t.float    "rate"
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+  end
 
 end
