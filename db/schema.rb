@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121125220127) do
+ActiveRecord::Schema.define(:version => 20121126074807) do
 
   create_table "brands", :force => true do |t|
     t.string   "name",       :limit => 60
@@ -246,6 +246,18 @@ ActiveRecord::Schema.define(:version => 20121125220127) do
 
   add_index "stores", ["country_id"], :name => "index_stores_on_country_id"
   add_index "stores", ["state_id"], :name => "index_stores_on_state_id"
+
+  create_table "tax_classes", :force => true do |t|
+    t.string   "name",                :limit => 40
+    t.integer  "tax_a_id"
+    t.integer  "tax_b_id"
+    t.boolean  "tax_b_applies_tax_a"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+  end
+
+  add_index "tax_classes", ["tax_a_id"], :name => "index_tax_classes_on_tax_a_id"
+  add_index "tax_classes", ["tax_b_id"], :name => "index_tax_classes_on_tax_b_id"
 
   create_table "taxes", :force => true do |t|
     t.string   "name"

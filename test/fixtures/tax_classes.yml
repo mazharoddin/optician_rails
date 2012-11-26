@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  tax_a: 
+  tax_b: 
+  tax_b_applies_tax_a: false
+
+two:
+  name: MyString
+  tax_a: 
+  tax_b: 
+  tax_b_applies_tax_a: false

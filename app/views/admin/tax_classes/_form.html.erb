@@ -1,0 +1,15 @@
+<%= simple_form_for [:admin, @tax_class], :html => { :class => "form-horizontal" } do |f| %>
+	<%= f.input :name %>
+	<%= f.association :tax_a %>
+	<%= f.association :tax_b %>
+	<%= f.input :tax_b_applies_tax_a %>
+
+	<div class="form-actions">
+		<%= f.button :submit, :class => "btn btn-primary" %>
+<% if @tax_class.new_record? %>
+		<%= link_to "Discard Changes", admin_tax_classes_path, :class => "btn" %>
+<% else %>
+		<%= link_to "Discard Changes", admin_tax_class_path(@tax_class), :class => "btn" %>
+<% end %>
+	</div>
+<% end %>

@@ -1,0 +1,2 @@
+module Admin::TaxClassesHelper
+end

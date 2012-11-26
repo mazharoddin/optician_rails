@@ -1,0 +1,34 @@
+<% @title = "Tax Classes" %>
+<div class="page-header">
+	<h1>Find Tax Classes <%= link_to "New Tax Class", new_admin_tax_class_path, :class => "btn btn-success pull-right" %></h1>
+</div>
+<form class="well form-search">
+	<input type="text" class="search-query">
+	<button type"submit" class="btn btn-info">Search</button>
+</form>
+
+<% if @tax_classes.empty? then %>
+<p>No tax classes found</p>
+<% else %>
+<table class="table table-condensed table-striped">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Tax A</th>
+			<th>Tax B</th>
+			<th>Tax B Applies To A</th>
+		</tr>
+	</thead>
+	<tbody>
+<% @tax_classes.each do |tax_class| %>
+		<tr>
+			<td><%= link_to tax_class.name, admin_tax_class_path(tax_class) %></td>
+			<td><%= tax_class.tax_a %></td>
+			<td><%= tax_class.tax_b %></td>
+			<td><%= tax_class.tax_b_applies_tax_a %></td>
+		</tr>
+<% end %>
+	</tbody>
+</table>
+<%= paginate @tax_classes %>
+<% end %>
