@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121126102615) do
+ActiveRecord::Schema.define(:version => 20121126110233) do
 
   create_table "brands", :force => true do |t|
     t.string   "name",       :limit => 60
@@ -106,6 +106,27 @@ ActiveRecord::Schema.define(:version => 20121126102615) do
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
   end
+
+  create_table "inventory", :force => true do |t|
+    t.string   "type",                  :limit => 100
+    t.string   "description",           :limit => 80
+    t.integer  "manufacturer_id"
+    t.integer  "supplier_id"
+    t.string   "supplier_code",         :limit => 80
+    t.decimal  "cost_price",                           :precision => 10, :scale => 0
+    t.decimal  "sugested_retail_price",                :precision => 10, :scale => 0
+    t.decimal  "regular_retail_price",                 :precision => 10, :scale => 0
+    t.decimal  "current_retail_price",                 :precision => 10, :scale => 0
+    t.integer  "tax_class_id"
+    t.integer  "stock_available"
+    t.integer  "stock_reorder"
+    t.datetime "created_at",                                                          :null => false
+    t.datetime "updated_at",                                                          :null => false
+  end
+
+  add_index "inventory", ["manufacturer_id"], :name => "index_inventory_on_manufacturer_id"
+  add_index "inventory", ["supplier_id"], :name => "index_inventory_on_supplier_id"
+  add_index "inventory", ["tax_class_id"], :name => "index_inventory_on_tax_class_id"
 
   create_table "optometrists", :force => true do |t|
     t.integer  "personal_title_id"

@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  type: 
+  description: MyString
+  manufacturer: 
+  supplier: 
+  supplier_code: MyString
+  cost_price: 9.99
+  sugested_retail_price: 9.99
+  regular_retail_price: 9.99
+  current_retail_price: 9.99
+  tax_class: 
+  stock_available: 1
+  stock_reorder: 1
+
+two:
+  type: 
+  description: MyString
+  manufacturer: 
+  supplier: 
+  supplier_code: MyString
+  cost_price: 9.99
+  sugested_retail_price: 9.99
+  regular_retail_price: 9.99
+  current_retail_price: 9.99
+  tax_class: 
+  stock_available: 1
+  stock_reorder: 1

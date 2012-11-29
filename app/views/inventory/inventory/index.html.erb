@@ -1,0 +1,30 @@
+<% @title = "Inventory" %>
+<div class="page-header">
+	<h1>Find Inventory <%= link_to "New Other Inventory", new_inventory_other_path, :class => "btn btn-success pull-right" %></h1>
+</div>
+<form class="well form-search">
+	<input type="text" class="search-query">
+	<button type"submit" class="btn btn-info">Search</button>
+</form>
+
+<% if @items.empty? then %>
+<p>No items found</p>
+<% else %>
+<table class="table table-condensed table-striped">
+	<thead>
+		<tr>
+			<th>Description</th>
+			<th>Type</th>
+		</tr>
+	</thead>
+	<tbody>
+<% @items.each do |item| %>
+		<tr>
+			<td><%= link_to item.description, inventory_other_path(item) %></td>
+			<td><% inventory.type %></td>
+		</tr>
+<% end %>
+	</tbody>
+</table>
+<%= paginate @items %>
+<% end %>
