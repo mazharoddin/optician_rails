@@ -62,10 +62,11 @@ Optician::Application.routes.draw do
   # match ':controller(/:action(/:id))(.:format)'
   resources :dashboard
   namespace :inventory do
-	resources :contacts
-	resources :frames
-	resources :lenses
-	resources :other
+	resources :contacts, :as => 'contacts_inventory'
+	resources :frames, :as => 'frames_inventory'
+	resources :lenses, :as => 'lenses_inventory'
+	resources :services, :as => 'services_inventory'
+	resources :other, :as => 'other_inventory'
 	root :to => 'inventory#index'
     match ':id' => 'inventory#show'
   end
