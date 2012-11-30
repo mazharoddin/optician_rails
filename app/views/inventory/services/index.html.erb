@@ -1,0 +1,38 @@
+<% @title = "Services Inventory" %>
+<div class="page-header">
+	<h1>Inventory <div class="btn-group  btn-large pull-right"><a href="#" class="btn btn-success pull-right dropdown-toggle" data-toggle="dropdown" >New Item <span class="caret"></span></a><ul class="dropdown-menu"><li><%= link_to "Contacts", new_inventory_contacts_inventory_path %></li><li><%= link_to "Frames", new_inventory_frames_inventory_path %></li><li><%= link_to "Lenses", new_inventory_lenses_inventory_path %></li><li><%= link_to "Services", new_inventory_services_inventory_path %></li><li><%= link_to "Other", new_inventory_other_inventory_path %></li></ul></div></h1>
+</div>	
+<form class="well form-search">
+	<input type="text" class="search-query">
+	<button type"submit" class="btn btn-info">Search</button>
+</form>
+
+<% if @items.empty? then %>
+<p>No items found</p>
+<% else %>
+<table class="table table-condensed table-striped">
+	<thead>
+		<tr>
+			<th>Description</th>
+			<th>Type</th>
+			<th>Available</th>
+			<th>Regular Price</th>
+			<th>Current Price</th>
+			<th>Tax Class</th>
+		</tr>
+	</thead>
+	<tbody>
+<% @items.each do |item| %>
+		<tr>
+			<td><%= link_to item.description, inventory_path(item) %></td>
+			<td><%= item.type %>
+			<td><%= item.stock_available %>
+			<td><%= item.regular_retail_price %>
+			<td><%= item.current_retail_price %>
+			<td><%= item.tax_class %>
+		</tr>
+<% end %>
+	</tbody>
+</table>
+<%= paginate @items %>
+<% end %>

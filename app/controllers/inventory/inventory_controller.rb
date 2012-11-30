@@ -14,7 +14,7 @@ class Inventory::InventoryController < Inventory::ApplicationController
 				if @item.type == "LensInventory" then
 					redirect_to inventory_lenses_inventory_path(@item)
 				else
-					if @item.type == "ServiceInventory" then
+					if @item.type == "ServicesInventory" then
 						redirect_to inventory_services_inventory_path(@item)
 					else
 						redirect_to inventory_other_inventory_path(@item)
