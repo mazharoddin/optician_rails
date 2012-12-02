@@ -10,13 +10,13 @@
 					<a class="brand" href="#" style="font-size: 21px; font-weight: bold; font-family: Calibri;"><span style="color: #ffa500">Opticare</span> <span style="color: #ffffff">Pro</span></a>
 					<div class="nav-collapse">
 						<ul class="nav">
-							<li><%= link_to "Dashboard", root_path %></li>
-							<li><%= link_to "Invoices", root_path %></li>
-							<li><%= link_to "Patients", patients_path %></li>
-							<li><%= link_to "Appointments", root_path %></li>
-							<li><%= link_to "Inventory", inventory_root_path %></li>
-							<li><%= link_to "Marketing", root_path %></li>
-							<li class="active"><%= link_to "Administration", admin_root_path %></li>
+							<li <%= raw (@navbar_selected == 'dashboard') ? 'class="active"' : '' %>><%= link_to "Dashboard", root_path %></li>
+							<li <%= raw (@navbar_selected == 'invoices') ? 'class="active"' : '' %>><%= link_to "Invoices", root_path %></li>
+							<li <%= raw (@navbar_selected == 'patients') ? 'class="active"' : '' %>><%= link_to "Patients", patients_path %></li>
+							<li <%= raw (@navbar_selected == 'appointments') ? 'class="active"' : '' %>><%= link_to "Appointments", root_path %></li>
+							<li <%= raw (@navbar_selected == 'inventory') ? 'class="active"' : '' %>><%= link_to "Inventory", inventory_root_path %></li>
+							<li <%= raw (@navbar_selected == 'marketing') ? 'class="active"' : '' %>><%= link_to "Marketing", root_path %></li>
+							<li <%= raw (@navbar_selected == 'administration') ? 'class="active"' : '' %>><%= link_to "Administration", admin_root_path %></li>
 						</ul>
 
 						<ul class="nav pull-right">

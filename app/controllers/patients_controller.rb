@@ -48,4 +48,8 @@ class PatientsController < ApplicationController
 	def find_patient
 		@patient = Patient.find(params[:id])
 	end
+
+	def navbar
+	  @navbar_selected = 'patients'
+	end
 end

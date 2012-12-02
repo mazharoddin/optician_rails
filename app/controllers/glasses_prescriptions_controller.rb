@@ -74,4 +74,8 @@ class GlassesPrescriptionsController < ApplicationController
 	def find_glasses_prescription
 		@glasses_prescription = @patient.glasses_prescriptions.find(params[:id])
 	end
+
+	def navbar
+	  @navbar_selected = 'patients'
+	end
 end
