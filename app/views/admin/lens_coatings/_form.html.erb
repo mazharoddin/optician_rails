@@ -1,0 +1,12 @@
+<%= simple_form_for [:admin, @lens_coating], :html => { :class => "form-horizontal" } do |f| %>
+	<%= f.input :name %>
+
+	<div class="form-actions">
+		<%= f.button :submit, :class => "btn btn-primary" %>
+<% if @lens_coating.new_record? %>
+		<%= link_to "Discard Changes", admin_lens_coatings_path, :class => "btn" %>
+<% else %>
+		<%= link_to "Discard Changes", admin_lens_coating_path(@lens_coating), :class => "btn" %>
+<% end %>
+	</div>
+<% end %>

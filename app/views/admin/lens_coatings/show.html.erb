@@ -1,0 +1,10 @@
+<% @title = "Show Lens Coating" %>
+<div class="page-header">
+	<h1><%= @lens_coating.name %> (Lens Coating) <%= link_to "Edit Lens Coating", edit_admin_lens_coating_path(@lens_coating), :class => "btn btn-primary pull-right" %></h1>
+</div>
+
+
+<dl class="dl-horizontal">
+	<dt>Name</dt>
+	<dd><%= @lens_coating.name %></dd>
+</dl>

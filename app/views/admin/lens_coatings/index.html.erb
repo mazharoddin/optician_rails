@@ -1,0 +1,28 @@
+<% @title = "Lens Coatings" %>
+<div class="page-header">
+	<h1>Find Lens Coating <%= link_to "New Lens Coating", new_admin_lens_coating_path, :class => "btn btn-success pull-right" %></h1>
+</div>
+<form class="well form-search">
+	<input type="text" class="search-query">
+	<button type"submit" class="btn btn-info">Search</button>
+</form>
+
+<% if @lens_coatings.empty? then %>
+<p>No lens coatings found</p>
+<% else %>
+<table class="table table-condensed table-striped">
+	<thead>
+		<tr>
+			<th>Lens Coating</th>
+		</tr>
+	</thead>
+	<tbody>
+<% @lens_coatings.each do |lens_coating| %>
+		<tr>
+			<td><%= link_to lens_coating.name, admin_lens_coating_path(lens_coating) %></td>
+		</tr>
+<% end %>
+	</tbody>
+</table>
+<%= paginate @lens_coatings %>
+<% end %>
