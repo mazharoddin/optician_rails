@@ -1,19 +1,13 @@
 <%= simple_form_for [:inventory, @item], :html => { :class => "form-horizontal" } do |f| %>
 	<div class="row">
 		<div class="span6">
-			<%= f.association :manufacturer %>
 			<%= f.input :description %>
-			<%= f.association :supplier %>
-			<%= f.input :supplier_code %>
+			<%= f.input :appointment_type %>
 		</div>
 		<div class="span6">
-			<%= f.input :cost_price %>
-			<%= f.input :sugested_retail_price %>
 			<%= f.input :regular_retail_price %>
 			<%= f.input :current_retail_price %>
 			<%= f.association :tax_class %>
-			<%= f.input :stock_available %>
-			<%= f.input :stock_reorder %>
 		</div>
 	</div>
 

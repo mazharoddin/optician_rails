@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121202103446) do
+ActiveRecord::Schema.define(:version => 20121202105840) do
 
   create_table "brands", :force => true do |t|
     t.string   "name",       :limit => 60
@@ -157,6 +157,7 @@ ActiveRecord::Schema.define(:version => 20121202103446) do
     t.string   "eyesize",               :limit => 10
     t.string   "bridge",                :limit => 10
     t.string   "template",              :limit => 10
+    t.boolean  "appointment_type"
   end
 
   add_index "inventory", ["manufacturer_id"], :name => "index_inventory_on_manufacturer_id"
