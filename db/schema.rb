@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121202094559) do
+ActiveRecord::Schema.define(:version => 20121202103446) do
 
   create_table "brands", :force => true do |t|
     t.string   "name",       :limit => 60
@@ -152,6 +152,11 @@ ActiveRecord::Schema.define(:version => 20121202094559) do
     t.integer  "stock_reorder"
     t.datetime "created_at",                                                          :null => false
     t.datetime "updated_at",                                                          :null => false
+    t.string   "model",                 :limit => 60
+    t.string   "colour",                :limit => 30
+    t.string   "eyesize",               :limit => 10
+    t.string   "bridge",                :limit => 10
+    t.string   "template",              :limit => 10
   end
 
   add_index "inventory", ["manufacturer_id"], :name => "index_inventory_on_manufacturer_id"

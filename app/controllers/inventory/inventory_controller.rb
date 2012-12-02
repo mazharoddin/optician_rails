@@ -1,4 +1,5 @@
 class Inventory::InventoryController < Inventory::ApplicationController
+
 	def index
 		@items = Inventory.order(:description).page(params[:page])
 	end
