@@ -74,7 +74,7 @@ Optician::Application.routes.draw do
 	resources :contacts_prescriptions do
 		get 'current', :on => :collection
 	end
-    resources :spectacles_prescriptions do
+    resources :glasses_prescriptions do
 		get 'current', :on => :collection
 	end
   end

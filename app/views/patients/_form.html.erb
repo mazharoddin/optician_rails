@@ -10,7 +10,7 @@
 <% else %>
 <ul class="nav nav-tabs">
 	<li class="active"><%= link_to "Profile", patient_path(@patient) %></li>
-	<li><%= link_to "Spectacles", current_patient_spectacles_prescriptions_path(@patient) %></li>
+	<li><%= link_to "Glasses", current_patient_glasses_prescriptions_path(@patient) %></li>
 	<li><%= link_to "Contacts", patient_contacts_prescriptions_path(@patient, @contacts_prescription) %></li>
 	<li><a href="patients_dispensing.html">Dispensing</a></li>
 	<li><a href="patients_appointments.html">Appointments</a></li>
