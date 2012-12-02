@@ -1,0 +1,10 @@
+<% @title = "Show Lens Material" %>
+<div class="page-header">
+	<h1><%= @lens_material.name %> (Lens Material) <%= link_to "Edit Lens Material", edit_admin_lens_material_path(@lens_material), :class => "btn btn-primary pull-right" %></h1>
+</div>
+
+
+<dl class="dl-horizontal">
+	<dt>Name</dt>
+	<dd><%= @lens_material.name %></dd>
+</dl>

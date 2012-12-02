@@ -89,6 +89,7 @@ Optician::Application.routes.draw do
 	resources :employment_types
 	resources :genders
 	resources :guardian_relationships
+	resources :lens_materials
 	resources :optometrists
 	resources :personal_titles
 	resources :stores
