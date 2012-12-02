@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121202121951) do
+ActiveRecord::Schema.define(:version => 20121202214426) do
 
   create_table "brands", :force => true do |t|
     t.string   "name",       :limit => 60
@@ -158,16 +158,23 @@ ActiveRecord::Schema.define(:version => 20121202121951) do
     t.string   "bridge",                :limit => 10
     t.string   "template",              :limit => 10
     t.boolean  "appointment_type"
+    t.integer  "lens_material_id"
+    t.integer  "lens_type_id"
   end
 
   add_index "inventory", ["manufacturer_id"], :name => "index_inventory_on_manufacturer_id"
   add_index "inventory", ["supplier_id"], :name => "index_inventory_on_supplier_id"
   add_index "inventory", ["tax_class_id"], :name => "index_inventory_on_tax_class_id"
 
+  create_table "inventory_lens_coatings", :force => true do |t|
+    t.integer "inventory_id"
+    t.integer "lens_coating_id"
+  end
+
   create_table "lens_coatings", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "name",       :limit => 60
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
   end
 
   create_table "lens_materials", :force => true do |t|
