@@ -1,0 +1,10 @@
+<% @title = "Show Lens Type" %>
+<div class="page-header">
+	<h1><%= @lens_type.name %> (Lens Type) <%= link_to "Edit Lens Type", edit_admin_lens_type_path(@lens_type), :class => "btn btn-primary pull-right" %></h1>
+</div>
+
+
+<dl class="dl-horizontal">
+	<dt>Name</dt>
+	<dd><%= @lens_type.name %></dd>
+</dl>

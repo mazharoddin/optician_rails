@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121202114211) do
+ActiveRecord::Schema.define(:version => 20121202120240) do
 
   create_table "brands", :force => true do |t|
     t.string   "name",       :limit => 60
@@ -165,6 +165,12 @@ ActiveRecord::Schema.define(:version => 20121202114211) do
   add_index "inventory", ["tax_class_id"], :name => "index_inventory_on_tax_class_id"
 
   create_table "lens_materials", :force => true do |t|
+    t.string   "name",       :limit => 60
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
+
+  create_table "lens_types", :force => true do |t|
     t.string   "name",       :limit => 60
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false

@@ -1,0 +1,28 @@
+<% @title = "Lens Types" %>
+<div class="page-header">
+	<h1>Find Lens Type <%= link_to "New Lens Types", new_admin_lens_type_path, :class => "btn btn-success pull-right" %></h1>
+</div>
+<form class="well form-search">
+	<input type="text" class="search-query">
+	<button type"submit" class="btn btn-info">Search</button>
+</form>
+
+<% if @lens_types.empty? then %>
+<p>No lens types found</p>
+<% else %>
+<table class="table table-condensed table-striped">
+	<thead>
+		<tr>
+			<th>Lens Type</th>
+		</tr>
+	</thead>
+	<tbody>
+<% @lens_types.each do |lens_type| %>
+		<tr>
+			<td><%= link_to lens_type.name, admin_lens_type_path(lens_type) %></td>
+		</tr>
+<% end %>
+	</tbody>
+</table>
+<%= paginate @lens_types %>
+<% end %>
