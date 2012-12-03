@@ -1,14 +1,14 @@
 class Inventory::LensesController < Inventory::ApplicationController
 	before_filter :find_inventory, :only => [:edit, :show, :update]
 	
-	add_breadcrumb "Lenses", :inventory_lenses_inventory_index_path
+	add_breadcrumb "Lenses", :inventory_lens_inventory_index_path
 
 	def index
 		@items = LensInventory.order(:description).page(params[:page])
 	end
 	
 	def create
-		add_breadcrumb "Lenses", new_inventory_lenses_inventory_path
+		add_breadcrumb "Lenses", new_inventory_lens_inventory_path
 
 		@item = LensInventory.new(params[:lens_inventory])
 		if @item.save then
@@ -20,22 +20,22 @@ class Inventory::LensesController < Inventory::ApplicationController
 	end
 	
 	def edit
-		add_breadcrumb @item.description, inventory_lenses_inventory_path(@item)
-		add_breadcrumb "Edit", edit_inventory_lenses_inventory_path(@item)
+		add_breadcrumb @item.description, inventory_lens_inventory_path(@item)
+		add_breadcrumb "Edit", edit_inventory_lens_inventory_path(@item)
 	end
 	
 	def new
-		add_breadcrumb "New", new_inventory_lenses_inventory_path
+		add_breadcrumb "New", new_inventory_lens_inventory_path
 
 		@item = LensInventory.new
 	end
 	
 	def show
-		add_breadcrumb @item.description, inventory_lenses_inventory_path(@item)
+		add_breadcrumb @item.description, inventory_lens_inventory_path(@item)
 	end
 	
 	def update
-		add_breadcrumb @item.description, inventory_lenses_inventory_path(@item)
+		add_breadcrumb @item.description, inventory_lens_inventory_path(@item)
 
 		if @item.update_attributes(params[:lens_inventory]) then
 			flash[:success] = "Lenses inventory has been updated."
