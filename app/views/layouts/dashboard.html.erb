@@ -19,23 +19,23 @@
 			<div class="row">
 				<div class="span3 visible-desktop">
 					<address class="well">
-						<strong>Kanata Opticians</strong><br>
-						150 Katimavik Rd<br>
-						Kanata, ON.<br>
-						<abbr title="Phone">P:</abbr> (613) 592-1885<br>
-						<abbr title="Email">E:</abbr> <a href="mailto:info@kanataopticians.com">info@kanataopticians.com</a><br>
-						<abbr title="Web">W:</abbr> <a href="http://www.kanataopticians.com/">www.kanataopticians .com</a><br><br>
+						<strong><%= @current_store.name %></strong><br>
+						<%= @current_store.address %><br>
+						<%= @current_store.city %>, <%= @current_store.state %>.<br>
+						<abbr title="Phone">P:</abbr> <%= @current_store.phone %><br>
+						<abbr title="Email">E:</abbr> <a href="mailto:<%= @current_store.email %>"><%= @current_store.email %></a><br>
+						<abbr title="Web">W:</abbr> <a href="http://<%= @current_store.url %>"><%= @current_store.url %></a><br><br>
 					</address>
 					<address class="well">
 						<strong>Hours</strong><br>
 						<dl>
-						<dt style="float: left; clear: left; width: 12ex">Monday<dt><dd>9:30 - 8:00</dd>
-						<dt style="float: left; clear: left; width: 12ex">Tuesday<dt><dd>9:30 - 8:00</dd>
-						<dt style="float: left; clear: left; width: 12ex">Wednesday<dt><dd>9:30 - 8:00</dd>
-						<dt style="float: left; clear: left; width: 12ex">Thursday<dt><dd>9:30 - 8:00</dd>
-						<dt style="float: left; clear: left; width: 12ex">Friday<dt><dd>9:30 - 8:00</dd>
-						<dt style="float: left; clear: left; width: 12ex">Saturday<dt><dd>9:30 - 8:00</dd>
-						<dt style="float: left; clear: left; width: 12ex">Sunday<dt><dd>Closed</dd>
+						<dt style="float: left; clear: left; width: 12ex">Monday<dt><dd><%= @current_store.monday_open.strftime('%H:%M') %> - <%= @current_store.monday_close.strftime('%H:%M') %></dd>
+						<dt style="float: left; clear: left; width: 12ex">Tuesday<dt><dd><%= @current_store.tuesday_open.strftime('%H:%M') %> - <%= @current_store.tuesday_close.strftime('%H:%M') %></dd>
+						<dt style="float: left; clear: left; width: 12ex">Wednesday<dt><dd><%= @current_store.wednesday_open.strftime('%H:%M') %> - <%= @current_store.wednesday_close.strftime('%H:%M') %></dd>
+						<dt style="float: left; clear: left; width: 12ex">Thursday<dt><dd><%= @current_store.thursday_open.strftime('%H:%M') %> - <%= @current_store.thursday_close.strftime('%H:%M') %></dd>
+						<dt style="float: left; clear: left; width: 12ex">Friday<dt><dd><%= @current_store.friday_open.strftime('%H:%M') %> - <%= @current_store.friday_close.strftime('%H:%M') %></dd>
+						<dt style="float: left; clear: left; width: 12ex">Saturday<dt><dd><%= @current_store.saturday_open.strftime('%H:%M') %> - <%= @current_store.saturday_close.strftime('%H:%M') %></dd>
+						<dt style="float: left; clear: left; width: 12ex">Sunday<dt><dd><%= @current_store.sunday_open.strftime('%H:%M') %> - <%= @current_store.sunday_close.strftime('%H:%M') %></dd>
 						</dl>
 					</address>
 				</div>

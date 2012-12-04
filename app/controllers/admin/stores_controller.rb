@@ -28,7 +28,30 @@ class Admin::StoresController < Admin::ApplicationController
 	def new
 		add_breadcrumb "New", new_admin_store_path
 
-		@store = Store.new
+		@store = Store.new(
+#			:name => "Kanata Opticians",
+#			:address => "150 Katimavik Rd\nKanata, ON.",
+#			:city => "Kanata",
+#			:postal_code => "",
+#			:phone => "(613) 592-1885",
+#			:email => "info@kanataopticians.com",
+#			:url => "www.kanataopticians.com",
+#			:fax => "",
+			:monday_open => "09:00",
+			:monday_close => "18:00",
+			:tuesday_open => "09:00",
+			:tuesday_close => "18:00",
+			:wednesday_open => "09:00",
+			:wednesday_close => "18:00",
+			:thursday_open => "09:00",
+			:thursday_close => "18:00",
+			:friday_open => "09:00",
+			:friday_close => "18:00",
+			:saturday_open => "09:00",
+			:saturday_close => "18:00",
+			:sunday_open => "09:00",
+			:sunday_close => "18:00"
+			)
 	end
 	
 	def show

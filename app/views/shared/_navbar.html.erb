@@ -11,11 +11,17 @@
 					<div class="nav-collapse">
 						<ul class="nav">
 							<li <%= raw (@navbar_selected == 'dashboard') ? 'class="active"' : '' %>><%= link_to "Dashboard", root_path %></li>
+<!--
 							<li <%= raw (@navbar_selected == 'invoices') ? 'class="active"' : '' %>><%= link_to "Invoices", root_path %></li>
+-->
 							<li <%= raw (@navbar_selected == 'patients') ? 'class="active"' : '' %>><%= link_to "Patients", patients_path %></li>
+<!--
 							<li <%= raw (@navbar_selected == 'appointments') ? 'class="active"' : '' %>><%= link_to "Appointments", root_path %></li>
+-->
 							<li <%= raw (@navbar_selected == 'inventory') ? 'class="active"' : '' %>><%= link_to "Inventory", inventory_root_path %></li>
+<!--
 							<li <%= raw (@navbar_selected == 'marketing') ? 'class="active"' : '' %>><%= link_to "Marketing", root_path %></li>
+-->
 							<li <%= raw (@navbar_selected == 'administration') ? 'class="active"' : '' %>><%= link_to "Administration", admin_root_path %></li>
 						</ul>
 
@@ -23,8 +29,10 @@
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" >Welcome, <% if employee_signed_in? %><%= current_employee.first_name %><% else %>Not Logged In<% end %><b class="caret"></b></a>
 								<ul class="dropdown-menu">
+<!--
 									<li><a href="#">Settings</a></li>
 									<li class="divider"></li>
+-->
 									<li><%= link_to "Logout", destroy_employee_session_path, :method => :delete %></li>
 								</ul>
 							</li>
