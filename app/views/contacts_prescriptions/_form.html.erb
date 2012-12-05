@@ -23,8 +23,8 @@
 
 <%= simple_form_for [@patient, @contacts_prescription], :html => { :class => "form-horizontal" } do |f| %>
 	<%= f.input :description %>
-	<%= f.input :expiry_date %>
 	<%= f.input :rx_date %>
+	<%= f.input :expiry_date %>
 	<%= f.association :optometrist %>
 	<%= f.input :notes, :input_html => { :class => 'input-xxlarge', :rows => 5 } %>
 
