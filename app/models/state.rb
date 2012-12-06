@@ -3,7 +3,7 @@ class State < ActiveRecord::Base
   
   belongs_to :country
   
-  attr_accessible :name, :short_name
+  attr_accessible :name, :short_name, :active
   
   validates :name, :presence => true
   validates :name, :uniqueness => { :scope => :country_id }

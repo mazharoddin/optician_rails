@@ -11,19 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121205062901) do
+ActiveRecord::Schema.define(:version => 20121206074116) do
 
   create_table "brands", :force => true do |t|
     t.string   "name",       :limit => 60
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
+    t.boolean  "active",                   :default => true, :null => false
   end
 
   create_table "companies", :force => true do |t|
     t.string   "type",       :limit => 60
     t.string   "name"
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
+    t.boolean  "active",                   :default => true, :null => false
   end
 
   create_table "contacts_prescriptions", :force => true do |t|
@@ -56,7 +58,7 @@ ActiveRecord::Schema.define(:version => 20121205062901) do
 
   create_table "countries", :force => true do |t|
     t.string   "name",       :limit => 60
-    t.boolean  "enabled"
+    t.boolean  "active"
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
   end
@@ -91,14 +93,16 @@ ActiveRecord::Schema.define(:version => 20121205062901) do
 
   create_table "employment_types", :force => true do |t|
     t.string   "name",       :limit => 40
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
+    t.boolean  "active",                   :default => true, :null => false
   end
 
   create_table "genders", :force => true do |t|
     t.string   "name",       :limit => 10
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
+    t.boolean  "active",                   :default => true, :null => false
   end
 
   create_table "glasses_prescriptions", :force => true do |t|
@@ -133,8 +137,9 @@ ActiveRecord::Schema.define(:version => 20121205062901) do
 
   create_table "guardian_relationships", :force => true do |t|
     t.string   "name",       :limit => 40
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
+    t.boolean  "active",                   :default => true, :null => false
   end
 
   create_table "inventory", :force => true do |t|
@@ -174,20 +179,23 @@ ActiveRecord::Schema.define(:version => 20121205062901) do
 
   create_table "lens_coatings", :force => true do |t|
     t.string   "name",       :limit => 60
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
+    t.boolean  "active",                   :default => true, :null => false
   end
 
   create_table "lens_materials", :force => true do |t|
     t.string   "name",       :limit => 60
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
+    t.boolean  "active",                   :default => true, :null => false
   end
 
   create_table "lens_types", :force => true do |t|
     t.string   "name",       :limit => 60
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
+    t.boolean  "active",                   :default => true, :null => false
   end
 
   create_table "optometrists", :force => true do |t|
@@ -204,8 +212,9 @@ ActiveRecord::Schema.define(:version => 20121205062901) do
     t.integer  "business_state_id"
     t.string   "business_postal_code", :limit => 20
     t.integer  "business_country_id"
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
+    t.datetime "created_at",                                           :null => false
+    t.datetime "updated_at",                                           :null => false
+    t.boolean  "active",                             :default => true, :null => false
   end
 
   add_index "optometrists", ["business_country_id"], :name => "index_optometrists_on_business_country_id"
@@ -261,16 +270,18 @@ ActiveRecord::Schema.define(:version => 20121205062901) do
 
   create_table "personal_titles", :force => true do |t|
     t.string   "title",      :limit => 20
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
+    t.boolean  "active",                   :default => true, :null => false
   end
 
   create_table "states", :force => true do |t|
     t.string   "name",       :limit => 60
     t.string   "short_name", :limit => 10
     t.integer  "country_id"
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
+    t.boolean  "active",                   :default => true, :null => false
   end
 
   add_index "states", ["country_id"], :name => "index_states_on_country_id"
@@ -300,8 +311,9 @@ ActiveRecord::Schema.define(:version => 20121205062901) do
     t.time     "saturday_close"
     t.time     "sunday_open"
     t.time     "sunday_close"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
+    t.boolean  "active",                        :default => true, :null => false
   end
 
   add_index "stores", ["country_id"], :name => "index_stores_on_country_id"
@@ -312,8 +324,9 @@ ActiveRecord::Schema.define(:version => 20121205062901) do
     t.integer  "tax_a_id"
     t.integer  "tax_b_id"
     t.boolean  "tax_b_applies_tax_a"
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
+    t.datetime "created_at",                                          :null => false
+    t.datetime "updated_at",                                          :null => false
+    t.boolean  "active",                            :default => true, :null => false
   end
 
   add_index "tax_classes", ["tax_a_id"], :name => "index_tax_classes_on_tax_a_id"
@@ -323,8 +336,9 @@ ActiveRecord::Schema.define(:version => 20121205062901) do
     t.string   "name",       :limit => 40
     t.decimal  "amount",                   :precision => 10, :scale => 0
     t.float    "rate"
-    t.datetime "created_at",                                              :null => false
-    t.datetime "updated_at",                                              :null => false
+    t.datetime "created_at",                                                                :null => false
+    t.datetime "updated_at",                                                                :null => false
+    t.boolean  "active",                                                  :default => true, :null => false
   end
 
 end

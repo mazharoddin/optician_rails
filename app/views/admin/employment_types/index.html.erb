@@ -14,12 +14,14 @@
 	<thead>
 		<tr>
 			<th>Employment Type</th>
+			<th>Active</th>
 		</tr>
 	</thead>
 	<tbody>
 <% @employment_types.each do |employment_type| %>
 		<tr>
 			<td><%= link_to employment_type.name, admin_employment_type_path(employment_type) %></td>
+			<td><%= employment_type.active %>
 		</tr>
 <% end %>
 	</tbody>

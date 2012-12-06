@@ -14,14 +14,14 @@
 	<thead>
 		<tr>
 			<th>Name</th>
-			<th>Enabled</th>
+			<th>Active</th>
 		</tr>
 	</thead>
 	<tbody>
 <% @countries.each do |country| %>
 		<tr>
 			<td><%= link_to country.name, admin_country_path(country) %></td>
-			<td><%= country.enabled %></td>
+			<td><%= country.active %></td>
 		</tr>
 <% end %>
 	</tbody>

@@ -14,12 +14,14 @@
 	<thead>
 		<tr>
 			<th>Title</th>
+			<th>Active</th>
 		</tr>
 	</thead>
 	<tbody>
 <% @personal_titles.each do |personal_title| %>
 		<tr>
 			<td><%= link_to personal_title.title, admin_personal_title_path(personal_title) %></td>
+			<td><%= personal_title.active %></td>
 		</tr>
 <% end %>
 	</tbody>

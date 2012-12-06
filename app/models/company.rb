@@ -1,5 +1,5 @@
 class Company < ActiveRecord::Base
-  attr_accessible :name, :type
+  attr_accessible :name, :type, :active
 
   validates :name, :presence => true, :uniqueness => true
   

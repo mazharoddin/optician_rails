@@ -14,12 +14,14 @@
 	<thead>
 		<tr>
 			<th>Gender</th>
+			<th>Active</th>
 		</tr>
 	</thead>
 	<tbody>
 <% @genders.each do |gender| %>
 		<tr>
 			<td><%= link_to gender.name, admin_gender_path(gender) %></td>
+			<td><%= gender.active %></td>
 		</tr>
 <% end %>
 	</tbody>

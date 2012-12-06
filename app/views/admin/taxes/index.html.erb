@@ -16,6 +16,7 @@
 			<th>Name</th>
 			<th>Amount</th>
 			<th>Rate</th>
+			<th>Active</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -24,6 +25,7 @@
 			<td><%= link_to tax.name, admin_tax_path(tax) %></td>
 			<td><%= tax.amount %></td>
 			<td><%= tax.rate %>%</td>
+			<td><%= tax.active %></td>
 		</tr>
 <% end %>
 	</tbody>

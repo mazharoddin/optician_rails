@@ -14,12 +14,14 @@
 	<thead>
 		<tr>
 			<th>Lens Coating</th>
+			<th>Active</th>
 		</tr>
 	</thead>
 	<tbody>
 <% @lens_coatings.each do |lens_coating| %>
 		<tr>
 			<td><%= link_to lens_coating.name, admin_lens_coating_path(lens_coating) %></td>
+			<td><%= lens_coating.active %></td>
 		</tr>
 <% end %>
 	</tbody>

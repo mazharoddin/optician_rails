@@ -2,7 +2,9 @@ class Country < ActiveRecord::Base
 	has_many :states
 	has_many :stores
 	
-	validates :name, :presence => true, :uniqueness => true
+    attr_accessible :name, :active
+
+    validates :name, :presence => true, :uniqueness => true
 	
 	def to_s
 		return name

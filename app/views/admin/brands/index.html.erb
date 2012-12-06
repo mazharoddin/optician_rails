@@ -14,12 +14,14 @@
 	<thead>
 		<tr>
 			<th>Brand</th>
+			<th>Active</th>
 		</tr>
 	</thead>
 	<tbody>
 <% @brands.each do |brand| %>
 		<tr>
 			<td><%= link_to brand.name, admin_brand_path(brand) %></td>
+			<td><%= brand.active %>
 		</tr>
 <% end %>
 	</tbody>

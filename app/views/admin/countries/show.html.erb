@@ -8,8 +8,8 @@
 <dl class="dl-horizontal">
 	<dt>Name</dt>
 	<dd><%= @country.name %></dd>
-	<dt>Enabled</dt>
-	<dd><%= @country.enabled %></dd>
+	<dt>Active</dt>
+	<dd><%= @country.active %></dd>
 </dl>
 
 <h2>States <%= link_to "New State", new_admin_country_state_path(@country), :class => "btn btn-success pull-right" %></h2>
@@ -21,6 +21,7 @@
 		<tr>
 			<th>Name</th>
 			<th>Short Name</th>
+			<th>Active</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -28,6 +29,7 @@
 		<tr>
 			<td><%= link_to state.name, admin_country_state_path(@country, state) %></td>
 			<td><%= link_to state.short_name, admin_country_state_path(@country, state) %></td>
+			<td><%= state.active %></td>
 		</tr>
 <% end %>
 	</tbody>

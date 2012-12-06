@@ -1,5 +1,5 @@
 class EmploymentType < ActiveRecord::Base
-  attr_accessible :name
+  attr_accessible :name, :active
   
   validates :name, :presence => true, :uniqueness => true
   
