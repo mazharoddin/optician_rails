@@ -10,9 +10,11 @@ class Employee < ActiveRecord::Base
   
   # Setup accessible (or protected) attributes for your model
   attr_accessible :personal_title_id, :first_name, :last_name, :active, :administrator, :dispensing_optician, :email, :password, :password_confirmation, :remember_me
-  validates :personal_title, :first_name, :last_name, :email, :presence => true
-	
-	validates :password, :confirmation => true
+
+  validates :personal_title, :presence => true
+  validates :last_name, :presence => true
+  validates :email, :presence => true
+  validates :password, :presence => true, :confirmation => true
 	
 	def full_name
 	    if first_name == nil or first_name.empty? then
@@ -28,5 +30,9 @@ class Employee < ActiveRecord::Base
 			    full_name = "#{first_name} #{last_name}"
 			end
 		end
+	end
+	
+	def to_s
+		return full_name
 	end
 end
