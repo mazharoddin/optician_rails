@@ -11,6 +11,7 @@ class Inventory::ServicesController < Inventory::ApplicationController
 		add_breadcrumb "New", new_inventory_services_inventory_path
 
 		@item = ServicesInventory.new(params[:services_inventory])
+		@item.track_inventory = false
 		if @item.save then
 			flash[:success] = "Services inventory has been created."
 			redirect_to :action => 'index'
