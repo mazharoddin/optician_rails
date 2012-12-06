@@ -1,9 +1,9 @@
 module ApplicationHelper
     def title
         if @title == nil || @title.empty? then
-	        title = "Opticare Pro"
+	        title = "Optical Hero"
 	    else
-            title = "#{@title} | Opticare Pro"
+            title = "#{@title} | Optical Hero"
         end
     end
 end
