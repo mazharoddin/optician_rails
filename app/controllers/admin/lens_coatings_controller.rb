@@ -8,7 +8,7 @@ class Admin::LensCoatingsController < Admin::ApplicationController
 	end
 	
 	def create
-		add_breadcrumb "Lens Coating", new_admin_lens_coating_path
+		add_breadcrumb "New", new_admin_lens_coating_path
 
 		@lens_coating = LensCoating.new(params[:lens_coating])
 		if @lens_coating.save then

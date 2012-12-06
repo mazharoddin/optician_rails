@@ -8,7 +8,7 @@ class Inventory::ContactsController < Inventory::ApplicationController
 	end
 	
 	def create
-		add_breadcrumb "Contacts", new_inventory_contacts_inventory_path
+		add_breadcrumb "New", new_inventory_contacts_inventory_path
 
 		@item = ContactsInventory.new(params[:contacts_inventory])
 		if @item.save then

@@ -8,7 +8,7 @@ class Admin::EmploymentTypesController < Admin::ApplicationController
 	end
 	
 	def create
-		add_breadcrumb "Employment Types", new_admin_employment_type_path
+		add_breadcrumb "New", new_admin_employment_type_path
 
 		@employment_type = EmploymentType.new(params[:employment_type])
 		if @employment_type.save then

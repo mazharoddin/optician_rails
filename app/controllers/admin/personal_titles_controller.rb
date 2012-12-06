@@ -8,7 +8,7 @@ class Admin::PersonalTitlesController < Admin::ApplicationController
 	end
 	
 	def create
-		add_breadcrumb "Personal Title", new_admin_personal_title_path
+		add_breadcrumb "New", new_admin_personal_title_path
 
 		@personal_title = PersonalTitle.new(params[:personal_title])
 		if @personal_title.save then

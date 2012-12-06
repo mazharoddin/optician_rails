@@ -8,7 +8,7 @@ class Admin::LensMaterialsController < Admin::ApplicationController
 	end
 	
 	def create
-		add_breadcrumb "Lens Material", new_admin_lens_material_path
+		add_breadcrumb "New", new_admin_lens_material_path
 
 		@lens_material = LensMaterial.new(params[:lens_material])
 		if @lens_material.save then

@@ -8,7 +8,7 @@ class Inventory::LensesController < Inventory::ApplicationController
 	end
 	
 	def create
-		add_breadcrumb "Lenses", new_inventory_lens_inventory_path
+		add_breadcrumb "New", new_inventory_lens_inventory_path
 
 		@item = LensInventory.new(params[:lens_inventory])
 		if @item.save then

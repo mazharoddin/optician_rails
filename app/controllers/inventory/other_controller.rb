@@ -8,7 +8,7 @@ class Inventory::OtherController < Inventory::ApplicationController
 	end
 	
 	def create
-		add_breadcrumb "Other", new_inventory_other_inventory_path
+		add_breadcrumb "New", new_inventory_other_inventory_path
 
 		@item = OtherInventory.new(params[:other_inventory])
 		if @item.save then

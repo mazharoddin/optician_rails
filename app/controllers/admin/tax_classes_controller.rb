@@ -8,7 +8,7 @@ class Admin::TaxClassesController < Admin::ApplicationController
 	end
 	
 	def create
-		add_breadcrumb "Tax Class", new_admin_tax_class_path
+		add_breadcrumb "New", new_admin_tax_class_path
 
 		@tax_class = TaxClass.new(params[:tax_class])
 		if @tax_class.save then

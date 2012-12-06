@@ -8,7 +8,7 @@ class Admin::GuardianRelationshipsController < Admin::ApplicationController
 	end
 	
 	def create
-		add_breadcrumb "Guardian Relationships", new_admin_guardian_relationship_path
+		add_breadcrumb "New", new_admin_guardian_relationship_path
 
 		@guardian_relationship = GuardianRelationship.new(params[:guardian_relationship])
 		if @guardian_relationship.save then

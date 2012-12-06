@@ -8,7 +8,7 @@ class Inventory::ServicesController < Inventory::ApplicationController
 	end
 	
 	def create
-		add_breadcrumb "Services", new_inventory_services_inventory_path
+		add_breadcrumb "New", new_inventory_services_inventory_path
 
 		@item = ServicesInventory.new(params[:services_inventory])
 		if @item.save then

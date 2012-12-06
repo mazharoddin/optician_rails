@@ -27,7 +27,7 @@ class Admin::CountriesController < Admin::ApplicationController
 	def new
 		add_breadcrumb "New", :new_admin_country_path
 
-		@country = Country.new
+		@country = Country.new(:enabled => true)
 	end
 	
 	def show

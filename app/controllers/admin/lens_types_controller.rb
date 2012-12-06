@@ -8,7 +8,7 @@ class Admin::LensTypesController < Admin::ApplicationController
 	end
 	
 	def create
-		add_breadcrumb "Lens Type", new_admin_lens_type_path
+		add_breadcrumb "New", new_admin_lens_type_path
 
 		@lens_type = LensType.new(params[:lens_type])
 		if @lens_type.save then

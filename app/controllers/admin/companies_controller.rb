@@ -8,7 +8,7 @@ class Admin::CompaniesController < Admin::ApplicationController
 	end
 	
 	def create
-		add_breadcrumb "Company", new_admin_company_path
+		add_breadcrumb "New", new_admin_company_path
 
 		@company = Company.new(params[:company])
 		if @company.save then

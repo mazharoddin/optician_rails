@@ -8,7 +8,7 @@ class Admin::BrandsController < Admin::ApplicationController
 	end
 	
 	def create
-		add_breadcrumb "Brand", new_admin_brand_path
+		add_breadcrumb "New", new_admin_brand_path
 
 		@brand = Brand.new(params[:brand])
 		if @brand.save then

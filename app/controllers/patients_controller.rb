@@ -8,7 +8,7 @@ class PatientsController < ApplicationController
 	end
 	
 	def create
-		add_breadcrumb "Patient", new_patient_path
+		add_breadcrumb "New", new_patient_path
 
 		@patient = Patient.new(params[:patient])
 		if @patient.save then

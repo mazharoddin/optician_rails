@@ -8,7 +8,7 @@ class Inventory::FramesController < Inventory::ApplicationController
 	end
 	
 	def create
-		add_breadcrumb "Frames", new_inventory_frames_inventory_path
+		add_breadcrumb "New", new_inventory_frames_inventory_path
 
 		@item = FramesInventory.new(params[:frames_inventory])
 		if @item.save then
