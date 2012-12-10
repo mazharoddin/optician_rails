@@ -1,7 +1,12 @@
 class Inventory::InventoryController < Inventory::ApplicationController
 
 	def index
-		@items = Inventory.order(:description).page(params[:page])
+		if params[:q] then
+			add_breadcrumb "Search Results", :inventory_root_path
+			@items = Inventory.where('description like ?', '%' + params[:q] + '%').order(:description).page(params[:page])
+		else
+			@items = Inventory.order(:description).page(params[:page])
+		end
 	end
 
 	def show

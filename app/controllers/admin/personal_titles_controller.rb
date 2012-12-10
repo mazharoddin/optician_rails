@@ -4,7 +4,12 @@ class Admin::PersonalTitlesController < Admin::ApplicationController
 	add_breadcrumb "Personal Titles", :admin_personal_titles_path
 
 	def index
-		@personal_titles = PersonalTitle.order(:title).page(params[:page])
+		if params[:q] then
+			add_breadcrumb "Search Results", :admin_personal_titles_path
+			@personal_titles = PersonalTitle.where('title like ?', '%' + params[:q] + '%').order(:title).page(params[:page])
+		else
+			@personal_titles = PersonalTitle.order(:title).page(params[:page])
+		end
 	end
 	
 	def create

@@ -2,8 +2,9 @@
 <div class="page-header">
 	<h1>Find Genders <%= link_to "New Genders", new_admin_gender_path, :class => "btn btn-success pull-right" %></h1>
 </div>
-<form class="well form-search">
-	<input type="text" class="search-query">
+
+<form class="well form-search" method="get">
+	<input name="q" value="<%= params[:q] %>" type="text" class="search-query">
 	<button type"submit" class="btn btn-info">Search</button>
 </form>
 

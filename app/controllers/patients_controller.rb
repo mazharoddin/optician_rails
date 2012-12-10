@@ -4,7 +4,12 @@ class PatientsController < ApplicationController
 	add_breadcrumb "Patients", :patients_path
 
 	def index
-		@patients = Patient.order(:last_name).order(:first_name).page(params[:page])
+		if params[:q] then
+			add_breadcrumb "Search Results", :patients_path
+			@patients = Patient.where('last_name like ? or first_name like ?', '%' + params[:q] + '%', '%' + params[:q] + '%').order(:last_name).order(:first_name).page(params[:page])
+		else
+			@patients = Patient.order(:last_name).order(:first_name).page(params[:page])
+		end
 	end
 	
 	def create

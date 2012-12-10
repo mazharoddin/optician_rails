@@ -4,7 +4,12 @@ class Inventory::LensesController < Inventory::ApplicationController
 	add_breadcrumb "Lenses", :inventory_lens_inventory_index_path
 
 	def index
-		@items = LensInventory.order(:description).page(params[:page])
+		if params[:q] then
+			add_breadcrumb "Search Results", :inventory_lenses_inventory_path
+			@items = LensInventory.where('description like ?', '%' + params[:q] + '%').order(:description).page(params[:page])
+		else
+			@items = LensInventory.order(:description).page(params[:page])
+		end
 	end
 	
 	def create

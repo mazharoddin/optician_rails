@@ -4,7 +4,12 @@ class Inventory::ServicesController < Inventory::ApplicationController
 	add_breadcrumb "Services", :inventory_services_inventory_index_path
 
 	def index
-		@items = ServicesInventory.order(:description).page(params[:page])
+		if params[:q] then
+			add_breadcrumb "Search Results", :inventory_services_inventory_path
+			@items = ServicesInventory.where('description like ?', '%' + params[:q] + '%').order(:description).page(params[:page])
+		else
+			@items = ServicesInventory.order(:description).page(params[:page])
+		end
 	end
 	
 	def create

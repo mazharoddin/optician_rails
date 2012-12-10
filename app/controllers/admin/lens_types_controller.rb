@@ -4,7 +4,12 @@ class Admin::LensTypesController < Admin::ApplicationController
 	add_breadcrumb "Lens Types", :admin_lens_types_path
 
 	def index
-		@lens_types = LensType.order(:name).page(params[:page])
+		if params[:q] then
+			add_breadcrumb "Search Results", :admin_lens_types_path
+			@lens_types = LensType.where('name like ?', '%' + params[:q] + '%').order(:name).page(params[:page])
+		else
+			@lens_types = LensType.order(:name).page(params[:page])
+		end
 	end
 	
 	def create

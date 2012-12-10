@@ -4,7 +4,12 @@ class Admin::LensMaterialsController < Admin::ApplicationController
 	add_breadcrumb "Lens Materials", :admin_lens_materials_path
 
 	def index
-		@lens_materials = LensMaterial.order(:name).page(params[:page])
+		if params[:q] then
+			add_breadcrumb "Search Results", :admin_lens_materials_path
+			@lens_materials = LensMaterial.where('name like ?', '%' + params[:q] + '%').order(:name).page(params[:page])
+		else
+			@lens_materials = LensMaterial.order(:name).page(params[:page])
+		end
 	end
 	
 	def create

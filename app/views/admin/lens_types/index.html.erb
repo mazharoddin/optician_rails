@@ -2,8 +2,9 @@
 <div class="page-header">
 	<h1>Find Lens Type <%= link_to "New Lens Types", new_admin_lens_type_path, :class => "btn btn-success pull-right" %></h1>
 </div>
-<form class="well form-search">
-	<input type="text" class="search-query">
+
+<form class="well form-search" method="get">
+	<input name="q" value="<%= params[:q] %>" type="text" class="search-query">
 	<button type"submit" class="btn btn-info">Search</button>
 </form>
 

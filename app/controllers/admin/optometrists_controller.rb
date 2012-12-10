@@ -4,7 +4,12 @@ class Admin::OptometristsController < Admin::ApplicationController
 	add_breadcrumb "Optometrists", :admin_optometrists_path
 
 	def index
-		@optometrists = Optometrist.page(params[:page])
+		if params[:q] then
+			add_breadcrumb "Search Results", :admin_optometrists_path
+			@optometrists = Optometrist.where('first_name like ? or last_name like ?', '%' + params[:q] + '%', '%' + params[:q] + '%').order(:last_name).order(:first_name).page(params[:page])
+		else
+			@optometrists = Optometrist.order(:last_name).order(:first_name).page(params[:page])
+		end
 	end
 	
 	def create

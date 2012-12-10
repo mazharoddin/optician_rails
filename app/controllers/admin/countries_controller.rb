@@ -4,7 +4,12 @@ class Admin::CountriesController < Admin::ApplicationController
 	add_breadcrumb "Countries", :admin_countries_path
 
 	def index
-		@countries = Country.order(:name).page(params[:page])
+		if params[:q] then
+			add_breadcrumb "Search Results", :admin_countries_path
+			@countries = Country.where('name like ?', '%' + params[:q] + '%').order(:name).page(params[:page])
+		else
+			@countries = Country.order(:name).page(params[:page])
+		end
 	end
 	
 	def create

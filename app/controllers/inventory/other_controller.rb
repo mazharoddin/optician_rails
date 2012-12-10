@@ -4,7 +4,12 @@ class Inventory::OtherController < Inventory::ApplicationController
 	add_breadcrumb "Other", :inventory_other_inventory_index_path
 
 	def index
-		@items = OtherInventory.order(:description).page(params[:page])
+		if params[:q] then
+			add_breadcrumb "Search Results", :inventory_other_inventory_path
+			@items = OtherInventory.where('description like ?', '%' + params[:q] + '%').order(:description).page(params[:page])
+		else
+			@items = OtherInventory.order(:description).page(params[:page])
+		end
 	end
 	
 	def create

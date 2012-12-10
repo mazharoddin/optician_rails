@@ -2,10 +2,12 @@
 <div class="page-header">
 	<h1>Find State <%= link_to "New State", new_admin_country_state_path(@country), :class => "btn btn-success pull-right" %></h1>
 </div>
-<form class="well form-search">
-	<input type="text" class="search-query">
+
+<form class="well form-search" method="get">
+	<input name="q" value="<%= params[:q] %>" type="text" class="search-query">
 	<button type"submit" class="btn btn-info">Search</button>
 </form>
+
 <% if @states.empty? then %>
 <p>No states found</p>
 <% else %>

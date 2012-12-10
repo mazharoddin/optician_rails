@@ -4,7 +4,12 @@ class Admin::EmployeesController < Admin::ApplicationController
 	add_breadcrumb "Employees", :admin_employees_path
 
 	def index
-		@employees = Employee.page(params[:page])
+		if params[:q] then
+			add_breadcrumb "Search Results", :admin_employees_path
+			@employees = Employee.where('first_name like ? or last_name like ? or email like ?', '%' + params[:q] + '%', '%' + params[:q] + '%', '%' + params[:q] + '%').order(:last_name).order(:first_name).page(params[:page])
+		else
+			@employees = Employee.order(:last_name).order(:first_name).page(params[:page])
+		end
 	end
 	
 	def create

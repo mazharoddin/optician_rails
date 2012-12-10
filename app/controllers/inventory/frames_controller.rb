@@ -4,7 +4,12 @@ class Inventory::FramesController < Inventory::ApplicationController
 	add_breadcrumb "Frames", :inventory_frames_inventory_index_path
 
 	def index
-		@items = FramesInventory.order(:description).page(params[:page])
+		if params[:q] then
+			add_breadcrumb "Search Results", :inventory_frames_inventory_path
+			@items = FramesInventory.where('description like ?', '%' + params[:q] + '%').order(:description).page(params[:page])
+		else
+			@items = FramesInventory.order(:description).page(params[:page])
+		end
 	end
 	
 	def create

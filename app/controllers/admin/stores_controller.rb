@@ -5,7 +5,12 @@ class Admin::StoresController < Admin::ApplicationController
 
 
 	def index
-		@stores = Store.page(params[:page])
+		if params[:q] then
+			add_breadcrumb "Search Results", :admin_stores_path
+			@stores = Store.where('name like ?', '%' + params[:q] + '%').order(:name).page(params[:page])
+		else
+			@stores = Store.order(:name).page(params[:page])
+		end
 	end
 	
 	def create

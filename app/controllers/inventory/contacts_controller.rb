@@ -4,7 +4,12 @@ class Inventory::ContactsController < Inventory::ApplicationController
 	add_breadcrumb "Contacts", :inventory_contacts_inventory_index_path
 
 	def index
-		@items = ContactsInventory.order(:description).page(params[:page])
+		if params[:q] then
+			add_breadcrumb "Search Results", :inventory_contacts_inventory_path
+			@items = ContactsInventory.where('description like ?', '%' + params[:q] + '%').order(:description).page(params[:page])
+		else
+			@items = ContactsInventory.order(:description).page(params[:page])
+		end
 	end
 	
 	def create

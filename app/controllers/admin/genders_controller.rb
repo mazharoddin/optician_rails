@@ -4,7 +4,12 @@ class Admin::GendersController < Admin::ApplicationController
 	add_breadcrumb "Genders", :admin_genders_path
 
 	def index
-		@genders = Gender.order(:name).page(params[:page])
+		if params[:q] then
+			add_breadcrumb "Search Results", :admin_genders_path
+			@genders = Gender.where('name like ?', '%' + params[:q] + '%').order(:name).page(params[:page])
+		else
+			@genders = Gender.order(:name).page(params[:page])
+		end
 	end
 	
 	def create

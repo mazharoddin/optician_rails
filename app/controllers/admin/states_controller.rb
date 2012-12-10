@@ -8,7 +8,12 @@ class Admin::StatesController < Admin::ApplicationController
 		add_breadcrumb @country.name, admin_country_path(@country)
 		add_breadcrumb "States", admin_country_states_path(@country)
 
-		@states = @country.states.page(params[:page])
+		if params[:q] then
+			add_breadcrumb "Search Results", admin_country_states_path(@country)
+			@states = @country.states.where('name like ? or short_name like ?', '%' + params[:q] + '%', '%' + params[:q] + '%').order(:name).page(params[:page])
+		else
+			@states = @country.states.order(:name).page(params[:page])
+		end
 	end
 	
 	def create

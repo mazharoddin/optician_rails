@@ -4,7 +4,12 @@ class Admin::EmploymentTypesController < Admin::ApplicationController
 	add_breadcrumb "Employment Types", :admin_employment_types_path
 
 	def index
-		@employment_types = EmploymentType.order(:name).page(params[:page])
+		if params[:q] then
+			add_breadcrumb "Search Results", :admin_employment_types_path
+			@employment_types = EmploymentType.where('name like ?', '%' + params[:q] + '%').order(:name).page(params[:page])
+		else
+			@employment_types = EmploymentType.order(:name).page(params[:page])
+		end
 	end
 	
 	def create

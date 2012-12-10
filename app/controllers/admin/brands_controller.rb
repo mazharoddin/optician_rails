@@ -4,7 +4,12 @@ class Admin::BrandsController < Admin::ApplicationController
 	add_breadcrumb "Brands", :admin_brands_path
 
 	def index
-		@brands = Brand.order(:name).page(params[:page])
+		if params[:q] then
+			add_breadcrumb "Search Results", :admin_brands_path
+			@brands = Brand.where('name like ?', '%' + params[:q] + '%').order(:name).page(params[:page])
+		else
+			@brands = Brand.order(:name).page(params[:page])
+		end
 	end
 	
 	def create

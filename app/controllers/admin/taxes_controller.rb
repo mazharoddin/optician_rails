@@ -4,7 +4,12 @@ class Admin::TaxesController < Admin::ApplicationController
 	add_breadcrumb "Taxes", :admin_taxes_path
 
 	def index
-		@taxes = Tax.order(:name).page(params[:page])
+		if params[:q] then
+			add_breadcrumb "Search Results", :admin_taxes_path
+			@taxes = Tax.where('name like ?', '%' + params[:q] + '%').order(:name).page(params[:page])
+		else
+			@taxes = Tax.order(:name).page(params[:page])
+		end
 	end
 	
 	def create
