@@ -17,7 +17,8 @@
 			<th>Name</th>
 			<th>Amount</th>
 			<th>Rate</th>
-			<th>Active</th>
+			<th>Start</th>
+			<th>End</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -26,7 +27,8 @@
 			<td><%= link_to tax.name, admin_tax_path(tax) %></td>
 			<td><%= tax.amount %></td>
 			<td><%= tax.rate %>%</td>
-			<td><%= tax.active %></td>
+			<td><%= tax.start_at %></td>
+			<td><%= tax.end_at %></td>
 		</tr>
 <% end %>
 	</tbody>
