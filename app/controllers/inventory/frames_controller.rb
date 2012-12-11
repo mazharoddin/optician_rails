@@ -18,7 +18,7 @@ class Inventory::FramesController < Inventory::ApplicationController
 		@item = FramesInventory.new(params[:frames_inventory])
 		if @item.save then
 			flash[:success] = "Frames inventory has been created."
-			redirect_to :action => 'index'
+			redirect_to :action => 'index', :controller => 'inventory'
 		else
 			render "new"
 		end
@@ -44,7 +44,7 @@ class Inventory::FramesController < Inventory::ApplicationController
 
 		if @item.update_attributes(params[:frames_inventory]) then
 			flash[:success] = "Frames inventory has been updated."
-			redirect_to :action => 'index'
+			redirect_to :action => 'index', :controller => 'inventory'
 		else
 			render "edit"
 		end

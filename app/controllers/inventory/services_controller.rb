@@ -19,7 +19,7 @@ class Inventory::ServicesController < Inventory::ApplicationController
 		@item.track_inventory = false
 		if @item.save then
 			flash[:success] = "Services inventory has been created."
-			redirect_to :action => 'index'
+			redirect_to :action => 'index', :controller => 'inventory'
 		else
 			render "new"
 		end
@@ -45,7 +45,7 @@ class Inventory::ServicesController < Inventory::ApplicationController
 
 		if @item.update_attributes(params[:services_inventory]) then
 			flash[:success] = "Services inventory has been updated."
-			redirect_to :action => 'index'
+			redirect_to :action => 'index', :controller => 'inventory'
 		else
 			render "edit"
 		end

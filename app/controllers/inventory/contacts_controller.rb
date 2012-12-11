@@ -18,7 +18,7 @@ class Inventory::ContactsController < Inventory::ApplicationController
 		@item = ContactsInventory.new(params[:contacts_inventory])
 		if @item.save then
 			flash[:success] = "Contacts inventory has been created."
-			redirect_to :action => 'index'
+			redirect_to :action => 'index', :controller => 'inventory'
 		else
 			render "new"
 		end
@@ -44,7 +44,7 @@ class Inventory::ContactsController < Inventory::ApplicationController
 
 		if @item.update_attributes(params[:contacts_inventory]) then
 			flash[:success] = "Contacts inventory has been updated."
-			redirect_to :action => 'index'
+			redirect_to :action => 'index', :controller => 'inventory'
 		else
 			render "edit"
 		end

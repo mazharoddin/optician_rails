@@ -18,7 +18,7 @@ class Inventory::LensesController < Inventory::ApplicationController
 		@item = LensInventory.new(params[:lens_inventory])
 		if @item.save then
 			flash[:success] = "Lenses inventory has been created."
-			redirect_to :action => 'index'
+			redirect_to :action => 'index', :controller => 'inventory'
 		else
 			render "new"
 		end
@@ -44,7 +44,7 @@ class Inventory::LensesController < Inventory::ApplicationController
 
 		if @item.update_attributes(params[:lens_inventory]) then
 			flash[:success] = "Lenses inventory has been updated."
-			redirect_to :action => 'index'
+			redirect_to :action => 'index', :controller => 'inventory'
 		else
 			render "edit"
 		end

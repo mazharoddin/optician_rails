@@ -18,7 +18,7 @@ class Inventory::OtherController < Inventory::ApplicationController
 		@item = OtherInventory.new(params[:other_inventory])
 		if @item.save then
 			flash[:success] = "Other inventory has been created."
-			redirect_to :action => 'index'
+			redirect_to :action => 'index', :controller => 'inventory'
 		else
 			render "new"
 		end
@@ -44,7 +44,7 @@ class Inventory::OtherController < Inventory::ApplicationController
 
 		if @item.update_attributes(params[:other_inventory]) then
 			flash[:success] = "Other inventory has been updated."
-			redirect_to :action => 'index'
+			redirect_to :action => 'index', :controller => 'inventory'
 		else
 			render "edit"
 		end
