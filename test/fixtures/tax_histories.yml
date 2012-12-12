@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  tax: 
+  name: MyString
+  rate: 1.5
+  start_at: 2012-12-12
+  end_at: 2012-12-12
+
+two:
+  tax: 
+  name: MyString
+  rate: 1.5
+  start_at: 2012-12-12
+  end_at: 2012-12-12
