@@ -15,7 +15,6 @@
 	<thead>
 		<tr>
 			<th>Name</th>
-			<th>Amount</th>
 			<th>Rate</th>
 			<th>Start</th>
 			<th>End</th>
@@ -25,7 +24,6 @@
 <% @taxes.each do |tax| %>
 		<tr>
 			<td><%= link_to tax.name, admin_tax_path(tax) %></td>
-			<td><%= tax.amount %></td>
 			<td><%= tax.rate %>%</td>
 			<td><%= tax.start_at %></td>
 			<td><%= tax.end_at %></td>
