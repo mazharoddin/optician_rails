@@ -7,13 +7,11 @@
 						<span class="icon-bar"></span>
 					</a>
 	  
-					<a class="brand" href="#" style="font-size: 21px; font-weight: bold; font-family: Calibri;"><span style="color: #ffa500">Optical</span> <span style="color: #ffffff">Hero</span></a>
+					<a class="brand" href="<%= root_path %>" style="font-size: 21px; font-weight: bold; font-family: Calibri;"><span style="color: #ffa500">Optical</span> <span style="color: #ffffff">Hero</span></a>
 					<div class="nav-collapse">
 						<ul class="nav">
 							<li <%= raw (@navbar_selected == 'dashboard') ? 'class="active"' : '' %>><%= link_to "Dashboard", root_path %></li>
-<!--
-							<li <%= raw (@navbar_selected == 'invoices') ? 'class="active"' : '' %>><%= link_to "Invoices", root_path %></li>
--->
+							<li <%= raw (@navbar_selected == 'invoices') ? 'class="active"' : '' %>><%= link_to "Invoices", invoices_path %></li>
 							<li <%= raw (@navbar_selected == 'patients') ? 'class="active"' : '' %>><%= link_to "Patients", patients_path %></li>
 <!--
 							<li <%= raw (@navbar_selected == 'appointments') ? 'class="active"' : '' %>><%= link_to "Appointments", root_path %></li>
