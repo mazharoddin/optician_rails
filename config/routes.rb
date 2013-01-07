@@ -60,7 +60,21 @@ Optician::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
-  resources :dashboard
+  resources :invoices do
+    get 'patients'
+	get 'patients/:id', :action => 'set_patient', :as => 'set_patient'
+	get 'cash_sale', :action => 'set_cash_sale'
+	get 'void', :action => 'void_invoice'
+	resources :items do
+		get 'accessories', :action => 'accessories', :on => :collection
+		get 'services', :action => 'services', :on => :collection
+	end
+	#resources :accessories, :controller => 'invoices/accessories'
+	#resources :contacts, :controller => 'invoices/contacts'
+	#resources :glasses, :controller => 'invoices/glasses'
+	#resources :other, :controller => 'invoices/other', :as => 'invoice_items'
+	#resources :services, :controller => 'invoices/services'
+  end
   namespace :inventory do
 	resources :contacts, :as => 'contacts_inventory'
 	resources :frames, :as => 'frames_inventory'
@@ -79,7 +93,6 @@ Optician::Application.routes.draw do
 	end
   end
   namespace :admin do
-    resources :dashboard
     resources :brands
     resources :companies
 	resources :countries do

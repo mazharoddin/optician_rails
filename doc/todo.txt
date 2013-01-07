@@ -1,0 +1,27 @@
+TODO
+====
+
+1. Remove "Od brand" and "Os brand" in contacts prescriptions
+2. Dispensing from patient record is missing
+3. Appointments from patient record is missing <- Just remove
+4. Sales from patient record is missing
+5. Invoicing
+- Add services
+- Add accessories
+- Removing items
+- Dispensing glasses
+- Dispensing contacts
+- Make sure all taxes appear properly on the invoice and are added up correctly
+- Make sure balances are totaled correctly.
+- Cannot switch to "Cash Sale" once glasses or contacts have been dispensed
+- Cannot dispense glass or contacts to "Cash Sales"
+- Cannot void a transaction once it is complete (i.e. any payment has been made or dispensing has been done)
+- Fast add items
+6. Dispensing report??
+
+
+TAX CHANGE
+==========
+1. Make Tax A and Tax B fixed for a store (i.e. Tax A is HST, Tax B is GST). Include option for rate and if B applies to A
+2. Modify the rest of the application so it shows the Tax A and Tax B names (i.e. HST instead of Tax A, GST instead of Tax B)
+3. Change inventory so Tax A/B (called by their names) become checkboxes indicating if they apply or not (i.e. check the box next to "HST" to apply Tax A).

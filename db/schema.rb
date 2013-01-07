@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121212220645) do
+ActiveRecord::Schema.define(:version => 20130102072728) do
 
   create_table "brands", :force => true do |t|
     t.string   "name",       :limit => 60
@@ -35,17 +35,17 @@ ActiveRecord::Schema.define(:version => 20121212220645) do
     t.date     "expiry_date"
     t.string   "description",    :limit => 80
     t.text     "notes"
-    t.decimal  "od_sphere",                    :precision => 10, :scale => 0
-    t.decimal  "od_cylinder",                  :precision => 10, :scale => 0
+    t.decimal  "od_sphere",                    :precision => 10, :scale => 2
+    t.decimal  "od_cylinder",                  :precision => 10, :scale => 2
     t.decimal  "od_axis",                      :precision => 10, :scale => 0
-    t.decimal  "od_add",                       :precision => 10, :scale => 0
+    t.decimal  "od_add",                       :precision => 10, :scale => 2
     t.string   "od_base_curve",  :limit => 20
     t.string   "od_diameter",    :limit => 20
     t.integer  "od_brand_id"
-    t.decimal  "os_sphere",                    :precision => 10, :scale => 0
-    t.decimal  "os_cylinder",                  :precision => 10, :scale => 0
+    t.decimal  "os_sphere",                    :precision => 10, :scale => 2
+    t.decimal  "os_cylinder",                  :precision => 10, :scale => 2
     t.decimal  "os_axis",                      :precision => 10, :scale => 0
-    t.decimal  "os_add",                       :precision => 10, :scale => 0
+    t.decimal  "os_add",                       :precision => 10, :scale => 2
     t.string   "os_base_curve",  :limit => 20
     t.string   "os_diameter",    :limit => 20
     t.integer  "os_brand_id"
@@ -113,17 +113,17 @@ ActiveRecord::Schema.define(:version => 20121212220645) do
     t.string   "description",    :limit => 80
     t.text     "notes"
     t.decimal  "od_sphere",                    :precision => 10, :scale => 2
-    t.decimal  "od_cylinder",                  :precision => 10, :scale => 0
+    t.decimal  "od_cylinder",                  :precision => 10, :scale => 2
     t.decimal  "od_axis",                      :precision => 10, :scale => 0
-    t.decimal  "od_add",                       :precision => 10, :scale => 0
+    t.decimal  "od_add",                       :precision => 10, :scale => 2
     t.string   "od_prism1",      :limit => 20
     t.string   "od_base1",       :limit => 20
     t.string   "od_prism2",      :limit => 20
     t.string   "od_base2",       :limit => 20
-    t.decimal  "os_sphere",                    :precision => 10, :scale => 0
-    t.decimal  "os_cylinder",                  :precision => 10, :scale => 0
+    t.decimal  "os_sphere",                    :precision => 10, :scale => 2
+    t.decimal  "os_cylinder",                  :precision => 10, :scale => 2
     t.decimal  "os_axis",                      :precision => 10, :scale => 0
-    t.decimal  "os_add",                       :precision => 10, :scale => 0
+    t.decimal  "os_add",                       :precision => 10, :scale => 2
     t.string   "os_prism1",      :limit => 20
     t.string   "os_base1",       :limit => 20
     t.string   "os_prism2",      :limit => 20
@@ -148,10 +148,10 @@ ActiveRecord::Schema.define(:version => 20121212220645) do
     t.integer  "manufacturer_id"
     t.integer  "supplier_id"
     t.string   "supplier_code",         :limit => 80
-    t.decimal  "cost_price",                           :precision => 10, :scale => 0
-    t.decimal  "sugested_retail_price",                :precision => 10, :scale => 0
-    t.decimal  "regular_retail_price",                 :precision => 10, :scale => 0
-    t.decimal  "current_retail_price",                 :precision => 10, :scale => 0
+    t.decimal  "cost_price",                           :precision => 10, :scale => 2
+    t.decimal  "sugested_retail_price",                :precision => 10, :scale => 2
+    t.decimal  "regular_retail_price",                 :precision => 10, :scale => 2
+    t.decimal  "current_retail_price",                 :precision => 10, :scale => 2
     t.integer  "stock_available"
     t.integer  "stock_reorder"
     t.datetime "created_at",                                                                            :null => false
@@ -179,6 +179,45 @@ ActiveRecord::Schema.define(:version => 20121212220645) do
     t.integer "inventory_id"
     t.integer "lens_coating_id"
   end
+
+  create_table "invoices", :force => true do |t|
+    t.datetime "invoice_date"
+    t.integer  "patient_id"
+    t.string   "name"
+    t.string   "address"
+    t.string   "city",         :limit => 80
+    t.string   "state",        :limit => 10
+    t.string   "postal_code",  :limit => 20
+    t.string   "country",      :limit => 60
+    t.decimal  "total",                      :precision => 10, :scale => 2
+    t.decimal  "paid",                       :precision => 10, :scale => 2
+    t.decimal  "balance",                    :precision => 10, :scale => 2
+    t.datetime "created_at",                                                :null => false
+    t.datetime "updated_at",                                                :null => false
+    t.datetime "void_date"
+  end
+
+  add_index "invoices", ["patient_id"], :name => "index_invoices_on_patient_id"
+
+  create_table "items", :force => true do |t|
+    t.string   "description"
+    t.decimal  "unit_price",   :precision => 10, :scale => 2
+    t.decimal  "discount",     :precision => 10, :scale => 2
+    t.decimal  "qty",          :precision => 10, :scale => 2
+    t.integer  "tax_a_id"
+    t.integer  "tax_b_id"
+    t.decimal  "tax_a_amount", :precision => 10, :scale => 2
+    t.decimal  "tax_b_amount", :precision => 10, :scale => 2
+    t.decimal  "total_price",  :precision => 10, :scale => 2
+    t.integer  "inventory_id"
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
+    t.integer  "invoice_id",                                  :null => false
+  end
+
+  add_index "items", ["inventory_id"], :name => "index_invoice_items_on_inventory_id"
+  add_index "items", ["tax_a_id"], :name => "index_invoice_items_on_tax_a_id"
+  add_index "items", ["tax_b_id"], :name => "index_invoice_items_on_tax_b_id"
 
   create_table "lens_coatings", :force => true do |t|
     t.string   "name",       :limit => 60

@@ -1,0 +1,21 @@
+<% @title = "Line" %>
+<div class="page-header">
+	<h1><%= @item.description %> (Line Item) <%= link_to "Edit Item", edit_invoice_item_path(@invoice, @item), :class => "btn btn-primary pull-right" %></h1>
+</div>
+
+<dl class="dl-horizontal">
+	<dt>Description</dt>
+	<dd><%= @item.description %></dd>
+	<dt>Unit Price</dt>
+	<dd><%= @item.unit_price %></dd>
+	<dt>Discount</dt>
+	<dd><%= @item.discount %></dd>
+	<dt>Qty</dt>
+	<dd><%= @item.qty %></dd>
+	<dt>Total Price</dt>
+	<dd><%= @item.total_price %></dd>
+	<dt>Tax A</dt>
+	<dd><%= @item.tax_a_amount %></dd>
+	<dt>Tax B</dt>
+	<dd><%= @item.tax_b_amount %></dd>
+</dl>

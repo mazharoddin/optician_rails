@@ -1,0 +1,37 @@
+<% @title = "Invoices" %>
+<div class="page-header">
+	<h1>Find Invoice <%= link_to "New Invoice", new_invoice_path, :class => "btn btn-success pull-right" %></h1>
+</div>
+
+<form class="well form-search" method="get">
+	<input name="q" value="<%= params[:q] %>" type="text" class="search-query">
+	<button type"submit" class="btn btn-info">Search</button>
+</form>
+
+<% if @invoices.empty? then %>
+<p>No invoices found</p>
+<% else %>
+<table class="table table-condensed table-striped">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>Date</th>
+			<th>Patient</th>
+			<th>Status</th>
+			<th>Total</th>
+		</tr>
+	</thead>
+	<tbody>
+<% @invoices.each do |invoice| %>
+		<tr>
+			<td><%= link_to invoice.id, invoice_path(invoice) %></td>
+			<td><%= invoice.invoice_date %></td>
+			<td><% if invoice.patient != nil %><%= link_to invoice.name, patient_path(invoice.patient) %><% else %><%= invoice.name %><% end %></td>
+			<td><%= invoice_status_label(invoice) %></td>
+			<td><%= invoice.total %></td>
+		</tr>
+<% end %>
+	</tbody>
+</table>
+<%= paginate @invoices %>
+<% end %>

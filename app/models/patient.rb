@@ -34,6 +34,6 @@ class Patient < ActiveRecord::Base
 	end
 	
 	def to_s
-		return ful_name
+		return full_name
 	end
 end
