@@ -58,7 +58,7 @@ class PatientsController < ApplicationController
 	
 	def invoices
 		add_breadcrumb @patient.full_name, patient_path(@patient)
-		add_breadcrumb 'Sales', patient_invoices_path(@patient)
+		add_breadcrumb 'Invoices', patient_invoices_path(@patient)
 		
 		@invoices = @patient.invoices.page(params[:page])
 	end

@@ -10,5 +10,6 @@ module InvoicesHelper
 			end
 			return raw "<span class=\"label label-info\">Confirmed</span>"
 		end
+		return raw "<span class=\"label\">New</span>"
 	end
 end
