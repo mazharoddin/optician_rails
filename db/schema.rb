@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(:version => 20130107210719) do
     t.datetime "updated_at",               :null => false
   end
 
-  create_table "dispensings", :force => true do |t|
+  create_table "dispensing", :force => true do |t|
     t.string   "type",            :limit => 100
     t.integer  "invoice_id"
     t.integer  "patient_id"
@@ -71,12 +71,12 @@ ActiveRecord::Schema.define(:version => 20130107210719) do
     t.datetime "updated_at",                                                    :null => false
   end
 
-  add_index "dispensings", ["invoice_id"], :name => "index_dispensings_on_invoice_id"
-  add_index "dispensings", ["od_brand_id"], :name => "index_dispensings_on_od_brand_id"
-  add_index "dispensings", ["optometrist_id"], :name => "index_dispensings_on_optometrist_id"
-  add_index "dispensings", ["os_brand_id"], :name => "index_dispensings_on_os_brand_id"
-  add_index "dispensings", ["patient_id"], :name => "index_dispensings_on_patient_id"
-  add_index "dispensings", ["prescription_id"], :name => "index_dispensings_on_prescription_id"
+  add_index "dispensing", ["invoice_id"], :name => "index_dispensing_on_invoice_id"
+  add_index "dispensing", ["od_brand_id"], :name => "index_dispensing_on_od_brand_id"
+  add_index "dispensing", ["optometrist_id"], :name => "index_dispensing_on_optometrist_id"
+  add_index "dispensing", ["os_brand_id"], :name => "index_dispensing_on_os_brand_id"
+  add_index "dispensing", ["patient_id"], :name => "index_dispensing_on_patient_id"
+  add_index "dispensing", ["prescription_id"], :name => "index_dispensing_on_prescription_id"
 
   create_table "employees", :force => true do |t|
     t.string   "first_name",             :limit => 40

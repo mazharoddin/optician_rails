@@ -40,7 +40,7 @@ class CreateDispensings < ActiveRecord::Migration
     add_index :prescriptions, :od_brand_id
     add_index :prescriptions, :os_brand_id
 
-    create_table :dispensings do |t|
+    create_table :dispensing do |t|
 	  t.string :type, :limit => 100
       t.references :invoice
       t.references :patient
@@ -75,12 +75,12 @@ class CreateDispensings < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :dispensings, :invoice_id
-    add_index :dispensings, :patient_id
-    add_index :dispensings, :optometrist_id
-	add_index :dispensings, :prescription_id
-    add_index :dispensings, :od_brand_id
-    add_index :dispensings, :os_brand_id
+    add_index :dispensing, :invoice_id
+    add_index :dispensing, :patient_id
+    add_index :dispensing, :optometrist_id
+	add_index :dispensing, :prescription_id
+    add_index :dispensing, :od_brand_id
+    add_index :dispensing, :os_brand_id
 	
 	drop_table :contacts_prescriptions
 	drop_table :glasses_prescriptions

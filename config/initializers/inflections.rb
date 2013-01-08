@@ -17,4 +17,5 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'tax', 'taxes'
   inflect.irregular 'inventory', 'inventory'
   inflect.irregular 'lens', 'lenses'
+  inflect.irregular 'dispensing', 'dispensing'
 end

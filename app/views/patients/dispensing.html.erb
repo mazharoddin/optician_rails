@@ -14,7 +14,7 @@
 	<li><%= link_to "Invoices", patient_invoices_path(@patient) %></li>
 </ul>
 
-<% if @dispensings.empty? then %>
+<% if @dispensing.empty? then %>
 <p>No dispensing found</p>
 <% else %>
 <table class="table table-condensed table-striped">
@@ -28,16 +28,16 @@
 		</tr>
 	</thead>
 	<tbody>
-<% @dispensings.each do |dispensing| %>
+<% @dispensing.each do |d| %>
 		<tr>
-			<td><%= link_to dispensing.rx_date, invoice_path(dispensing.invoice) %></td>
-			<td><%= dispensing.type %></td>
-			<td><%= dispensing.optometrist %></td>
-			<td><%= dispensing.description %></td>
+			<td><%= link_to d.rx_date, invoice_path(d.invoice) %></td>
+			<td><%= d.type %></td>
+			<td><%= d.optometrist %></td>
+			<td><%= d.description %></td>
 			<td><a href="#" class="btn btn-primary">Repeat</a></td>
 		</tr>
 <% end %>
 	</tbody>
 </table>
-<%= paginate @dispensings %>
+<%= paginate @dispensing %>
 <% end %>

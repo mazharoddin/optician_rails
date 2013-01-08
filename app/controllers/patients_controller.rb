@@ -53,7 +53,7 @@ class PatientsController < ApplicationController
 		add_breadcrumb @patient.full_name, patient_path(@patient)
 		add_breadcrumb 'Dispensing', patient_dispensing_path(@patient)
 		
-		@dispensings = @patient.dispensings.page(params[:page])
+		@dispensing = @patient.dispensing.page(params[:page])
 	end
 	
 	def invoices
