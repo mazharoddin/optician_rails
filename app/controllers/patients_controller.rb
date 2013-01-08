@@ -1,5 +1,5 @@
 class PatientsController < ApplicationController
-	before_filter :find_patient, :only => [:edit, :show, :update]
+	before_filter :find_patient, :only => [:edit, :show, :update, :dispensing, :invoices]
 	
 	add_breadcrumb "Patients", :patients_path
 
@@ -49,9 +49,27 @@ class PatientsController < ApplicationController
 		end
 	end
 
+	def dispensing
+		add_breadcrumb @patient.full_name, patient_path(@patient)
+		add_breadcrumb 'Dispensing', patient_dispensing_path(@patient)
+		
+		@dispensings = @patient.dispensings.page(params[:page])
+	end
+	
+	def invoices
+		add_breadcrumb @patient.full_name, patient_path(@patient)
+		add_breadcrumb 'Sales', patient_invoices_path(@patient)
+		
+		@invoices = @patient.invoices.page(params[:page])
+	end
+	
 	private
 	def find_patient
-		@patient = Patient.find(params[:id])
+	    if params[:patient_id] != nil then
+			@patient = Patient.find(params[:patient_id])
+		else
+			@patient = Patient.find(params[:id])
+		end
 	end
 
 	def navbar

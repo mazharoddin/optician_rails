@@ -12,6 +12,8 @@ class Patient < ActiveRecord::Base
   has_many :glasses_prescriptions
   has_many :glasses_prescriptions
   has_many :contacts_prescriptions
+  has_many :dispensings
+  has_many :invoices
   
   attr_accessible :alergies, :birthday, :email, :first_name, :guardian_alt_phone, :guardian_name, :guardian_phone, :home_address, :home_city, :home_phone, :home_postal_code, :last_name, :medical_other, :mobile_phone, :note, :occupation, :postal_address, :postal_city, :postal_postal_code, :preferred_name, :smoker, :work_ext, :work_phone, :personal_title_id, :gender_id, :home_state_id, :home_country_id, :postal_state_id, :postal_country_id, :optometrist_id, :employment_type_id, :guardian_relationship_id
 

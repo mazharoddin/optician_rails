@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130102072728) do
+ActiveRecord::Schema.define(:version => 20130107210719) do
 
   create_table "brands", :force => true do |t|
     t.string   "name",       :limit => 60
@@ -28,40 +28,55 @@ ActiveRecord::Schema.define(:version => 20130102072728) do
     t.boolean  "active",                   :default => true, :null => false
   end
 
-  create_table "contacts_prescriptions", :force => true do |t|
-    t.integer  "patient_id"
-    t.integer  "optometrist_id"
-    t.date     "rx_date"
-    t.date     "expiry_date"
-    t.string   "description",    :limit => 80
-    t.text     "notes"
-    t.decimal  "od_sphere",                    :precision => 10, :scale => 2
-    t.decimal  "od_cylinder",                  :precision => 10, :scale => 2
-    t.decimal  "od_axis",                      :precision => 10, :scale => 0
-    t.decimal  "od_add",                       :precision => 10, :scale => 2
-    t.string   "od_base_curve",  :limit => 20
-    t.string   "od_diameter",    :limit => 20
-    t.integer  "od_brand_id"
-    t.decimal  "os_sphere",                    :precision => 10, :scale => 2
-    t.decimal  "os_cylinder",                  :precision => 10, :scale => 2
-    t.decimal  "os_axis",                      :precision => 10, :scale => 0
-    t.decimal  "os_add",                       :precision => 10, :scale => 2
-    t.string   "os_base_curve",  :limit => 20
-    t.string   "os_diameter",    :limit => 20
-    t.integer  "os_brand_id"
-    t.datetime "created_at",                                                  :null => false
-    t.datetime "updated_at",                                                  :null => false
-  end
-
-  add_index "contacts_prescriptions", ["optometrist_id"], :name => "index_contacts_prescriptions_on_optometrist_id"
-  add_index "contacts_prescriptions", ["patient_id"], :name => "index_contacts_prescriptions_on_patient_id"
-
   create_table "countries", :force => true do |t|
     t.string   "name",       :limit => 60
     t.boolean  "active"
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
   end
+
+  create_table "dispensings", :force => true do |t|
+    t.string   "type",            :limit => 100
+    t.integer  "invoice_id"
+    t.integer  "patient_id"
+    t.integer  "optometrist_id"
+    t.integer  "prescription_id"
+    t.date     "rx_date"
+    t.date     "expiry_date"
+    t.string   "description",     :limit => 80
+    t.text     "notes"
+    t.decimal  "od_sphere",                      :precision => 10, :scale => 2
+    t.decimal  "od_cylinder",                    :precision => 10, :scale => 2
+    t.decimal  "od_axis",                        :precision => 10, :scale => 0
+    t.decimal  "od_add",                         :precision => 10, :scale => 2
+    t.string   "od_base_curve",   :limit => 20
+    t.string   "od_diameter",     :limit => 20
+    t.string   "od_prism1",       :limit => 20
+    t.string   "od_base1",        :limit => 20
+    t.string   "od_prism2",       :limit => 20
+    t.string   "od_base2",        :limit => 20
+    t.integer  "od_brand_id"
+    t.decimal  "os_sphere",                      :precision => 10, :scale => 2
+    t.decimal  "os_cylinder",                    :precision => 10, :scale => 2
+    t.decimal  "os_axis",                        :precision => 10, :scale => 0
+    t.decimal  "os_add",                         :precision => 10, :scale => 2
+    t.string   "os_base_curve",   :limit => 20
+    t.string   "os_diameter",     :limit => 20
+    t.string   "os_prism1",       :limit => 20
+    t.string   "os_base1",        :limit => 20
+    t.string   "os_prism2",       :limit => 20
+    t.string   "os_base2",        :limit => 20
+    t.integer  "os_brand_id"
+    t.datetime "created_at",                                                    :null => false
+    t.datetime "updated_at",                                                    :null => false
+  end
+
+  add_index "dispensings", ["invoice_id"], :name => "index_dispensings_on_invoice_id"
+  add_index "dispensings", ["od_brand_id"], :name => "index_dispensings_on_od_brand_id"
+  add_index "dispensings", ["optometrist_id"], :name => "index_dispensings_on_optometrist_id"
+  add_index "dispensings", ["os_brand_id"], :name => "index_dispensings_on_os_brand_id"
+  add_index "dispensings", ["patient_id"], :name => "index_dispensings_on_patient_id"
+  add_index "dispensings", ["prescription_id"], :name => "index_dispensings_on_prescription_id"
 
   create_table "employees", :force => true do |t|
     t.string   "first_name",             :limit => 40
@@ -104,36 +119,6 @@ ActiveRecord::Schema.define(:version => 20130102072728) do
     t.datetime "updated_at",                                 :null => false
     t.boolean  "active",                   :default => true, :null => false
   end
-
-  create_table "glasses_prescriptions", :force => true do |t|
-    t.integer  "patient_id"
-    t.integer  "optometrist_id"
-    t.date     "rx_date"
-    t.date     "expiry_date"
-    t.string   "description",    :limit => 80
-    t.text     "notes"
-    t.decimal  "od_sphere",                    :precision => 10, :scale => 2
-    t.decimal  "od_cylinder",                  :precision => 10, :scale => 2
-    t.decimal  "od_axis",                      :precision => 10, :scale => 0
-    t.decimal  "od_add",                       :precision => 10, :scale => 2
-    t.string   "od_prism1",      :limit => 20
-    t.string   "od_base1",       :limit => 20
-    t.string   "od_prism2",      :limit => 20
-    t.string   "od_base2",       :limit => 20
-    t.decimal  "os_sphere",                    :precision => 10, :scale => 2
-    t.decimal  "os_cylinder",                  :precision => 10, :scale => 2
-    t.decimal  "os_axis",                      :precision => 10, :scale => 0
-    t.decimal  "os_add",                       :precision => 10, :scale => 2
-    t.string   "os_prism1",      :limit => 20
-    t.string   "os_base1",       :limit => 20
-    t.string   "os_prism2",      :limit => 20
-    t.string   "os_base2",       :limit => 20
-    t.datetime "created_at",                                                  :null => false
-    t.datetime "updated_at",                                                  :null => false
-  end
-
-  add_index "glasses_prescriptions", ["optometrist_id"], :name => "index_spectacles_prescriptions_on_optometrist_id"
-  add_index "glasses_prescriptions", ["patient_id"], :name => "index_spectacles_prescriptions_on_patient_id"
 
   create_table "guardian_relationships", :force => true do |t|
     t.string   "name",       :limit => 40
@@ -316,6 +301,47 @@ ActiveRecord::Schema.define(:version => 20130102072728) do
     t.datetime "updated_at",                                 :null => false
     t.boolean  "active",                   :default => true, :null => false
   end
+
+  create_table "prescriptions", :force => true do |t|
+    t.string   "type",            :limit => 100
+    t.integer  "patient_id"
+    t.integer  "optometrist_id"
+    t.integer  "prescription_id"
+    t.date     "rx_date"
+    t.date     "expiry_date"
+    t.string   "description",     :limit => 80
+    t.text     "notes"
+    t.decimal  "od_sphere",                      :precision => 10, :scale => 2
+    t.decimal  "od_cylinder",                    :precision => 10, :scale => 2
+    t.decimal  "od_axis",                        :precision => 10, :scale => 0
+    t.decimal  "od_add",                         :precision => 10, :scale => 2
+    t.string   "od_base_curve",   :limit => 20
+    t.string   "od_diameter",     :limit => 20
+    t.string   "od_prism1",       :limit => 20
+    t.string   "od_base1",        :limit => 20
+    t.string   "od_prism2",       :limit => 20
+    t.string   "od_base2",        :limit => 20
+    t.integer  "od_brand_id"
+    t.decimal  "os_sphere",                      :precision => 10, :scale => 2
+    t.decimal  "os_cylinder",                    :precision => 10, :scale => 2
+    t.decimal  "os_axis",                        :precision => 10, :scale => 0
+    t.decimal  "os_add",                         :precision => 10, :scale => 2
+    t.string   "os_base_curve",   :limit => 20
+    t.string   "os_diameter",     :limit => 20
+    t.string   "os_prism1",       :limit => 20
+    t.string   "os_base1",        :limit => 20
+    t.string   "os_prism2",       :limit => 20
+    t.string   "os_base2",        :limit => 20
+    t.integer  "os_brand_id"
+    t.datetime "created_at",                                                    :null => false
+    t.datetime "updated_at",                                                    :null => false
+  end
+
+  add_index "prescriptions", ["od_brand_id"], :name => "index_prescriptions_on_od_brand_id"
+  add_index "prescriptions", ["optometrist_id"], :name => "index_prescriptions_on_optometrist_id"
+  add_index "prescriptions", ["os_brand_id"], :name => "index_prescriptions_on_os_brand_id"
+  add_index "prescriptions", ["patient_id"], :name => "index_prescriptions_on_patient_id"
+  add_index "prescriptions", ["prescription_id"], :name => "index_prescriptions_on_prescription_id"
 
   create_table "states", :force => true do |t|
     t.string   "name",       :limit => 60

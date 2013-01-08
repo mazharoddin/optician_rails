@@ -85,6 +85,8 @@ Optician::Application.routes.draw do
     match ':id' => 'inventory#show'
   end
   resources :patients do
+    get 'dispensing'
+    get 'invoices'
 	resources :contacts_prescriptions do
 		get 'current', :on => :collection
 	end

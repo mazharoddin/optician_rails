@@ -1,22 +1,30 @@
 TODO
 ====
 
-1. Remove "Od brand" and "Os brand" in contacts prescriptions
-2. Dispensing from patient record is missing
-3. Appointments from patient record is missing <- Just remove
-4. Sales from patient record is missing
-5. Invoicing
-- Add services
-- Add accessories
-- Removing items
-- Dispensing glasses
-- Dispensing contacts
+MVP:
+1. Merge glasses_prescriptions and contacts_prescriptions into prescriptions with subclasses
+2. Add services to invoices
+3. Add accessories to invoices
+4. Contacts dispensing
+5. Glasses dispensing
+6. Remove items
+7. View dispensing from patient record
+8. What is the plural of dispensing? Dispensing or dispensings? Perhaps it's dispense/dispensing?
+9. View sales from patient record
+10. Fast add items
+11. Prevent dispensing to "cash sales"
+12. Prevent switching to "cash sales" once dispensing has been done
+
+13. Invoicing business rules
 - Make sure all taxes appear properly on the invoice and are added up correctly
 - Make sure balances are totaled correctly.
-- Cannot switch to "Cash Sale" once glasses or contacts have been dispensed
-- Cannot dispense glass or contacts to "Cash Sales"
 - Cannot void a transaction once it is complete (i.e. any payment has been made or dispensing has been done)
-- Fast add items
+
+1. Remove "Od brand" and "Os brand" in contacts prescriptions
+
+
+3. Appointments from patient record is missing <- Just remove
+5. Invoicing
 6. Dispensing report??
 
 

@@ -1,0 +1,44 @@
+<% @title = "Patient Dispensing" %>
+<div class="page-header">
+	<h1><%= @patient.full_name %> (Patient)</h1>
+</div>
+
+
+
+
+<ul class="nav nav-tabs">
+	<li><%= link_to "Profile", patient_path(@patient) %></li>
+	<li><%= link_to "Glasses", patient_glasses_prescriptions_path(@patient, @glasses_prescription) %></li>
+	<li><%= link_to "Contacts", patient_contacts_prescriptions_path(@patient, @contacts_prescription) %></li>
+	<li class="active"><%= link_to "Dispensing", patient_dispensing_path(@patient) %></li>
+	<li><a href="patients_appointments.html">Appointments</a></li>
+	<li><%= link_to "Invoices", patient_invoices_path(@patient) %></li>
+</ul>
+
+<% if @dispensings.empty? then %>
+<p>No dispensing found</p>
+<% else %>
+<table class="table table-condensed table-striped">
+	<thead>
+		<tr>
+			<th>Rx Date</th>
+			<th>Type</th>
+			<th>Optician</th>
+			<th>Description</th>
+			<th>Action</th>
+		</tr>
+	</thead>
+	<tbody>
+<% @dispensings.each do |dispensing| %>
+		<tr>
+			<td><%= link_to dispensing.rx_date, invoice_path(dispensing.invoice) %></td>
+			<td><%= dispensing.type %></td>
+			<td><%= dispensing.optometrist %></td>
+			<td><%= dispensing.description %></td>
+			<td><a href="#" class="btn btn-primary">Repeat</a></td>
+		</tr>
+<% end %>
+	</tbody>
+</table>
+<%= paginate @dispensings %>
+<% end %>

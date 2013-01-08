@@ -1,0 +1,3 @@
+class ContactsDispensing < Dispensing
+
+end

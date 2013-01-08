@@ -12,9 +12,9 @@
 	<li class="active"><%= link_to "Profile", patient_path(@patient) %></li>
 	<li><%= link_to "Glasses", current_patient_glasses_prescriptions_path(@patient) %></li>
 	<li><%= link_to "Contacts", patient_contacts_prescriptions_path(@patient, @contacts_prescription) %></li>
-	<li><a href="patients_dispensing.html">Dispensing</a></li>
+	<li><%= link_to "Dispensing", patient_dispensing_path(@patient) %></li>
 	<li><a href="patients_appointments.html">Appointments</a></li>
-	<li><a href="patients_sales.html">Sales</a></li>
+	<li><%= link_to "Invoices", patient_invoices_path(@patient) %></li>
 </ul>
 <% end %>
 <%= simple_form_for @patient, :html => { :class => "form-horizontal" } do |f| %>

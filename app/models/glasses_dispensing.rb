@@ -1,0 +1,3 @@
+class GlassesDispensing < Dispensing
+
+end
