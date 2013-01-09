@@ -69,6 +69,8 @@ Optician::Application.routes.draw do
 		get 'accessories', :action => 'accessories', :on => :collection
 		get 'services', :action => 'services', :on => :collection
 	end
+	resources :contacts_dispensing
+	resources :glasses_dispensing
 	#resources :accessories, :controller => 'invoices/accessories'
 	#resources :contacts, :controller => 'invoices/contacts'
 	#resources :glasses, :controller => 'invoices/glasses'

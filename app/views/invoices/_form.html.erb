@@ -6,10 +6,12 @@
 				    <%= link_to "Find Patient", invoice_patients_path(@invoice), :class => "btn" %>
 				    <%= link_to "Cash Sale", invoice_cash_sale_path(@invoice), :class => "btn" %>
 				</div>
+<% if @invoice.patient != nil then %>
 				<div class="btn-group">
-					<a href="invoices_glasses.html" class="btn" <%= @invoice.patient == nil ? 'disabled="disabled"': '' %>>Dispense Glasses</a>
-					<a href="invoices_contacts.html" class="btn" <%= @invoice.patient == nil ? 'disabled="disabled"': '' %>>Dispense Contacts</a>
+					<%= link_to "Dispense Glasses", new_invoice_glasses_dispensing_path(@invoice), :class => "btn" %>
+					<%= link_to "Dispense Conacts", new_invoice_contacts_dispensing_path(@invoice), :class => "btn" %>
 				</div>
+<% end %>
 				<div class="btn-group">
 					<%= link_to "Add Service", services_invoice_items_path(@invoice), :class => "btn" %>
 					<%= link_to "Add Accessories", accessories_invoice_items_path(@invoice), :class => "btn" %>

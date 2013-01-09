@@ -4,6 +4,9 @@ class Invoice < ActiveRecord::Base
   belongs_to :patient
   
   has_many :items
+  has_many :dispensing
+  has_many :contacts_dispensing
+  has_many :glasses_dispensing
   
   attr_accessible :address, :balance, :city, :country, :invoice_date, :name, :paid, :postal_code, :state, :total, :void_date
   
