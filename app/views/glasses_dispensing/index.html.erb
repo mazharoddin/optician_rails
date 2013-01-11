@@ -1,0 +1,39 @@
+<% @title = "Invoice Glasses" %>
+<div class="page-header">
+	<h1>#<%= @invoice.id %> (Glasses Dispensing)</h1>
+</div>
+
+
+
+
+<% if @dispensing.empty? then %>
+<p>No glasses dispensing found</p>
+<% else %>
+<table class="table table-condensed table-striped">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>Invoice</th>
+			<th>Rx Date</th>
+			<th>Type</th>
+			<th>Optician</th>
+			<th>Description</th>
+			<th>Action</th>
+		</tr>
+	</thead>
+	<tbody>
+<% @dispensing.each do |d| %>
+		<tr>
+			<td><%= link_to d.id, invoice_path(d.invoice) %></td>
+			<td><%= link_to d.invoice.id, invoice_path(d.invoice) %></td>
+			<td><%= link_to d.rx_date, invoice_path(d.invoice) %></td>
+			<td><%= d.type %></td>
+			<td><%= d.optometrist %></td>
+			<td><%= d.description %></td>
+			<td><a href="#" class="btn btn-primary">Repeat</a></td>
+		</tr>
+<% end %>
+	</tbody>
+</table>
+<%= paginate @dispensing %>
+<% end %>

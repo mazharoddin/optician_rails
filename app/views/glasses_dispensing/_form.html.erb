@@ -1,0 +1,59 @@
+<%= simple_form_for [@invoice, @dispensing], :html => { :class => "form-horizontal" } do |f| %>
+	<%= f.input :description %>
+	<%= f.input :rx_date %>
+	<%= f.input :expiry_date %>
+	<%= f.association :optometrist %>
+	<%= f.input :notes, :input_html => { :class => 'input-xxlarge', :rows => 5 } %>
+
+	<table class="table table-condensed">
+		<thead>
+			<tr>
+				<th>&nbsp;</th>
+				<th>Sphere</th>
+				<th>Cylinder</th>
+				<th>Axis</th>
+				<th>Add</th>
+				<th>Prism</th>
+				<th>Base</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th rowspan="2">OD</th>
+				<td rowspan="2"><%= f.input_field :od_sphere, :collection => (-30..30).step(0.25).reverse(), :class => 'input-small' %></td>
+				<td rowspan="2"><%= f.input_field :od_cylinder, :collection => (-30..30).step(0.25).reverse(), :class => 'input-small' %></td>
+				<td rowspan="2"><%= f.input_field :od_axis, :collection => (0..180), :class => 'input-small' %></td>
+				<td rowspan="2"><%= f.input_field :od_add, :collection => (0..5).step(0.25).reverse(), :class => 'input-small' %></td>
+				<td><%= f.input_field :od_prism1, :class => 'input-small' %></td>
+				<td><%= f.input_field :od_base1, :collection => ['Up', 'Down'], :class => 'input-small' %></td>
+			</tr>
+			<tr>
+				<td><%= f.input_field :od_prism2, :class => 'input-small' %></td>
+				<td><%= f.input_field :od_base2, :collection => ['Up', 'Down'], :class => 'input-small' %></td>
+			</tr>
+			<tr>
+				<th rowspan="2">OS</th>
+				<td rowspan="2"><%= f.input_field :os_sphere, :collection => (-30..30).step(0.25).reverse(), :class => 'input-small' %></td>
+				<td rowspan="2"><%= f.input_field :os_cylinder, :collection => (-30..30).step(0.25).reverse(), :class => 'input-small' %></td>
+				<td rowspan="2"><%= f.input_field :os_axis, :collection => (0..180), :class => 'input-small' %></td>
+				<td rowspan="2"><%= f.input_field :os_add, :collection => (0..5).step(0.25).reverse(), :class => 'input-small' %></td>
+				<td><%= f.input_field :os_prism1, :class => 'input-small' %></td>
+				<td><%= f.input_field :os_base1, :collection => ['Up', 'Down'], :class => 'input-small' %></td>
+			</tr>
+			<tr>
+				<td><%= f.input_field :os_prism2, :class => 'input-small' %></td>
+				<td><%= f.input_field :os_base2, :collection => ['Up', 'Down'], :class => 'input-small' %></td>
+			</tr>
+		</tbody>
+	</table>
+
+
+	<div class="form-actions">
+		<%= f.button :submit, :class => "btn btn-primary" %>
+<% if @dispensing.new_record? %>
+		<%= link_to "Discard Changes", invoice_path(@invoice), :class => "btn" %>
+<% else %>
+		<%= link_to "Discard Changes", invoice_contacts_dispensing_path(@invoice, @dispensing), :class => "btn" %>
+<% end %>
+	</div>
+<% end %>
