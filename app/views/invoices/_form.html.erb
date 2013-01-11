@@ -54,6 +54,59 @@
 					</tr>
 				</thead>
 				<tbody>
+<% if @invoice.dispensing != nil then %>
+					<tr>
+						<th colspan="9">Dispensing</th>
+					</tr>
+<% @invoice.dispensing.each do |dispensing| %>
+					<tr>
+						<td colspan="2"><%= dispensing.description %><!--(<a href="invoices_glasses.html">#123</a>)--></td>
+						<td><input type="text" value="Unit Price" class="currency input-small"></td>
+						<td colspan="2">&nbsp;</td>
+						<td><input type="text" value="99.00" class="currency input-small" disabled="disabled"></td>
+						<td>Tax B</td>
+						<td>Tax B</td>
+						<td><%= simple_form_for [@invoice, dispensing], :method => 'delete' do |x| %><input type="submit" class="btn btn-danger" value="Remove"><% end %></td>
+					</tr>
+					<tr>
+						<td>+ Frames</td>
+						<td><input type="text" value="Unit Price" class="currency input-small"></td>
+						<td><input type="text" value="Discount" class="currency input-small"></td>
+						<td><input type="text" value="Qty" class="qty input-small"></td>
+						<td><input type="text" value="Price" class="currency input-small" disabled="disabled"></td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>+ Plastic Lense OD</td>
+						<td><input type="text" value="Unit Price" class="currency input-small"></td>
+						<td><input type="text" value="Discount" class="currency input-small"></td>
+						<td><input type="text" value="Qty" class="qty input-small"></td>
+						<td><input type="text" value="Price" class="currency input-small" disabled="disabled"></td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>+ Plastic Lense OD</td>
+						<td><input type="text" value="Unit Price" class="currency input-small"></td>
+						<td><input type="text" value="Discount" class="currency input-small"></td>
+						<td><input type="text" value="Qty" class="qty input-small"></td>
+						<td><input type="text" value="Price" class="currency input-small" disabled="disabled"></td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+<% end %>
+<% end %>
+<% if @invoice.items != nil then %>
+					<tr>
+						<th colspan="9">Other</th>
+					</tr>
 <% @invoice.items.each do |item| %>
 					<tr>
 						<td colspan="2"><%= item.description %><!--(<a href="invoices_glasses.html">#123</a>)--></td>
@@ -64,41 +117,7 @@
 						<td><%= item.tax_b %></td>
 						<td><%= simple_form_for [@invoice, item], :method => 'delete' do |x| %><input type="submit" class="btn btn-danger" value="Remove"><% end %></td>
 					</tr>
-<!--
-					<tr>
-						<td>+ Frames</td>
-						<td><input type="text" value="<%= item.unit_price %>" class="currency input-small"></td>
-						<td><input type="text" value="<%= item.discount %>" class="currency input-small"></td>
-						<td><input type="text" value="<%= item.qty %>" class="qty input-small"></td>
-						<td><input type="text" value="<%= (item.unit_price - item.discount) * item.qty%>" class="currency input-small" disabled="disabled"></td>
-						<td>&nbsp;</td>
-						<td>&nbsp;</td>
-						<td>&nbsp;</td>
-						<td>&nbsp;</td>
-					</tr>
-					<tr>
-						<td>+ Plastic Lense OD</td>
-						<td><input type="text" value="<%= item.unit_price %>" class="currency input-small"></td>
-						<td><input type="text" value="<%= item.discount %>" class="currency input-small"></td>
-						<td><input type="text" value="<%= item.qty %>" class="qty input-small"></td>
-						<td><input type="text" value="<%= (item.unit_price - item.discount) * item.qty%>" class="currency input-small" disabled="disabled"></td>
-						<td>&nbsp;</td>
-						<td>&nbsp;</td>
-						<td>&nbsp;</td>
-						<td>&nbsp;</td>
-					</tr>
-					<tr>
-						<td>+ Plastic Lense OD</td>
-						<td><input type="text" value="<%= item.unit_price %>" class="currency input-small"></td>
-						<td><input type="text" value="<%= item.discount %>" class="currency input-small"></td>
-						<td><input type="text" value="<%= item.qty %>" class="qty input-small"></td>
-						<td><input type="text" value="<%= (item.unit_price - item.discount) * item.qty%>" class="currency input-small" disabled="disabled"></td>
-						<td>&nbsp;</td>
-						<td>&nbsp;</td>
-						<td>&nbsp;</td>
-						<td>&nbsp;</td>
-					</tr>
--->
+<% end %>
 <% end %>
 				</tbody>
 				<tfoot>
