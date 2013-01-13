@@ -66,7 +66,7 @@
 						<td><input type="text" value="99.00" class="currency input-small" disabled="disabled"></td>
 						<td>Tax B</td>
 						<td>Tax B</td>
-						<td><%= simple_form_for [@invoice, dispensing], :method => 'delete' do |x| %><input type="submit" class="btn btn-danger" value="Remove"><% end %></td>
+						<td><a href="#remove-modal" role="button" data-toggle="modal" class="btn btn-danger pull-right">Remove</a></td>
 					</tr>
 					<tr>
 						<td>+ Frames</td>
@@ -115,7 +115,7 @@
 						<td><input type="text" value="99.00" class="currency input-small" disabled="disabled"></td>
 						<td><%= item.tax_a %></td>
 						<td><%= item.tax_b %></td>
-						<td><%= simple_form_for [@invoice, item], :method => 'delete' do |x| %><input type="submit" class="btn btn-danger" value="Remove"><% end %></td>
+						<td><a href="#remove-modal" role="button" data-toggle="modal" class="btn btn-danger pull-right">Remove</a></td>
 					</tr>
 <% end %>
 <% end %>
@@ -169,15 +169,15 @@
 <% end %>
 	</div>
 <% end %>
-
-		<div id="void-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		
+		<div id="remove-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-				<h3 id="myModalLabel">Void Transaction</h3>
+				<h3 id="myModalLabel">Remove Item</h3>
 			</div>
 			<div class="modal-body">
 				<p><strong>Warning!</strong> This action cannot be undone.</p>
-				<p>Are you sure you want to void this transaction?</p>
+				<p>Are you sure you want to remove this item?</p>
 			</div>
 			<div class="modal-footer">
 				<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>

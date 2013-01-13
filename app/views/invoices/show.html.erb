@@ -1,5 +1,20 @@
-<% @title = "Edit Invoice" %>
+﻿<% @title = "Edit Invoice" %>
 <div class="page-header">
 	<h1>Invoice #<%= @invoice.id %> (Invoice)<a href="#void-modal" role="button" data-toggle="modal" class="btn btn-danger pull-right">Void Transaction</a></h1>
 </div>
 <%= render "form" %>
+
+<div id="void-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 id="myModalLabel">Void Transaction</h3>
+	</div>
+	<div class="modal-body">
+		<p><strong>Warning!</strong> This action cannot be undone.</p>
+		<p>Are you sure you want to void this transaction?</p>
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+		<%= link_to "Void Transaction", invoice_void_path(@invoice), :class => "btn btn-danger" %>
+	</div>
+</div>
