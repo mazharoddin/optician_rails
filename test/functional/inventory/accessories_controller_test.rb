@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class OtherInventoryTest < ActiveSupport::TestCase
+class Inventory::AccessoriesControllerTest < ActionController::TestCase
   # test "the truth" do
   #   assert true
   # end

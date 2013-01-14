@@ -82,7 +82,7 @@ Optician::Application.routes.draw do
 	resources :frames, :as => 'frames_inventory'
 	resources :lenses, :as => 'lens_inventory'
 	resources :services, :as => 'services_inventory'
-	resources :other, :as => 'other_inventory'
+	resources :accessories, :as => 'accessories_inventory'
 	root :to => 'inventory#index'
     match ':id' => 'inventory#show'
   end

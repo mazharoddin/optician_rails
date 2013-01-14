@@ -24,9 +24,9 @@
 	<div class="form-actions">
 		<%= f.button :submit, :class => "btn btn-primary" %>
 <% if @item.new_record? %>
-		<%= link_to "Discard Changes", inventory_other_inventory_index_path, :class => "btn" %>
+		<%= link_to "Discard Changes", inventory_accessories_inventory_index_path, :class => "btn" %>
 <% else %>
-		<%= link_to "Discard Changes", inventory_other_inventory_path(@item), :class => "btn" %>
+		<%= link_to "Discard Changes", inventory_accessories_inventory_path(@item), :class => "btn" %>
 <% end %>
 	</div>
 <% end %>

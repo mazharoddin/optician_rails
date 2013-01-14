@@ -28,6 +28,18 @@ MVP:
 6. Dispensing report??
 
 
+INVOICE
+=======
+/invoices/:id/voice should require a POST
+/invoices/:id/services, /invoice/:id/accessories
+ - list available items
+ - "Add" to add to invoice
+ - If item already on invoice then increment qty?
+ /invoices/:id/item
+ -
+ /invoice/:id/glasses_dispensing, /invoice/:id/contacts_dispensing
+
+
 TAX CHANGE
 ==========
 1. Make Tax A and Tax B fixed for a store (i.e. Tax A is HST, Tax B is GST). Include option for rate and if B applies to A

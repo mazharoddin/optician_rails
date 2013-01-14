@@ -71,9 +71,9 @@ class ItemsController < ApplicationController
 		add_breadcrumb "Accessories", accessories_invoice_items_path(@invoice)
 		if params[:q] then
 			add_breadcrumb "Search Results", :inventory_services_inventory_path
-			@items = OtherInventory.where('description like ?', '%' + params[:q] + '%').order(:description).page(params[:page])
+			@items = AccessoriesInventory.where('description like ?', '%' + params[:q] + '%').order(:description).page(params[:page])
 		else
-			@items = OtherInventory.order(:description).page(params[:page])
+			@items = AccessoriesInventory.order(:description).page(params[:page])
 		end
 	end
 	

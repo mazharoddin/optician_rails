@@ -23,7 +23,7 @@ class Inventory::InventoryController < Inventory::ApplicationController
 					if @item.type == "ServicesInventory" then
 						redirect_to inventory_services_inventory_path(@item)
 					else
-						redirect_to inventory_other_inventory_path(@item)
+						redirect_to inventory_accessories_inventory_path(@item)
 					end
 				end
 			end
