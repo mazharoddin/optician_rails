@@ -28,6 +28,42 @@ MVP:
 6. Dispensing report??
 
 
+HISTORY
+=======
+[later]
+companies
+employment_type
+genders
+guardian_relationships
+stores
+users
+
+[never]
+dispensing (immutable once invoice confirmed)
+invoices (immutable once confirmed)
+items (immutable once invoice confirmed)
+prescriptions (immutable once used)
+
+[probably]
+brands
+countries
+inventory
+inventory_lens_coatings
+lens_coatings
+lens_materials
+lens_types
+optometrists
+patients
+personal_titles
+states
+
+[required]
+
+[done]
+taxes
+
+
+
 INVOICE
 =======
 /invoices/:id/voice should require a POST

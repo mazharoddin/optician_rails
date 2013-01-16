@@ -4,8 +4,6 @@ class Tax < ActiveRecord::Base
   after_create :tax_created
   after_update :tax_updated
   
-  has_many :tax_class
-  
   attr_accessible :name, :rate
   
   validates :name, :presence => true
