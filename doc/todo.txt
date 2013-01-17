@@ -48,18 +48,20 @@ prescriptions (immutable once used)
 countries
 inventory
 inventory_lens_coatings
-lens_coatings
-lens_materials
-lens_types
 optometrists
 patients
-personal_titles
 states
+
+rails g LensCoatingsHistroy leans_coatings:references name:string active:boolean start_at:datetime end_at:datetime
 
 [required]
 
 [done]
 brands
+lens_coatings
+lens_materials
+lens_types
+personal_titles
 taxes
 
 

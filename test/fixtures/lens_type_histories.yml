@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  lens_type: 
+  name: MyString
+  active: false
+  start_at: 2013-01-18 09:12:05
+  end_at: 2013-01-18 09:12:05
+
+two:
+  lens_type: 
+  name: MyString
+  active: false
+  start_at: 2013-01-18 09:12:05
+  end_at: 2013-01-18 09:12:05

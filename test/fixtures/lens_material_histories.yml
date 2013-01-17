@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  leans_material: 
+  name: MyString
+  active: false
+  start_at: 2013-01-18 09:11:02
+  end_at: 2013-01-18 09:11:02
+
+two:
+  leans_material: 
+  name: MyString
+  active: false
+  start_at: 2013-01-18 09:11:02
+  end_at: 2013-01-18 09:11:02

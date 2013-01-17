@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130117075417) do
+ActiveRecord::Schema.define(:version => 20130117221205) do
 
   create_table "brand_histories", :force => true do |t|
     t.integer  "brand_id"
@@ -186,6 +186,18 @@ ActiveRecord::Schema.define(:version => 20130117075417) do
   add_index "items", ["tax_a_id"], :name => "index_invoice_items_on_tax_a_id"
   add_index "items", ["tax_b_id"], :name => "index_invoice_items_on_tax_b_id"
 
+  create_table "lens_coating_histories", :force => true do |t|
+    t.integer  "lens_coating_id"
+    t.string   "name",            :limit => 60
+    t.boolean  "active",                        :default => true, :null => false
+    t.datetime "start_at",                                        :null => false
+    t.datetime "end_at"
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
+  end
+
+  add_index "lens_coating_histories", ["lens_coating_id"], :name => "index_lens_coating_histories_on_lens_coating_id"
+
   create_table "lens_coatings", :force => true do |t|
     t.string   "name",       :limit => 60
     t.datetime "created_at",                                 :null => false
@@ -193,12 +205,36 @@ ActiveRecord::Schema.define(:version => 20130117075417) do
     t.boolean  "active",                   :default => true, :null => false
   end
 
+  create_table "lens_material_histories", :force => true do |t|
+    t.integer  "lens_material_id"
+    t.string   "name",             :limit => 60
+    t.boolean  "active",                         :default => true, :null => false
+    t.datetime "start_at",                                         :null => false
+    t.datetime "end_at"
+    t.datetime "created_at",                                       :null => false
+    t.datetime "updated_at",                                       :null => false
+  end
+
+  add_index "lens_material_histories", ["lens_material_id"], :name => "index_lens_material_histories_on_lens_material_id"
+
   create_table "lens_materials", :force => true do |t|
     t.string   "name",       :limit => 60
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
     t.boolean  "active",                   :default => true, :null => false
   end
+
+  create_table "lens_type_histories", :force => true do |t|
+    t.integer  "lens_type_id"
+    t.string   "name",         :limit => 60
+    t.boolean  "active",                     :default => true, :null => false
+    t.datetime "start_at",                                     :null => false
+    t.datetime "end_at"
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
+  end
+
+  add_index "lens_type_histories", ["lens_type_id"], :name => "index_lens_type_histories_on_lens_type_id"
 
   create_table "lens_types", :force => true do |t|
     t.string   "name",       :limit => 60
