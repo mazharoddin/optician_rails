@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130110094218) do
+ActiveRecord::Schema.define(:version => 20130115220140) do
+
+  create_table "brand_histories", :force => true do |t|
+    t.integer  "brand_id"
+    t.string   "name",       :limit => 60
+    t.boolean  "active",                   :default => true, :null => false
+    t.datetime "start_at",                                   :null => false
+    t.datetime "end_at"
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
+  end
 
   create_table "brands", :force => true do |t|
     t.string   "name",       :limit => 60

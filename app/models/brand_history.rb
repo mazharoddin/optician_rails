@@ -1,3 +1,5 @@
 class BrandHistory < ActiveRecord::Base
-  attr_accessible :active, :end_at, :id, :name, :start_at
+  attr_accessible :brand_id, :active, :end_at, :id, :name, :start_at
+
+  belongs_to :brand  
 end

@@ -1,6 +1,6 @@
 class CreateBrandHistories < ActiveRecord::Migration
   def change
-    create_table :brand_histories, :id => false do |t|
+    create_table :brand_histories do |t|
       t.integer :brand_id
       t.string   :name, :limit => 60
       t.boolean :active, :default => true, :null => false
