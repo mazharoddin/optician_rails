@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  personal_title: 
+  title: MyString
+  active: false
+  start_at: 2013-01-17 18:54:17
+  end_at: 2013-01-17 18:54:17
+
+two:
+  personal_title: 
+  title: MyString
+  active: false
+  start_at: 2013-01-17 18:54:17
+  end_at: 2013-01-17 18:54:17

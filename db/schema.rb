@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130115220140) do
+ActiveRecord::Schema.define(:version => 20130117075417) do
 
   create_table "brand_histories", :force => true do |t|
     t.integer  "brand_id"
@@ -276,6 +276,18 @@ ActiveRecord::Schema.define(:version => 20130115220140) do
   add_index "patients", ["personal_title_id"], :name => "index_patients_on_personal_title_id"
   add_index "patients", ["postal_country_id"], :name => "index_patients_on_postal_country_id"
   add_index "patients", ["postal_state_id"], :name => "index_patients_on_postal_state_id"
+
+  create_table "personal_title_histories", :force => true do |t|
+    t.integer  "personal_title_id"
+    t.string   "title",             :limit => 20
+    t.boolean  "active",                          :default => true, :null => false
+    t.datetime "start_at",                                          :null => false
+    t.datetime "end_at"
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
+  end
+
+  add_index "personal_title_histories", ["personal_title_id"], :name => "index_personal_title_histories_on_personal_title_id"
 
   create_table "personal_titles", :force => true do |t|
     t.string   "title",      :limit => 20

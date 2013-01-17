@@ -45,7 +45,6 @@ items (immutable once invoice confirmed)
 prescriptions (immutable once used)
 
 [probably]
-brands
 countries
 inventory
 inventory_lens_coatings
@@ -60,6 +59,7 @@ states
 [required]
 
 [done]
+brands
 taxes
 
 
