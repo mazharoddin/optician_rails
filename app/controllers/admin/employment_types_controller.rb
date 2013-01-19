@@ -6,16 +6,16 @@ class Admin::EmploymentTypesController < Admin::ApplicationController
 	def index
 		if params[:q] then
 			add_breadcrumb "Search Results", :admin_employment_types_path
-			@employment_types = EmploymentType.where('name like ?', '%' + params[:q] + '%').order(:name).page(params[:page])
+			@employment_types = @current_account.employment_types.where('name like ?', '%' + params[:q] + '%').order(:name).page(params[:page])
 		else
-			@employment_types = EmploymentType.order(:name).page(params[:page])
+			@employment_types = @current_account.employment_types.order(:name).page(params[:page])
 		end
 	end
 	
 	def create
 		add_breadcrumb "New", new_admin_employment_type_path
 
-		@employment_type = EmploymentType.new(params[:employment_type])
+		@employment_type = @current_account.employment_types.build(params[:employment_type])
 		if @employment_type.save then
 			flash[:success] = "Employment type has been created."
 			redirect_to :action => 'index'
@@ -32,7 +32,7 @@ class Admin::EmploymentTypesController < Admin::ApplicationController
 	def new
 		add_breadcrumb "New", new_admin_employment_type_path
 
-		@employment_type = EmploymentType.new
+		@employment_type = @current_account.employment_types.build
 	end
 	
 	def show
@@ -52,6 +52,6 @@ class Admin::EmploymentTypesController < Admin::ApplicationController
 
 	private
 	def find_employment_type
-		@employment_type = EmploymentType.find(params[:id])
+		@employment_type = @current_account.employment_types.find(params[:id])
 	end
 end

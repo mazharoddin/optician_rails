@@ -2,6 +2,7 @@ class State < ActiveRecord::Base
   validates :name, :short_name, :presence => true
   
   belongs_to :country
+  belongs_to :account
   
   attr_accessible :name, :short_name, :active
   

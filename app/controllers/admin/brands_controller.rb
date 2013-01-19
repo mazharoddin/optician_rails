@@ -6,16 +6,16 @@ class Admin::BrandsController < Admin::ApplicationController
 	def index
 		if params[:q] then
 			add_breadcrumb "Search Results", :admin_brands_path
-			@brands = Brand.where('name like ?', '%' + params[:q] + '%').order(:name).page(params[:page])
+			@brands = @current_account.brands.where('name like ?', '%' + params[:q] + '%').order(:name).page(params[:page])
 		else
-			@brands = Brand.order(:name).page(params[:page])
+			@brands = @current_account.brands.order(:name).page(params[:page])
 		end
 	end
 	
 	def create
 		add_breadcrumb "New", new_admin_brand_path
 
-		@brand = Brand.new(params[:brand])
+		@brand = @current_account.brands.build(params[:brand])
 		if @brand.save then
 			flash[:success] = "Brand has been created."
 			redirect_to :action => 'index'
@@ -32,7 +32,7 @@ class Admin::BrandsController < Admin::ApplicationController
 	def new
 		add_breadcrumb "New", new_admin_brand_path
 
-		@brand = Brand.new
+		@brand = @current_account.brands.build
 	end
 	
 	def show
@@ -52,6 +52,6 @@ class Admin::BrandsController < Admin::ApplicationController
 
 	private
 	def find_brand
-		@brand = Brand.find(params[:id])
+		@brand = @current_account.brands.find(params[:id])
 	end
 end

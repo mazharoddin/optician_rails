@@ -6,16 +6,16 @@ class Admin::CompaniesController < Admin::ApplicationController
 	def index
 		if params[:q] then
 			add_breadcrumb "Search Results", :admin_companies_path
-			@companies = Company.where('name like ?', '%' + params[:q] + '%').order(:name).page(params[:page])
+			@companies = @current_account.companies.where('name like ?', '%' + params[:q] + '%').order(:name).page(params[:page])
 		else
-			@companies = Company.order(:name).page(params[:page])
+			@companies = @current_account.companies.order(:name).page(params[:page])
 		end
 	end
 	
 	def create
 		add_breadcrumb "New", new_admin_company_path
 
-		@company = Company.new(params[:company])
+		@company = @current_account.companies.build(params[:company])
 		if @company.save then
 			flash[:success] = "Company has been created."
 			redirect_to :action => 'index'
@@ -32,7 +32,7 @@ class Admin::CompaniesController < Admin::ApplicationController
 	def new
 		add_breadcrumb "New", new_admin_company_path
 
-		@company = Company.new
+		@company = @current_account.companies.build
 	end
 	
 	def show
@@ -52,6 +52,6 @@ class Admin::CompaniesController < Admin::ApplicationController
 
 	private
 	def find_company
-		@company = Company.find(params[:id])
+		@company = @current_account.companies.find(params[:id])
 	end
 end

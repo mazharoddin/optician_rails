@@ -5,6 +5,7 @@ class Optometrist < ActiveRecord::Base
   
   has_many :glasses_prescription
   has_many :contacts_prescription
+  belongs_to :account
   
   attr_accessible :business_address, :business_city, :business_name, :business_postal_code, :email, :fax, :first_name, :last_name, :phone, :website, :personal_title_id, :business_state_id, :business_country_id, :active
   

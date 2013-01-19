@@ -4,6 +4,7 @@ class Tax < ActiveRecord::Base
   after_create :tax_created
   after_update :tax_updated
   
+  belongs_to :account
   attr_accessible :name, :rate
   
   validates :name, :presence => true

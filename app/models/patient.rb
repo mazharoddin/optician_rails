@@ -8,6 +8,7 @@ class Patient < ActiveRecord::Base
   belongs_to :optometrist
   belongs_to :employment_type
   belongs_to :guardian_relationship
+  belongs_to :account
   
   has_many :glasses_prescriptions
   has_many :glasses_prescriptions

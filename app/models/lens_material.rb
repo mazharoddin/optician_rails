@@ -4,6 +4,7 @@ class LensMaterial < ActiveRecord::Base
 
   attr_accessible :name, :active
 
+  belongs_to :account
   has_many :lens_material_history
 
   validates :name, :presence => true, :uniqueness => true

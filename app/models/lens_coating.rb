@@ -2,6 +2,8 @@ class LensCoating < ActiveRecord::Base
   after_create :lens_coating_created
   after_update :lens_coating_updated
 
+  belongs_to :account
+  
   has_and_belongs_to_many :inventory
   
   attr_accessible :name, :active

@@ -5,6 +5,7 @@ class Inventory < ActiveRecord::Base
   belongs_to :tax_b, :class_name => 'Tax'
   belongs_to :lens_material
   belongs_to :lens_type
+  belongs_to :account
   
   has_and_belongs_to_many :lens_coating
   

@@ -6,16 +6,16 @@ class Admin::OptometristsController < Admin::ApplicationController
 	def index
 		if params[:q] then
 			add_breadcrumb "Search Results", :admin_optometrists_path
-			@optometrists = Optometrist.where('first_name like ? or last_name like ?', '%' + params[:q] + '%', '%' + params[:q] + '%').order(:last_name).order(:first_name).page(params[:page])
+			@optometrists = @current_account.optometrists.where('first_name like ? or last_name like ?', '%' + params[:q] + '%', '%' + params[:q] + '%').order(:last_name).order(:first_name).page(params[:page])
 		else
-			@optometrists = Optometrist.order(:last_name).order(:first_name).page(params[:page])
+			@optometrists = @current_account.optometrists.order(:last_name).order(:first_name).page(params[:page])
 		end
 	end
 	
 	def create
 		add_breadcrumb "New", new_admin_optometrist_path
 
-		@optometrist = Optometrist.new(params[:optometrist])
+		@optometrist = @current_account.optometrists.new(params[:optometrist])
 		if @optometrist.save then
 			flash[:success] = "Optometrist has been created."
 			redirect_to :action => 'index'
@@ -32,7 +32,7 @@ class Admin::OptometristsController < Admin::ApplicationController
 	def new
 		add_breadcrumb "New", new_admin_optometrist_path
 
-		@optometrist = Optometrist.new
+		@optometrist = @current_account.optometrists.new
 	end
 	
 	def show
@@ -52,6 +52,6 @@ class Admin::OptometristsController < Admin::ApplicationController
 
 	private
 	def find_optometrist
-		@optometrist = Optometrist.find(params[:id])
+		@optometrist = @current_account.optometrists.find(params[:id])
 	end
 end

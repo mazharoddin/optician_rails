@@ -6,16 +6,16 @@ class Admin::EmployeesController < Admin::ApplicationController
 	def index
 		if params[:q] then
 			add_breadcrumb "Search Results", :admin_employees_path
-			@employees = Employee.where('first_name like ? or last_name like ? or email like ?', '%' + params[:q] + '%', '%' + params[:q] + '%', '%' + params[:q] + '%').order(:last_name).order(:first_name).page(params[:page])
+			@employees = @current_account.employees.where('first_name like ? or last_name like ? or email like ?', '%' + params[:q] + '%', '%' + params[:q] + '%', '%' + params[:q] + '%').order(:last_name).order(:first_name).page(params[:page])
 		else
-			@employees = Employee.order(:last_name).order(:first_name).page(params[:page])
+			@employees = @current_account.employees.order(:last_name).order(:first_name).page(params[:page])
 		end
 	end
 	
 	def create
 		add_breadcrumb "New", new_admin_employee_path
 
-		@employee = Employee.new(params[:employee])
+		@employee = @current_account.employees.build(params[:employee])
 		if @employee.save then
 			flash[:success] = "Employee has been created."
 			redirect_to :action => 'index'
@@ -32,7 +32,7 @@ class Admin::EmployeesController < Admin::ApplicationController
 	def new
 		add_breadcrumb "New", new_admin_employee_path
 
-		@employee = Employee.new
+		@employee = @current_account.employees.build
 		@employee.active = true
 	end
 	
@@ -57,6 +57,6 @@ class Admin::EmployeesController < Admin::ApplicationController
 
 	private
 	def find_employee
-		@employee = Employee.find(params[:id])
+		@employee = @current_account.employees.find(params[:id])
 	end
 end

@@ -6,16 +6,16 @@ class Admin::LensMaterialsController < Admin::ApplicationController
 	def index
 		if params[:q] then
 			add_breadcrumb "Search Results", :admin_lens_materials_path
-			@lens_materials = LensMaterial.where('name like ?', '%' + params[:q] + '%').order(:name).page(params[:page])
+			@lens_materials = @current_account.lens_materials.where('name like ?', '%' + params[:q] + '%').order(:name).page(params[:page])
 		else
-			@lens_materials = LensMaterial.order(:name).page(params[:page])
+			@lens_materials = @current_account.lens_materials.order(:name).page(params[:page])
 		end
 	end
 	
 	def create
 		add_breadcrumb "New", new_admin_lens_material_path
 
-		@lens_material = LensMaterial.new(params[:lens_material])
+		@lens_material = @current_account.lens_materials.build(params[:lens_material])
 		if @lens_material.save then
 			flash[:success] = "Lens material has been created."
 			redirect_to :action => 'index'
@@ -32,7 +32,7 @@ class Admin::LensMaterialsController < Admin::ApplicationController
 	def new
 		add_breadcrumb "New", new_admin_lens_material_path
 
-		@lens_material = LensMaterial.new
+		@lens_material = @current_account.lens_materials.build
 	end
 	
 	def show
@@ -52,6 +52,6 @@ class Admin::LensMaterialsController < Admin::ApplicationController
 
 	private
 	def find_lens_material
-		@lens_material = LensMaterial.find(params[:id])
+		@lens_material = @current_account.lens_materials.find(params[:id])
 	end
 end

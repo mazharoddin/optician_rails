@@ -6,16 +6,16 @@ class PatientsController < ApplicationController
 	def index
 		if params[:q] then
 			add_breadcrumb "Search Results", :patients_path
-			@patients = Patient.where('last_name like ? or first_name like ?', '%' + params[:q] + '%', '%' + params[:q] + '%').order(:last_name).order(:first_name).page(params[:page])
+			@patients = @current_account.patients.where('last_name like ? or first_name like ?', '%' + params[:q] + '%', '%' + params[:q] + '%').order(:last_name).order(:first_name).page(params[:page])
 		else
-			@patients = Patient.order(:last_name).order(:first_name).page(params[:page])
+			@patients = @current_account.patients.order(:last_name).order(:first_name).page(params[:page])
 		end
 	end
 	
 	def create
 		add_breadcrumb "New", new_patient_path
 
-		@patient = Patient.new(params[:patient])
+		@patient = @current_account.patients.build(params[:patient])
 		if @patient.save then
 			flash[:success] = "Patient has been created."
 			redirect_to :action => 'index'
@@ -31,7 +31,7 @@ class PatientsController < ApplicationController
 	def new
 		add_breadcrumb "New", new_patient_path
 
-		@patient = Patient.new
+		@patient = @current_account.patients.build
 	end
 	
 	def show
@@ -66,9 +66,9 @@ class PatientsController < ApplicationController
 	private
 	def find_patient
 	    if params[:patient_id] != nil then
-			@patient = Patient.find(params[:patient_id])
+			@patient = @current_account.patients.find(params[:patient_id])
 		else
-			@patient = Patient.find(params[:id])
+			@patient = @current_account.patients.find(params[:id])
 		end
 	end
 

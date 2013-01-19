@@ -7,16 +7,16 @@ class Admin::StoresController < Admin::ApplicationController
 	def index
 		if params[:q] then
 			add_breadcrumb "Search Results", :admin_stores_path
-			@stores = Store.where('name like ?', '%' + params[:q] + '%').order(:name).page(params[:page])
+			@stores = @current_accounts.stores.where('name like ?', '%' + params[:q] + '%').order(:name).page(params[:page])
 		else
-			@stores = Store.order(:name).page(params[:page])
+			@stores = @current_accounts.stores.order(:name).page(params[:page])
 		end
 	end
 	
 	def create
 		add_breadcrumb "New", new_admin_store_path
 
-		@store = Store.new(params[:store])
+		@store = @current_accounts.stores.build(params[:store])
 		if @store.save then
 			flash[:success] = "Store has been created."
 			redirect_to :action => 'index'
@@ -33,15 +33,7 @@ class Admin::StoresController < Admin::ApplicationController
 	def new
 		add_breadcrumb "New", new_admin_store_path
 
-		@store = Store.new(
-#			:name => "Kanata Opticians",
-#			:address => "150 Katimavik Rd\nKanata, ON.",
-#			:city => "Kanata",
-#			:postal_code => "",
-#			:phone => "(613) 592-1885",
-#			:email => "info@kanataopticians.com",
-#			:url => "www.kanataopticians.com",
-#			:fax => "",
+		@store = @current_accounts.stores.build(
 			:monday_open => "09:00",
 			:monday_close => "18:00",
 			:tuesday_open => "09:00",
@@ -76,6 +68,6 @@ class Admin::StoresController < Admin::ApplicationController
 
 	private
 	def find_store
-		@store = Store.find(params[:id])
+		@store = @current_accounts.stores.find(params[:id])
 	end
 end

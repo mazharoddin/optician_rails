@@ -52,7 +52,16 @@ optometrists
 patients
 states
 
-rails g LensCoatingsHistroy leans_coatings:references name:string active:boolean start_at:datetime end_at:datetime
+
+rails g model ActivityLog account:references user:references entry_time:timestamp message:string path:string
+
+rails g model CountryHistory country:references name:string active:boolean start_at:datetime end_at:datetime
+rails g model StateHistory state:references name:string short_name:string country:references active:boolean start_at:datetime end_at:datetime
+rails g model OptometristHistory personal_title:references last_name:string first_name:string business_name:string email:string website:string phone:string fax:string business_address:string business_city:string business_state:references business_postal_code:string business_country:references active:boolean start_at:datetime end_at:datetime
+rails g model PatientHistory patient:references last_name:string first_name:string preferred_name:string gender:references birthday:date home_phone:string work_phone:string work_ext:string mobile_phone:string email:string home_address:string home_city:string home_state:references home_postal_code:string home_country:references postal_address:string postal_city:string postal_state:references postal_postal_code:string postal_country:references note:text optometrist:references smoker:boolean alergies:text medical_other:text employment_type:references occupation:string guardian_name:string guardian_relationship:references guardian_phone:string guardian_alt_phone:string start_at:datetime end_at:datetime
+rails g model InventoryHistory inventory:references type:string description:string manufacturer:references supplier:references supplier_code:string cost_price:decimal suggested_retail_price:decimal regular_retail_price:decimal current_retail_price:decimal stock_available:integer stock_reorder:integer model:string colour:string eyesize:string bridge:string template:string appointment_type:boolean lens_material:references lens_type:references active:boolean upc:string track_inventory:boolean duration:integer tax_a:references tax_b:references start_at:datetime end_at:datetime
+rails g model InventoryLensCoatingHistory inventory_lens_coating:references inventory:references lens_coating:references start_at:datetime end_at:datetime
+
 
 [required]
 

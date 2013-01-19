@@ -4,6 +4,7 @@ class PersonalTitle < ActiveRecord::Base
 
   has_many :patient
   has_many :personal_title_history
+  belongs_to :account
   
   attr_accessible :title, :active
   

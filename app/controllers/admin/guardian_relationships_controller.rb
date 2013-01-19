@@ -6,16 +6,16 @@ class Admin::GuardianRelationshipsController < Admin::ApplicationController
 	def index
 		if params[:q] then
 			add_breadcrumb "Search Results", :admin_guardian_relationships_path
-			@guardian_relationships = GuardianRelationship.where('name like ?', '%' + params[:q] + '%').order(:name).page(params[:page])
+			@guardian_relationships = @current_account.guardian_relationships.where('name like ?', '%' + params[:q] + '%').order(:name).page(params[:page])
 		else
-			@guardian_relationships = GuardianRelationship.order(:name).page(params[:page])
+			@guardian_relationships = @current_account.guardian_relationships.order(:name).page(params[:page])
 		end
 	end
 	
 	def create
 		add_breadcrumb "New", new_admin_guardian_relationship_path
 
-		@guardian_relationship = GuardianRelationship.new(params[:guardian_relationship])
+		@guardian_relationship = @current_account.guardian_relationships.build(params[:guardian_relationship])
 		if @guardian_relationship.save then
 			flash[:success] = "Guardian relationship has been created."
 			redirect_to :action => 'index'
@@ -32,7 +32,7 @@ class Admin::GuardianRelationshipsController < Admin::ApplicationController
 	def new
 		add_breadcrumb "New", new_admin_guardian_relationship_path
 
-		@guardian_relationship = GuardianRelationship.new
+		@guardian_relationship = @current_account.guardian_relationships.build
 	end
 	
 	def show
@@ -52,6 +52,6 @@ class Admin::GuardianRelationshipsController < Admin::ApplicationController
 
 	private
 	def find_guardian_relationship
-		@guardian_relationship = GuardianRelationship.find(params[:id])
+		@guardian_relationship = @current_account.guardian_relationships.find(params[:id])
 	end
 end

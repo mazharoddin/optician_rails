@@ -6,16 +6,16 @@ class InvoicesController < ApplicationController
 	def index
 		if params[:q] then
 			add_breadcrumb "Search Results", :invoices_path
-			@invoices = Invoice.where('id like ?', '%' + params[:q] + '%').order(:invoice_date).page(params[:page])
+			@invoices = @current_account.invoices.where('id like ?', '%' + params[:q] + '%').order(:invoice_date).page(params[:page])
 		else
-			@invoices = Invoice.order(:invoice_date).page(params[:page])
+			@invoices = @current_account.invoices.order(:invoice_date).page(params[:page])
 		end
 	end
 	
 	def create
 		add_breadcrumb "New", new_invoice_path
 
-		@invoice = Invoice.new(params[:invoice])
+		@invoice = @current_account.invoices.build(params[:invoice])
 		if @invoice.save then
 			flash[:success] = "Invoice has been created."
 			redirect_to :action => 'index'
@@ -31,7 +31,7 @@ class InvoicesController < ApplicationController
 	def new
 		add_breadcrumb "New", new_invoice_path
 
-		@invoice = Invoice.new
+		@invoice = @current_account.invoices.build
 		@invoice.save
 		
 		redirect_to invoice_path(@invoice)
@@ -64,7 +64,7 @@ class InvoicesController < ApplicationController
 	end
 	
 	def set_patient
-	    @patient = Patient.find(params[:id])
+	    @patient = @current_account.patients.find(params[:id])
 		@invoice.patient = @patient
 
 		if @invoice.save then
@@ -107,9 +107,9 @@ class InvoicesController < ApplicationController
 	private
 	def find_invoice
 		if params[:invoice_id] then
-			@invoice = Invoice.find(params[:invoice_id])
+			@invoice = @current_account.invoices.find(params[:invoice_id])
 		else
-			@invoice = Invoice.find(params[:id])
+			@invoice = @current_account.invoices.find(params[:id])
 		end
 	end
 

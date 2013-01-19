@@ -59,7 +59,7 @@ class ContactsDispensingController < ApplicationController
 	
 	private
 	def find_invoice
-		@invoice = Invoice.find(params[:invoice_id])
+		@invoice = @current_account.invoices.find(params[:invoice_id])
 	end
 
 	def find_dispensing

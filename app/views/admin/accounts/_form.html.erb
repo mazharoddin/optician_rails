@@ -1,0 +1,17 @@
+<%= simple_form_for [:admin, @account], :html => { :class => "form-horizontal" } do |f| %>
+	<div class="row">
+		<div class="span12">
+			<%= f.input :name %>
+			<%= f.input :subdomain %>
+		</div>
+	</div>
+
+	<div class="form-actions">
+		<%= f.button :submit, :class => "btn btn-primary" %>
+<% if @account.new_record? %>
+		<%= link_to "Discard Changes", admin_accounts_path, :class => "btn" %>
+<% else %>
+		<%= link_to "Discard Changes", admin_account_path(@account), :class => "btn" %>
+<% end %>
+	</div>
+<% end %>

@@ -1,0 +1,12 @@
+<% @title = "Show Accounts" %>
+<div class="page-header">
+	<h1><%= @account.name %> (Account) <%= link_to "Edit Account", edit_admin_account_path(@account), :class => "btn btn-primary pull-right" %></h1>
+</div>
+
+
+<dl class="dl-horizontal">
+	<dt>Name</dt>
+	<dd><%= @account.name %></dd>
+	<dt>Subdomain</dt>
+	<dd><%= @account.subdomain %></dd>
+</dl>

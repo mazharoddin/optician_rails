@@ -5,6 +5,7 @@ class Brand < ActiveRecord::Base
   attr_accessible :name, :active
   
   has_many :brand_history
+  belongs_to :account
   
   validates :name, :presence => true, :uniqueness => true
   

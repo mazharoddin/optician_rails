@@ -71,7 +71,7 @@ class Admin::StatesController < Admin::ApplicationController
 
 	private
 	def find_country
-		@country = Country.find(params[:country_id])
+		@country = @current_account.countries.find(params[:country_id])
 	end
 
 	def find_state

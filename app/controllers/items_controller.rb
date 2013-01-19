@@ -71,9 +71,9 @@ class ItemsController < ApplicationController
 		add_breadcrumb "Accessories", accessories_invoice_items_path(@invoice)
 		if params[:q] then
 			add_breadcrumb "Search Results", :inventory_services_inventory_path
-			@items = AccessoriesInventory.where('description like ?', '%' + params[:q] + '%').order(:description).page(params[:page])
+			@items = @current_account.accessories_inventory.where('description like ?', '%' + params[:q] + '%').order(:description).page(params[:page])
 		else
-			@items = AccessoriesInventory.order(:description).page(params[:page])
+			@items = @current_account.accessories_inventory.order(:description).page(params[:page])
 		end
 	end
 	
@@ -83,9 +83,9 @@ class ItemsController < ApplicationController
 		add_breadcrumb "Services", services_invoice_items_path(@invoice)
 		if params[:q] then
 			add_breadcrumb "Search Results", :inventory_services_inventory_path
-			@items = ServicesInventory.where('description like ?', '%' + params[:q] + '%').order(:description).page(params[:page])
+			@items = @current_account.services_inventory.where('description like ?', '%' + params[:q] + '%').order(:description).page(params[:page])
 		else
-			@items = ServicesInventory.order(:description).page(params[:page])
+			@items = @current_account.services_inventory.order(:description).page(params[:page])
 		end
 	end
 	

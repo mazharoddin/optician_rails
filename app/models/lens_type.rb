@@ -4,6 +4,7 @@ class LensType < ActiveRecord::Base
 
   attr_accessible :name, :active
 
+  belongs_to :account
   has_many :lens_type_history
   
   validates :name, :presence => true, :uniqueness => true

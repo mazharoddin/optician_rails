@@ -6,16 +6,16 @@ class Admin::LensCoatingsController < Admin::ApplicationController
 	def index
 		if params[:q] then
 			add_breadcrumb "Search Results", :admin_lens_coatings_path
-			@lens_coatings = LensCoating.where('name like ?', '%' + params[:q] + '%').order(:name).page(params[:page])
+			@lens_coatings = @current_account.lens_coatings.where('name like ?', '%' + params[:q] + '%').order(:name).page(params[:page])
 		else
-			@lens_coatings = LensCoating.order(:name).page(params[:page])
+			@lens_coatings = @current_account.lens_coatings.order(:name).page(params[:page])
 		end
 	end
 	
 	def create
 		add_breadcrumb "New", new_admin_lens_coating_path
 
-		@lens_coating = LensCoating.new(params[:lens_coating])
+		@lens_coating = @current_account.lens_coatings.build(params[:lens_coating])
 		if @lens_coating.save then
 			flash[:success] = "Lens coating has been created."
 			redirect_to :action => 'index'
@@ -32,7 +32,7 @@ class Admin::LensCoatingsController < Admin::ApplicationController
 	def new
 		add_breadcrumb "New", new_admin_lens_coating_path
 
-		@lens_coating = LensCoating.new
+		@lens_coating = @current_account.lens_coatings.build
 	end
 	
 	def show
@@ -52,6 +52,6 @@ class Admin::LensCoatingsController < Admin::ApplicationController
 
 	private
 	def find_lens_coating
-		@lens_coating = LensCoating.find(params[:id])
+		@lens_coating = @current_account.lens_coatings.find(params[:id])
 	end
 end

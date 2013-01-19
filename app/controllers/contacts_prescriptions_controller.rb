@@ -68,7 +68,7 @@ class ContactsPrescriptionsController < ApplicationController
 	
 	private
 	def find_patient
-		@patient = Patient.find(params[:patient_id])
+		@patient = @current_account.patients.find(params[:patient_id])
 	end
 
 	def find_contacts_prescription

@@ -7,6 +7,6 @@ class DashboardController < ApplicationController
 
 	private
 	def find_current_store
-	  @current_store = Store.first
+	  @current_store = @current_account.stores.first
 	end
 end

@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 
   belongs_to :personal_title
+  belongs_to :account
   
   # Setup accessible (or protected) attributes for your model
   attr_accessible :personal_title_id, :first_name, :last_name, :active, :administrator, :dispensing_optician, :email, :password, :password_confirmation, :remember_me, :active

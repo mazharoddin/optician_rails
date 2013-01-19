@@ -2,6 +2,7 @@ require 'date'
 
 class Invoice < ActiveRecord::Base
   belongs_to :patient
+  belongs_to :account
   
   has_many :items
   has_many :dispensing

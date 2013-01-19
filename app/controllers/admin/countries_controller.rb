@@ -6,16 +6,16 @@ class Admin::CountriesController < Admin::ApplicationController
 	def index
 		if params[:q] then
 			add_breadcrumb "Search Results", :admin_countries_path
-			@countries = Country.where('name like ?', '%' + params[:q] + '%').order(:name).page(params[:page])
+			@countries = @current_account.countries.where('name like ?', '%' + params[:q] + '%').order(:name).page(params[:page])
 		else
-			@countries = Country.order(:name).page(params[:page])
+			@countries = @current_account.countries.order(:name).page(params[:page])
 		end
 	end
 	
 	def create
 		add_breadcrumb "New", :new_admin_country_path
 
-		@country = Country.new(params[:country])
+		@country = @current_account.countries.build(params[:country])
 		if @country.save then
 			flash[:success] = "Country has been created."
 			redirect_to :action => 'index'
@@ -32,7 +32,7 @@ class Admin::CountriesController < Admin::ApplicationController
 	def new
 		add_breadcrumb "New", :new_admin_country_path
 
-		@country = Country.new(:enabled => true)
+		@country = @current_account.countries.build(:enabled => true)
 	end
 	
 	def show
@@ -54,6 +54,6 @@ class Admin::CountriesController < Admin::ApplicationController
 
 	private
 	def find_country
-		@country = Country.find(params[:id])
+		@country = @current_account.countries.find(params[:id])
 	end
 end

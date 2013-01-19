@@ -6,16 +6,16 @@ class Admin::TaxesController < Admin::ApplicationController
 	def index
 		if params[:q] then
 			add_breadcrumb "Search Results", :admin_taxes_path
-			@taxes = Tax.where('name like ?', '%' + params[:q] + '%').order(:name).page(params[:page])
+			@taxes = @current_account.taxes.where('name like ?', '%' + params[:q] + '%').order(:name).page(params[:page])
 		else
-			@taxes = Tax.order(:name).page(params[:page])
+			@taxes = @current_accounts.taxes.order(:name).page(params[:page])
 		end
 	end
 	
 	def create
 		add_breadcrumb "New", new_admin_tax_path
 
-		@tax = Tax.new(params[:tax])
+		@tax = @current_account.taxes.build(params[:tax])
 		if @tax.save then
 			flash[:success] = "Tax has been created."
 			redirect_to :action => 'index'
@@ -32,7 +32,7 @@ class Admin::TaxesController < Admin::ApplicationController
 	def new
 		add_breadcrumb "New", new_admin_tax_path
 
-		@tax = Tax.new
+		@tax = @current_account.taxes.build
 	end
 	
 	def show
@@ -52,6 +52,6 @@ class Admin::TaxesController < Admin::ApplicationController
 
 	private
 	def find_tax
-		@tax = Tax.find(params[:id])
+		@tax = @current_account.taxes.find(params[:id])
 	end
 end
