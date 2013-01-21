@@ -17,6 +17,7 @@ class Inventory::ServicesController < Inventory::ApplicationController
 
 		@item = ServicesInventory.new(params[:services_inventory])
 		@item.track_inventory = false
+		@item.account_id = @current_account.id
 		if @item.save then
 			flash[:success] = "Services inventory has been created."
 			redirect_to :action => 'index', :controller => 'inventory'

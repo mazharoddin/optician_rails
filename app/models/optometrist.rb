@@ -1,15 +1,24 @@
 class Optometrist < ActiveRecord::Base
-  belongs_to :personal_title
-  belongs_to :business_state, :class_name => 'State'
-  belongs_to :business_country, :class_name => 'Country'
-  
-  has_many :glasses_prescription
-  has_many :contacts_prescription
+  attr_accessible :active, :business_address, :business_city, :business_country_id, :business_name, :business_postal_code, :business_state_id, :email, :fax, :first_name, :last_name, :personal_title_id, :phone, :website
+
   belongs_to :account
-  
-  attr_accessible :business_address, :business_city, :business_name, :business_postal_code, :email, :fax, :first_name, :last_name, :phone, :website, :personal_title_id, :business_state_id, :business_country_id, :active
-  
-  validates :last_name, :presence => true
+  belongs_to :business_country, :class_name => 'Country'
+  belongs_to :business_state, :class_name => 'State'
+  belongs_to :personal_title
+
+  has_many :contacts_prescription
+  has_many :glasses_prescription
+
+  validates :business_address, :length => { :maximum => 255 }
+  validates :business_city, :length => { :maximum => 80 }
+  validates :business_name, :length => { :maximum => 80 }
+  validates :business_postal_code, :length => { :maximum => 20 }
+  validates :email, :length => { :maximum => 255 }
+  validates :fax, :length => { :maximum => 40 }
+  validates :first_name, :length => { :maximum => 40 }
+  validates :last_name, :presence => true, :length => { :maximum => 40 }
+  validates :phone, :length => { :maximum => 40 }
+  validates :website, :length => { :maximum => 255 }
 
   def to_s
 	return full_name

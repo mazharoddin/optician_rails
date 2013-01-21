@@ -2,12 +2,13 @@ class LensType < ActiveRecord::Base
   after_create :lens_type_created
   after_update :lens_type_updated
 
-  attr_accessible :name, :active
+  attr_accessible :active, :name
 
   belongs_to :account
+  
   has_many :lens_type_history
   
-  validates :name, :presence => true, :uniqueness => true
+  validates :name, :presence => true, :length => { :maximum => 60 }, :uniqueness => true
   
   def to_s
 	return name
@@ -21,6 +22,7 @@ class LensType < ActiveRecord::Base
 	  :active => active,
 	  :start_at => DateTime.now,
 	  :end_at => nil);
+	lens_type.account_id = account_id
 	lens_type.save
   end
   

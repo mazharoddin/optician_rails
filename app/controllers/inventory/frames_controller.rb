@@ -16,6 +16,7 @@ class Inventory::FramesController < Inventory::ApplicationController
 		add_breadcrumb "New", new_inventory_frames_inventory_path
 
 		@item = FramesInventory.new(params[:frames_inventory])
+		@item.account_id = @current_account.id
 		if @item.save then
 			flash[:success] = "Frames inventory has been created."
 			redirect_to :action => 'index', :controller => 'inventory'

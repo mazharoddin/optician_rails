@@ -1,8 +1,8 @@
 class Admin::GendersController < Admin::ApplicationController
-	before_filter :find_gender, :only => [:edit, :show, :update]
-	
 	add_breadcrumb "Genders", :admin_genders_path
 
+	before_filter :find_gender, :only => [:edit, :show, :update]
+	
 	def index
 		if params[:q] then
 			add_breadcrumb "Search Results", :admin_genders_path
@@ -25,7 +25,6 @@ class Admin::GendersController < Admin::ApplicationController
 	end
 	
 	def edit
-		add_breadcrumb @gender.name, admin_gender_path(@gender)
 		add_breadcrumb "Edit", edit_admin_gender_path(@gender)
 	end
 	
@@ -36,12 +35,9 @@ class Admin::GendersController < Admin::ApplicationController
 	end
 	
 	def show
-		add_breadcrumb @gender.name, admin_gender_path(@gender)
 	end
 	
 	def update
-		add_breadcrumb @gender.name, admin_gender_path(@gender)
-
 		if @gender.update_attributes(params[:gender]) then
 			flash[:success] = "Gender has been updated."
 			redirect_to :action => 'index'
@@ -53,5 +49,6 @@ class Admin::GendersController < Admin::ApplicationController
 	private
 	def find_gender
 		@gender = @current_account.genders.find(params[:id])
+		add_breadcrumb @gender.name, admin_gender_path(@gender)
 	end
 end

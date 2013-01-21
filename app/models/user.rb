@@ -1,16 +1,15 @@
 class User < ActiveRecord::Base
+  attr_accessible  :active, :administrator, :dispensing_optician, :email, :first_name, :last_name, :password, :password_confirmation, :personal_title_id, :remember_me
 
-  belongs_to :personal_title
   belongs_to :account
-  
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible :personal_title_id, :first_name, :last_name, :active, :administrator, :dispensing_optician, :email, :password, :password_confirmation, :remember_me, :active
+  belongs_to :personal_title
 
-  validates :personal_title, :presence => true
-  validates :last_name, :presence => true
-  validates :email, :presence => true
-  validates :password, :confirmation => true
-	
+  validates :account_id, :presence => true
+  validates :email, :presence => true, :length => { :maximum => 40 }
+  validates :first_name, :length => { :maximum => 40 }
+  validates :last_name, :presence => true, :length => { :maximum => 40 }
+  validates :password, :confirmation => true, :length => { :minimum => 6 }, :presence => true, :on => :create
+
 	def full_name
 	    if first_name == nil or first_name.empty? then
 	        if last_name == nil or last_name.empty? then

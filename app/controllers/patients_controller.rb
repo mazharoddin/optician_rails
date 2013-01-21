@@ -20,7 +20,7 @@ class PatientsController < ApplicationController
 			flash[:success] = "Patient has been created."
 			redirect_to :action => 'index'
 		else
-			render "new"
+			render 'new'
 		end
 	end
 	
@@ -45,7 +45,7 @@ class PatientsController < ApplicationController
 			flash[:success] = "Patient has been updated."
 			redirect_to :action => 'index'
 		else
-			render "edit"
+			render 'new'
 		end
 	end
 

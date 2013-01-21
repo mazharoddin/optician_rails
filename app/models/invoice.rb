@@ -1,16 +1,26 @@
 require 'date'
 
 class Invoice < ActiveRecord::Base
-  belongs_to :patient
+  attr_accessible :address, :balance, :city, :country, :invoice_date, :name, :paid, :postal_code, :state, :total, :void_date
+
   belongs_to :account
-  
-  has_many :items
+  belongs_to :patient
+    
   has_many :dispensing
   has_many :contacts_dispensing
   has_many :glasses_dispensing
-  
-  attr_accessible :address, :balance, :city, :country, :invoice_date, :name, :paid, :postal_code, :state, :total, :void_date
-  
+  has_many :items
+
+  validates :address, :length => { :maximum => 255 }
+  validates :balance, :numericality => { :greater_than_or_equal_to => 0 }, :presence => true
+  validates :city, :length => { :maximum => 80 }
+  validates :country, :length => { :maximum => 60 }
+  validates :name, :length => { :maximum => 255 }
+  validates :paid, :numericality => { :greater_than_or_equal_to => 0 }, :presence => true
+  validates :postal_code, :length => { :maximum => 20 }
+  validates :state, :length => { :maximum => 10 }
+  validates :total, :numericality => { :greater_than_or_equal_to => 0 }, :presence => true
+
   after_initialize do |invoice|
     if invoice.patient != nil then
 		invoice.name = invoice.patient.full_name

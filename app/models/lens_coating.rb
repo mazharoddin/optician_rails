@@ -2,15 +2,15 @@ class LensCoating < ActiveRecord::Base
   after_create :lens_coating_created
   after_update :lens_coating_updated
 
+  attr_accessible :active, :name
+
   belongs_to :account
   
   has_and_belongs_to_many :inventory
   
-  attr_accessible :name, :active
-
   has_many :lens_coating_history
-  
-  validates :name, :presence => true, :uniqueness => true
+
+  validates :name, :presence => true, :length => { :maximum => 60 }, :uniqueness => true
   
   def to_s
 	return name
@@ -24,6 +24,7 @@ class LensCoating < ActiveRecord::Base
 	  :active => active,
 	  :start_at => DateTime.now,
 	  :end_at => nil);
+	lens_coating.account_id = account_id
 	lens_coating.save
   end
   

@@ -1,10 +1,13 @@
 class Account < ActiveRecord::Base
+  attr_accessible :active, :name, :subdomain
+
   has_many :accessories_inventory
   has_many :brands
   has_many :brand_histories
   has_many :companies
   has_many :countries
   has_many :dispensing
+  has_many :employees
   has_many :employment_types
   has_many :genders
   has_many :guardian_relationships
@@ -30,7 +33,6 @@ class Account < ActiveRecord::Base
   has_many :tax_histories
   has_many :users
   
-#  validates :name, :length => ( :within => 2..80 }, :presence => true, :uniqueness => true
-#  validates :subdomain, :length => ( :within => 2..80 }, :presence => true, :uniqueness => true
-  attr_accessible :active, :name, :subdomain
+  validates :name, :length => { :maximum => 60 }, :presence => true, :uniqueness => true
+  validates :subdomain, :length => { :maximum => 80 }, :presence => true, :uniqueness => true
 end

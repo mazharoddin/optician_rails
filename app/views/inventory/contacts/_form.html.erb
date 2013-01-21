@@ -3,9 +3,11 @@
 		<div class="span6">
 			<%= f.association :manufacturer %>
 			<%= f.input :description %>
+			<%= f.input :model %>
 			<%= f.input :upc %>
 			<%= f.association :supplier %>
 			<%= f.input :supplier_code %>
+			<%= f.association :lens_material %>
 			<%= f.input :active %>
 			<%= f.input :track_inventory %>
 		</div>

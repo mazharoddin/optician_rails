@@ -1,8 +1,8 @@
 class Admin::EmployeesController < Admin::ApplicationController
-	before_filter :find_employee, :only => [:edit, :show, :update]
-	
 	add_breadcrumb "Employees", :admin_employees_path
 
+	before_filter :find_employee, :only => [:edit, :show, :update]
+	
 	def index
 		if params[:q] then
 			add_breadcrumb "Search Results", :admin_employees_path
@@ -25,7 +25,6 @@ class Admin::EmployeesController < Admin::ApplicationController
 	end
 	
 	def edit
-		add_breadcrumb @employee.full_name, admin_employee_path(@employee)
 		add_breadcrumb "Edit", edit_admin_employee_path(@employee)
 	end
 	
@@ -37,12 +36,9 @@ class Admin::EmployeesController < Admin::ApplicationController
 	end
 	
 	def show
-		add_breadcrumb @employee.full_name, admin_employee_path(@employee)
 	end
 	
 	def update
-		add_breadcrumb @employee.full_name, admin_employee_path(@employee)
-
 		if params[:employee][:password].blank?
 			params[:employee].delete(:password)
 			params[:employee].delete(:password_confirmation)
@@ -58,5 +54,6 @@ class Admin::EmployeesController < Admin::ApplicationController
 	private
 	def find_employee
 		@employee = @current_account.employees.find(params[:id])
+		add_breadcrumb @employee.full_name, admin_employee_path(@employee)
 	end
 end

@@ -1,8 +1,8 @@
 class Admin::AccountsController < ApplicationController
-	before_filter :find_account, :only => [:edit, :show, :update]
-	
 	add_breadcrumb "Accounts", :admin_accounts_path
 
+	before_filter :find_account, :only => [:edit, :show, :update]
+	
 	def index
 		if params[:q] then
 			add_breadcrumb "Search Results", :admin_accounts_path
@@ -25,7 +25,6 @@ class Admin::AccountsController < ApplicationController
 	end
 	
 	def edit
-		add_breadcrumb @account.name, admin_account_path(@account)
 		add_breadcrumb "Edit", edit_admin_account_path(@account)
 	end
 	
@@ -37,12 +36,9 @@ class Admin::AccountsController < ApplicationController
 	end
 	
 	def show
-		add_breadcrumb @account.name, admin_account_path(@account)
 	end
 	
 	def update
-		add_breadcrumb @account.name, admin_account_path(@account)
-
 		if @account.update_attributes(params[:account]) then
 			flash[:success] = "Account has been updated."
 			redirect_to :action => 'index'
@@ -54,5 +50,6 @@ class Admin::AccountsController < ApplicationController
 	private
 	def find_account
 		@account = Account.find(params[:id])
+		add_breadcrumb @account.name, admin_account_path(@account)
 	end
 end

@@ -2,12 +2,13 @@ class PersonalTitle < ActiveRecord::Base
   after_create :personal_title_created
   after_update :personal_title_updated
 
-  has_many :patient
-  has_many :personal_title_history
-  belongs_to :account
-  
   attr_accessible :title, :active
   
+  belongs_to :account
+  
+  has_many :patient
+  has_many :personal_title_history
+
   validates :title, :presence => true, :uniqueness => true
 
   def to_s
@@ -22,6 +23,7 @@ class PersonalTitle < ActiveRecord::Base
 	  :active => active,
 	  :start_at => DateTime.now,
 	  :end_at => nil);
+	personal_title.account_id = account_id
 	personal_title.save
   end
   

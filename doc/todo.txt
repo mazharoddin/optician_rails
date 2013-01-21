@@ -1,3 +1,16 @@
+FIX MODELS & DATABASE
+=====================
+Was working on these when I got too tired:
+
+contacts_prescription
+glasses_prescription
+prescription
+
+account
+contacts_dispensing
+dispensing
+employee
+
 TODO
 ====
 

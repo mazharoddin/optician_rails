@@ -1,8 +1,8 @@
 class Admin::OptometristsController < Admin::ApplicationController
-	before_filter :find_optometrist, :only => [:edit, :show, :update]
-	
 	add_breadcrumb "Optometrists", :admin_optometrists_path
 
+	before_filter :find_optometrist, :only => [:edit, :show, :update]
+	
 	def index
 		if params[:q] then
 			add_breadcrumb "Search Results", :admin_optometrists_path
@@ -25,7 +25,6 @@ class Admin::OptometristsController < Admin::ApplicationController
 	end
 	
 	def edit
-		add_breadcrumb @optometrist.full_name, admin_optometrist_path(@optometrist)
 		add_breadcrumb "Edit", edit_admin_optometrist_path(@optometrist)
 	end
 	
@@ -36,12 +35,9 @@ class Admin::OptometristsController < Admin::ApplicationController
 	end
 	
 	def show
-		add_breadcrumb @optometrist.full_name, admin_optometrist_path(@optometrist)
 	end
 	
 	def update
-		add_breadcrumb @optometrist.full_name, admin_optometrist_path(@optometrist)
-
 		if @optometrist.update_attributes(params[:optometrist]) then
 			flash[:success] = "Optometrist has been updated."
 			redirect_to :action => 'index'
@@ -53,5 +49,6 @@ class Admin::OptometristsController < Admin::ApplicationController
 	private
 	def find_optometrist
 		@optometrist = @current_account.optometrists.find(params[:id])
+		add_breadcrumb @optometrist.full_name, admin_optometrist_path(@optometrist)
 	end
 end

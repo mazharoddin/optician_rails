@@ -1,3 +1,2 @@
 class GlassesDispensing < Dispensing
-
 end

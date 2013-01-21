@@ -11,12 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130119011121) do
+ActiveRecord::Schema.define(:version => 20130119103714) do
 
   create_table "accounts", :force => true do |t|
-    t.string   "name",       :limit => 80
-    t.string   "subdomain",  :limit => 69
-    t.boolean  "active",                   :default => true
+    t.string   "name",       :limit => 80,                   :null => false
+    t.string   "subdomain",  :limit => 69,                   :null => false
+    t.boolean  "active",                   :default => true, :null => false
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
   end
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(:version => 20130119011121) do
 
   create_table "brand_histories", :force => true do |t|
     t.integer  "brand_id"
-    t.string   "name",       :limit => 60
+    t.string   "name",       :limit => 60,                   :null => false
     t.boolean  "active",                   :default => true, :null => false
     t.datetime "start_at",                                   :null => false
     t.datetime "end_at"
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(:version => 20130119011121) do
   add_index "brand_histories", ["account_id"], :name => "index_brand_histories_on_account_id"
 
   create_table "brands", :force => true do |t|
-    t.string   "name",       :limit => 60
+    t.string   "name",       :limit => 60,                   :null => false
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
     t.boolean  "active",                   :default => true, :null => false
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(:version => 20130119011121) do
 
   create_table "companies", :force => true do |t|
     t.string   "type",       :limit => 60
-    t.string   "name"
+    t.string   "name",       :limit => 60,                   :null => false
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
     t.boolean  "active",                   :default => true, :null => false
@@ -59,11 +59,11 @@ ActiveRecord::Schema.define(:version => 20130119011121) do
   add_index "companies", ["account_id"], :name => "index_companies_on_account_id"
 
   create_table "countries", :force => true do |t|
-    t.string   "name",       :limit => 60
-    t.boolean  "active"
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
-    t.integer  "account_id",               :null => false
+    t.string   "name",       :limit => 60,                   :null => false
+    t.boolean  "active",                   :default => true, :null => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
+    t.integer  "account_id",                                 :null => false
   end
 
   add_index "countries", ["account_id"], :name => "index_countries_on_account_id"
@@ -114,7 +114,7 @@ ActiveRecord::Schema.define(:version => 20130119011121) do
   add_index "dispensing", ["prescription_id"], :name => "index_dispensing_on_prescription_id"
 
   create_table "employment_types", :force => true do |t|
-    t.string   "name",       :limit => 40
+    t.string   "name",       :limit => 60,                   :null => false
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
     t.boolean  "active",                   :default => true, :null => false
@@ -124,7 +124,7 @@ ActiveRecord::Schema.define(:version => 20130119011121) do
   add_index "employment_types", ["account_id"], :name => "index_employment_types_on_account_id"
 
   create_table "genders", :force => true do |t|
-    t.string   "name",       :limit => 10
+    t.string   "name",       :limit => 60,                   :null => false
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
     t.boolean  "active",                   :default => true, :null => false
@@ -134,7 +134,7 @@ ActiveRecord::Schema.define(:version => 20130119011121) do
   add_index "genders", ["account_id"], :name => "index_genders_on_account_id"
 
   create_table "guardian_relationships", :force => true do |t|
-    t.string   "name",       :limit => 40
+    t.string   "name",       :limit => 60,                   :null => false
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
     t.boolean  "active",                   :default => true, :null => false
@@ -145,7 +145,7 @@ ActiveRecord::Schema.define(:version => 20130119011121) do
 
   create_table "inventory", :force => true do |t|
     t.string   "type",                  :limit => 100
-    t.string   "description",           :limit => 80
+    t.string   "description",           :limit => 100,                                                  :null => false
     t.integer  "manufacturer_id"
     t.integer  "supplier_id"
     t.string   "supplier_code",         :limit => 80
@@ -195,28 +195,28 @@ ActiveRecord::Schema.define(:version => 20130119011121) do
     t.string   "state",        :limit => 10
     t.string   "postal_code",  :limit => 20
     t.string   "country",      :limit => 60
-    t.decimal  "total",                      :precision => 10, :scale => 2
-    t.decimal  "paid",                       :precision => 10, :scale => 2
-    t.decimal  "balance",                    :precision => 10, :scale => 2
-    t.datetime "created_at",                                                :null => false
-    t.datetime "updated_at",                                                :null => false
+    t.decimal  "total",                      :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "paid",                       :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.decimal  "balance",                    :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.datetime "created_at",                                                                 :null => false
+    t.datetime "updated_at",                                                                 :null => false
     t.datetime "void_date"
-    t.integer  "account_id",                                                :null => false
+    t.integer  "account_id",                                                                 :null => false
   end
 
   add_index "invoices", ["account_id"], :name => "index_invoices_on_account_id"
   add_index "invoices", ["patient_id"], :name => "index_invoices_on_patient_id"
 
   create_table "items", :force => true do |t|
-    t.string   "description"
-    t.decimal  "unit_price",   :precision => 10, :scale => 2
-    t.decimal  "discount",     :precision => 10, :scale => 2
-    t.decimal  "qty",          :precision => 10, :scale => 2
+    t.string   "description",                                 :null => false
+    t.decimal  "unit_price",   :precision => 10, :scale => 2, :null => false
+    t.decimal  "discount",     :precision => 10, :scale => 2, :null => false
+    t.decimal  "qty",          :precision => 10, :scale => 2, :null => false
     t.integer  "tax_a_id"
     t.integer  "tax_b_id"
     t.decimal  "tax_a_amount", :precision => 10, :scale => 2
     t.decimal  "tax_b_amount", :precision => 10, :scale => 2
-    t.decimal  "total_price",  :precision => 10, :scale => 2
+    t.decimal  "total_price",  :precision => 10, :scale => 2, :null => false
     t.integer  "inventory_id"
     t.datetime "created_at",                                  :null => false
     t.datetime "updated_at",                                  :null => false
@@ -231,7 +231,7 @@ ActiveRecord::Schema.define(:version => 20130119011121) do
 
   create_table "lens_coating_histories", :force => true do |t|
     t.integer  "lens_coating_id"
-    t.string   "name",            :limit => 60
+    t.string   "name",            :limit => 60,                   :null => false
     t.boolean  "active",                        :default => true, :null => false
     t.datetime "start_at",                                        :null => false
     t.datetime "end_at"
@@ -244,7 +244,7 @@ ActiveRecord::Schema.define(:version => 20130119011121) do
   add_index "lens_coating_histories", ["lens_coating_id"], :name => "index_lens_coating_histories_on_lens_coating_id"
 
   create_table "lens_coatings", :force => true do |t|
-    t.string   "name",       :limit => 60
+    t.string   "name",       :limit => 60,                   :null => false
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
     t.boolean  "active",                   :default => true, :null => false
@@ -255,7 +255,7 @@ ActiveRecord::Schema.define(:version => 20130119011121) do
 
   create_table "lens_material_histories", :force => true do |t|
     t.integer  "lens_material_id"
-    t.string   "name",             :limit => 60
+    t.string   "name",             :limit => 60,                   :null => false
     t.boolean  "active",                         :default => true, :null => false
     t.datetime "start_at",                                         :null => false
     t.datetime "end_at"
@@ -268,7 +268,7 @@ ActiveRecord::Schema.define(:version => 20130119011121) do
   add_index "lens_material_histories", ["lens_material_id"], :name => "index_lens_material_histories_on_lens_material_id"
 
   create_table "lens_materials", :force => true do |t|
-    t.string   "name",       :limit => 60
+    t.string   "name",       :limit => 60,                   :null => false
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
     t.boolean  "active",                   :default => true, :null => false
@@ -279,7 +279,7 @@ ActiveRecord::Schema.define(:version => 20130119011121) do
 
   create_table "lens_type_histories", :force => true do |t|
     t.integer  "lens_type_id"
-    t.string   "name",         :limit => 60
+    t.string   "name",         :limit => 60,                   :null => false
     t.boolean  "active",                     :default => true, :null => false
     t.datetime "start_at",                                     :null => false
     t.datetime "end_at"
@@ -292,7 +292,7 @@ ActiveRecord::Schema.define(:version => 20130119011121) do
   add_index "lens_type_histories", ["lens_type_id"], :name => "index_lens_type_histories_on_lens_type_id"
 
   create_table "lens_types", :force => true do |t|
-    t.string   "name",       :limit => 60
+    t.string   "name",       :limit => 60,                   :null => false
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
     t.boolean  "active",                   :default => true, :null => false
@@ -303,7 +303,7 @@ ActiveRecord::Schema.define(:version => 20130119011121) do
 
   create_table "optometrists", :force => true do |t|
     t.integer  "personal_title_id"
-    t.string   "last_name",            :limit => 40
+    t.string   "last_name",            :limit => 40,                   :null => false
     t.string   "first_name",           :limit => 40
     t.string   "business_name",        :limit => 80
     t.string   "email"
@@ -328,7 +328,7 @@ ActiveRecord::Schema.define(:version => 20130119011121) do
 
   create_table "patients", :force => true do |t|
     t.integer  "personal_title_id"
-    t.string   "last_name",                :limit => 40
+    t.string   "last_name",                :limit => 40, :null => false
     t.string   "first_name",               :limit => 40
     t.string   "preferred_name",           :limit => 40
     t.integer  "gender_id"
@@ -376,8 +376,8 @@ ActiveRecord::Schema.define(:version => 20130119011121) do
   add_index "patients", ["postal_state_id"], :name => "index_patients_on_postal_state_id"
 
   create_table "personal_title_histories", :force => true do |t|
-    t.integer  "personal_title_id"
-    t.string   "title",             :limit => 20
+    t.integer  "personal_title_id",                                 :null => false
+    t.string   "title",             :limit => 20,                   :null => false
     t.boolean  "active",                          :default => true, :null => false
     t.datetime "start_at",                                          :null => false
     t.datetime "end_at"
@@ -390,7 +390,7 @@ ActiveRecord::Schema.define(:version => 20130119011121) do
   add_index "personal_title_histories", ["personal_title_id"], :name => "index_personal_title_histories_on_personal_title_id"
 
   create_table "personal_titles", :force => true do |t|
-    t.string   "title",      :limit => 20
+    t.string   "title",      :limit => 20,                   :null => false
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
     t.boolean  "active",                   :default => true, :null => false
@@ -443,20 +443,21 @@ ActiveRecord::Schema.define(:version => 20130119011121) do
   add_index "prescriptions", ["prescription_id"], :name => "index_prescriptions_on_prescription_id"
 
   create_table "states", :force => true do |t|
-    t.string   "name",       :limit => 60
-    t.string   "short_name", :limit => 10
-    t.integer  "country_id"
+    t.string   "name",       :limit => 60,                   :null => false
+    t.string   "short_name", :limit => 60,                   :null => false
+    t.integer  "country_id",                                 :null => false
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
     t.boolean  "active",                   :default => true, :null => false
     t.integer  "account_id",                                 :null => false
+    t.integer  "tenant_id",                                  :null => false
   end
 
   add_index "states", ["account_id"], :name => "index_states_on_account_id"
   add_index "states", ["country_id"], :name => "index_states_on_country_id"
 
   create_table "stores", :force => true do |t|
-    t.string   "name",            :limit => 60
+    t.string   "name",            :limit => 60,                   :null => false
     t.string   "email"
     t.string   "url"
     t.string   "phone",           :limit => 30
@@ -491,39 +492,39 @@ ActiveRecord::Schema.define(:version => 20130119011121) do
   add_index "stores", ["state_id"], :name => "index_stores_on_state_id"
 
   create_table "tax_histories", :force => true do |t|
-    t.integer  "tax_id"
-    t.string   "name",       :limit => 40
-    t.float    "rate"
+    t.integer  "tax_id",                                                                   :null => false
+    t.string   "name",       :limit => 40,                                                 :null => false
+    t.decimal  "rate",                     :precision => 10, :scale => 4, :default => 0.0, :null => false
     t.datetime "start_at"
     t.datetime "end_at"
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
-    t.integer  "account_id",               :null => false
+    t.datetime "created_at",                                                               :null => false
+    t.datetime "updated_at",                                                               :null => false
+    t.integer  "account_id",                                                               :null => false
   end
 
   add_index "tax_histories", ["account_id"], :name => "index_tax_histories_on_account_id"
   add_index "tax_histories", ["tax_id"], :name => "index_tax_histories_on_tax_id"
 
   create_table "taxes", :force => true do |t|
-    t.string   "name",       :limit => 40
-    t.float    "rate"
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
-    t.integer  "account_id",               :null => false
+    t.string   "name",       :limit => 40,                                                 :null => false
+    t.decimal  "rate",                     :precision => 10, :scale => 4, :default => 0.0, :null => false
+    t.datetime "created_at",                                                               :null => false
+    t.datetime "updated_at",                                                               :null => false
+    t.integer  "account_id",                                                               :null => false
   end
 
   add_index "taxes", ["account_id"], :name => "index_taxes_on_account_id"
 
   create_table "users", :force => true do |t|
     t.string   "first_name",             :limit => 40
-    t.string   "last_name",              :limit => 40
-    t.string   "email",                                :default => "", :null => false
-    t.datetime "created_at",                                           :null => false
-    t.datetime "updated_at",                                           :null => false
-    t.boolean  "active"
-    t.boolean  "administrator"
-    t.boolean  "dispensing_optician"
-    t.string   "encrypted_password",                   :default => "", :null => false
+    t.string   "last_name",              :limit => 40,                   :null => false
+    t.string   "email",                                :default => "",   :null => false
+    t.datetime "created_at",                                             :null => false
+    t.datetime "updated_at",                                             :null => false
+    t.boolean  "active",                               :default => true, :null => false
+    t.boolean  "administrator",                        :default => true, :null => false
+    t.boolean  "dispensing_optician",                  :default => true, :null => false
+    t.string   "encrypted_password",                   :default => "",   :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -536,7 +537,7 @@ ActiveRecord::Schema.define(:version => 20130119011121) do
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.integer  "personal_title_id"
-    t.integer  "account_id",                                           :null => false
+    t.integer  "account_id",                                             :null => false
   end
 
   add_index "users", ["account_id"], :name => "index_users_on_account_id"

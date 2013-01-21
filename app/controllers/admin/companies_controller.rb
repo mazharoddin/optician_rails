@@ -1,8 +1,8 @@
 class Admin::CompaniesController < Admin::ApplicationController
-	before_filter :find_company, :only => [:edit, :show, :update]
-	
 	add_breadcrumb "Companies", :admin_companies_path
 
+	before_filter :find_company, :only => [:edit, :show, :update]
+	
 	def index
 		if params[:q] then
 			add_breadcrumb "Search Results", :admin_companies_path
@@ -25,7 +25,6 @@ class Admin::CompaniesController < Admin::ApplicationController
 	end
 	
 	def edit
-		add_breadcrumb @company.name, admin_company_path(@company)
 		add_breadcrumb "Edit", edit_admin_company_path(@company)
 	end
 	
@@ -36,13 +35,10 @@ class Admin::CompaniesController < Admin::ApplicationController
 	end
 	
 	def show
-		add_breadcrumb @company.name, admin_company_path(@company)
 	end
 	
 	def update
-		add_breadcrumb @company.name, admin_company_path(@company)
-
-		if @company.update_attributes(params[:companu]) then
+		if @company.update_attributes(params[:company]) then
 			flash[:success] = "Company has been updated."
 			redirect_to :action => 'index'
 		else
@@ -53,5 +49,6 @@ class Admin::CompaniesController < Admin::ApplicationController
 	private
 	def find_company
 		@company = @current_account.companies.find(params[:id])
+		add_breadcrumb @company.name, admin_company_path(@company)
 	end
 end

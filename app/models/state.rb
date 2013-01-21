@@ -1,14 +1,11 @@
 class State < ActiveRecord::Base
-  validates :name, :short_name, :presence => true
-  
-  belongs_to :country
-  belongs_to :account
-  
   attr_accessible :name, :short_name, :active
-  
-  validates :name, :presence => true
-  validates :name, :uniqueness => { :scope => :country_id }
-  validates :short_name, :uniqueness => { :scope => :country_id }
+
+  belongs_to :account
+  belongs_to :country
+
+  validates :name, :presence => true, :uniqueness => { :scope => :country_id }
+  validates :short_name, :presence => true, :uniqueness => { :scope => :country_id }
   
   def to_s
     if short_name == nil or short_name == '' then

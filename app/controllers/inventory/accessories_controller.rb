@@ -16,6 +16,7 @@ class Inventory::AccessoriesController < Inventory::ApplicationController
 		add_breadcrumb "New", new_inventory_accessories_inventory_path
 
 		@item = AccessoriesInventory.new(params[:accessories_inventory])
+		@item.account_id = @current_account.id
 		if @item.save then
 			flash[:success] = "Accessories inventory has been created."
 			redirect_to :action => 'index', :controller => 'inventory'

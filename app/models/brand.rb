@@ -2,12 +2,13 @@ class Brand < ActiveRecord::Base
   after_create :brand_created
   after_update :brand_updated
 
-  attr_accessible :name, :active
+  attr_accessible :active, :name
   
-  has_many :brand_history
   belongs_to :account
   
-  validates :name, :presence => true, :uniqueness => true
+  has_many :brand_history
+
+  validates :name, :presence => true, :uniqueness => true, :length => { :maximum => 60 }
   
   def to_s
 	return name
@@ -21,6 +22,7 @@ class Brand < ActiveRecord::Base
 	  :active => active,
 	  :start_at => DateTime.now,
 	  :end_at => nil);
+	brand_history.account_id = account_id
 	brand_history.save
   end
   

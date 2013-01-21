@@ -1,11 +1,12 @@
 class Country < ActiveRecord::Base
+    attr_accessible :active, :name
+
+	belongs_to :account
+
 	has_many :states
 	has_many :stores
-	belongs_to :account
-	
-    attr_accessible :name, :active
 
-    validates :name, :presence => true, :uniqueness => true
+    validates :name, :presence => true, :uniqueness => true, :length => { :maximum => 60 }
 	
 	def to_s
 		return name

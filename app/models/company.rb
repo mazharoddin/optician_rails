@@ -1,8 +1,9 @@
 class Company < ActiveRecord::Base
-  attr_accessible :name, :type, :active
-
   belongs_to :account
-  validates :name, :presence => true, :uniqueness => true
+
+  attr_accessible  :active, :name
+
+  validates :name, :presence => true, :uniqueness => true, :length => { :maximum => 60 }
   
   def to_s
 	return name

@@ -1,8 +1,8 @@
 class Admin::CountriesController < Admin::ApplicationController
-	before_filter :find_country, :only => [:edit, :show, :update]
-	
 	add_breadcrumb "Countries", :admin_countries_path
 
+	before_filter :find_country, :only => [:edit, :show, :update]
+	
 	def index
 		if params[:q] then
 			add_breadcrumb "Search Results", :admin_countries_path
@@ -25,25 +25,20 @@ class Admin::CountriesController < Admin::ApplicationController
 	end
 	
 	def edit
-		add_breadcrumb @country.name, admin_country_path(@country)
 		add_breadcrumb "Edit", edit_admin_country_path(@country)
 	end
 	
 	def new
 		add_breadcrumb "New", :new_admin_country_path
 
-		@country = @current_account.countries.build(:enabled => true)
+		@country = @current_account.countries.build(:active => true)
 	end
 	
 	def show
-		add_breadcrumb @country.name, admin_country_path(@country)
-
 		@states = @country.states.order(:name).page(params[:page])
 	end
 	
 	def update
-		add_breadcrumb @country.name, admin_country_path(@country)
-
 		if @country.update_attributes(params[:country]) then
 			flash[:success] = "Country has been updated."
 			redirect_to :action => 'index'
@@ -55,5 +50,6 @@ class Admin::CountriesController < Admin::ApplicationController
 	private
 	def find_country
 		@country = @current_account.countries.find(params[:id])
+		add_breadcrumb @country.name, admin_country_path(@country)
 	end
 end

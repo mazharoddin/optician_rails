@@ -16,10 +16,19 @@ class Inventory::LensesController < Inventory::ApplicationController
 		add_breadcrumb "New", new_inventory_lens_inventory_path
 
 		@item = LensInventory.new(params[:lens_inventory])
+		@item.account_id = @current_account.id
+		@item.lens_coating.each do |coating|
+		    coating.account_id = @current_account.id
+		end
 		if @item.save then
 			flash[:success] = "Lenses inventory has been created."
 			redirect_to :action => 'index', :controller => 'inventory'
 		else
+			msg = ''
+			@item.errors.each do |error|
+			    msg = msg + error.to_s + ' - ' + @item.errors[error].to_s + "\n"
+			end
+			flash[:error] = msg
 			render "new"
 		end
 	end

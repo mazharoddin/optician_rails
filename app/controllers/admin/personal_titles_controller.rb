@@ -1,8 +1,8 @@
 class Admin::PersonalTitlesController < Admin::ApplicationController
-	before_filter :find_personal_title, :only => [:edit, :show, :update]
-	
 	add_breadcrumb "Personal Titles", :admin_personal_titles_path
 
+	before_filter :find_personal_title, :only => [:edit, :show, :update]
+	
 	def index
 		if params[:q] then
 			add_breadcrumb "Search Results", :admin_personal_titles_path
@@ -25,7 +25,6 @@ class Admin::PersonalTitlesController < Admin::ApplicationController
 	end
 	
 	def edit
-		add_breadcrumb @personal_title.title, admin_personal_title_path(@personal_title)
 		add_breadcrumb "Edit", edit_admin_personal_title_path(@personal_title)
 	end
 	
@@ -36,12 +35,9 @@ class Admin::PersonalTitlesController < Admin::ApplicationController
 	end
 	
 	def show
-		add_breadcrumb @personal_title.title, admin_personal_title_path(@personal_title)
 	end
 	
 	def update
-		add_breadcrumb @personal_title.title, admin_personal_title_path(@personal_title)
-
 		if @personal_title.update_attributes(params[:personal_title]) then
 			flash[:success] = "Personal title has been updated."
 			redirect_to :action => 'index'
@@ -53,5 +49,6 @@ class Admin::PersonalTitlesController < Admin::ApplicationController
 	private
 	def find_personal_title
 		@personal_title = @current_account.personal_titles.find(params[:id])
+		add_breadcrumb @personal_title.title, admin_personal_title_path(@personal_title)
 	end
 end

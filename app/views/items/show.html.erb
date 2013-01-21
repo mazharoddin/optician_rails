@@ -5,17 +5,17 @@
 
 <dl class="dl-horizontal">
 	<dt>Description</dt>
-	<dd><%= @item.description %></dd>
+	<dd><%= @item.description || '&nbsp;'.html_safe %></dd>
 	<dt>Unit Price</dt>
-	<dd><%= @item.unit_price %></dd>
+	<dd><%= @item.unit_price || '&nbsp;'.html_safe %></dd>
 	<dt>Discount</dt>
-	<dd><%= @item.discount %></dd>
+	<dd><%= @item.discount || '&nbsp;'.html_safe %></dd>
 	<dt>Qty</dt>
-	<dd><%= @item.qty %></dd>
+	<dd><%= @item.qty || '&nbsp;'.html_safe %></dd>
 	<dt>Total Price</dt>
-	<dd><%= @item.total_price %></dd>
+	<dd><%= @item.total_price || '&nbsp;'.html_safe %></dd>
 	<dt>Tax A</dt>
-	<dd><%= @item.tax_a_amount %></dd>
+	<dd><%= @item.tax_a_amount || '&nbsp;'.html_safe %></dd>
 	<dt>Tax B</dt>
-	<dd><%= @item.tax_b_amount %></dd>
+	<dd><%= @item.tax_b_amount || '&nbsp;'.html_safe %></dd>
 </dl>
