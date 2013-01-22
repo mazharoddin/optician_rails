@@ -17,9 +17,9 @@ class Inventory::LensesController < Inventory::ApplicationController
 
 		@item = LensInventory.new(params[:lens_inventory])
 		@item.account_id = @current_account.id
-		@item.lens_coating.each do |coating|
-		    coating.account_id = @current_account.id
-		end
+#		@item.lens_coating.each do |coating|
+#		    coating.account_id = @current_account.id
+#		end
 		if @item.save then
 			flash[:success] = "Lenses inventory has been created."
 			redirect_to :action => 'index', :controller => 'inventory'

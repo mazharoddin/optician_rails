@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130119103714) do
+ActiveRecord::Schema.define(:version => 20130122073835) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name",       :limit => 80,                   :null => false
@@ -181,10 +181,7 @@ ActiveRecord::Schema.define(:version => 20130119103714) do
   create_table "inventory_lens_coatings", :force => true do |t|
     t.integer "inventory_id"
     t.integer "lens_coating_id"
-    t.integer "account_id",      :null => false
   end
-
-  add_index "inventory_lens_coatings", ["account_id"], :name => "index_inventory_lens_coatings_on_account_id"
 
   create_table "invoices", :force => true do |t|
     t.datetime "invoice_date"
@@ -450,7 +447,6 @@ ActiveRecord::Schema.define(:version => 20130119103714) do
     t.datetime "updated_at",                                 :null => false
     t.boolean  "active",                   :default => true, :null => false
     t.integer  "account_id",                                 :null => false
-    t.integer  "tenant_id",                                  :null => false
   end
 
   add_index "states", ["account_id"], :name => "index_states_on_account_id"
