@@ -17,6 +17,7 @@ class GlassesPrescriptionsController < ApplicationController
 		add_breadcrumb "New", new_patient_glasses_prescription_path(@patient)
 
 		@glasses_prescription = @patient.glasses_prescriptions.build(params[:glasses_prescription])
+		@glasses_prescription.account_id = @current_account.id
 		if @glasses_prescription.save then
 			flash[:success] = "Glasses prescription has been created."
 			redirect_to patient_glasses_prescription_path(@patient, @glasses_prescription)
@@ -52,7 +53,7 @@ class GlassesPrescriptionsController < ApplicationController
 			flash[:success] = "Glasses prescription has been updated."
 			redirect_to patient_glasses_prescription_path(@patient, @glasses_prescription)
 		else
-			render "edit"
+			render "new"
 		end
 	end
 

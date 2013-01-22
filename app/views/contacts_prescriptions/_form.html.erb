@@ -43,23 +43,26 @@
 		<tbody>
 			<tr>
 				<th>OD</th>
-				<td><%= f.input_field :od_sphere, :collection => (-30..30).step(0.25).reverse(), :class => 'input-small' %></td>
-				<td><%= f.input_field :od_cylinder, :collection => (-30..30).step(0.25).reverse(), :class => 'input-small' %></td>
-				<td><%= f.input_field :od_axis, :collection => (0..180), :class => 'input-small' %></td>
-				<td><%= f.input_field :od_add, :collection => (0..5).step(0.25).reverse(), :class => 'input-small' %></td>
-				<td><%= f.input_field :od_base_curve, :class => 'input-small' %></td>
-				<td><%= f.input_field :od_diameter, :class => 'input-small' %></td>
-				<td><%= f.association :od_brand, :class => 'input-small' %></td>
+				<td><%= f.input_field :od_sphere, :class => 'input-small', :style => (@contacts_prescription.errors.has_key?(:od_sphere) ? 'border: 1px solid #ff0000' : '') %></td>
+				<td><%= f.input_field :od_cylinder, :class => 'input-small', :style => (@contacts_prescription.errors.has_key?(:od_cylinder) ? 'border: 1px solid #ff0000' : '') %></td>
+				<td><%= f.input_field :od_axis, :class => 'input-small', :style => (@contacts_prescription.errors.has_key?(:od_axis) ? 'border: 1px solid #ff0000' : '') %></td>
+				<td><%= f.input_field :od_add, :class => 'input-small', :style => (@contacts_prescription.errors.has_key?(:od_add) ? 'border: 1px solid #ff0000' : '') %></td>
+				<td><%= f.input_field :od_base_curve, :class => 'input-small', :style => (@contacts_prescription.errors.has_key?(:od_base_curve) ? 'border: 1px solid #ff0000' : '') %></td>
+				<td><%= f.input_field :od_diameter, :class => 'input-small', :style => (@contacts_prescription.errors.has_key?(:od_diameter) ? 'border: 1px solid #ff0000' : '') %></td>
+				<td><%= f.input_field :od_brand_id, :collection => @brands, :class => 'input-medium', :style => (@contacts_prescription.errors.has_key?(:od_diameter) ? 'border: 1px solid #ff0000' : '') %></td>
 			</tr>
 			<tr>
 				<th>OS</th>
-				<td><%= f.input_field :os_sphere, :collection => (-30..30).step(0.25).reverse(), :class => 'input-small' %></td>
-				<td><%= f.input_field :os_cylinder, :collection => (-30..30).step(0.25).reverse(), :class => 'input-small' %></td>
-				<td><%= f.input_field :os_axis, :collection => (0..180), :class => 'input-small' %></td>
-				<td><%= f.input_field :os_add, :collection => (0..5).step(0.25).reverse(), :class => 'input-small' %></td>
-				<td><%= f.input_field :os_base_curve, :class => 'input-small' %></td>
-				<td><%= f.input_field :os_diameter, :class => 'input-small' %></td>
+				<td><%= f.input_field :os_sphere, :class => 'input-small', :style => (@contacts_prescription.errors.has_key?(:os_sphere) ? 'border: 1px solid #ff0000' : '') %></td>
+				<td><%= f.input_field :os_cylinder, :class => 'input-small', :style => (@contacts_prescription.errors.has_key?(:os_cylinder) ? 'border: 1px solid #ff0000' : '') %></td>
+				<td><%= f.input_field :os_axis, :class => 'input-small', :style => (@contacts_prescription.errors.has_key?(:os_axis) ? 'border: 1px solid #ff0000' : '') %></td>
+				<td><%= f.input_field :os_add, :class => 'input-small', :style => (@contacts_prescription.errors.has_key?(:os_add) ? 'border: 1px solid #ff0000' : '') %></td>
+				<td><%= f.input_field :os_base_curve, :class => 'input-small', :style => (@contacts_prescription.errors.has_key?(:os_base_curve) ? 'border: 1px solid #ff0000' : '') %></td>
+				<td><%= f.input_field :os_diameter, :class => 'input-small', :style => (@contacts_prescription.errors.has_key?(:os_diameter) ? 'border: 1px solid #ff0000' : '') %></td>
+				<td><%= f.input_field :os_brand_id, :collection => @brands, :class => 'input-medium', :style => (@contacts_prescription.errors.has_key?(:os_diameter) ? 'border: 1px solid #ff0000' : '') %></td>
+<!--
 				<td><%= f.association :os_brand, :class => 'input-small' %></td>
+-->
 			</tr>
 		</tbody>
 	</table>

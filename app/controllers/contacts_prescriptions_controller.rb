@@ -1,6 +1,7 @@
 class ContactsPrescriptionsController < ApplicationController
 	before_filter :find_patient
 	before_filter :find_contacts_prescription, :only => [:edit, :show, :update]
+	before_filter :find_brands, :only => [:create, :edit, :new, :show, :update]
 	
 	add_breadcrumb "Patients", :patients_path
 	
@@ -17,6 +18,7 @@ class ContactsPrescriptionsController < ApplicationController
 		add_breadcrumb "New", new_patient_contacts_prescription_path(@patient)
 
 		@contacts_prescription = @patient.contacts_prescriptions.build(params[:contacts_prescription])
+		@contacts_prescription.account_id = @current_account.id
 		if @contacts_prescription.save then
 			flash[:success] = "Contacts prescription has been created."
 			redirect_to patient_contacts_prescription_path(@patient, @contacts_prescription)
@@ -52,7 +54,7 @@ class ContactsPrescriptionsController < ApplicationController
 			flash[:success] = "Contacts prescription has been updated."
 			redirect_to patient_contacts_prescription_path(@patient, @contacts_prescription)
 		else
-			render "edit"
+			render "new"
 		end
 	end
 
@@ -75,6 +77,10 @@ class ContactsPrescriptionsController < ApplicationController
 		@contacts_prescription = @patient.contacts_prescriptions.find(params[:id])
 	end
 
+	def find_brands
+		@brands = @current_account.brands
+	end
+	
 	def navbar
 	  @navbar_selected = 'patients'
 	end

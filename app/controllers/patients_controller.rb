@@ -18,7 +18,7 @@ class PatientsController < ApplicationController
 		@patient = @current_account.patients.build(params[:patient])
 		if @patient.save then
 			flash[:success] = "Patient has been created."
-			redirect_to :action => 'index'
+			redirect_to patient_path(@patient)
 		else
 			render 'new'
 		end
