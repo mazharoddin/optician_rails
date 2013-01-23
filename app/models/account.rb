@@ -5,7 +5,6 @@ class Account < ActiveRecord::Base
   has_many :brands
   has_many :brand_histories
   has_many :companies
-  has_many :countries
   has_many :dispensing
   has_many :employees
   has_many :employment_types
@@ -27,7 +26,6 @@ class Account < ActiveRecord::Base
   has_many :personal_title_histories
   has_many :prescriptions
   has_many :services_inventory
-  has_many :states
   has_many :stores
   has_many :taxes
   has_many :tax_histories

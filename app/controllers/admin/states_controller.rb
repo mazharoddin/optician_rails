@@ -17,7 +17,6 @@ class Admin::StatesController < Admin::ApplicationController
 		add_breadcrumb "New", new_admin_country_state_path(@country)
 
 		@state = @country.states.build(params[:state])
-		@state.account_id = @current_account.id
 		if @state.save then
 			flash[:success] = "State has been created."
 			redirect_to admin_country_path(@country)
@@ -53,7 +52,7 @@ class Admin::StatesController < Admin::ApplicationController
 
 	private
 	def find_country
-		@country = @current_account.countries.find(params[:country_id])
+		@country = Country.find(params[:country_id])
 		add_breadcrumb @country.name, admin_country_path(@country)
 		add_breadcrumb "States", admin_country_states_path(@country)
 	end

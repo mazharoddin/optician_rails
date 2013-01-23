@@ -27,10 +27,9 @@ class ItemsController < ApplicationController
 	end
 	
 	def edit
-		add_breadcrumb @country.name, admin_country_path(@country)
-		add_breadcrumb "States", admin_country_states_path(@country)
-		add_breadcrumb @state.name, admin_country_state_path(@country, @state)
-		add_breadcrumb "Edit", edit_admin_country_state_path(@country, @state)
+		add_breadcrumb '#' + @invoice.id.to_s, invoice_path(@invoice)
+		add_breadcrumb "Items", invoice_path(@invoice)
+		add_breadcrumb '#' + @item.id.to_s, invoice_item_path(@invoice, @item)
 
 		@item = @invoice.items.find(params[:id])
 	end

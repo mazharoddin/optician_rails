@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130122073835) do
+ActiveRecord::Schema.define(:version => 20130122223226) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name",       :limit => 80,                   :null => false
@@ -63,10 +63,7 @@ ActiveRecord::Schema.define(:version => 20130122073835) do
     t.boolean  "active",                   :default => true, :null => false
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
-    t.integer  "account_id",                                 :null => false
   end
-
-  add_index "countries", ["account_id"], :name => "index_countries_on_account_id"
 
   create_table "dispensing", :force => true do |t|
     t.string   "type",            :limit => 100
@@ -446,10 +443,8 @@ ActiveRecord::Schema.define(:version => 20130122073835) do
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
     t.boolean  "active",                   :default => true, :null => false
-    t.integer  "account_id",                                 :null => false
   end
 
-  add_index "states", ["account_id"], :name => "index_states_on_account_id"
   add_index "states", ["country_id"], :name => "index_states_on_country_id"
 
   create_table "stores", :force => true do |t|
