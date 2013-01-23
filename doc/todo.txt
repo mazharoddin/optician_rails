@@ -1,31 +1,34 @@
 Possible Names
 ==============
 
-bearoptic.com
-bigoptic.com
-bigoptical.com
+bearoptic.com x
+bigoptic.com x
+bigoptical.com x
 clickoptical.com
-crazyoptical.com
-dooptic.com
-dotoptic.com
-nextoptic.com
+crazyoptical.com x
+dooptic.com x
+dotoptic.com x
+nextoptic.com x
+opticianweb.com x
+opticgo.com x
+optinerd.com x
+outstandingvision.com x
+runoptic.com x
+startoptic.com x
+
 ninjavision.com
-optiadmin.com
 opticianly.com
 opticianplus.com
 opticianpro.com
-opticianretail.com
-opticianweb.com
-opticgo.com
 optichero.com
-optinerd.com
 opticous.com
 optisimple.com
-outstandingvision.com
-runoptic.com
-startoptic.com
 visionably.com
 visionhero.com
+
+optiadmin.com
+opticianretail.com
+
 
 
 
