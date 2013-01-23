@@ -6,16 +6,16 @@ class Admin::GendersController < Admin::ApplicationController
 	def index
 		if params[:q] then
 			add_breadcrumb "Search Results", :admin_genders_path
-			@genders = @current_account.genders.where('name like ?', '%' + params[:q] + '%').order(:name).page(params[:page])
+			@genders = Gender.where('name like ?', '%' + params[:q] + '%').order(:name).page(params[:page])
 		else
-			@genders = @current_account.genders.order(:name).page(params[:page])
+			@genders = Gender.order(:name).page(params[:page])
 		end
 	end
 	
 	def create
 		add_breadcrumb "New", new_admin_gender_path
 
-		@gender = @current_account.genders.build(params[:gender])
+		@gender = Gender.new(params[:gender])
 		if @gender.save then
 			flash[:success] = "Gender has been created."
 			redirect_to :action => 'index'
@@ -31,7 +31,7 @@ class Admin::GendersController < Admin::ApplicationController
 	def new
 		add_breadcrumb "New", new_admin_gender_path
 
-		@gender = @current_account.genders.build
+		@gender = Gender.new
 	end
 	
 	def show
@@ -48,7 +48,7 @@ class Admin::GendersController < Admin::ApplicationController
 
 	private
 	def find_gender
-		@gender = @current_account.genders.find(params[:id])
+		@gender = Gender.find(params[:id])
 		add_breadcrumb @gender.name, admin_gender_path(@gender)
 	end
 end

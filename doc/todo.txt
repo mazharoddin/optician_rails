@@ -1,15 +1,44 @@
+Possible Names
+==============
+
+bearoptic.com
+bigoptic.com
+bigoptical.com
+clickoptical.com
+crazyoptical.com
+dooptic.com
+dotoptic.com
+nextoptic.com
+ninjavision.com
+optiadmin.com
+opticianly.com
+opticianplus.com
+opticianpro.com
+opticianretail.com
+opticianweb.com
+opticgo.com
+optichero.com
+optinerd.com
+opticous.com
+optisimple.com
+outstandingvision.com
+runoptic.com
+startoptic.com
+visionably.com
+visionhero.com
+
+
+
 FIX MODELS & DATABASE
 =====================
-Was working on these when I got too tired:
-
-contacts_prescription
-glasses_prescription
-prescription
-
-account
-contacts_dispensing
-dispensing
-employee
+Models to make global
+employment_types
+genders
+guardian_relationships
+lens_coatings*
+lens_materials*
+lens_types*
+personal_titles*
 
 TODO
 ====

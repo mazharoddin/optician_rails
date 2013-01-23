@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130122223226) do
+ActiveRecord::Schema.define(:version => 20130123073032) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name",       :limit => 80,                   :null => false
@@ -115,30 +115,21 @@ ActiveRecord::Schema.define(:version => 20130122223226) do
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
     t.boolean  "active",                   :default => true, :null => false
-    t.integer  "account_id",                                 :null => false
   end
-
-  add_index "employment_types", ["account_id"], :name => "index_employment_types_on_account_id"
 
   create_table "genders", :force => true do |t|
     t.string   "name",       :limit => 60,                   :null => false
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
     t.boolean  "active",                   :default => true, :null => false
-    t.integer  "account_id",                                 :null => false
   end
-
-  add_index "genders", ["account_id"], :name => "index_genders_on_account_id"
 
   create_table "guardian_relationships", :force => true do |t|
     t.string   "name",       :limit => 60,                   :null => false
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
     t.boolean  "active",                   :default => true, :null => false
-    t.integer  "account_id",                                 :null => false
   end
-
-  add_index "guardian_relationships", ["account_id"], :name => "index_guardian_relationships_on_account_id"
 
   create_table "inventory", :force => true do |t|
     t.string   "type",                  :limit => 100
@@ -223,77 +214,26 @@ ActiveRecord::Schema.define(:version => 20130122223226) do
   add_index "items", ["tax_a_id"], :name => "index_invoice_items_on_tax_a_id"
   add_index "items", ["tax_b_id"], :name => "index_invoice_items_on_tax_b_id"
 
-  create_table "lens_coating_histories", :force => true do |t|
-    t.integer  "lens_coating_id"
-    t.string   "name",            :limit => 60,                   :null => false
-    t.boolean  "active",                        :default => true, :null => false
-    t.datetime "start_at",                                        :null => false
-    t.datetime "end_at"
-    t.datetime "created_at",                                      :null => false
-    t.datetime "updated_at",                                      :null => false
-    t.integer  "account_id",                                      :null => false
-  end
-
-  add_index "lens_coating_histories", ["account_id"], :name => "index_lens_coating_histories_on_account_id"
-  add_index "lens_coating_histories", ["lens_coating_id"], :name => "index_lens_coating_histories_on_lens_coating_id"
-
   create_table "lens_coatings", :force => true do |t|
     t.string   "name",       :limit => 60,                   :null => false
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
     t.boolean  "active",                   :default => true, :null => false
-    t.integer  "account_id",                                 :null => false
   end
-
-  add_index "lens_coatings", ["account_id"], :name => "index_lens_coatings_on_account_id"
-
-  create_table "lens_material_histories", :force => true do |t|
-    t.integer  "lens_material_id"
-    t.string   "name",             :limit => 60,                   :null => false
-    t.boolean  "active",                         :default => true, :null => false
-    t.datetime "start_at",                                         :null => false
-    t.datetime "end_at"
-    t.datetime "created_at",                                       :null => false
-    t.datetime "updated_at",                                       :null => false
-    t.integer  "account_id",                                       :null => false
-  end
-
-  add_index "lens_material_histories", ["account_id"], :name => "index_lens_material_histories_on_account_id"
-  add_index "lens_material_histories", ["lens_material_id"], :name => "index_lens_material_histories_on_lens_material_id"
 
   create_table "lens_materials", :force => true do |t|
     t.string   "name",       :limit => 60,                   :null => false
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
     t.boolean  "active",                   :default => true, :null => false
-    t.integer  "account_id",                                 :null => false
   end
-
-  add_index "lens_materials", ["account_id"], :name => "index_lens_materials_on_account_id"
-
-  create_table "lens_type_histories", :force => true do |t|
-    t.integer  "lens_type_id"
-    t.string   "name",         :limit => 60,                   :null => false
-    t.boolean  "active",                     :default => true, :null => false
-    t.datetime "start_at",                                     :null => false
-    t.datetime "end_at"
-    t.datetime "created_at",                                   :null => false
-    t.datetime "updated_at",                                   :null => false
-    t.integer  "account_id",                                   :null => false
-  end
-
-  add_index "lens_type_histories", ["account_id"], :name => "index_lens_type_histories_on_account_id"
-  add_index "lens_type_histories", ["lens_type_id"], :name => "index_lens_type_histories_on_lens_type_id"
 
   create_table "lens_types", :force => true do |t|
     t.string   "name",       :limit => 60,                   :null => false
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
     t.boolean  "active",                   :default => true, :null => false
-    t.integer  "account_id",                                 :null => false
   end
-
-  add_index "lens_types", ["account_id"], :name => "index_lens_types_on_account_id"
 
   create_table "optometrists", :force => true do |t|
     t.integer  "personal_title_id"
@@ -369,29 +309,12 @@ ActiveRecord::Schema.define(:version => 20130122223226) do
   add_index "patients", ["postal_country_id"], :name => "index_patients_on_postal_country_id"
   add_index "patients", ["postal_state_id"], :name => "index_patients_on_postal_state_id"
 
-  create_table "personal_title_histories", :force => true do |t|
-    t.integer  "personal_title_id",                                 :null => false
-    t.string   "title",             :limit => 20,                   :null => false
-    t.boolean  "active",                          :default => true, :null => false
-    t.datetime "start_at",                                          :null => false
-    t.datetime "end_at"
-    t.datetime "created_at",                                        :null => false
-    t.datetime "updated_at",                                        :null => false
-    t.integer  "account_id",                                        :null => false
-  end
-
-  add_index "personal_title_histories", ["account_id"], :name => "index_personal_title_histories_on_account_id"
-  add_index "personal_title_histories", ["personal_title_id"], :name => "index_personal_title_histories_on_personal_title_id"
-
   create_table "personal_titles", :force => true do |t|
     t.string   "title",      :limit => 20,                   :null => false
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
     t.boolean  "active",                   :default => true, :null => false
-    t.integer  "account_id",                                 :null => false
   end
-
-  add_index "personal_titles", ["account_id"], :name => "index_personal_titles_on_account_id"
 
   create_table "prescriptions", :force => true do |t|
     t.string   "type",            :limit => 100
