@@ -1,5 +1,5 @@
 Optician::Application.routes.draw do
-  devise_for :employees do
+  devise_for :users do
     get "/login" => "devise/sessions#new"
 	delete "/logout" => "devise/sessions#destroy"
   end

@@ -1,8 +1,15 @@
 class User < ActiveRecord::Base
+
   attr_accessible  :active, :administrator, :dispensing_optician, :email, :first_name, :last_name, :password, :password_confirmation, :personal_title_id, :remember_me
 
   belongs_to :account
   belongs_to :personal_title
+
+  # Include default devise modules. Others available are:
+  # :token_authenticatable, :confirmable, :registerable,
+  # and :omniauthable
+  devise :database_authenticatable, :timeoutable, :lockable,
+         :recoverable, :rememberable, :trackable, :validatable
 
   validates :account_id, :presence => true
   validates :email, :presence => true, :length => { :maximum => 40 }

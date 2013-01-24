@@ -21,10 +21,11 @@ opticianly.com
 opticianplus.com
 opticianpro.com
 optichero.com
-opticous.com
 optisimple.com
 visionably.com
 visionhero.com
+
+opticous.com
 
 optiadmin.com
 opticianretail.com
