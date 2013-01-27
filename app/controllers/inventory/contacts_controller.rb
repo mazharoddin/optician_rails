@@ -1,8 +1,9 @@
 class Inventory::ContactsController < Inventory::ApplicationController
-	before_filter :find_inventory, :only => [:edit, :show, :update]
-	
 	add_breadcrumb "Contacts", :inventory_contacts_inventory_index_path
 
+	before_filter :find_inventory, :only => [:edit, :show, :update]
+	authorize_resource :ContactsInventory, :parent => false
+	
 	def index
 		if params[:q] then
 			add_breadcrumb "Search Results", :inventory_contacts_inventory_path
@@ -26,7 +27,6 @@ class Inventory::ContactsController < Inventory::ApplicationController
 	end
 	
 	def edit
-		add_breadcrumb @item.description, inventory_contacts_inventory_path(@item)
 		add_breadcrumb "Edit", edit_inventory_contacts_inventory_path(@item)
 	end
 	
@@ -37,12 +37,9 @@ class Inventory::ContactsController < Inventory::ApplicationController
 	end
 	
 	def show
-		add_breadcrumb @item.description, inventory_contacts_inventory_path(@item)
 	end
 	
 	def update
-		add_breadcrumb @item.description, inventory_contacts_inventory_path(@item)
-
 		if @item.update_attributes(params[:contacts_inventory]) then
 			flash[:success] = "Contacts inventory has been updated."
 			redirect_to :action => 'index', :controller => 'inventory'
@@ -54,5 +51,6 @@ class Inventory::ContactsController < Inventory::ApplicationController
 	private
 	def find_inventory
 		@item = ContactsInventory.find(params[:id])
+		add_breadcrumb @item.description, inventory_contacts_inventory_path(@item)
 	end
 end

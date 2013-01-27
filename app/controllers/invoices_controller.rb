@@ -1,8 +1,9 @@
 class InvoicesController < ApplicationController
-	before_filter :find_invoice, :only => [:edit, :show, :update, :patients, :set_patient, :set_cash_sale, :void_invoice]
-	
 	add_breadcrumb "Invoices", :invoices_path
 
+	before_filter :find_invoice, :only => [:edit, :show, :update, :patients, :set_patient, :set_cash_sale, :void_invoice]
+	authorize_resource	
+	
 	def index
 		if params[:q] then
 			add_breadcrumb "Search Results", :invoices_path
@@ -38,12 +39,9 @@ class InvoicesController < ApplicationController
 	end
 	
 	def show
-		add_breadcrumb '#' + @invoice.id.to_s, invoice_path(@invoice)
 	end
 	
 	def update
-		add_breadcrumb '#' + @invoice.id.to_s, patient_path(@invoice)
-
 		if @invoice.update_attributes(params[:invoice]) then
 			flash[:success] = "Invoice has been updated."
 			redirect_to :action => 'index'
@@ -53,7 +51,6 @@ class InvoicesController < ApplicationController
 	end
 
 	def patients
-		add_breadcrumb '#' + @invoice.id.to_s, invoice_path(@invoice)
 		add_breadcrumb 'Select Patient', invoice_patients_path(@invoice)
 		if params[:q] then
 			add_breadcrumb "Search Results", :patients_path
@@ -111,6 +108,7 @@ class InvoicesController < ApplicationController
 		else
 			@invoice = @current_account.invoices.find(params[:id])
 		end
+		add_breadcrumb '#' + @invoice.id.to_s, patient_path(@invoice)
 	end
 
 	def navbar

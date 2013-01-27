@@ -1,8 +1,9 @@
 class Inventory::FramesController < Inventory::ApplicationController
-	before_filter :find_inventory, :only => [:edit, :show, :update]
-	
 	add_breadcrumb "Frames", :inventory_frames_inventory_index_path
 
+	before_filter :find_inventory, :only => [:edit, :show, :update]
+	authorize_resource :FramesInventory, :parent => false
+	
 	def index
 		if params[:q] then
 			add_breadcrumb "Search Results", :inventory_frames_inventory_path
@@ -26,7 +27,6 @@ class Inventory::FramesController < Inventory::ApplicationController
 	end
 	
 	def edit
-		add_breadcrumb @item.description, inventory_frames_inventory_path(@item)
 		add_breadcrumb "Edit", edit_inventory_frames_inventory_path(@item)
 	end
 	
@@ -37,12 +37,9 @@ class Inventory::FramesController < Inventory::ApplicationController
 	end
 	
 	def show
-		add_breadcrumb @item.description, inventory_frames_inventory_path(@item)
 	end
 	
 	def update
-		add_breadcrumb @item.description, inventory_frames_inventory_path(@item)
-
 		if @item.update_attributes(params[:frames_inventory]) then
 			flash[:success] = "Frames inventory has been updated."
 			redirect_to :action => 'index', :controller => 'inventory'
@@ -54,5 +51,6 @@ class Inventory::FramesController < Inventory::ApplicationController
 	private
 	def find_inventory
 		@item = FramesInventory.find(params[:id])
+		add_breadcrumb @item.description, inventory_frames_inventory_path(@item)
 	end
 end

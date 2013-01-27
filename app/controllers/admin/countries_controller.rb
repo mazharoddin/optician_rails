@@ -2,6 +2,7 @@ class Admin::CountriesController < Admin::ApplicationController
 	add_breadcrumb "Countries", :admin_countries_path
 
 	before_filter :find_country, :only => [:edit, :show, :update]
+	authorize_resource	
 	
 	def index
 		if params[:q] then
@@ -39,6 +40,7 @@ class Admin::CountriesController < Admin::ApplicationController
 	end
 	
 	def update
+		authorize! :update, @country
 		if @country.update_attributes(params[:country]) then
 			flash[:success] = "Country has been updated."
 			redirect_to :action => 'index'

@@ -2,6 +2,7 @@ class Admin::GuardianRelationshipsController < Admin::ApplicationController
 	add_breadcrumb "Guardian Relationships", :admin_guardian_relationships_path
 
 	before_filter :find_guardian_relationship, :only => [:edit, :show, :update]
+	authorize_resource	
 	
 	def index
 		if params[:q] then

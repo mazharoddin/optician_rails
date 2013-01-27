@@ -1,6 +1,6 @@
 <% @title = "Show Lens Type" %>
 <div class="page-header">
-	<h1><%= @lens_type.name %> (Lens Type) <%= link_to "Edit Lens Type", edit_admin_lens_type_path(@lens_type), :class => "btn btn-primary pull-right" %></h1>
+	<h1><%= @lens_type.name %> (Lens Type)<% if can? :edit, @lens_type %><%= link_to "Edit Lens Type", edit_admin_lens_type_path(@lens_type), :class => "btn btn-primary pull-right" %><% end %></h1>
 </div>
 
 

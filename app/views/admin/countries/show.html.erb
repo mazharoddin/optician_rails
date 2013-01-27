@@ -1,7 +1,7 @@
 <% @title = "Show Country" %>
 
 <div class="page-header">
-	<h1><%= @country.name %> (Country) <%= link_to "Edit Country", edit_admin_country_path(@country), :class => "btn btn-primary pull-right" %></h1>
+	<h1><%= @country.name %> (Country)<% if can? :update, @country %><%= link_to "Edit Country", edit_admin_country_path(@country), :class => "btn btn-primary pull-right" %><% end %></h1>
 </div>
 
 
@@ -12,7 +12,7 @@
 	<dd><%= @country.active %></dd>
 </dl>
 
-<h2>States <%= link_to "New State", new_admin_country_state_path(@country), :class => "btn btn-success pull-right" %></h2>
+<h2>States<% if can? :create, State %><%= link_to "New State", new_admin_country_state_path(@country), :class => "btn btn-success pull-right" %><% end %></h2>
 <% if @country.states.empty? then %>
 <p>No states found</p>
 <% else %>

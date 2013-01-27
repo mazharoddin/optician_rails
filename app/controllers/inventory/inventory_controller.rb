@@ -1,4 +1,6 @@
 class Inventory::InventoryController < Inventory::ApplicationController
+	before_filter :find_inventory, :only => [:show]
+	authorize_resource	
 
 	def index
 		if params[:q] then
@@ -10,7 +12,6 @@ class Inventory::InventoryController < Inventory::ApplicationController
 	end
 
 	def show
-		@item = Inventory.find(params[:id])
 		if @item.type == "ContactsInventory" then
 			redirect_to inventory_contacts_inventory_path(@item)
 		else
@@ -28,5 +29,11 @@ class Inventory::InventoryController < Inventory::ApplicationController
 				end
 			end
 		end
+	end
+
+	private
+	def find_inventory
+		@item = Inventory.find(params[:id])
+		add_breadcrumb @item.description, inventory_path(@item)
 	end
 end

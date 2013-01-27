@@ -7,10 +7,12 @@
 				    <%= link_to "Cash Sale", invoice_cash_sale_path(@invoice), :class => "btn" %>
 				</div>
 <% if @invoice.patient != nil then %>
+<% if can? :create, Dispensing %>
 				<div class="btn-group">
 					<%= link_to "Dispense Glasses", new_invoice_glasses_dispensing_path(@invoice), :class => "btn" %>
 					<%= link_to "Dispense Conacts", new_invoice_contacts_dispensing_path(@invoice), :class => "btn" %>
 				</div>
+<% end %>
 <% end %>
 				<div class="btn-group">
 					<%= link_to "Add Service", services_invoice_items_path(@invoice), :class => "btn" %>

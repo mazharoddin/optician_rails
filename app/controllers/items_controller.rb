@@ -1,16 +1,15 @@
 class ItemsController < ApplicationController
-	before_filter :find_invoice
-	before_filter :find_item, :only => [:edit, :show, :update]
-	
 	add_breadcrumb "Invoices", :invoices_path
 
+	before_filter :find_invoice
+	before_filter :find_item, :only => [:edit, :show, :update]
+	authorize_resource	
+	
 	def index
 		redirect_to invoice_path(@invoice)
 	end
 	
 	def create
-		add_breadcrumb '#' + @invoice.id.to_s, invoice_path(@invoice)
-		add_breadcrumb "Items", invoice_path(@invoice)
 		add_breadcrumb "New", new_invoice_item_path(@invoice)
 
 		if params[:inventory_id] == nil then
@@ -27,35 +26,17 @@ class ItemsController < ApplicationController
 	end
 	
 	def edit
-		add_breadcrumb '#' + @invoice.id.to_s, invoice_path(@invoice)
-		add_breadcrumb "Items", invoice_path(@invoice)
-		add_breadcrumb '#' + @item.id.to_s, invoice_item_path(@invoice, @item)
-
-		@item = @invoice.items.find(params[:id])
+		add_breadcrumb "Edit", edit_invoice_item_path(@invoice, @item)
 	end
 	
 	def new
-		add_breadcrumb '#' + @invoice.id.to_s, invoice_path(@invoice)
-		add_breadcrumb "Items", invoice_path(@invoice)
 		add_breadcrumb "New", new_invoice_item_path(@invoice)
-		
-		@item = @invoice.items.build
 	end
 	
 	def show
-		add_breadcrumb '#' + @invoice.id.to_s, invoice_path(@invoice)
-		add_breadcrumb "Items", invoice_path(@invoice)
-		add_breadcrumb '#' + @item.id.to_s, invoice_item_path(@invoice, @item)
-
-		@item = @invoice.items.find(params[:id])
 	end
 	
 	def update
-		add_breadcrumb '#' + @invoice.id.to_s, invoice_path(@invoice)
-		add_breadcrumb "Items", invoice_path(@invoice)
-		add_breadcrumb '#' + @item.id.to_s, invoice_item_path(@invoice, @item)
-
-		@item = @invoice.items.find(params[:id])
 		if @item.update_attributes(params[:item]) then
 			flash[:success] = "Item has been updated."
 			redirect_to invoice_path(@invoice)
@@ -65,8 +46,6 @@ class ItemsController < ApplicationController
 	end
 
 	def accessories
-		add_breadcrumb '#' + @invoice.id.to_s, invoice_path(@invoice)
-		add_breadcrumb "Items", invoice_path(@invoice)
 		add_breadcrumb "Accessories", accessories_invoice_items_path(@invoice)
 		if params[:q] then
 			add_breadcrumb "Search Results", :inventory_services_inventory_path
@@ -77,8 +56,6 @@ class ItemsController < ApplicationController
 	end
 	
 	def services
-		add_breadcrumb '#' + @invoice.id.to_s, invoice_path(@invoice)
-		add_breadcrumb "Items", invoice_path(@invoice)
 		add_breadcrumb "Services", services_invoice_items_path(@invoice)
 		if params[:q] then
 			add_breadcrumb "Search Results", :inventory_services_inventory_path
@@ -91,6 +68,8 @@ class ItemsController < ApplicationController
 	private
 	def find_item
 		@item = @invoice.items.find(params[:id])
+		add_breadcrumb '#' + @invoice.id.to_s, invoice_path(@invoice)
+		add_breadcrumb "Items", invoice_path(@invoice)
 	end
 
 	def navbar
@@ -99,5 +78,6 @@ class ItemsController < ApplicationController
 	
 	def find_invoice
 	  @invoice = Invoice.find(params[:invoice_id])
+	  add_breadcrumb '#' + @item.id.to_s, invoice_item_path(@invoice, @item)
 	end
 end

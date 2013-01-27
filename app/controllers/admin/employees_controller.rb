@@ -2,6 +2,7 @@ class Admin::EmployeesController < Admin::ApplicationController
 	add_breadcrumb "Employees", :admin_employees_path
 
 	before_filter :find_employee, :only => [:edit, :show, :update]
+	authorize_resource	
 	
 	def index
 		if params[:q] then
@@ -54,6 +55,6 @@ class Admin::EmployeesController < Admin::ApplicationController
 	private
 	def find_employee
 		@employee = @current_account.employees.find(params[:id])
-		add_breadcrumb @employee.full_name, admin_employee_path(@employee)
+		add_breadcrumb @employee, admin_employee_path(@employee)
 	end
 end

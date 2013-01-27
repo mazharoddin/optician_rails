@@ -1,19 +1,15 @@
 class GlassesPrescriptionsController < ApplicationController
+	add_breadcrumb "Patients", :patients_path
+
 	before_filter :find_patient
 	before_filter :find_glasses_prescription, :only => [:edit, :show, :update]
-	
-	add_breadcrumb "Patients", :patients_path
+	authorize_resource	
 	
 	def index
-		add_breadcrumb @patient.full_name, patient_path(@patient)
-		add_breadcrumb "Glasses Prescriptions", patient_glasses_prescriptions_path(@patient)
-
 		@glasses_prescriptions = @patient.glasses_prescriptions.page(params[:page])
 	end
 	
 	def create
-		add_breadcrumb @patient.full_name, patient_path(@patient)
-		add_breadcrumb "Glasses Prescriptions", patient_glasses_prescriptions_path(@patient)
 		add_breadcrumb "New", new_patient_glasses_prescription_path(@patient)
 
 		@glasses_prescription = @patient.glasses_prescriptions.build(params[:glasses_prescription])
@@ -31,24 +27,15 @@ class GlassesPrescriptionsController < ApplicationController
 	end
 	
 	def new
-		add_breadcrumb @patient.full_name, patient_path(@patient)
-		add_breadcrumb "Glasses Prescriptions", patient_glasses_prescriptions_path(@patient)
 		add_breadcrumb "New", new_patient_glasses_prescription_path(@patient)
 		
 		@glasses_prescription = @patient.glasses_prescriptions.build
 	end
 	
 	def show
-		add_breadcrumb @patient.full_name, patient_path(@patient)
-		add_breadcrumb "Glasses Prescriptions", patient_glasses_prescriptions_path(@patient)
-		add_breadcrumb @glasses_prescription.rx_date, patient_glasses_prescription_path(@patient, @glasses_prescription)
 	end
 	
 	def update
-		add_breadcrumb @patient.full_name, patient_path(@patient)
-		add_breadcrumb "Glasses Prescriptions", patient_glasses_prescriptions_path(@patient)
-		add_breadcrumb @glasses_prescription.rx_date, patient_glasses_prescription_path(@patient, @glasses_prescription)
-
 		if @glasses_prescription.update_attributes(params[:glasses_prescription]) then
 			flash[:success] = "Glasses prescription has been updated."
 			redirect_to patient_glasses_prescription_path(@patient, @glasses_prescription)
@@ -70,10 +57,13 @@ class GlassesPrescriptionsController < ApplicationController
 	private
 	def find_patient
 		@patient = @current_account.patients.find(params[:patient_id])
+		add_breadcrumb @patient, patient_path(@patient)
+		add_breadcrumb "Glasses Prescriptions", patient_glasses_prescriptions_path(@patient)
 	end
 
 	def find_glasses_prescription
 		@glasses_prescription = @patient.glasses_prescriptions.find(params[:id])
+		add_breadcrumb @glasses_prescription.rx_date, patient_glasses_prescription_path(@patient, @glasses_prescription)
 	end
 
 	def navbar

@@ -2,6 +2,7 @@ class Admin::StoresController < Admin::ApplicationController
 	add_breadcrumb "Stores", :admin_stores_path
 
 	before_filter :find_store, :only => [:edit, :show, :update]
+	authorize_resource	
 	
 	def index
 		if params[:q] then

@@ -1,3 +1,40 @@
+Controllers
+===========
+application
+contacts_prescription
+dashboard
+glasses_prescription
+patients
+inventory/accessories
+inventory/application
+inventory/contacts
+inventory/frames
+inventory/inventory
+inventory/lesnses
+inventory/services
+
+
+Models
+======
+ability
+accessories_inventory
+contacts_inventory
+contacts_prescription
+frames_inventory
+glasses_prescription
+inventory
+lens_inventory
+patient
+
+Tables
+======
+dispensing
+inventory
+inventory_lens_coatings
+patients
+prescriptions
+
+
 Possible Names
 ==============
 
@@ -32,17 +69,20 @@ opticianretail.com
 
 
 
+FUTURE
+======
+1. Add "edit" link from index in administration or just make it default to edit link for people who can edit it?
+2. States should change based on the selected country so you only see relevant state options
+3. The open/close hours for the stores SUCKS. They look bad and there is no way to say "closed"
+4. The accounts table needs so much more information starting with who is active/inactive and expiry dates
+5. Move all search results to xxx/search so the breadcrumbs work or maybe create a dedicated search results page?
 
-FIX MODELS & DATABASE
-=====================
-Models to make global
-employment_types
-genders
-guardian_relationships
-lens_coatings*
-lens_materials*
-lens_types*
-personal_titles*
+THOUGHTS
+========
+1. Could the CanCan gem be used to enforce multi-tenancy? If new automatially applies the condition then it should work?
+
+
+
 
 TODO
 ====

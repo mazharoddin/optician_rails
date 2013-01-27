@@ -2,6 +2,7 @@ class Admin::OptometristsController < Admin::ApplicationController
 	add_breadcrumb "Optometrists", :admin_optometrists_path
 
 	before_filter :find_optometrist, :only => [:edit, :show, :update]
+	authorize_resource	
 	
 	def index
 		if params[:q] then
@@ -49,6 +50,6 @@ class Admin::OptometristsController < Admin::ApplicationController
 	private
 	def find_optometrist
 		@optometrist = @current_account.optometrists.find(params[:id])
-		add_breadcrumb @optometrist.full_name, admin_optometrist_path(@optometrist)
+		add_breadcrumb @optometrist, admin_optometrist_path(@optometrist)
 	end
 end

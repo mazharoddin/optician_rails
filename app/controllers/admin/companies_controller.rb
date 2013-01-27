@@ -2,6 +2,7 @@ class Admin::CompaniesController < Admin::ApplicationController
 	add_breadcrumb "Companies", :admin_companies_path
 
 	before_filter :find_company, :only => [:edit, :show, :update]
+	authorize_resource	
 	
 	def index
 		if params[:q] then

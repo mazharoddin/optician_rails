@@ -1,6 +1,6 @@
 <% @title = "Show Employee" %>
 <div class="page-header">
-	<h1><%= @employee.full_name %> (Employee) <%= link_to "Edit Employee", edit_admin_employee_path(@employee), :class => "btn btn-primary pull-right" %></h1>
+	<h1><%= @employee %> (Employee)<% if can? :update, @employee %><%= link_to "Edit Employee", edit_admin_employee_path(@employee), :class => "btn btn-primary pull-right" %><% end %></h1>
 </div>
 
 

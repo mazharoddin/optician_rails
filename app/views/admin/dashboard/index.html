@@ -1,60 +1,90 @@
 ﻿<% @title = "Administration" %>
-				<div class="span12">
-					<div class="page-header">
-						<h1>Administration</h1>
-					</div>
+				<div class="row">
 					<div class="span3">
 						<h2>People</h2>
 						<dl>
+<% if can? :read, Employee %>
 							<dt><%= link_to "Employees", :admin_employees %></dt>
 							<dd>Maintain employees<dd>
+<% end %>
+<% if can? :read, Optometrist %>
 							<dt><%= link_to "Optometrists", :admin_optometrists %></dt>
 							<dd>Maintain optometrists<dd>
+<% end %>
+<% if can? :read, Patient %>
+							<dt><%= link_to "Patients", :patients %></dt>
+							<dd>Maintain patients<dd>
+<% end %>
+<% if can? :read, EmploymentType %>
 							<dt><%= link_to "Employment Types", :admin_employment_types %></dt>
 							<dd>Maintain employment types<dd>
+<% end %>
+<% if can? :read, Gender %>
 							<dt><%= link_to "Genders", :admin_genders %></dt>
 							<dd>Maintain genders<dd>
+<% end %>
+<% if can? :read, GuardianRelationship %>
 							<dt><%= link_to "Guardian Relationships", :admin_guardian_relationships %></dt>
 							<dd>Maintain guardian relationships<dd>
+<% end %>
+<% if can? :read, PersonalTitle %>
 							<dt><%= link_to "Personal Titles", :admin_personal_titles %></dt>
 							<dd>Maintain personal titles<dd>
-						</dl>
-						<h2>Geographic</h2>
-						<dl>
-							<dt><%= link_to "Countries", :admin_countries %></dt>
-							<dd>Maintain countries<dd>
-							<dt><%= link_to "Stores", :admin_stores %></dt>
-							<dd>Maintain stores<dd>
+<% end %>
 						</dl>
 					</div>
 					<div class="span3">
 						<h2>Inventory</h2>
 						<dl>
+<% if can? :read, Inventory %>
 							<dt><%= link_to "Inventory", :inventory_root %></dt>
 							<dd>Manage inventory</dd>
+<% end %>
+<% if can? :read, Company %>
 							<dt><%= link_to "Companies", :admin_companies %></dt>
 							<dd>Maintain suppliers<dd>
-						</dl>
-						<h2>Taxation</h2>
-						<dl>
-							<dt><%= link_to "Taxes", :admin_taxes %></dt>
-							<dd>Maintain taxes<dd>
+<% end %>
 						</dl>
 					</div>
 					<div class="span3">
-						<h2>Contacts</h2>
+						<h2>Geographic</h2>
 						<dl>
-							<dt><%= link_to "Brands", :admin_brands %></dt>
-							<dd>Maintain brands</dd>
+<% if can? :read, Country %>
+							<dt><%= link_to "Countries", :admin_countries %></dt>
+							<dd>Maintain countries<dd>
+<% end %>
+<% if can? :read, Store %>
+							<dt><%= link_to "Stores", :admin_stores %></dt>
+							<dd>Maintain stores<dd>
+<% end %>
 						</dl>
-						<h2>Lenses</h2>
+						<h2>Taxation</h2>
 						<dl>
-							<dt><%= link_to "Coatings", :admin_lens_coatings %></dt>
+<% if can? :read, Tax %>
+							<dt><%= link_to "Taxes", :admin_taxes %></dt>
+							<dd>Maintain taxes<dd>
+						</dl>
+<% end %>
+					</div>
+					<div class="span3">
+						<h2>Lists</h2>
+						<dl>
+<% if can? :read, Brand %>
+							<dt><%= link_to "Contact Brands", :admin_brands %></dt>
+							<dd>Maintain brands for contacts</dd>
+<% end %>
+<% if can? :read, LensCoating %>
+							<dt><%= link_to "Lens Coatings", :admin_lens_coatings %></dt>
 							<dd>Manage lens coatings</dd>
-							<dt><%= link_to "Materials", :admin_lens_materials %></dt>
+<% end %>
+<% if can? :read, LensMaterial %>
+							<dt><%= link_to "Lens Materials", :admin_lens_materials %></dt>
 							<dd>Manage lens materials</dd>
-							<dt><%= link_to "Types", :admin_lens_types %></dt>
+<% end %>
+<% if can? :read, LensType %>
+							<dt><%= link_to "Lens Types", :admin_lens_types %></dt>
 							<dd>Manage lens types</dd>
+<% end %>
 						</dl>
 					</div>
 				</div>

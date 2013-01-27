@@ -2,6 +2,7 @@ class Admin::GendersController < Admin::ApplicationController
 	add_breadcrumb "Genders", :admin_genders_path
 
 	before_filter :find_gender, :only => [:edit, :show, :update]
+	authorize_resource
 	
 	def index
 		if params[:q] then

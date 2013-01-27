@@ -1,20 +1,16 @@
 class ContactsPrescriptionsController < ApplicationController
+	add_breadcrumb "Patients", :patients_path
+
 	before_filter :find_patient
 	before_filter :find_contacts_prescription, :only => [:edit, :show, :update]
 	before_filter :find_brands, :only => [:create, :edit, :new, :show, :update]
-	
-	add_breadcrumb "Patients", :patients_path
+	authorize_resource	
 	
 	def index
-		add_breadcrumb @patient.full_name, patient_path(@patient)
-		add_breadcrumb "Contacts Prescriptions", patient_contacts_prescriptions_path(@patient)
-
 		@contacts_prescriptions = @patient.contacts_prescriptions.page(params[:page])
 	end
 	
 	def create
-		add_breadcrumb @patient.full_name, patient_path(@patient)
-		add_breadcrumb "Contacts Prescriptions", patient_contacts_prescriptions_path(@patient)
 		add_breadcrumb "New", new_patient_contacts_prescription_path(@patient)
 
 		@contacts_prescription = @patient.contacts_prescriptions.build(params[:contacts_prescription])
@@ -32,24 +28,15 @@ class ContactsPrescriptionsController < ApplicationController
 	end
 	
 	def new
-		add_breadcrumb @patient.full_name, patient_path(@patient)
-		add_breadcrumb "Contacts Prescriptions", patient_contacts_prescriptions_path(@patient)
 		add_breadcrumb "New", new_patient_contacts_prescription_path(@patient)
 		
 		@contacts_prescription = @patient.contacts_prescriptions.build
 	end
 	
 	def show
-		add_breadcrumb @patient.full_name, patient_path(@patient)
-		add_breadcrumb "Contacts Prescriptions", patient_contacts_prescriptions_path(@patient)
-		add_breadcrumb @contacts_prescription.rx_date, patient_contacts_prescription_path(@patient, @contacts_prescription)
 	end
 	
 	def update
-		add_breadcrumb @patient.full_name, patient_path(@patient)
-		add_breadcrumb "Contacts Prescriptions", patient_contacts_prescriptions_path(@patient)
-		add_breadcrumb @contacts_prescription.rx_date, patient_contacts_prescription_path(@patient, @contacts_prescription)
-
 		if @contacts_prescription.update_attributes(params[:contacts_prescription]) then
 			flash[:success] = "Contacts prescription has been updated."
 			redirect_to patient_contacts_prescription_path(@patient, @contacts_prescription)
@@ -71,10 +58,13 @@ class ContactsPrescriptionsController < ApplicationController
 	private
 	def find_patient
 		@patient = @current_account.patients.find(params[:patient_id])
+		add_breadcrumb @patient, patient_path(@patient)
+		add_breadcrumb "Contacts Prescriptions", patient_contacts_prescriptions_path(@patient)
 	end
 
 	def find_contacts_prescription
 		@contacts_prescription = @patient.contacts_prescriptions.find(params[:id])
+		add_breadcrumb @contacts_prescription.rx_date, patient_contacts_prescription_path(@patient, @contacts_prescription)
 	end
 
 	def find_brands

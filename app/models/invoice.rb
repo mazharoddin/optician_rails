@@ -23,7 +23,7 @@ class Invoice < ActiveRecord::Base
 
   after_initialize do |invoice|
     if invoice.patient != nil then
-		invoice.name = invoice.patient.full_name
+		invoice.name = invoice.patient.to_s
 		invoice.address = invoice.patient.home_address
 		invoice.city = invoice.patient.home_city
 		invoice.state = invoice.patient.home_state

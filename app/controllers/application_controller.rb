@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 	protect_from_forgery
 
 	before_filter :set_current_account
-	before_filter :authenticate_employee!
+	before_filter :authenticate_user!
 	before_filter :navbar
 
 	add_breadcrumb "Home", :root_path

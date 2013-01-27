@@ -1,6 +1,6 @@
 <% @title = "Show Optometrist" %>
 <div class="page-header">
-	<h1><%= @optometrist.full_name %> (Optometrist) <%= link_to "Edit Optometrist", edit_admin_optometrist_path(@optometrist), :class => "btn btn-primary pull-right" %></h1>
+	<h1><%= @optometrist %> (Optometrist)<% if can? :edit, @optometrist %><%= link_to "Edit Optometrist", edit_admin_optometrist_path(@optometrist), :class => "btn btn-primary pull-right" %><% end %></h1>
 </div>
 
 

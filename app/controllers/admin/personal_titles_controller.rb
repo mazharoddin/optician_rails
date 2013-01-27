@@ -2,6 +2,7 @@ class Admin::PersonalTitlesController < Admin::ApplicationController
 	add_breadcrumb "Personal Titles", :admin_personal_titles_path
 
 	before_filter :find_personal_title, :only => [:edit, :show, :update]
+	authorize_resource	
 	
 	def index
 		if params[:q] then

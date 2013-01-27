@@ -1,8 +1,9 @@
 class PatientsController < ApplicationController
-	before_filter :find_patient, :only => [:edit, :show, :update, :dispensing, :invoices]
-	
 	add_breadcrumb "Patients", :patients_path
 
+	before_filter :find_patient, :only => [:edit, :show, :update, :dispensing, :invoices]
+	authorize_resource	
+	
 	def index
 		if params[:q] then
 			add_breadcrumb "Search Results", :patients_path
@@ -16,6 +17,7 @@ class PatientsController < ApplicationController
 		add_breadcrumb "New", new_patient_path
 
 		@patient = @current_account.patients.build(params[:patient])
+
 		if @patient.save then
 			flash[:success] = "Patient has been created."
 			redirect_to patient_path(@patient)
@@ -32,14 +34,16 @@ class PatientsController < ApplicationController
 		add_breadcrumb "New", new_patient_path
 
 		@patient = @current_account.patients.build
+
+		authorize! :create, @patient
 	end
 	
 	def show
-		add_breadcrumb @patient.full_name, patient_path(@patient)
+		add_breadcrumb @patient, patient_path(@patient)
 	end
 	
 	def update
-		add_breadcrumb @patient.full_name, patient_path(@patient)
+		add_breadcrumb @patient, patient_path(@patient)
 
 		if @patient.update_attributes(params[:patient]) then
 			flash[:success] = "Patient has been updated."
@@ -50,14 +54,17 @@ class PatientsController < ApplicationController
 	end
 
 	def dispensing
-		add_breadcrumb @patient.full_name, patient_path(@patient)
+		authorize! :read, @patient
+		authorize! :read, Dispensing
+
+		add_breadcrumb @patient, patient_path(@patient)
 		add_breadcrumb 'Dispensing', patient_dispensing_path(@patient)
 		
 		@dispensing = @patient.dispensing.page(params[:page])
 	end
 	
 	def invoices
-		add_breadcrumb @patient.full_name, patient_path(@patient)
+		add_breadcrumb @patient, patient_path(@patient)
 		add_breadcrumb 'Invoices', patient_invoices_path(@patient)
 		
 		@invoices = @patient.invoices.page(params[:page])

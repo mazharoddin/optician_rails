@@ -3,6 +3,7 @@ class Admin::StatesController < Admin::ApplicationController
 	
 	before_filter :find_country
 	before_filter :find_state, :only => [:edit, :show, :update]
+	authorize_resource	
 	
 	def index
 		if params[:q] then
@@ -27,8 +28,6 @@ class Admin::StatesController < Admin::ApplicationController
 	
 	def edit
 		add_breadcrumb "Edit", edit_admin_country_state_path(@country, @state)
-
-		@state = @country.states.find(params[:id])
 	end
 	
 	def new
@@ -41,7 +40,6 @@ class Admin::StatesController < Admin::ApplicationController
 	end
 	
 	def update
-		@state = @country.states.find(params[:id])
 		if @state.update_attributes(params[:state]) then
 			flash[:success] = "State has been updated."
 			redirect_to admin_country_path(@country)

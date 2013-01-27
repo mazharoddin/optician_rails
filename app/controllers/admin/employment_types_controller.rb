@@ -2,6 +2,7 @@ class Admin::EmploymentTypesController < Admin::ApplicationController
 	add_breadcrumb "Employment Types", :admin_employment_types_path
 
 	before_filter :find_employment_type, :only => [:edit, :show, :update]
+	authorize_resource	
 	
 	def index
 		if params[:q] then

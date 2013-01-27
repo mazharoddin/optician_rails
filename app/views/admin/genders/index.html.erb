@@ -1,6 +1,6 @@
 <% @title = "Genders" %>
 <div class="page-header">
-	<h1>Find Genders <%= link_to "New Genders", new_admin_gender_path, :class => "btn btn-success pull-right" %></h1>
+	<h1>Find Genders<% if can? :create, Gender %><%= link_to "New Genders", new_admin_gender_path, :class => "btn btn-success pull-right" %><% end %></h1>
 </div>
 
 <form class="well form-search" method="get">

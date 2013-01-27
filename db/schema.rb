@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130123073032) do
+ActiveRecord::Schema.define(:version => 20130125080435) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name",       :limit => 80,                   :null => false
@@ -431,14 +431,14 @@ ActiveRecord::Schema.define(:version => 20130123073032) do
 
   create_table "users", :force => true do |t|
     t.string   "first_name",             :limit => 40
-    t.string   "last_name",              :limit => 40,                   :null => false
-    t.string   "email",                                :default => "",   :null => false
-    t.datetime "created_at",                                             :null => false
-    t.datetime "updated_at",                                             :null => false
-    t.boolean  "active",                               :default => true, :null => false
-    t.boolean  "administrator",                        :default => true, :null => false
-    t.boolean  "dispensing_optician",                  :default => true, :null => false
-    t.string   "encrypted_password",                   :default => "",   :null => false
+    t.string   "last_name",              :limit => 40,                    :null => false
+    t.string   "email",                                :default => "",    :null => false
+    t.datetime "created_at",                                              :null => false
+    t.datetime "updated_at",                                              :null => false
+    t.boolean  "active",                               :default => true,  :null => false
+    t.boolean  "administrator",                        :default => true,  :null => false
+    t.boolean  "dispensing_optician",                  :default => true,  :null => false
+    t.string   "encrypted_password",                   :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -451,7 +451,8 @@ ActiveRecord::Schema.define(:version => 20130123073032) do
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.integer  "personal_title_id"
-    t.integer  "account_id",                                             :null => false
+    t.integer  "account_id",                                              :null => false
+    t.boolean  "super_administrator",                  :default => false, :null => false
   end
 
   add_index "users", ["account_id"], :name => "index_users_on_account_id"

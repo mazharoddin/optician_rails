@@ -39,23 +39,19 @@ class Patient < ActiveRecord::Base
   validates :work_ext, :length => { :maximum => 5 }
   validates :work_phone, :length => { :maximum => 20 }
 
-  def full_name
+	def to_s
 	    if first_name == nil or first_name.empty? then
 	        if last_name == nil or last_name.empty? then
-		        full_name = ""
+		        ""
 		    else
-		        full_name = last_name
+		        last_name
 		  end
 	    else
 		    if last_name == nil or last_name.empty? then
-			    full_name = first_name
+			    first_name
 			else
-			    full_name = "#{first_name} #{last_name}"
+			    "#{first_name} #{last_name}"
 			end
 		end
-	end
-	
-	def to_s
-		return full_name
 	end
 end

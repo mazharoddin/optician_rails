@@ -1,5 +1,5 @@
 <% @title = "Create Invoice" %>
 <div class="page-header">
-	<h1>New Invoice <a href="#void-modal" role="button" data-toggle="modal" class="btn btn-danger pull-right">Void Transaction</a></h1>
+	<h1>New Invoice <% if can? :update @invoice %><a href="#void-modal" role="button" data-toggle="modal" class="btn btn-danger pull-right">Void Transaction</a><% end %></h1>
 </div>
 <%= render "form" %>

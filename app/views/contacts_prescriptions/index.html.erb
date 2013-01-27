@@ -1,6 +1,6 @@
 <% @title = "Patient Contacts" %>
 <div class="page-header">
-	<h1><%= @patient.full_name %> (Patient)</h1>
+	<h1><%= @patient %> (Patient)</h1>
 </div>
 
 
@@ -19,9 +19,11 @@
 		<%= link_to "Current", current_patient_contacts_prescriptions_path(@patient), :class => "btn" %>
 		<%= link_to "History", patient_contacts_prescriptions_path(@patient), :class => "btn btn-primary" %>
 	</div>
+<% if can? :create, ContactsPrescription %>
 	<div class="btn-group pull-right">
 		<%= link_to "New Prescription", :new_patient_contacts_prescription, :class => "btn btn-success" %>
 	</div>
+<% end %>
 </div>
 
 <% if @contacts_prescriptions.empty? then %>

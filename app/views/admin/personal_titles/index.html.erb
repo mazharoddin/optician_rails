@@ -1,6 +1,6 @@
 <% @title = "Personal Titles" %>
 <div class="page-header">
-	<h1>Find Personal Title <%= link_to "New Personal Title", new_admin_personal_title_path, :class => "btn btn-success pull-right" %></h1>
+	<h1>Find Personal Title<% if can? :create, PersonalTitle %><%= link_to "New Personal Title", new_admin_personal_title_path, :class => "btn btn-success pull-right" %><% end %></h1>
 </div>
 
 <form class="well form-search" method="get">

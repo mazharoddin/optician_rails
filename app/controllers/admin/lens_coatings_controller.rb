@@ -2,6 +2,7 @@ class Admin::LensCoatingsController < Admin::ApplicationController
 	add_breadcrumb "Lens Coatings", :admin_lens_coatings_path
 
 	before_filter :find_lens_coating, :only => [:edit, :show, :update]
+	authorize_resource	
 	
 	def index
 		if params[:q] then

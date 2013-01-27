@@ -2,6 +2,7 @@ class Admin::LensTypesController < Admin::ApplicationController
 	add_breadcrumb "Lens Types", :admin_lens_types_path
 
 	before_filter :find_lens_type, :only => [:edit, :show, :update]
+	authorize_resource	
 	
 	def index
 		if params[:q] then

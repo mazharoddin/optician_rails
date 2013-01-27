@@ -1,6 +1,6 @@
 <% @title = "Show Tax" %>
 <div class="page-header">
-	<h1><%= @tax.name %> (Tax) <%= link_to "Edit Tax", edit_admin_tax_path(@tax), :class => "btn btn-primary pull-right" %></h1>
+	<h1><%= @tax.name %> (Tax)<% if can? :update, @tax %><%= link_to "Edit Tax", edit_admin_tax_path(@tax), :class => "btn btn-primary pull-right" %><% end %></h1>
 </div>
 
 

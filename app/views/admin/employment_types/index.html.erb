@@ -1,6 +1,6 @@
 <% @title = "Employment Types" %>
 <div class="page-header">
-	<h1>Find Employment Type <%= link_to "New Employment Type", new_admin_employment_type_path, :class => "btn btn-success pull-right" %></h1>
+	<h1>Find Employment Type<% if can? :create, EmploymentType %><%= link_to "New Employment Type", new_admin_employment_type_path, :class => "btn btn-success pull-right" %><% end %></h1>
 </div>
 
 <form class="well form-search" method="get">

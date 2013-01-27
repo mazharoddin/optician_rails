@@ -1,8 +1,9 @@
 class Inventory::ServicesController < Inventory::ApplicationController
-	before_filter :find_inventory, :only => [:edit, :show, :update]
-	
 	add_breadcrumb "Services", :inventory_services_inventory_index_path
 
+	before_filter :find_inventory, :only => [:edit, :show, :update]
+	authorize_resource :ServicesInventory, :parent => false
+	
 	def index
 		if params[:q] then
 			add_breadcrumb "Search Results", :inventory_services_inventory_path
@@ -27,7 +28,6 @@ class Inventory::ServicesController < Inventory::ApplicationController
 	end
 	
 	def edit
-		add_breadcrumb @item.description, inventory_services_inventory_path(@item)
 		add_breadcrumb "Edit", edit_inventory_services_inventory_path(@item)
 	end
 	
@@ -38,12 +38,9 @@ class Inventory::ServicesController < Inventory::ApplicationController
 	end
 	
 	def show
-		add_breadcrumb @item.description, inventory_services_inventory_path(@item)
 	end
 	
 	def update
-		add_breadcrumb @item.description, inventory_services_inventory_path(@item)
-
 		if @item.update_attributes(params[:services_inventory]) then
 			flash[:success] = "Services inventory has been updated."
 			redirect_to :action => 'index', :controller => 'inventory'
@@ -55,5 +52,6 @@ class Inventory::ServicesController < Inventory::ApplicationController
 	private
 	def find_inventory
 		@item = ServicesInventory.find(params[:id])
+		add_breadcrumb @item.description, inventory_services_inventory_path(@item)
 	end
 end

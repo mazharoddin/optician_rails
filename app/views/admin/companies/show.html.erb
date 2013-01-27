@@ -1,6 +1,6 @@
 <% @title = "Show Company" %>
 <div class="page-header">
-	<h1><%= @company.name %> (Company) <%= link_to "Edit Company", edit_admin_company_path(@company), :class => "btn btn-primary pull-right" %></h1>
+	<h1><%= @company.name %> (Company)<% if can? :update, @company %><%= link_to "Edit Company", edit_admin_company_path(@company), :class => "btn btn-primary pull-right" %><% end %></h1>
 </div>
 
 

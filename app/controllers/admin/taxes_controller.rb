@@ -2,6 +2,7 @@ class Admin::TaxesController < Admin::ApplicationController
 	add_breadcrumb "Taxes", :admin_taxes_path
 
 	before_filter :find_tax, :only => [:edit, :show, :update]
+	authorize_resource	
 	
 	def index
 		if params[:q] then
@@ -31,7 +32,7 @@ class Admin::TaxesController < Admin::ApplicationController
 	def new
 		add_breadcrumb "New", new_admin_tax_path
 
-		@tax = Tax.new #@current_account.taxes.build
+		@tax = @current_account.taxes.build
 	end
 	
 	def show

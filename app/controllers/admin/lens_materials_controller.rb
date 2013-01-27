@@ -2,6 +2,7 @@ class Admin::LensMaterialsController < Admin::ApplicationController
 	add_breadcrumb "Lens Materials", :admin_lens_materials_path
 
 	before_filter :find_lens_material, :only => [:edit, :show, :update]
+	authorize_resource	
 	
 	def index
 		if params[:q] then

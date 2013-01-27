@@ -1,7 +1,8 @@
-class Admin::AccountsController < ApplicationController
+class Admin::AccountsController < Admin::ApplicationController
 	add_breadcrumb "Accounts", :admin_accounts_path
 
 	before_filter :find_account, :only => [:edit, :show, :update]
+	authorize_resource	
 	
 	def index
 		if params[:q] then

@@ -1,6 +1,6 @@
 <% @title = "Guardian Relationships" %>
 <div class="page-header">
-	<h1>Find Guardian Relationships <%= link_to "New Guardian Relationship", new_admin_guardian_relationship_path, :class => "btn btn-success pull-right" %></h1>
+	<h1>Find Guardian Relationships<% if can? :create, GuardianRelationship %><%= link_to "New Guardian Relationship", new_admin_guardian_relationship_path, :class => "btn btn-success pull-right" %><% end %></h1>
 </div>
 
 <form class="well form-search" method="get">
