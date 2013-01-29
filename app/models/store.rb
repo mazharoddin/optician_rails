@@ -7,11 +7,11 @@ class Store < ActiveRecord::Base
   
   
   validates :address, :length => { :maximum => 255 }
-  validates :city, :presence => true, :length => { :within => 1..60 }
+  validates :city, :presence => true, :length => { :maximum => 60 }
   validates :country_id, :presence => true
   validates :email, :length => { :maximum => 255 }
   validates :fax, :length => { :maximum => 30 }
-  validates :name, :presence => true, :length => { :within => 1..60 }, :uniqueness => true
+  validates :name, :presence => true, :length => { :maximum => 60 }, :uniqueness => true
   validates :phone, :length => { :maximum => 30 }
   validates :postal_code, :length => { :maximum => 20 }
   validates :state_id, :presence => true

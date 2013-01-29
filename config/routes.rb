@@ -1,5 +1,9 @@
 Optician::Application.routes.draw do
-  devise_for :users do
+  get "registration" => 'registration#new'
+  post "registration" => 'registration#create'
+
+  devise_for :users
+  devise_scope :users do
     get "/login" => "devise/sessions#new"
 	delete "/logout" => "devise/sessions#destroy"
   end

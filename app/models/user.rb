@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-  attr_accessible  :active, :administrator, :dispensing_optician, :email, :first_name, :last_name, :password, :password_confirmation, :personal_title_id, :remember_me
+  attr_accessible  :active, :administrator, :dispensing_optician, :email, :first_name, :last_name, :password, :password_confirmation, :personal_title_id, :remember_me, :account_id
 
   belongs_to :account
   belongs_to :personal_title
@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :timeoutable, :lockable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  validates :account_id, :presence => true
+  #validates :account_id, :presence => true
   validates :email, :presence => true, :length => { :maximum => 40 }
   validates :first_name, :length => { :maximum => 40 }
   validates :last_name, :presence => true, :length => { :maximum => 40 }

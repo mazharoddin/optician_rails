@@ -1,6 +1,9 @@
 class Account < ActiveRecord::Base
-  attr_accessible :active, :name, :subdomain
+  attr_accessible :active, :address, :city, :country_id, :email, :employees_attributes, :fax, :name, :phone, :postal_code, :state_id, :subdomain, :url, :employees
 
+  belongs_to :country
+  belongs_to :state
+  
   has_many :accessories_inventory
   has_many :brands
   has_many :brand_histories
@@ -31,6 +34,16 @@ class Account < ActiveRecord::Base
   has_many :tax_histories
   has_many :users
   
+  validates :address, :length => { :maximum => 255 }
+  validates :city, :presence => true, :length => { :maximum => 60 }
+  validates :country_id, :presence => true
+  validates :fax, :length => { :maximum => 30 }
   validates :name, :length => { :maximum => 60 }, :presence => true, :uniqueness => true
+  validates :phone, :length => { :maximum => 30 }
+  validates :postal_code, :length => { :maximum => 20 }
+  validates :state_id, :presence => true
   validates :subdomain, :length => { :maximum => 80 }, :presence => true, :uniqueness => true
+  validates :url, :length => { :maximum => 255 }
+
+  accepts_nested_attributes_for :employees
 end

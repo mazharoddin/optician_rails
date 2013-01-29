@@ -11,14 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130125080435) do
+ActiveRecord::Schema.define(:version => 20130129113817) do
 
   create_table "accounts", :force => true do |t|
-    t.string   "name",       :limit => 80,                   :null => false
-    t.string   "subdomain",  :limit => 69,                   :null => false
-    t.boolean  "active",                   :default => true, :null => false
-    t.datetime "created_at",                                 :null => false
-    t.datetime "updated_at",                                 :null => false
+    t.string   "name",        :limit => 80,                   :null => false
+    t.string   "subdomain",   :limit => 69,                   :null => false
+    t.boolean  "active",                    :default => true, :null => false
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
+    t.string   "url"
+    t.string   "phone",       :limit => 30
+    t.string   "fax",         :limit => 30
+    t.string   "address"
+    t.string   "city",        :limit => 60
+    t.integer  "state_id"
+    t.string   "postal_code", :limit => 20
+    t.integer  "country_id"
   end
 
   add_index "accounts", ["name"], :name => "index_accounts_on_name", :unique => true
