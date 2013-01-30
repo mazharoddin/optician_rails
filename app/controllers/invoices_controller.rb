@@ -108,7 +108,7 @@ class InvoicesController < ApplicationController
 		else
 			@invoice = @current_account.invoices.find(params[:id])
 		end
-		add_breadcrumb '#' + @invoice.id.to_s, patient_path(@invoice)
+		add_breadcrumb '#' + @invoice.id.to_s, invoice_path(@invoice)
 	end
 
 	def navbar
