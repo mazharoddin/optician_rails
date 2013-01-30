@@ -1,40 +1,3 @@
-Controllers
-===========
-application
-contacts_prescription
-dashboard
-glasses_prescription
-patients
-inventory/accessories
-inventory/application
-inventory/contacts
-inventory/frames
-inventory/inventory
-inventory/lesnses
-inventory/services
-
-
-Models
-======
-ability
-accessories_inventory
-contacts_inventory
-contacts_prescription
-frames_inventory
-glasses_prescription
-inventory
-lens_inventory
-patient
-
-Tables
-======
-dispensing
-inventory
-inventory_lens_coatings
-patients
-prescriptions
-
-
 Possible Names
 ==============
 
@@ -52,21 +15,39 @@ optinerd.com x
 outstandingvision.com x
 runoptic.com x
 startoptic.com x
+optiadmin.com x
+opticianretail.com x
+visionhero.com x
 
-ninjavision.com
-opticianly.com
 opticianplus.com
 opticianpro.com
 optichero.com
 optisimple.com
-visionably.com
-visionhero.com
 
+visionably.com
+ninjavision.com
+opticianly.com
 opticous.com
 
-optiadmin.com
-opticianretail.com
 
+
+
+MVP
+===
+- Invoicing without inventory (just type values into all of the fields)
+
+MVP+1
+=====
+- More reporting
+- Handling dispnesing on the admin side
+
+MVP+2
+=====
+- Invoicing with inventory
+
+MVP+3
+=====
+- Appointments
 
 
 FUTURE
@@ -76,105 +57,8 @@ FUTURE
 3. The open/close hours for the stores SUCKS. They look bad and there is no way to say "closed"
 4. The accounts table needs so much more information starting with who is active/inactive and expiry dates
 5. Move all search results to xxx/search so the breadcrumbs work or maybe create a dedicated search results page?
-
-THOUGHTS
-========
-1. Could the CanCan gem be used to enforce multi-tenancy? If new automatially applies the condition then it should work?
-
-
-
-
-TODO
-====
-
-MVP:
-1. Merge glasses_prescriptions and contacts_prescriptions into prescriptions with subclasses
-2. Add services to invoices
-3. Add accessories to invoices
-4. Contacts dispensing
-5. Glasses dispensing
-6. Remove items
+6. Use CanCan gem to enfore multi-tenancy
 7. View dispensing from patient record
-8. What is the plural of dispensing? Dispensing or dispensings? Perhaps it's dispense/dispensing?
 9. View sales from patient record
 10. Fast add items
-11. Prevent dispensing to "cash sales"
-12. Prevent switching to "cash sales" once dispensing has been done
-
-13. Invoicing business rules
-- Make sure all taxes appear properly on the invoice and are added up correctly
-- Make sure balances are totaled correctly.
-- Cannot void a transaction once it is complete (i.e. any payment has been made or dispensing has been done)
-
-1. Remove "Od brand" and "Os brand" in contacts prescriptions
-
-
-3. Appointments from patient record is missing <- Just remove
-5. Invoicing
-6. Dispensing report??
-
-
-HISTORY
-=======
-[later]
-companies
-employment_type
-genders
-guardian_relationships
-stores
-users
-
-[never]
-dispensing (immutable once invoice confirmed)
-invoices (immutable once confirmed)
-items (immutable once invoice confirmed)
-prescriptions (immutable once used)
-
-[probably]
-countries
-inventory
-inventory_lens_coatings
-optometrists
-patients
-states
-
-
-rails g model ActivityLog account:references user:references entry_time:timestamp message:string path:string
-
-rails g model CountryHistory country:references name:string active:boolean start_at:datetime end_at:datetime
-rails g model StateHistory state:references name:string short_name:string country:references active:boolean start_at:datetime end_at:datetime
-rails g model OptometristHistory personal_title:references last_name:string first_name:string business_name:string email:string website:string phone:string fax:string business_address:string business_city:string business_state:references business_postal_code:string business_country:references active:boolean start_at:datetime end_at:datetime
-rails g model PatientHistory patient:references last_name:string first_name:string preferred_name:string gender:references birthday:date home_phone:string work_phone:string work_ext:string mobile_phone:string email:string home_address:string home_city:string home_state:references home_postal_code:string home_country:references postal_address:string postal_city:string postal_state:references postal_postal_code:string postal_country:references note:text optometrist:references smoker:boolean alergies:text medical_other:text employment_type:references occupation:string guardian_name:string guardian_relationship:references guardian_phone:string guardian_alt_phone:string start_at:datetime end_at:datetime
-rails g model InventoryHistory inventory:references type:string description:string manufacturer:references supplier:references supplier_code:string cost_price:decimal suggested_retail_price:decimal regular_retail_price:decimal current_retail_price:decimal stock_available:integer stock_reorder:integer model:string colour:string eyesize:string bridge:string template:string appointment_type:boolean lens_material:references lens_type:references active:boolean upc:string track_inventory:boolean duration:integer tax_a:references tax_b:references start_at:datetime end_at:datetime
-rails g model InventoryLensCoatingHistory inventory_lens_coating:references inventory:references lens_coating:references start_at:datetime end_at:datetime
-
-
-[required]
-
-[done]
-brands
-lens_coatings
-lens_materials
-lens_types
-personal_titles
-taxes
-
-
-
-INVOICE
-=======
-/invoices/:id/voice should require a POST
-/invoices/:id/services, /invoice/:id/accessories
- - list available items
- - "Add" to add to invoice
- - If item already on invoice then increment qty?
- /invoices/:id/item
- -
- /invoice/:id/glasses_dispensing, /invoice/:id/contacts_dispensing
-
-
-TAX CHANGE
-==========
-1. Make Tax A and Tax B fixed for a store (i.e. Tax A is HST, Tax B is GST). Include option for rate and if B applies to A
-2. Modify the rest of the application so it shows the Tax A and Tax B names (i.e. HST instead of Tax A, GST instead of Tax B)
-3. Change inventory so Tax A/B (called by their names) become checkboxes indicating if they apply or not (i.e. check the box next to "HST" to apply Tax A).
+11. Lots of business logic around switching cash sale <--> patient, when you can dispense, taxes, etc
