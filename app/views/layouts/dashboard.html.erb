@@ -18,6 +18,7 @@
 			</div>
 			<div class="row">
 				<div class="span3 visible-desktop">
+<% if @current_store != nil then %>
 					<address class="well">
 						<strong><%= @current_store.name %></strong><br>
 						<%= @current_store.address %><br>
@@ -38,6 +39,9 @@
 						<dt style="float: left; clear: left; width: 12ex">Sunday<dt><dd><%= @current_store.sunday_open.strftime('%H:%M') %> - <%= @current_store.sunday_close.strftime('%H:%M') %></dd>
 						</dl>
 					</address>
+<% else %>
+<p>No store configured</p>
+<% end %>
 				</div>
 
 				<div class="span9">
