@@ -9,6 +9,10 @@ gem 'sqlite3'
 gem 'mysql'
 gem 'mysql2'
 
+group :production do
+  gem "therubyracer", :require => 'v8'
+end
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
