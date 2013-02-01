@@ -12,7 +12,7 @@ class RegistrationController  < ApplicationController
   def create
 	@account = Account.new(params[:account])
 	if @account.save
-		redirect_to 'https://' + @account.subdomain + '.opticianplus.com'
+		redirect_to 'http://' + @account.subdomain + '.opticianplus.com'
 	else
 		render 'new'
 	end
