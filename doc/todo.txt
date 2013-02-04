@@ -34,7 +34,12 @@ opticous.com
 
 MVP
 ===
+- Sync changes from production
+- Redirect to the correct domain if @current_user.account_id != @current_account.id
+- Redirect to new_user_session_path if the @current_account for the domain does not exist
 - Invoicing without inventory (just type values into all of the fields)
+- Dispensing (i.e. sending orders to labs, etc)
+- Repeat orders
 
 MVP+1
 =====

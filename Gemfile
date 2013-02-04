@@ -10,7 +10,7 @@ gem 'mysql'
 gem 'mysql2'
 
 group :production do
-  gem "therubyracer", :require => 'v8'
+#  gem "therubyracer", :require => 'v8'
 end
 
 # Gems used only for assets and not required
