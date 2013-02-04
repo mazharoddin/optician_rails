@@ -25,9 +25,9 @@
 	<%= e.input :password_confirmation %>
 <% end %>
 	<h2>About Your Account</h2>
-	<%= f.input :subdomain, :wrapper => :append do %>
-	<%= f.input_field :subdomain, :class => "input-medium", :style => "text-align: right" %>
-	<%= content_tag :span, ".opticianplus.com", :class => "add-on" %>
+	<%= f.input :subdomain, :wrapper => :prepend do %>
+	<%= content_tag :span, "http://app.opticianplus.com/", :class => "add-on" %>
+	<%= f.input_field :subdomain, :class => "input-medium" %>
 	<% end %>
 
 </div>
