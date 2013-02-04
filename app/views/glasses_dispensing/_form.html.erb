@@ -25,11 +25,11 @@
 				<td rowspan="2"><%= f.input_field :od_axis, :collection => (0..180), :class => 'input-small' %></td>
 				<td rowspan="2"><%= f.input_field :od_add, :collection => (0..5).step(0.25).reverse(), :class => 'input-small' %></td>
 				<td><%= f.input_field :od_prism1, :class => 'input-small' %></td>
-				<td><%= f.input_field :od_base1, :collection => ['Up', 'Down'], :class => 'input-small' %></td>
+				<td><%= f.input_field :od_base1, :collection => { 'Up' => :up, 'Down' => :down, 'In' => :in, 'Out' => :out }, :class => 'input-small' %></td>
 			</tr>
 			<tr>
 				<td><%= f.input_field :od_prism2, :class => 'input-small' %></td>
-				<td><%= f.input_field :od_base2, :collection => ['Up', 'Down'], :class => 'input-small' %></td>
+				<td><%= f.input_field :od_base2, :collection => { 'Up' => :up, 'Down' => :down, 'In' => :in, 'Out' => :out }, :class => 'input-small' %></td>
 			</tr>
 			<tr>
 				<th rowspan="2">OS</th>
@@ -38,11 +38,11 @@
 				<td rowspan="2"><%= f.input_field :os_axis, :collection => (0..180), :class => 'input-small' %></td>
 				<td rowspan="2"><%= f.input_field :os_add, :collection => (0..5).step(0.25).reverse(), :class => 'input-small' %></td>
 				<td><%= f.input_field :os_prism1, :class => 'input-small' %></td>
-				<td><%= f.input_field :os_base1, :collection => ['Up', 'Down'], :class => 'input-small' %></td>
+				<td><%= f.input_field :os_base1, :collection => { 'Up' => :up, 'Down' => :down, 'In' => :in, 'Out' => :out }, :class => 'input-small' %></td>
 			</tr>
 			<tr>
 				<td><%= f.input_field :os_prism2, :class => 'input-small' %></td>
-				<td><%= f.input_field :os_base2, :collection => ['Up', 'Down'], :class => 'input-small' %></td>
+				<td><%= f.input_field :os_base2, :collection => { 'Up' => :up, 'Down' => :down, 'In' => :in, 'Out' => :out }, :class => 'input-small' %></td>
 			</tr>
 		</tbody>
 	</table>
