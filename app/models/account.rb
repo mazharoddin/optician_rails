@@ -42,7 +42,7 @@ class Account < ActiveRecord::Base
   validates :phone, :length => { :maximum => 30 }
   validates :postal_code, :length => { :maximum => 20 }
   validates :state_id, :presence => true
-  validates :subdomain, :length => { :maximum => 80 }, :presence => true, :uniqueness => true
+  validates :subdomain, :length => { :maximum => 80 }, :exclusion => { :in => %w( admin administration users registration blog ) }, :presence => true, :uniqueness => true
   validates :url, :length => { :maximum => 255 }
 
   accepts_nested_attributes_for :employees
