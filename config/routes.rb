@@ -62,9 +62,9 @@ Optician::Application.routes.draw do
 	# match ':controller(/:action(/:id))(.:format)'
 	resources :invoices do
 		get 'patients'
-		get 'patients/:id', :action => 'set_patient', :as => 'set_patient'
-		get 'cash_sale', :action => 'set_cash_sale'
-		get 'void', :action => 'void_invoice'
+		put 'patients/:id', :action => 'set_patient', :as => 'set_patient'
+		put 'cash_sale', :action => 'set_cash_sale'
+		put 'void', :action => 'void_invoice'
 		resources :items do
 			get 'accessories', :action => 'accessories', :on => :collection
 			get 'services', :action => 'services', :on => :collection

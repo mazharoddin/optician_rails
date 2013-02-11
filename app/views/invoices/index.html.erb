@@ -1,6 +1,6 @@
 <% @title = "Invoices" %>
 <div class="page-header">
-	<h1>Find Invoice <%= link_to "New Invoice", new_invoice_path, :class => "btn btn-success pull-right" %></h1>
+	<h1>Find Invoice <%= link_to "New Invoice", invoices_path, :method => :post, :class => "btn btn-success pull-right" %></h1>
 </div>
 
 <form class="well form-search" method="get">

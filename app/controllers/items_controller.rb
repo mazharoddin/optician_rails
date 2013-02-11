@@ -14,10 +14,15 @@ class ItemsController < ApplicationController
 
 		if params[:inventory_id] == nil then
 			@item = @invoice.items.build(params[:item])
+			@item.total_price = (@item.unit_price - @item.discount) * @item.qty
+			@item.account_id = @invoice.account_id
 			if @item.save then
 				flash[:success] = "Item has been created."
 				redirect_to invoice_path(@invoice)
 			else
+			    @item.errors.each do |error|
+				    flash[:alert] = error.to_s
+				end
 				render "new"
 			end
 		else
@@ -31,6 +36,7 @@ class ItemsController < ApplicationController
 	
 	def new
 		add_breadcrumb "New", new_invoice_item_path(@invoice)
+		@item = @invoice.items.build(:discount => 0.00, :qty => 1)
 	end
 	
 	def show
@@ -68,8 +74,7 @@ class ItemsController < ApplicationController
 	private
 	def find_item
 		@item = @invoice.items.find(params[:id])
-		add_breadcrumb '#' + @invoice.id.to_s, invoice_path(@invoice)
-		add_breadcrumb "Items", invoice_path(@invoice)
+		add_breadcrumb '#' + @item.id.to_s, invoice_item_path(@invoice, @item)
 	end
 
 	def navbar
@@ -78,6 +83,7 @@ class ItemsController < ApplicationController
 	
 	def find_invoice
 	  @invoice = Invoice.find(params[:invoice_id])
-	  add_breadcrumb '#' + @item.id.to_s, invoice_item_path(@invoice, @item)
+      add_breadcrumb '#' + @invoice.id.to_s, invoice_path(@invoice)
+      add_breadcrumb "Items", invoice_path(@invoice)
 	end
 end

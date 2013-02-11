@@ -16,12 +16,12 @@ class InvoicesController < ApplicationController
 	def create
 		add_breadcrumb "New", new_invoice_path
 
-		@invoice = @current_account.invoices.build(params[:invoice])
-		if @invoice.save then
-			flash[:success] = "Invoice has been created."
-			redirect_to :action => 'index'
+		@invoice = @current_account.invoices.build
+		if @invoice.save
+			redirect_to invoice_path(@invoice)
 		else
-			render "new"
+			flash[:alert] = "Unable to create invoice"
+			redirect_to invoices_path
 		end
 	end
 	
@@ -32,13 +32,17 @@ class InvoicesController < ApplicationController
 	def new
 		add_breadcrumb "New", new_invoice_path
 
-		@invoice = @current_account.invoices.build
-		@invoice.save
+		flash[:notice] = "You can't create a new invoice this way. Try using the New Invoice button."
 		
-		redirect_to invoice_path(@invoice)
+		redirect_to invoices_path
 	end
 	
 	def show
+		if @invoice.read_only?
+			render "show"
+		else
+			render "edit"
+		end
 	end
 	
 	def update

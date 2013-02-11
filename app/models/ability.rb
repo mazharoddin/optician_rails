@@ -38,6 +38,7 @@ class Ability
 			can :manage, GuardianRelationship
 			can :manage, Inventory
 			can :manage, Invoice
+			can :manage, Item
 			can :manage, LensCoating
 			can :manage, LensMaterial
 			can :manage, LensType
@@ -73,6 +74,10 @@ class Ability
 			can :manage, Invoice, :account_id => user.account_id
 			can :manage, Patient, :account_id => user.account_id
 		end
+		cannot :void, Invoice, :read_only? => true
+		cannot :update, Invoice, :read_only? => true
+		cannot :set_patient, Invoice, :read_only? => true
+		cannot :set_cash_sale, Invoice, :read_only? => true
 	end
   end
 end

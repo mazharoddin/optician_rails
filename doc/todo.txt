@@ -1,5 +1,107 @@
+Invoice
+-> Item
+-> Dispensing (Prescription)
+-> DispensingItem (ContactInventory, FrameInventory, LensInventory)
+-> DispensingItemLensCoating (InventoryLensCoating)
+-> LensCoating ** I control this table!!
+
+/invoices/1/dispensing/1/frames
+/invoices/1/dispensing/1/lenses
+/invoices/1/dispensing/1/contacts
+
+/dispensing
+/dispensing/1 -> /invoices/1/dispensing
+
+
+
+FRAME
+=====
+Manufacturer
+Description
+Upc
+Model
+Colour
+Eyesize
+Bridge
+Template
+Supplier
+SUpplier Code
+Cost Price
+Tax A
+Tax B
+
+
+
+LENS
+====
+Manufacturer
+Description
+Model
+Upc
+Supplier
+SUpplier Code
+Lens Material
+Lens Type
+Lens Coating
+Cost Price
+Tax A
+Tax B
+
+
+CONTACT
+=======
+Manufacturer
+Description
+Model
+Upc
+Supplier
+Supplier Code
+Lens Material
+Lens Type
+Lens Coating
+Cost Price
+Tax A
+TAx B
+
+
+
+
+1. Show only versions when read only?
+2. Print version?
+3. Ability to bulk update qty?
+4. Remove items if not voided or complete
+5. Ability to 
+
+
+                      $39    $69    $99
+=======================================
+Patient Management      x      x      x
+Dispensing              x      x      x
+Appointments            x      x      x
+Inventory                      x      x
+Multi-Store                           x
+
+
+
+
+
 Possible Names
 ==============
+
+ClickOptical.com
+BigOptical.com
+OpticalBuddy.com
+OpticalKit.com
+OpticalBot.com
+OpticalPal.com
+OpticalFirst.com
+SnapOptical.com
+HelpOptical.com
+OpticalStart.com
+OpticalSuite.com
+StoreOptical.com
+CleverOptical.com
+OpticalBoss.com
 
 bearoptic.com x
 bigoptic.com x
@@ -34,23 +136,25 @@ opticous.com
 
 MVP
 ===
-- Sync changes from production
-- Redirect to the correct domain if @current_user.account_id != @current_account.id
-- Redirect to new_user_session_path if the @current_account for the domain does not exist
 - Invoicing without inventory (just type values into all of the fields)
+- Display values correctly (i.e. 0.00 instead of 0.0)
 - Dispensing (i.e. sending orders to labs, etc)
 - Repeat orders
 
 MVP+1
 =====
 - More reporting
-- Handling dispnesing on the admin side
+- Handling dispensing on the admin side
 
 MVP+2
 =====
 - Invoicing with inventory
 
 MVP+3
+=====
+- Patients/prescriptions/etc should be display only until an edit button is clicked
+
+MVP+4
 =====
 - Appointments
 
