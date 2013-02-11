@@ -34,7 +34,7 @@
 			<td><%= patient.home_postal_code %></td>
 			<td><%= patient.home_state %></td>
 			<td><%= patient.home_phone %></td>
-			<td><%= link_to "Select", invoice_set_patient_path(@invoice, patient), :class => "btn btn-primary" %></td>
+			<td><% if can? :set_patient, @invoice %><%= link_to "Select", invoice_set_patient_path(@invoice, patient), :class => "btn btn-primary", :method => :put %><% end %></td>
 		</tr>
 <% end %>
 	</tbody>

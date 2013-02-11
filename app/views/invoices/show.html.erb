@@ -1,20 +1,134 @@
-﻿<% @title = "Edit Invoice" %>
+﻿<% @title = "Invoice #" + @invoice.id.to_s %>
 <div class="page-header">
-	<h1>Invoice #<%= @invoice.id %> (Invoice)<% if can? :update, @invoice %><a href="#void-modal" role="button" data-toggle="modal" class="btn btn-danger pull-right">Void Transaction</a><% end %></h1>
+	<h1>Invoice #<%= @invoice.id %> (Invoice)</h1>
 </div>
-<%= render "form" %>
 
-<div id="void-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-		<h3 id="myModalLabel">Void Transaction</h3>
+	<div class="row">
+		<div class="span12">
+			<div class="row">
+				<div class="span4">
+					<address>
+						<strong><%= @invoice.name %></strong><br>
+						<%= @invoice.address %><br>
+						<%= @invoice.city %>, <%= @invoice.state %> <%= @invoice.postal_code %><br>
+						<%= @invoice.country %>
+					</address>
+				</div>
+				<div class="span4">
+					<p>Invoice: #<%= @invoice.id %></p>
+					<p>Date: <%= @invoice.invoice_date %></p>
+				</div>
+				<div class="span4">
+				
+				</div>
+			</div>
+			<div class="well">
+				Item <input type="text" class="span5 search-query">
+				<button type"submit" class="btn">Add</button>
+			</div>
+			<table class="table table-condensed">
+				<thead>
+					<tr>
+						<th>Item</th>
+						<th>Unit</th>
+						<th>Discount</th>
+						<th>Qty</th>
+						<th>&nbsp;</th>
+						<th>Price</th>
+						<th>Tax A</th>
+						<th>Tax B</th>
+					</tr>
+				</thead>
+				<tbody>
+<% if @invoice.dispensing.count > 0 then %>
+					<tr>
+						<th colspan="9">Dispensing</th>
+					</tr>
+<% @invoice.dispensing.each do |dispensing| %>
+					<tr>
+						<td colspan="2"><%= dispensing.description %><!--(<a href="invoices_glasses.html">#123</a>)--></td>
+						<td>Unit Price</td>
+						<td colspan="2">&nbsp;</td>
+						<td>99</td>
+						<td>Tax B</td>
+						<td>Tax B</td>
+					</tr>
+					<tr>
+						<td>+ Frames</td>
+						<td><input type="text" value="Unit Price" class="currency input-small"></td>
+						<td><input type="text" value="Discount" class="currency input-small"></td>
+						<td><input type="text" value="Qty" class="qty input-small"></td>
+						<td><input type="text" value="Price" class="currency input-small" disabled="disabled"></td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>+ Plastic Lense OD</td>
+						<td><input type="text" value="Unit Price" class="currency input-small"></td>
+						<td><input type="text" value="Discount" class="currency input-small"></td>
+						<td><input type="text" value="Qty" class="qty input-small"></td>
+						<td><input type="text" value="Price" class="currency input-small" disabled="disabled"></td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>+ Plastic Lense OD</td>
+						<td><input type="text" value="Unit Price" class="currency input-small"></td>
+						<td><input type="text" value="Discount" class="currency input-small"></td>
+						<td><input type="text" value="Qty" class="qty input-small"></td>
+						<td><input type="text" value="Price" class="currency input-small" disabled="disabled"></td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+<% end %>
+<% end %>
+<% if @invoice.items.count > 0 then %>
+					<tr>
+						<th colspan="9">Other</th>
+					</tr>
+<% @invoice.items.each do |item| %>
+					<tr>
+						<td colspan="2"><%= item.description %><!--(<a href="invoices_glasses.html">#123</a>)--></td>
+						<td><input type="text" value="<%= item.unit_price %>" class="currency input-small"></td>
+						<td colspan="2">&nbsp;</td>
+						<td><input type="text" value="99.00" class="currency input-small" disabled="disabled"></td>
+						<td><%= item.tax_a %></td>
+						<td><%= item.tax_b %></td>
+					</tr>
+<% end %>
+<% end %>
+				</tbody>
+				<tfoot>
+					<tr>
+						<th colspan="5">Sub Total</th>
+						<th><input type="text" value="TBD" class="currency input-small" disabled="disabled"></th>
+					</tr>
+					<tr>
+						<td colspan="5">Discount</td>
+						<td><input type="text" value="TBD" class="currency input-small"></td>
+					</tr>
+<% @invoice.taxes.each do |tax| %>
+					<tr>
+						<td colspan="5"><%= tax[:tax] %></td>
+						<td><input type="text" value="<%= tax[:amount] %>" class="currency input-small" disabled="disabled"></td>
+					</tr>
+<% end %>
+					<tr>
+						<th colspan="5">Total</th>
+						<th><input type="text" value="<%= @invoice.total %>" class="currency input-small" disabled="disabled"></th>
+					</tr>
+					<tr>
+						<td colspan="5">Paid</td>
+						<td><input type="text" value="<%= @invoice.paid %>" class="currency input-small" disabled="disabled"></td>
+					</tr>
+					<tr>
+						<th colspan="5">Balance</th>
+						<th><input type="text" value="<%= @invoice.balance %>" class="currency input-small" disabled="disabled"></th>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
 	</div>
-	<div class="modal-body">
-		<p><strong>Warning!</strong> This action cannot be undone.</p>
-		<p>Are you sure you want to void this transaction?</p>
-	</div>
-	<div class="modal-footer">
-		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-		<%= link_to "Void Transaction", invoice_void_path(@invoice), :class => "btn btn-danger" %>
-	</div>
-</div>

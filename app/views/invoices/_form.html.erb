@@ -1,10 +1,15 @@
 ﻿<%= simple_form_for @invoice, :html => { :class => "form-horizontal" } do |f| %>
 	<div class="row">
 		<div class="span12">
+<% if can?(:set_patient, @invoice) || can?(:set_cash_sale, @invoice) %>
 			<div class="btn-toolbar">
 				<div class="btn-group">
+<% if can? :set_patient, @invoice %>
 				    <%= link_to "Find Patient", invoice_patients_path(@invoice), :class => "btn" %>
-				    <%= link_to "Cash Sale", invoice_cash_sale_path(@invoice), :class => "btn" %>
+<% end %>
+<% if can? :set_cash_sale, @invoice %>
+				    <%= link_to "Cash Sale", invoice_cash_sale_path(@invoice), :class => "btn", :method => :put %>
+<% end %>
 				</div>
 <% if @invoice.patient != nil then %>
 <% if can? :create, Dispensing %>
@@ -20,6 +25,7 @@
 					<%= link_to "Add Other", new_invoice_item_path(@invoice), :class => "btn" %>
 				</div>
 			</div>
+<% end %>
 			<div class="row">
 				<div class="span4">
 					<address>
@@ -56,7 +62,7 @@
 					</tr>
 				</thead>
 				<tbody>
-<% if @invoice.dispensing != nil then %>
+<% if @invoice.dispensing.count > 0 then %>
 					<tr>
 						<th colspan="9">Dispensing</th>
 					</tr>
@@ -68,7 +74,7 @@
 						<td><input type="text" value="99.00" class="currency input-small" disabled="disabled"></td>
 						<td>Tax B</td>
 						<td>Tax B</td>
-						<td><a href="#remove-modal" role="button" data-toggle="modal" class="btn btn-danger pull-right">Remove</a></td>
+						<td><% if @invoice.read_only? == false %><a href="#remove-modal" role="button" data-toggle="modal" class="btn btn-danger pull-right">Remove</a><% end %></td>
 					</tr>
 					<tr>
 						<td>+ Frames</td>
@@ -105,7 +111,7 @@
 					</tr>
 <% end %>
 <% end %>
-<% if @invoice.items != nil then %>
+<% if @invoice.items.count > 0 then %>
 					<tr>
 						<th colspan="9">Other</th>
 					</tr>
@@ -117,7 +123,7 @@
 						<td><input type="text" value="99.00" class="currency input-small" disabled="disabled"></td>
 						<td><%= item.tax_a %></td>
 						<td><%= item.tax_b %></td>
-						<td><a href="#remove-modal" role="button" data-toggle="modal" class="btn btn-danger pull-right">Remove</a></td>
+						<td><% if @invoice.read_only? == false %><a href="#remove-modal" role="button" data-toggle="modal" class="btn btn-danger pull-right">Remove</a><% end %></td>
 					</tr>
 <% end %>
 <% end %>
@@ -133,16 +139,13 @@
 						<td><input type="text" value="TBD" class="currency input-small"></td>
 						<td>&nbsp;</td>
 					</tr>
+<% @invoice.taxes.each do |tax| %>
 					<tr>
-						<td colspan="5">Tax A</td>
-						<td><input type="text" value="TBD" class="currency input-small" disabled="disabled"></td>
+						<td colspan="5"><%= tax[:tax] %></td>
+						<td><input type="text" value="<%= tax[:amount] %>" class="currency input-small" disabled="disabled"></td>
 						<td>&nbsp;</td>
 					</tr>
-					<tr>
-						<td colspan="5">Tax B</td>
-						<td><input type="text" value="TBD" class="currency input-small" disabled="disabled"></td>
-						<td>&nbsp;</td>
-					</tr>
+<% end %>
 					<tr>
 						<th colspan="5">Total</th>
 						<th><input type="text" value="<%= @invoice.total %>" class="currency input-small" disabled="disabled"></th>
@@ -162,6 +165,7 @@
 			</table>
 		</div>
 	</div>
+<% if can? :update, @invoice %>
 	<div class="form-actions">
 		<%= f.button :submit, :class => "btn btn-primary" %>
 <% if @invoice.new_record? %>
@@ -170,6 +174,7 @@
 		<%= link_to "Discard Changes", invoice_path(@invoice), :class => "btn" %>
 <% end %>
 	</div>
+<% end %>
 <% end %>
 		
 		<div id="remove-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

@@ -42,4 +42,39 @@ class Invoice < ActiveRecord::Base
 		invoice.balance = 0.00
 	end
   end
+  
+  def read_only?
+    void_date != nil
+  end
+  
+  def taxes
+    taxes = []
+    items.each do |item|
+	    if item.tax_a != nil
+			appended = false
+		    taxes.each do |tax|
+				if tax[:tax].id == item.tax_a.id
+					tax[:amount] = tax[:amount] + item.tax_a_amount
+					appended = true
+				end
+			end
+			if appended == false
+				taxes.append( :tax => item.tax_a, :amount => item.tax_a_amount )
+			end
+		end
+	    if item.tax_b != nil
+			appended = false
+		    taxes.each do |tax|
+				if tax[:tax].id == item.tax_b.id
+					tax[:amount] = tax[:amount] + item.tax_b_amount
+					appended = true
+				end
+			end
+			if appended == false
+				taxes.append( :tax => item.tax_b, :amount => item.tax_b_amount )
+			end
+		end
+	end
+	taxes
+  end
 end
