@@ -131,7 +131,7 @@
 				<tfoot>
 					<tr>
 						<th colspan="5">Sub Total</th>
-						<th><input type="text" value="TBD" class="currency input-small" disabled="disabled"></th>
+						<th><input type="text" value="<%= @invoice.sub_total %>" class="currency input-small" disabled="disabled"></th>
 						<td>&nbsp;</td>
 					</tr>
 <% @invoice.taxes.each do |tax| %>

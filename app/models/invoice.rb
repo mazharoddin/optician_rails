@@ -46,6 +46,14 @@ class Invoice < ActiveRecord::Base
   def read_only?
     void_date != nil
   end
+
+  def sub_total
+    sub_total = 0.00
+	items.each do |item|
+	    sub_total = sub_total + (item.unit_price - item.discount) * item.qty
+	end
+	sub_total
+  end
   
   def taxes
     taxes = []
