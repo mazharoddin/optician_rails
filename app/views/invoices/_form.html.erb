@@ -117,10 +117,12 @@
 					</tr>
 <% @invoice.items.each do |item| %>
 					<tr>
-						<td colspan="2"><%= item.description %><!--(<a href="invoices_glasses.html">#123</a>)--></td>
+						<td><%= item.description %><!--(<a href="invoices_glasses.html">#123</a>)--></td>
 						<td><input type="text" value="<%= item.unit_price %>" class="currency input-small"></td>
-						<td colspan="2">&nbsp;</td>
-						<td><input type="text" value="99.00" class="currency input-small" disabled="disabled"></td>
+						<td><input type="text" value="<%= item.discount %>" class="currency input-small"></td>
+						<td><input type="text" value="<%= item.qty %>" class="currency input-small"></td>
+						<td>&nbsp;</td>
+						<td><input type="text" value="<%= item.total_price %>" class="currency input-small" disabled="disabled"></td>
 						<td><%= item.tax_a %></td>
 						<td><%= item.tax_b %></td>
 						<td><% if @invoice.read_only? == false %><a href="#remove-modal" role="button" data-toggle="modal" class="btn btn-danger pull-right">Remove</a><% end %></td>
