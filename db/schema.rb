@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130129113817) do
+ActiveRecord::Schema.define(:version => 20130213214225) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name",        :limit => 80,                   :null => false
@@ -195,6 +195,7 @@ ActiveRecord::Schema.define(:version => 20130129113817) do
     t.datetime "updated_at",                                                                 :null => false
     t.datetime "void_date"
     t.integer  "account_id",                                                                 :null => false
+    t.datetime "locked_date"
   end
 
   add_index "invoices", ["account_id"], :name => "index_invoices_on_account_id"

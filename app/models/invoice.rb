@@ -1,7 +1,7 @@
 require 'date'
 
 class Invoice < ActiveRecord::Base
-  attr_accessible :address, :balance, :city, :country, :invoice_date, :name, :paid, :postal_code, :state, :total, :void_date
+  attr_accessible :address, :balance, :city, :country, :invoice_date, :locked_date, :name, :paid, :postal_code, :state, :total, :void_date
 
   belongs_to :account
   belongs_to :patient
@@ -22,6 +22,17 @@ class Invoice < ActiveRecord::Base
   validates :total, :numericality => { :greater_than_or_equal_to => 0 }, :presence => true
 
   after_initialize do |invoice|
+    if invoice.new_record? then
+		invoice.name = 'Cash Sale'
+		invoice.address = ''
+		invoice.city = ''
+		invoice.state = ''
+		invoice.postal_code = ''
+		invoice.country = ''
+		invoice.total = 0.00
+		invoice.paid = 0.00
+		invoice.balance = 0.00
+	end
     if invoice.patient != nil then
 		invoice.name = invoice.patient.to_s
 		invoice.address = invoice.patient.home_address
@@ -29,22 +40,11 @@ class Invoice < ActiveRecord::Base
 		invoice.state = invoice.patient.home_state
 		invoice.postal_code = invoice.patient.home_postal_code
 		invoice.country = invoice.patient.home_country
-	else
-		invoice.name = 'Cash Sale'
-		invoice.address = ''
-		invoice.city = ''
-		invoice.state = ''
-		invoice.postal_code = ''
-		invoice.country = ''
-		#invoice.invoice_date = DateTime.now
-		invoice.total = 0.00
-		invoice.paid = 0.00
-		invoice.balance = 0.00
 	end
   end
   
   def read_only?
-    void_date != nil
+    void_date != nil || locked_date != nil
   end
 
   def sub_total
