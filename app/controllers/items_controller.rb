@@ -14,7 +14,6 @@ class ItemsController < ApplicationController
 
 		if params[:inventory_id] == nil then
 			@item = @invoice.items.build(params[:item])
-			@item.total_price = (@item.unit_price - @item.discount) * @item.qty
 			@item.account_id = @invoice.account_id
 			if @item.save then
 				flash[:success] = "Item has been created."
