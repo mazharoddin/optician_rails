@@ -1,7 +1,8 @@
 class Account < ActiveRecord::Base
-  attr_accessible :active, :address, :city, :country_id, :email, :employees_attributes, :fax, :name, :phone, :postal_code, :state_id, :subdomain, :url, :employees
+  attr_accessible :active, :address, :city, :country_id, :employees_attributes, :fax, :name, :phone, :plan_id, :postal_code, :state_id, :subdomain, :url, :employees
 
   belongs_to :country
+  belongs_to :plan
   belongs_to :state
   
   has_many :accessories_inventory
@@ -40,6 +41,7 @@ class Account < ActiveRecord::Base
   validates :fax, :length => { :maximum => 30 }
   validates :name, :length => { :maximum => 60 }, :presence => true, :uniqueness => true
   validates :phone, :length => { :maximum => 30 }
+  validates :plan_id, :presence => true
   validates :postal_code, :length => { :maximum => 20 }
   validates :state_id, :presence => true
   validates :subdomain, :length => { :maximum => 80 }, :exclusion => { :in => %w( admin administration users registration blog ) }, :presence => true, :uniqueness => true

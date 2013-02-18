@@ -112,6 +112,7 @@ Optician::Application.routes.draw do
 		resources :lens_types
 		resources :optometrists
 		resources :personal_titles
+		resources :plans
 		resources :stores
 		resources :taxes
 		root :to => 'dashboard#index'

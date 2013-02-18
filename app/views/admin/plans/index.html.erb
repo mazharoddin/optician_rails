@@ -1,0 +1,35 @@
+<% @title = "Plans" %>
+<div class="page-header">
+	<h1>Find Plan <%if can? :create, Plan %><%= link_to "New Plan", new_admin_plan_path, :class => "btn btn-success pull-right" %><% end %></h1>
+</div>
+
+<form class="well form-search" method="get">
+	<input name="q" value="<%= params[:q] %>" type="text" class="search-query">
+	<button type"submit" class="btn btn-info">Search</button>
+</form>
+
+<% if @plans.empty? then %>
+<p>No plans found</p>
+<% else %>
+<table class="table table-condensed table-striped">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Inventory</th>
+			<th>Multistore</th>
+			<th>Price</th>
+		</tr>
+	</thead>
+	<tbody>
+<% @plans.each do |plan| %>
+		<tr>
+			<td><%= link_to plan.name, admin_plan_path(plan) %></td>
+			<td><%= plan.inventory %></td>
+			<td><%= plan.multistore %></td>
+			<td><%= number_with_precision(plan.price, :precision => 2) %></td>
+		</tr>
+<% end %>
+	</tbody>
+</table>
+<%= paginate @plans %>
+<% end %>

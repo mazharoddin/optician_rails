@@ -3,6 +3,16 @@
 		<div class="span12">
 			<%= f.input :name %>
 			<%= f.input :subdomain %>
+			<%= f.association :plan %>
+			<%= f.input :active %>
+			<%= f.input :address %>
+			<%= f.input :city %>
+			<%= f.input :postal_code %>
+			<%= f.association :state %>
+			<%= f.association :country %>
+			<%= f.input :phone %>
+			<%= f.input :fax %>
+			<%= f.input :url %>
 		</div>
 	</div>
 

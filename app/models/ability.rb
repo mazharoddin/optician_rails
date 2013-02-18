@@ -45,6 +45,7 @@ class Ability
 			can :manage, Optometrist
 			can :manage, Patient
 			can :manage, PersonalTitle
+			can :manage, Plan
 			can :manage, Prescription
 			can :manage, State
 			can :manage, Store

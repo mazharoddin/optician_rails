@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130213214225) do
+ActiveRecord::Schema.define(:version => 20130217220205) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name",        :limit => 80,                   :null => false
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20130213214225) do
     t.integer  "state_id"
     t.string   "postal_code", :limit => 20
     t.integer  "country_id"
+    t.integer  "plan_id",                                     :null => false
   end
 
   add_index "accounts", ["name"], :name => "index_accounts_on_name", :unique => true
@@ -324,6 +325,18 @@ ActiveRecord::Schema.define(:version => 20130213214225) do
     t.datetime "updated_at",                                 :null => false
     t.boolean  "active",                   :default => true, :null => false
   end
+
+  create_table "plans", :force => true do |t|
+    t.string   "name",       :limit => 60,                                                   :null => false
+    t.boolean  "active",                                                  :default => true,  :null => false
+    t.boolean  "inventory",                                               :default => false, :null => false
+    t.boolean  "multistore",                                              :default => false, :null => false
+    t.decimal  "price",                    :precision => 10, :scale => 2,                    :null => false
+    t.datetime "created_at",                                                                 :null => false
+    t.datetime "updated_at",                                                                 :null => false
+  end
+
+  add_index "plans", ["name"], :name => "index_plans_on_name", :unique => true
 
   create_table "prescriptions", :force => true do |t|
     t.string   "type",            :limit => 100

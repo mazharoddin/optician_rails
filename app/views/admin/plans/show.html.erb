@@ -1,0 +1,18 @@
+<% @title = "Show Plans" %>
+<div class="page-header">
+	<h1><%= @plan.name %> (Plan)<% if can? :update, @plan %><%= link_to "Edit Plan", edit_admin_plan_path(@plan), :class => "btn btn-primary pull-right" %><% end %></h1>
+</div>
+
+
+<dl class="dl-horizontal">
+	<dt>Name</dt>
+	<dd><%= @plan.name %></dd>
+	<dt>Active</dt>
+	<dd><%= @plan.active %></dd>
+	<dt>Inventory</dt>
+	<dd><%= @plan.inventory %></dd>
+	<dt>Multi Store</dt>
+	<dd><%= @plan.multistore %></dd>
+	<dt>Price</dt>
+	<dd><%= number_with_precision(@plan.price, :precision => 2) %></dd>
+</dl>

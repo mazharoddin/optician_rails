@@ -16,6 +16,7 @@
 		<tr>
 			<th>Name</th>
 			<th>Subdomain</th>
+			<th>Plan</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -23,6 +24,7 @@
 		<tr>
 			<td><%= link_to account.name, admin_account_path(account) %></td>
 			<td><%= link_to account.subdomain, admin_account_path(account) %></td>
+			<td><%= account.plan %></td>
 		</tr>
 <% end %>
 	</tbody>
