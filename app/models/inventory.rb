@@ -30,4 +30,8 @@ class Inventory < ActiveRecord::Base
   def to_s
 	return description
   end
+  
+  def enabled?
+    return @current_account.plan.inventory
+  end
 end

@@ -61,11 +61,11 @@ class Ability
 				can :manage, Employee, :account_id => user.account_id
 				can :manage, Store, :account_id => user.account_id
 				can :manage, User, :account_id => user.account_id
-				can :manage, Inventory, :account_id => user.account_id
+				can :manage, Inventory
 				can :read, :admin_dashboard
 			else
 				can :read, Brand, :account_id => user.account_id
-				can :read, Inventory, :account_id => user.account_id
+				can :read, Inventory
 				
 				# Currently not checked
 				can :read, Store, :account_id => user.account_id

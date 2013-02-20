@@ -16,6 +16,9 @@ class ApplicationController < ActionController::Base
 	  else
 	    @current_account = nil
 	  end
+	  if @current_account == nil
+	    @current_account = Account.find(1)
+	  end
 	end
 	
 	def navbar
