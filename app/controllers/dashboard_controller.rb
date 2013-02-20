@@ -1,5 +1,7 @@
 class DashboardController < ApplicationController
 	before_filter :find_current_store
+	
+	authorize_resource :class => :dashboard
 
 	def index
 		render :layout => "dashboard"

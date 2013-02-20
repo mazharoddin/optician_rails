@@ -1,12 +1,12 @@
 Priority List
-1. Permissions
-2. Next Invoice/Dispensing/Patient/Inventory?? numbers (i.e. per tenant numbering, keep ID only for active record)
-3. Enable Inventory account option
-4. Complete (finalise) invoice
-5. Add/Remove Other to inventory
-6. Calculate taxes correctly while using TaxHistory
-7. Add/Remove Services
-8. Add/Remove Accessories
+1. Plans <-- Need to honor which features are enabled in the plan
+2. Permissions <-- Currently working on this using cancan
+3. Next Invoice/Dispensing/Patient/Inventory?? numbers (i.e. per tenant numbering, keep ID only for active record)
+4. Add/Remove Other to inventory
+5. Complete (finalise) invoice
+6. Add/Remove Services
+7. Add/Remove Accessories
+8. Calculate taxes correctly while using TaxHistory
 9. Dispensing...
 
 Invoice

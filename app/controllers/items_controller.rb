@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
 
 	before_filter :find_invoice
 	before_filter :find_item, :only => [:edit, :show, :update]
-	authorize_resource	
+	authorize_resource :class => 'Invoice'
 	
 	def index
 		redirect_to invoice_path(@invoice)

@@ -26,6 +26,7 @@ class Ability
     # See the wiki for details: https://github.com/ryanb/cancan/wiki/Defining-Abilities
 
 	if user != nil
+		can :read, :dashboard
 		if user.super_administrator
 			can :manage, Account
 			can :manage, Brand
@@ -51,17 +52,23 @@ class Ability
 			can :manage, Store
 			can :manage, Tax
 			can :manage, User
+			can :read, :admin_dashboard
 		else
 			if user.administrator
+				can :read, Account, :id => user.account_id
 				can :manage, Brand, :account_id => user.account_id
 				can :manage, Company, :account_id => user.account_id
 				can :manage, Employee, :account_id => user.account_id
 				can :manage, Store, :account_id => user.account_id
-				can :manage, Tax, :account_id => user.account_id
 				can :manage, User, :account_id => user.account_id
 				can :manage, Inventory, :account_id => user.account_id
+				can :read, :admin_dashboard
 			else
+				can :read, Brand, :account_id => user.account_id
 				can :read, Inventory, :account_id => user.account_id
+				
+				# Currently not checked
+				can :read, Store, :account_id => user.account_id
 			end
 			if user.administrator || user.dispensing_optician
 				can :manage, Dispensing, :account_id => user.account_id
@@ -74,6 +81,18 @@ class Ability
 			end
 			can :manage, Invoice, :account_id => user.account_id
 			can :manage, Patient, :account_id => user.account_id
+
+			# Currently not checked
+			can :read, Country
+			can :read, EmploymentType
+			can :read, Gender
+			can :read, GuardianRelationship
+			can :read, LensCoating
+			can :read, LensMaterial
+			can :read, LensType
+			can :read, PersonalTitle
+			can :read, Plan
+			can :read, State
 		end
 		cannot :void, Invoice, :read_only? => true
 		cannot :update, Invoice, :read_only? => true
