@@ -20,6 +20,8 @@ class Optometrist < ActiveRecord::Base
   validates :phone, :length => { :maximum => 40 }
   validates :website, :length => { :maximum => 255 }
 
+  default_scope { order("last_name ASC, first_name ASC") }
+
 	def to_s
 	    if first_name == nil or first_name.empty? then
 	        if last_name == nil or last_name.empty? then

@@ -49,11 +49,11 @@
 				<td rowspan="2"><%= f.input_field :od_axis, :class => 'input-small', :style => (@glasses_prescription.errors.has_key?(:od_axis) ? 'border: 1px solid #ff0000' : '') %></td>
 				<td rowspan="2"><%= f.input_field :od_add, :class => 'input-small', :style => (@glasses_prescription.errors.has_key?(:od_add) ? 'border: 1px solid #ff0000' : '') %></td>
 				<td><%= f.input_field :od_prism1, :class => 'input-small', :style => (@glasses_prescription.errors.has_key?(:od_prism1) ? 'border: 1px solid #ff0000' : '') %></td>
-				<td><%= f.input_field :od_base1, :collection => {'Up' => :up, 'Down' => :down, 'In' => :in, 'Out' =: :out}, :class => 'input-small', :style => (@glasses_prescription.errors.has_key?(:od_base1) ? 'border: 1px solid #ff0000' : '') %></td>
+				<td><%= f.input_field :od_base1, :collection => {'Up' => :up, 'Down' => :down, 'In' => :in, 'Out' => :out}, :class => 'input-small', :style => (@glasses_prescription.errors.has_key?(:od_base1) ? 'border: 1px solid #ff0000' : '') %></td>
 			</tr>
 			<tr>
 				<td><%= f.input_field :od_prism2, :class => 'input-small', :style => (@glasses_prescription.errors.has_key?(:od_prism2) ? 'border: 1px solid #ff0000' : '') %></td>
-				<td><%= f.input_field :od_base2, :collection => {'Up' => :up, 'Down, 'In' => :in, 'Out' =: :out' => :down}, :class => 'input-small', :style => (@glasses_prescription.errors.has_key?(:od_base2) ? 'border: 1px solid #ff0000' : '') %></td>
+				<td><%= f.input_field :od_base2, :collection => {'Up' => :up, 'Down' => :down, 'In' => :in, 'Out' => :out}, :class => 'input-small', :style => (@glasses_prescription.errors.has_key?(:od_base2) ? 'border: 1px solid #ff0000' : '') %></td>
 			</tr>
 			<tr>
 				<th rowspan="2">OS</th>
@@ -62,11 +62,11 @@
 				<td rowspan="2"><%= f.input_field :os_axis, :class => 'input-small', :style => (@glasses_prescription.errors.has_key?(:os_axis) ? 'border: 1px solid #ff0000' : '') %></td>
 				<td rowspan="2"><%= f.input_field :os_add, :class => 'input-small', :style => (@glasses_prescription.errors.has_key?(:os_add) ? 'border: 1px solid #ff0000' : '') %></td>
 				<td><%= f.input_field :os_prism1, :class => 'input-small', :style => (@glasses_prescription.errors.has_key?(:os_prism1) ? 'border: 1px solid #ff0000' : '') %></td>
-				<td><%= f.input_field :os_base1, :collection => {'Up' => :up, 'Down' => :down}, :class => 'input-small', :style => (@glasses_prescription.errors.has_key?(:os_base1) ? 'border: 1px solid #ff0000' : '') %></td>
+				<td><%= f.input_field :os_base1, :collection => {'Up' => :up, 'Down' => :down, 'In' => :in, 'Out' => :out}, :class => 'input-small', :style => (@glasses_prescription.errors.has_key?(:os_base1) ? 'border: 1px solid #ff0000' : '') %></td>
 			</tr>
 			<tr>
 				<td><%= f.input_field :os_prism2, :class => 'input-small', :style => (@glasses_prescription.errors.has_key?(:os_prism2) ? 'border: 1px solid #ff0000' : '') %></td>
-				<td><%= f.input_field :os_base2, :collection => {'Up' => :up, 'Down' => :down, 'In' => :in, 'Out' =: :out}, :class => 'input-small', :style => (@glasses_prescription.errors.has_key?(:os_base2) ? 'border: 1px solid #ff0000' : '') %></td>
+				<td><%= f.input_field :os_base2, :collection => {'Up' => :up, 'Down' => :down, 'In' => :in, 'Out' => :out}, :class => 'input-small', :style => (@glasses_prescription.errors.has_key?(:os_base2) ? 'border: 1px solid #ff0000' : '') %></td>
 			</tr>
 		</tbody>
 	</table>

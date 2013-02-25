@@ -36,6 +36,8 @@ class Prescription < ActiveRecord::Base
   validates :patient_id, :presence => true
   validates :rx_date, :presence => true
   
+  default_scope { order("rx_date DESC") }
+
   def to_s
 	if description == nill or description == '' then
 		return rx_date

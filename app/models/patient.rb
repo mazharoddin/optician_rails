@@ -39,6 +39,8 @@ class Patient < ActiveRecord::Base
   validates :work_ext, :length => { :maximum => 5 }
   validates :work_phone, :length => { :maximum => 20 }
 
+  default_scope { order("last_name ASC, first_name ASC, home_city ASC") }
+
 	def to_s
 	    if first_name == nil or first_name.empty? then
 	        if last_name == nil or last_name.empty? then

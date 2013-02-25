@@ -5,7 +5,6 @@ class Store < ActiveRecord::Base
   belongs_to :country
   belongs_to :state
   
-  
   validates :address, :length => { :maximum => 255 }
   validates :city, :presence => true, :length => { :maximum => 60 }
   validates :country_id, :presence => true
@@ -24,6 +23,8 @@ class Store < ActiveRecord::Base
   validates :saturday_close, :presence => true, :if => :saturday_open?
   validates :sunday_close, :presence => true, :if => :sunday_open?
   
+  default_scope { order("name ASC") }
+
   def to_s
 	return name
   end

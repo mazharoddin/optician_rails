@@ -17,7 +17,11 @@ class User < ActiveRecord::Base
   validates :last_name, :presence => true, :length => { :maximum => 40 }
   validates :password, :confirmation => true, :length => { :minimum => 6 }, :presence => true, :on => :create
 
-	def to_s
+  default_scope { where("active = TRUE").order("last_name ASC, first_name ASC") }
+  scope :active, lambda { |current_id| where('active = true or id = ?', current_id) }
+
+
+  def to_s
 	    if first_name == nil or first_name.empty? then
 	        if last_name == nil or last_name.empty? then
 		        ""

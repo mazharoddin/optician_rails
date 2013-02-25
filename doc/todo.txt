@@ -1,3 +1,58 @@
+Pivot
+=====
+1. Big market: practice management system (PMS)
+2. Niches:
+ - Optician
+ - Optometrist
+ - Chiropractor
+ - Physiotherapist
+ - Massage Therapist
+ - Acupuncture
+ - Psychologist
+ - Dentist
+3. Common:
+ - Location or Locations
+ - Employees (especially Doctors)
+ - Rooms
+ - Patients
+ - Appointments
+ - Invoicing
+ - Medial Insurance
+4. Differences:
+ - Industry specific information (i.e. prescriptions, notes, etc)
+ 
+MVP Check List
+==============
+1. Replace "Dashboard coming soon..." message with something friendlier
+
+2. Invoices ...
+
+3. Patients
+ - Gender should use active scope similar to personal title
+ - Home state should use active scope similar to personal title
+ - Home country should use active scope similar to personal title
+ - Postal state should use active scope similar to personal title
+ - Postal country should use active scope similar to personal title
+ - Home states should only show states for home country
+ - Postal states should only show states for postal country
+ - Employment type should use active scope similar to personal title
+ - Guardian relationship should use active scope similar to personal title
+ - Optometrist should use active scope similar to personal title
+ - Clicking on "Glasses" tab should always take you to the current prescription
+ - Clicking on "Contacts" tab should always take you to the current prescription
+ 
+4. Glasses Prescription
+ - Optometrist should use active scope similar to personal title
+
+5. Contacts Prescription
+ - Optometrist should use active scope similar to personal title
+ 
+6. Home plan permissions so that inventory is inaccessible
+ 
+7. Invoicing is still not working!!
+
+
+ 
 Priority List
 1. Plans <-- Need to honor which features are enabled in the plan
 2. Permissions <-- Currently working on this using cancan

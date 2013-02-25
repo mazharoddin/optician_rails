@@ -21,6 +21,8 @@ class Invoice < ActiveRecord::Base
   validates :state, :length => { :maximum => 10 }
   validates :total, :numericality => { :greater_than_or_equal_to => 0 }, :presence => true
 
+  default_scope { order("id ASC") }
+  
   after_initialize do |invoice|
     if invoice.new_record? then
 		invoice.name = 'Cash Sale'

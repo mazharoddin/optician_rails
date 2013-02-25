@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 	before_filter :navbar
 
 	add_breadcrumb "Home", :root_path
-	
+
 	private
 	def set_current_account
 	  if current_user != nil

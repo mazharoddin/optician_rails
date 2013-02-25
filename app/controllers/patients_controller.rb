@@ -40,6 +40,8 @@ class PatientsController < ApplicationController
 	
 	def show
 		add_breadcrumb @patient, patient_path(@patient)
+		
+		@personal_titles = PersonalTitle.active(@patient.personal_title_id)
 	end
 	
 	def update

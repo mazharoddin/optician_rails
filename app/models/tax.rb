@@ -11,6 +11,8 @@ class Tax < ActiveRecord::Base
   validates :name, :presence => true, :length => { :within => 1..20 }
   validates :rate, :presence => true, :numericality => { :greater_than_or_equal_to => 0, :less_than_or_equal_to => 100 }
   
+  default_scope { order("name ASC") }
+
   def to_s
 	return name
   end

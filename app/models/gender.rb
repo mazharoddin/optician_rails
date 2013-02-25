@@ -5,6 +5,8 @@ class Gender < ActiveRecord::Base
   
   validates :name, :presence => true, :uniqueness => true, :length => { :maximum => 10 }
 
+  default_scope { order("name ASC") }
+
   def to_s
 	return name
   end

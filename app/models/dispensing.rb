@@ -8,4 +8,6 @@ class Dispensing < ActiveRecord::Base
   belongs_to :od_brand, :class_name => "Brand"
   belongs_to :os_brand, :class_name => "Brand"
   belongs_to :account
+
+  default_scope { order("id DESC") }
 end

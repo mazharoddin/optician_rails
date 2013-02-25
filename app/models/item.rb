@@ -15,6 +15,8 @@ class Item < ActiveRecord::Base
   validates :tax_b_amount, :presence => true, :numericality => { :greater_than_or_qual_to => 0 }, :if => :tax_b_id
   validates :unit_price, :presence => true, :numericality => { :greater_than_or_qual_to => 0 }
   
+  default_scope { order("id ASC") }
+
   after_save do |item|
     invoice = item.invoice
     invoice.total = invoice.sub_total

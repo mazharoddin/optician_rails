@@ -7,6 +7,8 @@ class State < ActiveRecord::Base
   validates :name, :presence => true, :uniqueness => { :scope => :country_id }
   validates :short_name, :presence => true, :uniqueness => { :scope => :country_id }
   
+  default_scope { order("name ASC") }
+
   def to_s
     if short_name == nil or short_name == '' then
 		return name

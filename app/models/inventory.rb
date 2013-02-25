@@ -27,6 +27,8 @@ class Inventory < ActiveRecord::Base
   validates :template, :length => { :maximum => 10 }
   validates :upc, :length => { :maximum => 40 }
 
+  default_scope { order("description ASC") }
+
   def to_s
 	return description
   end

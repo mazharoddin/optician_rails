@@ -48,4 +48,6 @@ class Account < ActiveRecord::Base
   validates :url, :length => { :maximum => 255 }
 
   accepts_nested_attributes_for :employees
+
+  default_scope { order("name ASC") }
 end

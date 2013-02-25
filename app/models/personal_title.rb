@@ -7,6 +7,10 @@ class PersonalTitle < ActiveRecord::Base
 
   validates :title, :presence => true, :uniqueness => true
 
+  default_scope { order("title ASC") }
+
+  scope :active, lambda { |current_id| where('active = true or id = ?', current_id) }
+  
   def to_s
 	return title
   end
