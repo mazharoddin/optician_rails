@@ -24,9 +24,9 @@
 	<tbody>
 <% @dispensing.each do |d| %>
 		<tr>
-			<td><%= link_to d.id, invoice_path(d.invoice) %></td>
-			<td><%= link_to d.invoice.id, invoice_path(d.invoice) %></td>
-			<td><%= link_to d.rx_date, invoice_path(d.invoice) %></td>
+			<td><%= link_to d.id, invoice_path(@current_account, d.invoice) %></td>
+			<td><%= link_to d.invoice.id, invoice_path(@current_account, d.invoice) %></td>
+			<td><%= link_to d.rx_date, invoice_path(@current_account, d.invoice) %></td>
 			<td><%= d.type %></td>
 			<td><%= d.optometrist %></td>
 			<td><%= d.description %></td>

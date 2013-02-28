@@ -14,7 +14,7 @@ class Admin::EmployeesController < Admin::ApplicationController
 	end
 	
 	def create
-		add_breadcrumb "New", new_admin_employee_path
+		add_breadcrumb "New", :new_admin_employee_path
 
 		@employee = @current_account.employees.build(params[:employee])
 		if @employee.save then
@@ -26,11 +26,11 @@ class Admin::EmployeesController < Admin::ApplicationController
 	end
 	
 	def edit
-		add_breadcrumb "Edit", edit_admin_employee_path(@employee)
+		add_breadcrumb "Edit", edit_admin_employee_path(@current_account, @employee)
 	end
 	
 	def new
-		add_breadcrumb "New", new_admin_employee_path
+		add_breadcrumb "New", :new_admin_employee_path
 
 		@employee = @current_account.employees.build
 		@employee.active = true
@@ -55,6 +55,6 @@ class Admin::EmployeesController < Admin::ApplicationController
 	private
 	def find_employee
 		@employee = @current_account.employees.find(params[:id])
-		add_breadcrumb @employee, admin_employee_path(@employee)
+		add_breadcrumb @employee, admin_employee_path(@current_account, @employee)
 	end
 end

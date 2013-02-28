@@ -1,6 +1,6 @@
 <% @title = "Show Gender" %>
 <div class="page-header">
-	<h1><%= @gender.name %> (Gender)<% if can? :update, @gender %><%= link_to "Edit Gender", edit_admin_gender_path(@gender), :class => "btn btn-primary pull-right" %><% end %></h1>
+	<h1><%= @gender.name %> (Gender)<% if can? :update, @gender %><%= link_to "Edit Gender", edit_admin_gender_path(@current_account, @gender), :class => "btn btn-primary pull-right" %><% end %></h1>
 </div>
 
 

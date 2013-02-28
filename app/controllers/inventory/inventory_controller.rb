@@ -13,18 +13,18 @@ class Inventory::InventoryController < Inventory::ApplicationController
 
 	def show
 		if @item.type == "ContactsInventory" then
-			redirect_to inventory_contacts_inventory_path(@item)
+			redirect_to inventory_contacts_inventory_path(@current_account, @item)
 		else
 			if @item.type == "FramesInventory" then
-				redirect_to inventory_frames_inventory_path(@item)
+				redirect_to inventory_frames_inventory_path(@current_account, @item)
 			else
 				if @item.type == "LensInventory" then
-					redirect_to inventory_lens_inventory_path(@item)
+					redirect_to inventory_lens_inventory_path(@current_account, @item)
 				else
 					if @item.type == "ServicesInventory" then
-						redirect_to inventory_services_inventory_path(@item)
+						redirect_to inventory_services_inventory_path(@current_account, @item)
 					else
-						redirect_to inventory_accessories_inventory_path(@item)
+						redirect_to inventory_accessories_inventory_path(@current_account, @item)
 					end
 				end
 			end
@@ -34,6 +34,6 @@ class Inventory::InventoryController < Inventory::ApplicationController
 	private
 	def find_inventory
 		@item = Inventory.find(params[:id])
-		add_breadcrumb @item.description, inventory_path(@item)
+		add_breadcrumb @item.description, inventory_path(@current_account, @item)
 	end
 end

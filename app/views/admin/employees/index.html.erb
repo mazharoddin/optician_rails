@@ -24,9 +24,9 @@
 	<tbody>
 <% @employees.each do |employee| %>
 		<tr>
-			<td><%= link_to employee.last_name, admin_employee_path(employee) %></td>
-			<td><%= link_to employee.first_name, admin_employee_path(employee) %></td>
-			<td><%= link_to employee.email, admin_employee_path(employee) %></td>
+			<td><%= link_to employee.last_name, admin_employee_path(@current_account, employee) %></td>
+			<td><%= link_to employee.first_name, admin_employee_path(@current_account, employee) %></td>
+			<td><%= link_to employee.email, admin_employee_path(@current_account, employee) %></td>
 			<td><%= employee.active %></td>
 			<td><%= employee.dispensing_optician %></td>
 		</tr>

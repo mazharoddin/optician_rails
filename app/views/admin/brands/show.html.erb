@@ -1,6 +1,6 @@
 <% @title = "Show Brand" %>
 <div class="page-header">
-	<h1><%= @brand.name %> (Brand)<% if can? :update, @brand %><%= link_to "Edit Brand", edit_admin_brand_path(@brand), :class => "btn btn-primary pull-right" %><% end %></h1>
+	<h1><%= @brand.name %> (Brand)<% if can? :update, @brand %><%= link_to "Edit Brand", edit_admin_brand_path(@current_account, @brand), :class => "btn btn-primary pull-right" %><% end %></h1>
 </div>
 
 

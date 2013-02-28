@@ -21,7 +21,7 @@
 	<tbody>
 <% @lens_materials.each do |lens_material| %>
 		<tr>
-			<td><%= link_to lens_material.name, admin_lens_material_path(lens_material) %></td>
+			<td><%= link_to lens_material.name, admin_lens_material_path(@current_account, lens_material) %></td>
 			<td><%= lens_material.active %></td>
 		</tr>
 <% end %>

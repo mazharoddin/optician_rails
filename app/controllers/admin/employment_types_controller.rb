@@ -14,7 +14,7 @@ class Admin::EmploymentTypesController < Admin::ApplicationController
 	end
 	
 	def create
-		add_breadcrumb "New", new_admin_employment_type_path
+		add_breadcrumb "New", :new_admin_employment_type_path
 
 		@employment_type = EmploymentType.new(params[:employment_type])
 		if @employment_type.save then
@@ -26,11 +26,11 @@ class Admin::EmploymentTypesController < Admin::ApplicationController
 	end
 	
 	def edit
-		add_breadcrumb "Edit", edit_admin_employment_type_path(@employment_type)
+		add_breadcrumb "Edit", edit_admin_employment_type_path(@current_account, @employment_type)
 	end
 	
 	def new
-		add_breadcrumb "New", new_admin_employment_type_path
+		add_breadcrumb "New", :new_admin_employment_type_path
 
 		@employment_type = EmploymentType.new
 	end
@@ -50,6 +50,6 @@ class Admin::EmploymentTypesController < Admin::ApplicationController
 	private
 	def find_employment_type
 		@employment_type = EmploymentType.find(params[:id])
-		add_breadcrumb @employment_type.name, admin_employment_type_path(@employment_type)
+		add_breadcrumb @employment_type.name, admin_employment_type_path(@current_account, @employment_type)
 	end
 end

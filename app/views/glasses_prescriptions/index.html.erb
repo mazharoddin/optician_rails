@@ -7,17 +7,17 @@
 
 
 <ul class="nav nav-tabs">
-	<li><%= link_to "Profile", patient_path(@patient) %></li>
-	<li class="active"><%= link_to "Glasses", patient_glasses_prescriptions_path(@patient, @glasses_prescription) %></li>
-	<li><%= link_to "Contacts", patient_contacts_prescriptions_path(@patient, @contacts_prescription) %></li>
-	<li><%= link_to "Dispensing", patient_dispensing_path(@patient) %></li>
-	<li><%= link_to "Invoices", patient_invoices_path(@patient) %></li>
+	<li><%= link_to "Profile", patient_path(@current_account, @patient) %></li>
+	<li class="active"><%= link_to "Glasses", patient_glasses_prescriptions_path(@current_account, @patient, @glasses_prescription) %></li>
+	<li><%= link_to "Contacts", patient_contacts_prescriptions_path(@current_account, @patient, @contacts_prescription) %></li>
+	<li><%= link_to "Dispensing", patient_dispensing_path(@current_account, @patient) %></li>
+	<li><%= link_to "Invoices", patient_invoices_path(@current_account, @patient) %></li>
 </ul>
 
 <div class="btn-toolbar">
 	<div class="btn-group">
-		<%= link_to "Current", current_patient_glasses_prescriptions_path(@patient), :class => "btn" %>
-		<%= link_to "History", patient_glasses_prescriptions_path(@patient), :class => "btn btn-primary" %>
+		<%= link_to "Current", current_patient_glasses_prescriptions_path(@current_account, @patient), :class => "btn" %>
+		<%= link_to "History", patient_glasses_prescriptions_path(@current_account, @patient), :class => "btn btn-primary" %>
 	</div>
 <% if can? :creat, GlassesPrescription %>
 	<div class="btn-group pull-right">
@@ -40,8 +40,8 @@
 	<tbody>
 <% @glasses_prescriptions.each do |glasses_prescription| %>
 		<tr>
-			<td><%= link_to glasses_prescription.rx_date, patient_glasses_prescription_path(@patient, glasses_prescription) %></td>
-			<td><%= link_to glasses_prescription.optometrist, patient_glasses_prescription_path(@patient, glasses_prescription) %></td>
+			<td><%= link_to glasses_prescription.rx_date, patient_glasses_prescription_path(@current_account, @patient, glasses_prescription) %></td>
+			<td><%= link_to glasses_prescription.optometrist, patient_glasses_prescription_path(@current_account, @patient, glasses_prescription) %></td>
 			<td><%= glasses_prescription.description %></td>
 		</tr>
 <% end %>

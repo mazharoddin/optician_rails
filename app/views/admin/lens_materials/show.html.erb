@@ -1,6 +1,6 @@
 <% @title = "Show Lens Material" %>
 <div class="page-header">
-	<h1><%= @lens_material.name %> (Lens Material)<% if can? :update, @lens_material %><%= link_to "Edit Lens Material", edit_admin_lens_material_path(@lens_material), :class => "btn btn-primary pull-right" %><% end %></h1>
+	<h1><%= @lens_material.name %> (Lens Material)<% if can? :update, @lens_material %><%= link_to "Edit Lens Material", edit_admin_lens_material_path(@current_account, @lens_material), :class => "btn btn-primary pull-right" %><% end %></h1>
 </div>
 
 

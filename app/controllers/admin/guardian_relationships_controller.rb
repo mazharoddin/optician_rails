@@ -14,7 +14,7 @@ class Admin::GuardianRelationshipsController < Admin::ApplicationController
 	end
 	
 	def create
-		add_breadcrumb "New", new_admin_guardian_relationship_path
+		add_breadcrumb "New", :new_admin_guardian_relationship_path
 
 		@guardian_relationship = GuardianRelationship.new(params[:guardian_relationship])
 		if @guardian_relationship.save then
@@ -26,11 +26,11 @@ class Admin::GuardianRelationshipsController < Admin::ApplicationController
 	end
 	
 	def edit
-		add_breadcrumb "Edit", edit_admin_guardian_relationship_path(@guardian_relationship)
+		add_breadcrumb "Edit", edit_admin_guardian_relationship_path(@current_account, @guardian_relationship)
 	end
 	
 	def new
-		add_breadcrumb "New", new_admin_guardian_relationship_path
+		add_breadcrumb "New", :new_admin_guardian_relationship_path
 
 		@guardian_relationship = GuardianRelationship.new
 	end
@@ -50,6 +50,6 @@ class Admin::GuardianRelationshipsController < Admin::ApplicationController
 	private
 	def find_guardian_relationship
 		@guardian_relationship = GuardianRelationship.find(params[:id])
-		add_breadcrumb @guardian_relationship.name, admin_guardian_relationship_path(@guardian_relationship)
+		add_breadcrumb @guardian_relationship.name, admin_guardian_relationship_path(@current_account, @guardian_relationship)
 	end
 end

@@ -7,7 +7,7 @@
 <% if @lens_coating.new_record? %>
 		<%= link_to "Discard Changes", admin_lens_coatings_path, :class => "btn" %>
 <% else %>
-		<%= link_to "Discard Changes", admin_lens_coating_path(@lens_coating), :class => "btn" %>
+		<%= link_to "Discard Changes", admin_lens_coating_path(@current_account, @lens_coating), :class => "btn" %>
 <% end %>
 	</div>
 <% end %>

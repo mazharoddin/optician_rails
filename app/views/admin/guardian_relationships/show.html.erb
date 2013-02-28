@@ -1,6 +1,6 @@
 <% @title = "Show Guardian Relationships" %>
 <div class="page-header">
-	<h1><%= @guardian_relationship.name %> (Guardian Relationship)<% if can? :update, @guardian_relationship %><%= link_to "Edit Guardian Relationship", edit_admin_guardian_relationship_path(@guardian_relationship), :class => "btn btn-primary pull-right" %><% end %></h1>
+	<h1><%= @guardian_relationship.name %> (Guardian Relationship)<% if can? :update, @guardian_relationship %><%= link_to "Edit Guardian Relationship", edit_admin_guardian_relationship_path(@current_account, @guardian_relationship), :class => "btn btn-primary pull-right" %><% end %></h1>
 </div>
 
 

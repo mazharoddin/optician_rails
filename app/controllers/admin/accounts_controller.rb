@@ -14,7 +14,7 @@ class Admin::AccountsController < Admin::ApplicationController
 	end
 	
 	def create
-		add_breadcrumb "New", new_admin_account_path
+		add_breadcrumb "New", :new_admin_account_path
 
 		@account = Account.new(params[:account])
 		if @account.save then
@@ -26,11 +26,11 @@ class Admin::AccountsController < Admin::ApplicationController
 	end
 	
 	def edit
-		add_breadcrumb "Edit", edit_admin_account_path(@account)
+		add_breadcrumb "Edit", edit_admin_account_path(@current_account, @account)
 	end
 	
 	def new
-		add_breadcrumb "New", new_admin_account_path
+		add_breadcrumb "New", :new_admin_account_path
 
 		@account = Account.new
 		@account.active = true
@@ -51,6 +51,6 @@ class Admin::AccountsController < Admin::ApplicationController
 	private
 	def find_account
 		@account = Account.find(params[:id])
-		add_breadcrumb @account.name, admin_account_path(@account)
+		add_breadcrumb @account.name, admin_account_path(@current_account, @account)
 	end
 end

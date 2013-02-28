@@ -60,63 +60,66 @@ Optician::Application.routes.draw do
 	# This is a legacy wild controller route that's not recommended for RESTful applications.
 	# Note: This route will make all actions in every controller accessible via GET requests.
 	# match ':controller(/:action(/:id))(.:format)'
-	resources :invoices do
-		get 'patients'
-		put 'patients/:id', :action => 'set_patient', :as => 'set_patient'
-		put 'cash_sale', :action => 'set_cash_sale'
-		put 'void', :action => 'void_invoice'
-		resources :items do
-			get 'accessories', :action => 'accessories', :on => :collection
-			get 'services', :action => 'services', :on => :collection
+	scope ':subdomain' do
+		resources :invoices do
+			get 'patients'
+			put 'patients/:id', :action => 'set_patient', :as => 'set_patient'
+			put 'cash_sale', :action => 'set_cash_sale'
+			put 'void', :action => 'void_invoice'
+			resources :items do
+				get 'accessories', :action => 'accessories', :on => :collection
+				get 'services', :action => 'services', :on => :collection
+			end
+			resources :contacts_dispensing
+			resources :glasses_dispensing
+			#resources :accessories, :controller => 'invoices/accessories'
+			#resources :contacts, :controller => 'invoices/contacts'
+			#resources :glasses, :controller => 'invoices/glasses'
+			#resources :other, :controller => 'invoices/other', :as => 'invoice_items'
+			#resources :services, :controller => 'invoices/services'
 		end
-		resources :contacts_dispensing
-		resources :glasses_dispensing
-		#resources :accessories, :controller => 'invoices/accessories'
-		#resources :contacts, :controller => 'invoices/contacts'
-		#resources :glasses, :controller => 'invoices/glasses'
-		#resources :other, :controller => 'invoices/other', :as => 'invoice_items'
-		#resources :services, :controller => 'invoices/services'
-	end
-	namespace :inventory do
-		resources :contacts, :as => 'contacts_inventory'
-		resources :frames, :as => 'frames_inventory'
-		resources :lenses, :as => 'lens_inventory'
-		resources :services, :as => 'services_inventory'
-		resources :accessories, :as => 'accessories_inventory'
-		root :to => 'inventory#index'
-		match ':id' => 'inventory#show'
-	end
-	resources :patients do
-		get 'dispensing'
-		get 'invoices'
-		resources :contacts_prescriptions do
-			get 'current', :on => :collection
+		namespace :inventory do
+			resources :contacts, :as => 'contacts_inventory'
+			resources :frames, :as => 'frames_inventory'
+			resources :lenses, :as => 'lens_inventory'
+			resources :services, :as => 'services_inventory'
+			resources :accessories, :as => 'accessories_inventory'
+			root :to => 'inventory#index'
+			match ':id' => 'inventory#show'
 		end
-		resources :glasses_prescriptions do
-			get 'current', :on => :collection
+		resources :patients do
+			get 'dispensing'
+			get 'invoices'
+			resources :contacts_prescriptions do
+				get 'current', :on => :collection
+			end
+			resources :glasses_prescriptions do
+				get 'current', :on => :collection
+			end
 		end
-	end
-	namespace :admin do
-		resources :accounts
-		resources :brands
-		resources :companies
-		resources :countries do
-			resources :states
+		namespace :admin do
+			resources :accounts
+			resources :brands
+			resources :companies
+			resources :countries do
+				resources :states
+			end
+			resources :employees
+			resources :employment_types
+			resources :genders
+			resources :guardian_relationships
+			resources :lens_coatings
+			resources :lens_materials
+			resources :lens_types
+			resources :optometrists
+			resources :personal_titles
+			resources :plans
+			resources :stores
+			resources :taxes
+			root :to => 'dashboard#index'
 		end
-		resources :employees
-		resources :employment_types
-		resources :genders
-		resources :guardian_relationships
-		resources :lens_coatings
-		resources :lens_materials
-		resources :lens_types
-		resources :optometrists
-		resources :personal_titles
-		resources :plans
-		resources :stores
-		resources :taxes
+		
 		root :to => 'dashboard#index'
 	end
-	
-	root :to => 'dashboard#index'
+	root :to => 'dashboard#home', :as => 'home'
 end

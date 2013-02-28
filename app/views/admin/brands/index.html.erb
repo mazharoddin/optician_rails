@@ -21,7 +21,7 @@
 	<tbody>
 <% @brands.each do |brand| %>
 		<tr>
-			<td><%= link_to brand.name, admin_brand_path(brand) %></td>
+			<td><%= link_to brand.name, admin_brand_path(@current_account, brand) %></td>
 			<td><%= brand.active %>
 		</tr>
 <% end %>

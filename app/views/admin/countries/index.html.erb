@@ -21,7 +21,7 @@
 	<tbody>
 <% @countries.each do |country| %>
 		<tr>
-			<td><%= link_to country.name, admin_country_path(country) %></td>
+			<td><%= link_to country.name, admin_country_path(@current_account, country) %></td>
 			<td><%= country.active %></td>
 		</tr>
 <% end %>

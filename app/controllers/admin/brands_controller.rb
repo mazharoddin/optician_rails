@@ -14,7 +14,7 @@ class Admin::BrandsController < Admin::ApplicationController
 	end
 	
 	def create
-		add_breadcrumb "New", new_admin_brand_path
+		add_breadcrumb "New", :new_admin_brand_path
 
 		@brand = @current_account.brands.build(params[:brand])
 		if @brand.save then
@@ -26,11 +26,11 @@ class Admin::BrandsController < Admin::ApplicationController
 	end
 	
 	def edit
-		add_breadcrumb "Edit", edit_admin_brand_path(@brand)
+		add_breadcrumb "Edit", edit_admin_brand_path(@current_account, @brand)
 	end
 	
 	def new
-		add_breadcrumb "New", new_admin_brand_path
+		add_breadcrumb "New", :new_admin_brand_path
 
 		@brand = @current_account.brands.build
 	end
@@ -50,6 +50,6 @@ class Admin::BrandsController < Admin::ApplicationController
 	private
 	def find_brand
 		@brand = @current_account.brands.find(params[:id])
-		add_breadcrumb @brand.name, admin_brand_path(@brand)
+		add_breadcrumb @brand.name, admin_brand_path(@current_account, @brand)
 	end
 end

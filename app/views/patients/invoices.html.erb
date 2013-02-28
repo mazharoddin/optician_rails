@@ -7,16 +7,16 @@
 
 
 <ul class="nav nav-tabs">
-	<li><%= link_to "Profile", patient_path(@patient) %></li>
-	<li><%= link_to "Glasses", patient_glasses_prescriptions_path(@patient, @glasses_prescription) %></li>
-	<li><%= link_to "Contacts", patient_contacts_prescriptions_path(@patient, @contacts_prescription) %></li>
-	<li><%= link_to "Dispensing", patient_dispensing_path(@patient) %></li>
-	<li class="active"><%= link_to "Invoices", patient_invoices_path(@patient) %></li>
+	<li><%= link_to "Profile", patient_path(@current_account, @patient) %></li>
+	<li><%= link_to "Glasses", current_patient_glasses_prescriptions_path(@current_account, @patient, @glasses_prescription) %></li>
+	<li><%= link_to "Contacts", current_patient_contacts_prescriptions_path(@current_account, @patient, @contacts_prescription) %></li>
+	<li><%= link_to "Dispensing", patient_dispensing_path(@current_account, @patient) %></li>
+	<li class="active"><%= link_to "Invoices", patient_invoices_path(@current_account, @patient) %></li>
 </ul>
 
 <div class="btn-toolbar">
 	<div class="btn-group pull-right">
-		<%= link_to "New Invoice", :new_invoice, :class => "btn btn-success" %>
+		<%= link_to "New Invoice", invoices_path, :method => :post, :class => "btn btn-success pull-right" %>
 	</div>
 </div>
 
@@ -35,7 +35,7 @@
 	<tbody>
 <% @invoices.each do |invoice| %>
 		<tr>
-			<td><%= link_to invoice.id, invoice_path(invoice) %></td>
+			<td><%= link_to invoice.id, invoice_path(@current_account, invoice) %></td>
 			<td><%= invoice.invoice_date %></td>
 			<td><%= invoice_status_label(invoice) %></td>
 			<td><%= invoice.total %></td>

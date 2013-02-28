@@ -21,7 +21,7 @@
 	<tbody>
 <% @genders.each do |gender| %>
 		<tr>
-			<td><%= link_to gender.name, admin_gender_path(gender) %></td>
+			<td><%= link_to gender.name, admin_gender_path(@current_account, gender) %></td>
 			<td><%= gender.active %></td>
 		</tr>
 <% end %>

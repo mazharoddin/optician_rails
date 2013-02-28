@@ -7,7 +7,7 @@
 <% if @tax.new_record? %>
 		<%= link_to "Discard Changes", admin_taxes_path, :class => "btn" %>
 <% else %>
-		<%= link_to "Discard Changes", admin_tax_path(@tax), :class => "btn" %>
+		<%= link_to "Discard Changes", admin_tax_path(@current_account, @tax), :class => "btn" %>
 <% end %>
 	</div>
 <% end %>

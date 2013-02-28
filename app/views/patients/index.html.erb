@@ -1,6 +1,6 @@
 <% @title = "Patients" %>
 <div class="page-header">
-	<h1>Find Patient <%= link_to "New Patient", new_patient_path, :class => "btn btn-success pull-right" %></h1>
+	<h1>Find Patient <%= link_to "New Patient", new_patient_path(@current_account), :class => "btn btn-success pull-right" %></h1>
 </div>
 
 <form class="well form-search" method="get">
@@ -26,8 +26,8 @@
 	<tbody>
 <% @patients.each do |patient| %>
 		<tr>
-			<td><%= link_to patient.last_name, patient_path(patient) %></td>
-			<td><%= link_to patient.first_name, patient_path(patient) %></td>
+			<td><%= link_to patient.last_name, patient_path(@current_account, patient) %></td>
+			<td><%= link_to patient.first_name, patient_path(@current_account, patient) %></td>
 			<td><%= patient.home_address %></td>
 			<td><%= patient.home_city %></td>
 			<td><%= patient.home_postal_code %></td>

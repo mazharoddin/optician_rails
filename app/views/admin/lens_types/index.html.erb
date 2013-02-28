@@ -21,7 +21,7 @@
 	<tbody>
 <% @lens_types.each do |lens_type| %>
 		<tr>
-			<td><%= link_to lens_type.name, admin_lens_type_path(lens_type) %></td>
+			<td><%= link_to lens_type.name, admin_lens_type_path(@current_account, lens_type) %></td>
 			<td><%= lens_type.active %></td>
 		</tr>
 <% end %>

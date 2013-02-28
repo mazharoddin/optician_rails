@@ -26,7 +26,7 @@
 	<tbody>
 <% @stores.each do |store| %>
 		<tr>
-			<td><%= link_to store.name, admin_store_path(store) %></td>
+			<td><%= link_to store.name, admin_store_path(@current_account, store) %></td>
 			<td><%= store.address %></td>
 			<td><%= store.city %></td>
 			<td><%= store.postal_code %></td>

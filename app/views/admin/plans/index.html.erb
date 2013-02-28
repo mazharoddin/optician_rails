@@ -23,7 +23,7 @@
 	<tbody>
 <% @plans.each do |plan| %>
 		<tr>
-			<td><%= link_to plan.name, admin_plan_path(plan) %></td>
+			<td><%= link_to plan.name, admin_plan_path(@current_account, plan) %></td>
 			<td><%= plan.inventory %></td>
 			<td><%= plan.multistore %></td>
 			<td><%= number_with_precision(plan.price, :precision => 2) %></td>

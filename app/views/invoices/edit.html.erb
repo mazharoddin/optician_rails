@@ -15,6 +15,6 @@
        </div>
        <div class="modal-footer">
                <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-               <%= link_to "Void Transaction", invoice_void_path(@invoice), :class => "btn btn-danger" %>
+               <%= link_to "Void Transaction", invoice_void_path(@current_account, @invoice), :class => "btn btn-danger" %>
        </div>
 </div>

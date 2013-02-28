@@ -14,7 +14,7 @@ class Admin::LensCoatingsController < Admin::ApplicationController
 	end
 	
 	def create
-		add_breadcrumb "New", new_admin_lens_coating_path
+		add_breadcrumb "New", :new_admin_lens_coating_path
 
 		@lens_coating = LensCoating.new(params[:lens_coating])
 		if @lens_coating.save then
@@ -26,11 +26,11 @@ class Admin::LensCoatingsController < Admin::ApplicationController
 	end
 	
 	def edit
-		add_breadcrumb "Edit", edit_admin_lens_coating_path(@lens_coating)
+		add_breadcrumb "Edit", edit_admin_lens_coating_path(@current_account, @lens_coating)
 	end
 	
 	def new
-		add_breadcrumb "New", new_admin_lens_coating_path
+		add_breadcrumb "New", :new_admin_lens_coating_path
 
 		@lens_coating = LensCoating.new
 	end
@@ -50,6 +50,6 @@ class Admin::LensCoatingsController < Admin::ApplicationController
 	private
 	def find_lens_coating
 		@lens_coating = LensCoating.find(params[:id])
-		add_breadcrumb @lens_coating.name, admin_lens_coating_path(@lens_coating)
+		add_breadcrumb @lens_coating.name, admin_lens_coating_path(@current_account, @lens_coating)
 	end
 end

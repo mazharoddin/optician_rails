@@ -1,6 +1,6 @@
 <% @title = "States" %>
 <div class="page-header">
-	<h1>Find State<% if can? :create, Country %><%= link_to "New State", new_admin_country_state_path(@country), :class => "btn btn-success pull-right" %><% end %></h1>
+	<h1>Find State<% if can? :create, Country %><%= link_to "New State", new_admin_country_state_path(@current_account, @country), :class => "btn btn-success pull-right" %><% end %></h1>
 </div>
 
 <form class="well form-search" method="get">
@@ -22,8 +22,8 @@
 	<tbody>
 <% @states.each do |state| %>
 		<tr>
-			<td><%= link_to state.name, admin_country_state_path(@country, state) %></td>
-			<td><%= link_to state.short_name, admin_country_state_path(@country, state) %></td>
+			<td><%= link_to state.name, admin_country_state_path(@current_account, @country, state) %></td>
+			<td><%= link_to state.short_name, admin_country_state_path(@current_account, @country, state) %></td>
 			<td><%= state.active %></td>
 		</tr>
 <% end %>

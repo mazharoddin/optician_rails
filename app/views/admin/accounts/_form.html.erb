@@ -21,7 +21,7 @@
 <% if @account.new_record? %>
 		<%= link_to "Discard Changes", admin_accounts_path, :class => "btn" %>
 <% else %>
-		<%= link_to "Discard Changes", admin_account_path(@account), :class => "btn" %>
+		<%= link_to "Discard Changes", admin_account_path(@current_account, @account), :class => "btn" %>
 <% end %>
 	</div>
 <% end %>

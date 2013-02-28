@@ -14,7 +14,7 @@ class Inventory::ContactsController < Inventory::ApplicationController
 	end
 	
 	def create
-		add_breadcrumb "New", new_inventory_contacts_inventory_path
+		add_breadcrumb "New", :new_inventory_contacts_inventory_path
 
 		@item = ContactsInventory.new(params[:contacts_inventory])
 		@item.account_id = @current_account.id
@@ -27,11 +27,11 @@ class Inventory::ContactsController < Inventory::ApplicationController
 	end
 	
 	def edit
-		add_breadcrumb "Edit", edit_inventory_contacts_inventory_path(@item)
+		add_breadcrumb "Edit", edit_inventory_contacts_inventory_path(@current_account, @item)
 	end
 	
 	def new
-		add_breadcrumb "New", new_inventory_contacts_inventory_path
+		add_breadcrumb "New", :new_inventory_contacts_inventory_path
 
 		@item = ContactsInventory.new
 	end
@@ -51,6 +51,6 @@ class Inventory::ContactsController < Inventory::ApplicationController
 	private
 	def find_inventory
 		@item = ContactsInventory.find(params[:id])
-		add_breadcrumb @item.description, inventory_contacts_inventory_path(@item)
+		add_breadcrumb @item.description, inventory_contacts_inventory_path(@current_account, @item)
 	end
 end

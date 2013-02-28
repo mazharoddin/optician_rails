@@ -14,7 +14,7 @@ class Admin::TaxesController < Admin::ApplicationController
 	end
 	
 	def create
-		add_breadcrumb "New", new_admin_tax_path
+		add_breadcrumb "New", :new_admin_tax_path
 
 		@tax = @current_account.taxes.build(params[:tax])
 		if @tax.save then
@@ -26,11 +26,11 @@ class Admin::TaxesController < Admin::ApplicationController
 	end
 	
 	def edit
-		add_breadcrumb "Edit", edit_admin_tax_path(@tax)
+		add_breadcrumb "Edit", edit_admin_tax_path(@current_account, @tax)
 	end
 	
 	def new
-		add_breadcrumb "New", new_admin_tax_path
+		add_breadcrumb "New", :new_admin_tax_path
 
 		@tax = @current_account.taxes.build
 	end
@@ -50,6 +50,6 @@ class Admin::TaxesController < Admin::ApplicationController
 	private
 	def find_tax
 		@tax = @current_account.taxes.find(params[:id])
-		add_breadcrumb @tax.name, admin_tax_path(@tax)
+		add_breadcrumb @tax.name, admin_tax_path(@current_account, @tax)
 	end
 end

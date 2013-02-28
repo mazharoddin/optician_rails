@@ -7,7 +7,7 @@
 <% if @brand.new_record? %>
 		<%= link_to "Discard Changes", admin_brands_path, :class => "btn" %>
 <% else %>
-		<%= link_to "Discard Changes", admin_brand_path(@brand), :class => "btn" %>
+		<%= link_to "Discard Changes", admin_brand_path(@current_account, @brand), :class => "btn" %>
 <% end %>
 	</div>
 <% end %>

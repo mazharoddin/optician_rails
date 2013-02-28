@@ -14,7 +14,7 @@ class Admin::OptometristsController < Admin::ApplicationController
 	end
 	
 	def create
-		add_breadcrumb "New", new_admin_optometrist_path
+		add_breadcrumb "New", :new_admin_optometrist_path
 
 		@optometrist = @current_account.optometrists.new(params[:optometrist])
 		if @optometrist.save then
@@ -26,11 +26,11 @@ class Admin::OptometristsController < Admin::ApplicationController
 	end
 	
 	def edit
-		add_breadcrumb "Edit", edit_admin_optometrist_path(@optometrist)
+		add_breadcrumb "Edit", edit_admin_optometrist_path(@current_account, @optometrist)
 	end
 	
 	def new
-		add_breadcrumb "New", new_admin_optometrist_path
+		add_breadcrumb "New", :new_admin_optometrist_path
 
 		@optometrist = @current_account.optometrists.new
 	end
@@ -50,6 +50,6 @@ class Admin::OptometristsController < Admin::ApplicationController
 	private
 	def find_optometrist
 		@optometrist = @current_account.optometrists.find(params[:id])
-		add_breadcrumb @optometrist, admin_optometrist_path(@optometrist)
+		add_breadcrumb @optometrist, admin_optometrist_path(@current_account, @optometrist)
 	end
 end

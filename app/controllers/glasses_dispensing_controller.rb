@@ -10,13 +10,13 @@ class GlassesDispensingController < ApplicationController
 	end
 	
 	def create
-		add_breadcrumb "New", new_invoice_glasses_dispensing_path(@invoice)
+		add_breadcrumb "New", new_invoice_glasses_dispensing_path(@current_account, @invoice)
 
 		@dispensing = @invoice.glasses_dispensing.build(params[:glasses_dispensing])
 		@dispensing.patient = @invoice.patient
 		if @dispensing.save then
 			flash[:success] = "Glasses dispensing has been created."
-			redirect_to invoice_path(@invoice)
+			redirect_to invoice_path(@current_account, @invoice)
 		else
 			render "new"
 		end
@@ -27,7 +27,7 @@ class GlassesDispensingController < ApplicationController
 	end
 	
 	def new
-		add_breadcrumb "New", new_invoice_glasses_dispensing_path(@invoice)
+		add_breadcrumb "New", new_invoice_glasses_dispensing_path(@current_account, @invoice)
 		
 		@dispensing = @invoice.glasses_dispensing.build
 	end
@@ -38,7 +38,7 @@ class GlassesDispensingController < ApplicationController
 	def update
 		if @dispensing.update_attributes(params[:glasses_prescription]) then
 			flash[:success] = "Glasses dispensing has been updated."
-			redirect_to invoice_glasses_dispensing_path(@invoice, @dispensing)
+			redirect_to invoice_glasses_dispensing_path(@current_account, @invoice, @dispensing)
 		else
 			render "edit"
 		end
@@ -47,13 +47,13 @@ class GlassesDispensingController < ApplicationController
 	private
 	def find_invoice
 		@invoice = @current_account.invoices.find(params[:invoice_id])
-		add_breadcrumb '#' + @invoice.id.to_s, invoice_path(@invoice)
-		add_breadcrumb "Glasses Dispensing", invoice_glasses_dispensing_path(@invoice)
+		add_breadcrumb '#' + @invoice.id.to_s, invoice_path(@current_account, @invoice)
+		add_breadcrumb "Glasses Dispensing", invoice_glasses_dispensing_path(@current_account, @invoice)
 	end
 
 	def find_dispensing
 		@dispensing = @invoice.glasses_dispensing.find(params[:id])
-		add_breadcrumb @dispensing.rx_date, invoice_glasses_dispensing_path(@invoice, @dispensing)
+		add_breadcrumb @dispensing.rx_date, invoice_glasses_dispensing_path(@current_account, @invoice, @dispensing)
 	end
 
 	def navbar

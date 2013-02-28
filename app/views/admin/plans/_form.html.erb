@@ -13,7 +13,7 @@
 <% if @plan.new_record? %>
 		<%= link_to "Discard Changes", admin_plans_path, :class => "btn" %>
 <% else %>
-		<%= link_to "Discard Changes", admin_plan_path(@plan), :class => "btn" %>
+		<%= link_to "Discard Changes", admin_plan_path(@current_account, @plan), :class => "btn" %>
 <% end %>
 	</div>
 <% end %>

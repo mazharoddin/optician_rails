@@ -28,7 +28,7 @@
 <% if @item.new_record? %>
 		<%= link_to "Discard Changes", inventory_contacts_inventory_index_path, :class => "btn" %>
 <% else %>
-		<%= link_to "Discard Changes", inventory_contacts_inventory_path(@item), :class => "btn" %>
+		<%= link_to "Discard Changes", inventory_contacts_inventory_path(@current_account, @item), :class => "btn" %>
 <% end %>
 	</div>
 <% end %>

@@ -18,8 +18,14 @@ class User < ActiveRecord::Base
   validates :password, :confirmation => true, :length => { :minimum => 6 }, :presence => true, :on => :create
 
   default_scope { where("active = TRUE").order("last_name ASC, first_name ASC") }
-  scope :active, lambda { |current_id| where('active = true or id = ?', current_id) }
+  scope :active, where("active = TRUE").order("last_name ASC, first_name ASC")
+  scope :readable_by, lambda { |account, user|
+    where('account_id = ? AND id = ?', account.id, user.id).order("last_name ASC, first_name ASC")
+  }
 
+  def for(account, user)
+    user.admin? ? User : User.readable_by(account, user)
+  end
 
   def to_s
 	    if first_name == nil or first_name.empty? then

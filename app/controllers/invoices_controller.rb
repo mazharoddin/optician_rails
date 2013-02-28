@@ -14,14 +14,14 @@ class InvoicesController < ApplicationController
 	end
 	
 	def create
-		add_breadcrumb "New", new_invoice_path
+		add_breadcrumb "New", :new_invoice_path
 
 		@invoice = @current_account.invoices.build
 		if @invoice.save
-			redirect_to invoice_path(@invoice)
+			redirect_to invoice_path(@current_account, @invoice)
 		else
 			flash[:alert] = "Unable to create invoice"
-			redirect_to invoices_path
+			redirect_to :invoices_path
 		end
 	end
 	
@@ -30,11 +30,11 @@ class InvoicesController < ApplicationController
 	end
 	
 	def new
-		add_breadcrumb "New", new_invoice_path
+		add_breadcrumb "New", :new_invoice_path
 
 		flash[:notice] = "You can't create a new invoice this way. Try using the New Invoice button."
 		
-		redirect_to invoices_path
+		redirect_to invoices_path(@current_account)
 	end
 	
 	def show
@@ -55,7 +55,7 @@ class InvoicesController < ApplicationController
 	end
 
 	def patients
-		add_breadcrumb 'Select Patient', invoice_patients_path(@invoice)
+		add_breadcrumb 'Select Patient', invoice_patients_path(@current_account, @invoice)
 		if params[:q] then
 			add_breadcrumb "Search Results", :patients_path
 			@patients = Patient.where('last_name like ? or first_name like ?', '%' + params[:q] + '%', '%' + params[:q] + '%').order(:last_name).order(:first_name).page(params[:page])
@@ -70,7 +70,7 @@ class InvoicesController < ApplicationController
 
 		if @invoice.save then
 			flash[:success] = "Invoice updated"
-			redirect_to invoice_path(@invoice)
+			redirect_to invoice_path(@current_account, @invoice)
 		else
 		    flash[:error] = "Unable to set patient"
 			redirect_to :action => 'patients'
@@ -86,7 +86,7 @@ class InvoicesController < ApplicationController
 		else
 		    flash[:error] = "Unable to set to cash sale"
 		end
-		redirect_to invoice_path(@invoice)
+		redirect_to invoice_path(@current_account, @invoice)
 	end
 	
 	def void_invoice
@@ -97,11 +97,11 @@ class InvoicesController < ApplicationController
 				redirect_to :action => "index"
 			else
 				flash[:error] = "Unable to save change"
-				redirect_to invoice_path(@invoice)
+				redirect_to invoice_path(@current_account, @invoice)
 			end
 		else
 			flash[:error] = "You cannot void this invoice. Create a refund instead."
-			redirect_to invoice_path(@invoice)
+			redirect_to invoice_path(@current_account, @invoice)
 		end
 	end
 	
@@ -112,7 +112,7 @@ class InvoicesController < ApplicationController
 		else
 			@invoice = @current_account.invoices.find(params[:id])
 		end
-		add_breadcrumb '#' + @invoice.id.to_s, invoice_path(@invoice)
+		add_breadcrumb '#' + @invoice.id.to_s, invoice_path(@current_account, @invoice)
 	end
 
 	def navbar

@@ -38,7 +38,7 @@
 <% if @store.new_record? %>
 		<%= link_to "Discard Changes", admin_stores_path, :class => "btn" %>
 <% else %>
-		<%= link_to "Discard Changes", admin_store_path(@store), :class => "btn" %>
+		<%= link_to "Discard Changes", admin_store_path(@current_account, @store), :class => "btn" %>
 <% end %>
 	</div>
 <% end %>

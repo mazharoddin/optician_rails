@@ -21,7 +21,7 @@
 	<tbody>
 <% @taxes.each do |tax| %>
 		<tr>
-			<td><%= link_to tax.name, admin_tax_path(tax) %></td>
+			<td><%= link_to tax.name, admin_tax_path(@current_account, tax) %></td>
 			<td><%= tax.rate %>%</td>
 		</tr>
 <% end %>

@@ -24,9 +24,9 @@
 	<tbody>
 <% @invoices.each do |invoice| %>
 		<tr>
-			<td><%= link_to invoice.id, invoice_path(invoice) %></td>
+			<td><%= link_to invoice.id, invoice_path(@current_account, invoice) %></td>
 			<td><%= invoice.invoice_date %></td>
-			<td><% if invoice.patient != nil %><%= link_to invoice.name, patient_path(invoice.patient) %><% else %><%= invoice.name %><% end %></td>
+			<td><% if invoice.patient != nil %><%= link_to invoice.name, patient_path(@current_account, invoice.patient) %><% else %><%= invoice.name %><% end %></td>
 			<td><%= invoice_status_label(invoice) %></td>
 			<td><%= invoice.total %></td>
 		</tr>

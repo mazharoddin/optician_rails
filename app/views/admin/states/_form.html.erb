@@ -6,9 +6,9 @@
 	<div class="form-actions">
 		<%= f.button :submit, :class => "btn btn-primary" %>
 <% if @state.new_record? %>
-		<%= link_to "Discard Changes", admin_country_path(@country), :class => "btn" %>
+		<%= link_to "Discard Changes", admin_country_path(@current_account, @country), :class => "btn" %>
 <% else %>
-		<%= link_to "Discard Changes", admin_country_state_path(@country, @state), :class => "btn" %>
+		<%= link_to "Discard Changes", admin_country_state_path(@current_account, @country, @state), :class => "btn" %>
 <% end %>
 	</div>
 <% end %>

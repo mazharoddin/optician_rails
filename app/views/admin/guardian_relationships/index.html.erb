@@ -21,7 +21,7 @@
 	<tbody>
 <% @guardian_relationships.each do |guardian_relationship| %>
 		<tr>
-			<td><%= link_to guardian_relationship.name, admin_guardian_relationship_path(guardian_relationship) %></td>
+			<td><%= link_to guardian_relationship.name, admin_guardian_relationship_path(@current_account, guardian_relationship) %></td>
 			<td><%= guardian_relationship.active %></td>
 		</tr>
 <% end %>

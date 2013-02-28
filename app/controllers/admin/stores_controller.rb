@@ -14,7 +14,7 @@ class Admin::StoresController < Admin::ApplicationController
 	end
 	
 	def create
-		add_breadcrumb "New", new_admin_store_path
+		add_breadcrumb "New", :new_admin_store_path
 
 		@store = @current_account.stores.build(params[:store])
 		if @store.save then
@@ -26,11 +26,11 @@ class Admin::StoresController < Admin::ApplicationController
 	end
 	
 	def edit
-		add_breadcrumb "Edit", edit_admin_store_path(@store)
+		add_breadcrumb "Edit", edit_admin_store_path(@current_account, @store)
 	end
 	
 	def new
-		add_breadcrumb "New", new_admin_store_path
+		add_breadcrumb "New", :new_admin_store_path
 
 		@store = @current_account.stores.build(
 			:monday_open => "09:00",
@@ -65,6 +65,6 @@ class Admin::StoresController < Admin::ApplicationController
 	private
 	def find_store
 		@store = @current_account.stores.find(params[:id])
-		add_breadcrumb @store.name, admin_store_path(@store)
+		add_breadcrumb @store.name, admin_store_path(@current_account, @store)
 	end
 end

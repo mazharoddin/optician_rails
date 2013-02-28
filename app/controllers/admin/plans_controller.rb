@@ -14,7 +14,7 @@ class Admin::PlansController < Admin::ApplicationController
 	end
 	
 	def create
-		add_breadcrumb "New", new_admin_plan_path
+		add_breadcrumb "New", :new_admin_plan_path
 
 		@plan = Plan.new(params[:plan])
 		if @plan.save then
@@ -26,11 +26,11 @@ class Admin::PlansController < Admin::ApplicationController
 	end
 	
 	def edit
-		add_breadcrumb "Edit", edit_admin_plan_path(@plan)
+		add_breadcrumb "Edit", edit_admin_plan_path(@current_account, @plan)
 	end
 	
 	def new
-		add_breadcrumb "New", new_admin_plan_path
+		add_breadcrumb "New", :new_admin_plan_path
 
 		@plan = Plan.new
 	end
@@ -50,6 +50,6 @@ class Admin::PlansController < Admin::ApplicationController
 	private
 	def find_plan
 		@plan = Plan.find(params[:id])
-		add_breadcrumb @plan.name, admin_plan_path(@plan)
+		add_breadcrumb @plan.name, admin_plan_path(@current_account, @plan)
 	end
 end

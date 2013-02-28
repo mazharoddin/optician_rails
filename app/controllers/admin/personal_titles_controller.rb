@@ -14,7 +14,7 @@ class Admin::PersonalTitlesController < Admin::ApplicationController
 	end
 	
 	def create
-		add_breadcrumb "New", new_admin_personal_title_path
+		add_breadcrumb "New", :new_admin_personal_title_path
 
 		@personal_title = PersonalTitle.new(params[:personal_title])
 		if @personal_title.save then
@@ -26,11 +26,11 @@ class Admin::PersonalTitlesController < Admin::ApplicationController
 	end
 	
 	def edit
-		add_breadcrumb "Edit", edit_admin_personal_title_path(@personal_title)
+		add_breadcrumb "Edit", edit_admin_personal_title_path(@current_account, @personal_title)
 	end
 	
 	def new
-		add_breadcrumb "New", new_admin_personal_title_path
+		add_breadcrumb "New", :new_admin_personal_title_path
 
 		@personal_title = PersonalTitle.new
 	end
@@ -50,6 +50,6 @@ class Admin::PersonalTitlesController < Admin::ApplicationController
 	private
 	def find_personal_title
 		@personal_title = PersonalTitle.find(params[:id])
-		add_breadcrumb @personal_title.title, admin_personal_title_path(@personal_title)
+		add_breadcrumb @personal_title.title, admin_personal_title_path(@current_account, @personal_title)
 	end
 end

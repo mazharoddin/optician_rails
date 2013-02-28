@@ -14,7 +14,7 @@ class Admin::LensTypesController < Admin::ApplicationController
 	end
 	
 	def create
-		add_breadcrumb "New", new_admin_lens_type_path
+		add_breadcrumb "New", :new_admin_lens_type_path
 
 		@lens_type = LensType.new(params[:lens_type])
 		if @lens_type.save then
@@ -26,11 +26,11 @@ class Admin::LensTypesController < Admin::ApplicationController
 	end
 	
 	def edit
-		add_breadcrumb "Edit", edit_admin_lens_type_path(@lens_type)
+		add_breadcrumb "Edit", edit_admin_lens_type_path(@current_account, @lens_type)
 	end
 	
 	def new
-		add_breadcrumb "New", new_admin_lens_type_path
+		add_breadcrumb "New", :new_admin_lens_type_path
 
 		@lens_type = LensType.new
 	end
@@ -50,6 +50,6 @@ class Admin::LensTypesController < Admin::ApplicationController
 	private
 	def find_lens_type
 		@lens_type = LensType.find(params[:id])
-		add_breadcrumb @lens_type.name, admin_lens_type_path(@lens_type)
+		add_breadcrumb @lens_type.name, admin_lens_type_path(@current_account, @lens_type)
 	end
 end

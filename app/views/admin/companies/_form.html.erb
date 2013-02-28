@@ -7,7 +7,7 @@
 <% if @company.new_record? %>
 		<%= link_to "Discard Changes", admin_companies_path, :class => "btn" %>
 <% else %>
-		<%= link_to "Discard Changes", admin_company_path(@company), :class => "btn" %>
+		<%= link_to "Discard Changes", admin_company_path(@current_account, @company), :class => "btn" %>
 <% end %>
 	</div>
 <% end %>

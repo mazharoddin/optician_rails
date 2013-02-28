@@ -1,7 +1,7 @@
 class Ability
   include CanCan::Ability
 
-  def initialize(user)
+  def initialize(user, account)
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)
@@ -25,7 +25,8 @@ class Ability
     #
     # See the wiki for details: https://github.com/ryanb/cancan/wiki/Defining-Abilities
 
-	if user != nil
+	can :home, :dashboard
+	if account != nil
 		can :read, :dashboard
 		if user.super_administrator
 			can :manage, Account
@@ -37,7 +38,7 @@ class Ability
 			can :manage, EmploymentType
 			can :manage, Gender
 			can :manage, GuardianRelationship
-			can :manage, Inventory
+			can :manage, Inventory, account.plan.inventory => true
 			can :manage, Invoice
 			can :manage, Item
 			can :manage, LensCoating
@@ -55,32 +56,32 @@ class Ability
 			can :read, :admin_dashboard
 		else
 			if user.administrator
-				can :read, Account, :id => user.account_id
-				can :manage, Brand, :account_id => user.account_id
-				can :manage, Company, :account_id => user.account_id
-				can :manage, Employee, :account_id => user.account_id
-				can :manage, Store, :account_id => user.account_id
-				can :manage, User, :account_id => user.account_id
-				can :manage, Inventory
+				can :read, Account, :id => account.id
+				can :manage, Brand, :account_id => account.id
+				can :manage, Company, :account_id => account.id
+				can :manage, Employee, :account_id => account.id
+				can :manage, Store, :account_id => account.id
+				can :manage, User, :account_id => account.id
+				can :manage, Inventory, account.plan.inventory && :account_id => account.id
 				can :read, :admin_dashboard
 			else
-				can :read, Brand, :account_id => user.account_id
+				can :read, Brand, :account_id => account.id
 				can :read, Inventory
 				
 				# Currently not checked
-				can :read, Store, :account_id => user.account_id
+				can :read, Store, :account_id => account.id
 			end
 			if user.administrator || user.dispensing_optician
-				can :manage, Dispensing, :account_id => user.account_id
-				can :manage, Optometrist, :account_id => user.account_id
-				can :manage, Prescription, :account_id => user.account_id
+				can :manage, Dispensing, :account_id => account.id
+				can :manage, Optometrist, :account_id => account.id
+				can :manage, Prescription, :account_id => account.id
 			else
-				can :read, Dispensing, :account_id => user.account_id
-				can :read, Optometrist, :account_id => user.account_id
-				can :read, Prescription, :account_id => user.account_id
+				can :read, Dispensing, :account_id => account.id
+				can :read, Optometrist, :account_id => account.id
+				can :read, Prescription, :account_id => account.id
 			end
-			can :manage, Invoice, :account_id => user.account_id
-			can :manage, Patient, :account_id => user.account_id
+			can :manage, Invoice, :account_id => account.id
+			can :manage, Patient, :account_id => account.id
 
 			# Currently not checked
 			can :read, Country

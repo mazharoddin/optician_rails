@@ -8,11 +8,11 @@
 </ul>
 <% else %>
 <ul class="nav nav-tabs">
-	<li class="active"><%= link_to "Profile", patient_path(@patient) %></li>
-	<li><%= link_to "Glasses", current_patient_glasses_prescriptions_path(@patient) %></li>
-	<li><%= link_to "Contacts", patient_contacts_prescriptions_path(@patient, @contacts_prescription) %></li>
-	<li><%= link_to "Dispensing", patient_dispensing_path(@patient) %></li>
-	<li><%= link_to "Invoices", patient_invoices_path(@patient) %></li>
+	<li class="active"><%= link_to "Profile", patient_path(@current_account, @patient) %></li>
+	<li><%= link_to "Glasses", current_patient_glasses_prescriptions_path(@current_account, @patient) %></li>
+	<li><%= link_to "Contacts", current_patient_contacts_prescriptions_path(@current_account, @patient, @contacts_prescription) %></li>
+	<li><%= link_to "Dispensing", patient_dispensing_path(@current_account, @patient) %></li>
+	<li><%= link_to "Invoices", patient_invoices_path(@current_account, @patient) %></li>
 </ul>
 <% end %>
 <%= simple_form_for @patient, :html => { :class => "form-horizontal" } do |f| %>
@@ -89,7 +89,7 @@
 <% if @patient.new_record? %>
 		<%= link_to "Discard Changes", patients_path, :class => "btn" %>
 <% else %>
-		<%= link_to "Discard Changes", patient_path(@patient), :class => "btn" %>
+		<%= link_to "Discard Changes", patient_path(@current_account, @patient), :class => "btn" %>
 <% end %>
 	</div>
 <% end %>

@@ -14,7 +14,7 @@ class Admin::LensMaterialsController < Admin::ApplicationController
 	end
 	
 	def create
-		add_breadcrumb "New", new_admin_lens_material_path
+		add_breadcrumb "New", :new_admin_lens_material_path
 
 		@lens_material = LensMaterial.new(params[:lens_material])
 		if @lens_material.save then
@@ -26,11 +26,11 @@ class Admin::LensMaterialsController < Admin::ApplicationController
 	end
 	
 	def edit
-		add_breadcrumb "Edit", edit_admin_lens_material_path(@lens_material)
+		add_breadcrumb "Edit", edit_admin_lens_material_path(@current_account, @lens_material)
 	end
 	
 	def new
-		add_breadcrumb "New", new_admin_lens_material_path
+		add_breadcrumb "New", :new_admin_lens_material_path
 
 		@lens_material = LensMaterial.new
 	end
@@ -50,6 +50,6 @@ class Admin::LensMaterialsController < Admin::ApplicationController
 	private
 	def find_lens_material
 		@lens_material = LensMaterial.find(params[:id])
-		add_breadcrumb @lens_material.name, admin_lens_material_path(@lens_material)
+		add_breadcrumb @lens_material.name, admin_lens_material_path(@current_account, @lens_material)
 	end
 end

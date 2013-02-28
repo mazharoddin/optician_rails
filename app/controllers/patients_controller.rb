@@ -14,13 +14,13 @@ class PatientsController < ApplicationController
 	end
 	
 	def create
-		add_breadcrumb "New", new_patient_path
+		add_breadcrumb "New", new_patient_path(@current_account)
 
 		@patient = @current_account.patients.build(params[:patient])
 
 		if @patient.save then
 			flash[:success] = "Patient has been created."
-			redirect_to patient_path(@patient)
+			redirect_to patient_path(@current_account, @patient)
 		else
 			render 'new'
 		end
@@ -31,7 +31,7 @@ class PatientsController < ApplicationController
 	end
 	
 	def new
-		add_breadcrumb "New", new_patient_path
+		add_breadcrumb "New", :new_patient_path
 
 		@patient = @current_account.patients.build
 
@@ -39,7 +39,7 @@ class PatientsController < ApplicationController
 	end
 	
 	def show
-		add_breadcrumb @patient, patient_path(@patient)
+		add_breadcrumb @patient, patient_path(@current_account, @patient)
 		
 		@personal_titles = PersonalTitle.active(@patient.personal_title_id)
 	end
@@ -59,15 +59,15 @@ class PatientsController < ApplicationController
 		authorize! :read, @patient
 		authorize! :read, Dispensing
 
-		add_breadcrumb @patient, patient_path(@patient)
-		add_breadcrumb 'Dispensing', patient_dispensing_path(@patient)
+		add_breadcrumb @patient, patient_path(@current_account, @patient)
+		add_breadcrumb 'Dispensing', patient_dispensing_path(@current_account, @patient)
 		
 		@dispensing = @patient.dispensing.page(params[:page])
 	end
 	
 	def invoices
-		add_breadcrumb @patient, patient_path(@patient)
-		add_breadcrumb 'Invoices', patient_invoices_path(@patient)
+		add_breadcrumb @patient, patient_path(@current_account, @patient)
+		add_breadcrumb 'Invoices', patient_invoices_path(@current_account, @patient)
 		
 		@invoices = @patient.invoices.page(params[:page])
 	end

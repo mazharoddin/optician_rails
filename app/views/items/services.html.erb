@@ -26,7 +26,7 @@
 	<tbody>
 <% @items.each do |item| %>
 		<tr>
-			<td><%= link_to item.description, inventory_path(item) %></td>
+			<td><%= link_to item.description, inventory_path(@current_account, item) %></td>
 			<td><%= item.stock_available %></td>
 			<td><%= item.regular_retail_price %></td>
 			<td><%= item.current_retail_price %></td>

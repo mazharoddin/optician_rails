@@ -1,6 +1,6 @@
 <% @title = "Show Plans" %>
 <div class="page-header">
-	<h1><%= @plan.name %> (Plan)<% if can? :update, @plan %><%= link_to "Edit Plan", edit_admin_plan_path(@plan), :class => "btn btn-primary pull-right" %><% end %></h1>
+	<h1><%= @plan.name %> (Plan)<% if can? :update, @plan %><%= link_to "Edit Plan", edit_admin_plan_path(@current_account, @plan), :class => "btn btn-primary pull-right" %><% end %></h1>
 </div>
 
 

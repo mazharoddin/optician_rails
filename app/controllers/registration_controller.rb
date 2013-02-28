@@ -12,7 +12,7 @@ class RegistrationController  < ApplicationController
   def create
 	@account = Account.new(params[:account])
 	if @account.save
-		redirect_to root_path
+		redirect_to :root_path
 	else
 		render 'new'
 	end

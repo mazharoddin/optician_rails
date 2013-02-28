@@ -7,7 +7,7 @@
 <% if @gender.new_record? %>
 		<%= link_to "Discard Changes", admin_genders_path, :class => "btn" %>
 <% else %>
-		<%= link_to "Discard Changes", admin_gender_path(@gender), :class => "btn" %>
+		<%= link_to "Discard Changes", admin_gender_path(@current_account, @gender), :class => "btn" %>
 <% end %>
 	</div>
 <% end %>

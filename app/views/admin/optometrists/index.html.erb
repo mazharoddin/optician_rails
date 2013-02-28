@@ -25,8 +25,8 @@
 	<tbody>
 <% @optometrists.each do |optometrist| %>
 		<tr>
-			<td><%= link_to optometrist.last_name, admin_optometrist_path(optometrist) %></td>
-			<td><%= link_to optometrist.first_name, admin_optometrist_path(optometrist) %></td>
+			<td><%= link_to optometrist.last_name, admin_optometrist_path(@current_account, optometrist) %></td>
+			<td><%= link_to optometrist.first_name, admin_optometrist_path(@current_account, optometrist) %></td>
 			<td><%= optometrist.business_name %></td>
 			<td><%= optometrist.business_city %></td>
 			<td><%= optometrist.phone %></td>

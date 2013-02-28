@@ -19,8 +19,6 @@ class Registration
   validates :subdomain, :length => { :maximum => 80 }, :presence => true
   validates :url, :length => { :maximum => 255 }
   
-  default_scope { order("business_name ASC") }
-
   def initialize(attributes = {})
     @address  = attributes[:address]
     @business_name = attributes[:business_name]

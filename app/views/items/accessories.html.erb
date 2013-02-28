@@ -26,13 +26,13 @@
 	<tbody>
 <% @items.each do |item| %>
 		<tr>
-			<td><%= link_to item.description, inventory_path(item) %></td>
+			<td><%= link_to item.description, inventory_path(@current_account, item) %></td>
 			<td><%= item.stock_available %></td>
 			<td><%= item.regular_retail_price %></td>
 			<td><%= item.current_retail_price %></td>
 			<td><%= item.tax_a %></td>
 			<td><%= item.tax_b %></td>
-			<td><%= simple_form_for invoice_items_path(@invoice), :method => 'post', :style => 'border: 0' do |f| %><input type="hidden" name="inventory_id" value="<%= item.id %>"><input type="submit" value="Add" class="btn btn-primary"><% end %></td>
+			<td><%= simple_form_for invoice_items_path(@current_account, @invoice), :method => 'post', :style => 'border: 0' do |f| %><input type="hidden" name="inventory_id" value="<%= item.id %>"><input type="submit" value="Add" class="btn btn-primary"><% end %></td>
 		</tr>
 <% end %>
 	</tbody>

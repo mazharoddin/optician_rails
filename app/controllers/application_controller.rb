@@ -9,15 +9,16 @@ class ApplicationController < ActionController::Base
 
 	add_breadcrumb "Home", :root_path
 
+	def current_ability
+	  Ability.new(current_user, @current_account)
+	end
+	
 	private
 	def set_current_account
-	  if current_user != nil
-		@current_account = current_user.account
+	  if params[:subdomain] != nil
+	    @current_account = Account.where('subdomain = ?', params[:subdomain]).first()
 	  else
 	    @current_account = nil
-	  end
-	  if @current_account == nil
-	    @current_account = Account.find(1)
 	  end
 	end
 	

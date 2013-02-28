@@ -1,6 +1,6 @@
 <% @title = "Line" %>
 <div class="page-header">
-	<h1><%= @item.description %> (Line Item) <%= link_to "Edit Item", edit_invoice_item_path(@invoice, @item), :class => "btn btn-primary pull-right" %></h1>
+	<h1><%= @item.description %> (Line Item) <%= link_to "Edit Item", edit_invoice_item_path(@current_account, @invoice, @item), :class => "btn btn-primary pull-right" %></h1>
 </div>
 
 <dl class="dl-horizontal">

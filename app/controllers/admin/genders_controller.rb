@@ -14,7 +14,7 @@ class Admin::GendersController < Admin::ApplicationController
 	end
 	
 	def create
-		add_breadcrumb "New", new_admin_gender_path
+		add_breadcrumb "New", :new_admin_gender_path
 
 		@gender = Gender.new(params[:gender])
 		if @gender.save then
@@ -26,11 +26,11 @@ class Admin::GendersController < Admin::ApplicationController
 	end
 	
 	def edit
-		add_breadcrumb "Edit", edit_admin_gender_path(@gender)
+		add_breadcrumb "Edit", edit_admin_gender_path(@current_account, @gender)
 	end
 	
 	def new
-		add_breadcrumb "New", new_admin_gender_path
+		add_breadcrumb "New", :new_admin_gender_path
 
 		@gender = Gender.new
 	end
@@ -50,6 +50,6 @@ class Admin::GendersController < Admin::ApplicationController
 	private
 	def find_gender
 		@gender = Gender.find(params[:id])
-		add_breadcrumb @gender.name, admin_gender_path(@gender)
+		add_breadcrumb @gender.name, admin_gender_path(@current_account, @gender)
 	end
 end

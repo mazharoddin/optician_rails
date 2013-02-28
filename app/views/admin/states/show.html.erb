@@ -1,6 +1,6 @@
 <% @title = "Show State" %>
 <div class="page-header">
-	<h1><%= @state.name %> (State)<% if can? :edit, @state %><%= link_to "Edit State", edit_admin_country_state_path(@country, @state), :class => "btn btn-primary pull-right" %><% end %></h1>
+	<h1><%= @state.name %> (State)<% if can? :edit, @state %><%= link_to "Edit State", edit_admin_country_state_path(@current_account, @country, @state), :class => "btn btn-primary pull-right" %><% end %></h1>
 </div>
 
 <dl>

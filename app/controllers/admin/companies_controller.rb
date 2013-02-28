@@ -14,7 +14,7 @@ class Admin::CompaniesController < Admin::ApplicationController
 	end
 	
 	def create
-		add_breadcrumb "New", new_admin_company_path
+		add_breadcrumb "New", :new_admin_company_path
 
 		@company = @current_account.companies.build(params[:company])
 		if @company.save then
@@ -26,11 +26,11 @@ class Admin::CompaniesController < Admin::ApplicationController
 	end
 	
 	def edit
-		add_breadcrumb "Edit", edit_admin_company_path(@company)
+		add_breadcrumb "Edit", edit_admin_company_path(@current_account, @company)
 	end
 	
 	def new
-		add_breadcrumb "New", new_admin_company_path
+		add_breadcrumb "New", :new_admin_company_path
 
 		@company = @current_account.companies.build
 	end
@@ -50,6 +50,6 @@ class Admin::CompaniesController < Admin::ApplicationController
 	private
 	def find_company
 		@company = @current_account.companies.find(params[:id])
-		add_breadcrumb @company.name, admin_company_path(@company)
+		add_breadcrumb @company.name, admin_company_path(@current_account, @company)
 	end
 end

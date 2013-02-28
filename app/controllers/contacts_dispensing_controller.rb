@@ -14,7 +14,7 @@ class ContactsDispensingController < ApplicationController
 		@dispensing.patient = @invoice.patient
 		if @dispensing.save then
 			flash[:success] = "Contacts dispensing has been created."
-			redirect_to invoice_path(@invoice)
+			redirect_to invoice_path(@current_account, @invoice)
 		else
 			render "new"
 		end
@@ -34,7 +34,7 @@ class ContactsDispensingController < ApplicationController
 	def update
 		if @dispensing.update_attributes(params[:contacts_prescription]) then
 			flash[:success] = "Contacts dispensing has been updated."
-			redirect_to invoice_contacts_dispensing_path(@invoice, @dispensing)
+			redirect_to invoice_contacts_dispensing_path(@current_account, @invoice, @dispensing)
 		else
 			render "edit"
 		end
@@ -43,13 +43,13 @@ class ContactsDispensingController < ApplicationController
 	private
 	def find_invoice
 		@invoice = @current_account.invoices.find(params[:invoice_id])
-		add_breadcrumb '#' + @invoice.id.to_s, invoice_path(@invoice)
-		add_breadcrumb "Contacts Dispensing", invoice_contacts_dispensing_path(@invoice)
+		add_breadcrumb '#' + @invoice.id.to_s, invoice_path(@current_account, @invoice)
+		add_breadcrumb "Contacts Dispensing", invoice_contacts_dispensing_path(@current_account, @invoice)
 	end
 
 	def find_dispensing
 		@dispensing = @invoice.contacts_dispensing.find(params[:id])
-		add_breadcrumb @dispensing.rx_date, invoice_contacts_dispensing_path(@invoice, @dispensing)
+		add_breadcrumb @dispensing.rx_date, invoice_contacts_dispensing_path(@current_account, @invoice, @dispensing)
 	end
 
 	def navbar

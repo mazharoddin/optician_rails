@@ -14,7 +14,7 @@ class Inventory::ServicesController < Inventory::ApplicationController
 	end
 	
 	def create
-		add_breadcrumb "New", new_inventory_services_inventory_path
+		add_breadcrumb "New", :new_inventory_services_inventory_path
 
 		@item = ServicesInventory.new(params[:services_inventory])
 		@item.track_inventory = false
@@ -28,7 +28,7 @@ class Inventory::ServicesController < Inventory::ApplicationController
 	end
 	
 	def edit
-		add_breadcrumb "Edit", edit_inventory_services_inventory_path(@item)
+		add_breadcrumb "Edit", edit_inventory_services_inventory_path(@current_account, @item)
 	end
 	
 	def new
@@ -52,6 +52,6 @@ class Inventory::ServicesController < Inventory::ApplicationController
 	private
 	def find_inventory
 		@item = ServicesInventory.find(params[:id])
-		add_breadcrumb @item.description, inventory_services_inventory_path(@item)
+		add_breadcrumb @item.description, inventory_services_inventory_path(@current_account, @item)
 	end
 end

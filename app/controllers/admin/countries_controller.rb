@@ -26,7 +26,7 @@ class Admin::CountriesController < Admin::ApplicationController
 	end
 	
 	def edit
-		add_breadcrumb "Edit", edit_admin_country_path(@country)
+		add_breadcrumb "Edit", edit_admin_country_path(@current_account, @country)
 	end
 	
 	def new
@@ -52,6 +52,6 @@ class Admin::CountriesController < Admin::ApplicationController
 	private
 	def find_country
 		@country = Country.find(params[:id])
-		add_breadcrumb @country.name, admin_country_path(@country)
+		add_breadcrumb @country.name, admin_country_path(@current_account, @country)
 	end
 end
