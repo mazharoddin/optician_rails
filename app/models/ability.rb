@@ -86,16 +86,16 @@ class Ability
 				can :manage, Patient, :account_id => account.id
 
 				# Currently not checked
-				can :read, Country
-				can :read, EmploymentType
-				can :read, Gender
-				can :read, GuardianRelationship
-				can :read, LensCoating
-				can :read, LensMaterial
-				can :read, LensType
-				can :read, PersonalTitle
-				can :read, Plan
-				can :read, State
+#				can :read, Country
+#				can :read, EmploymentType
+#				can :read, Gender
+#				can :read, GuardianRelationship
+#				can :read, LensCoating
+#				can :read, LensMaterial
+#				can :read, LensType
+#				can :read, PersonalTitle
+#				can :read, Plan
+#				can :read, State
 			end
 		end
 		cannot :void, Invoice, :read_only? => true

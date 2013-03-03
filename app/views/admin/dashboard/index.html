@@ -15,22 +15,6 @@
 							<dt><%= link_to "Patients", :patients %></dt>
 							<dd>Maintain patients<dd>
 <% end %>
-<% if can? :read, EmploymentType %>
-							<dt><%= link_to "Employment Types", :admin_employment_types %></dt>
-							<dd>Maintain employment types<dd>
-<% end %>
-<% if can? :read, Gender %>
-							<dt><%= link_to "Genders", :admin_genders %></dt>
-							<dd>Maintain genders<dd>
-<% end %>
-<% if can? :read, GuardianRelationship %>
-							<dt><%= link_to "Guardian Relationships", :admin_guardian_relationships %></dt>
-							<dd>Maintain guardian relationships<dd>
-<% end %>
-<% if can? :read, PersonalTitle %>
-							<dt><%= link_to "Personal Titles", :admin_personal_titles %></dt>
-							<dd>Maintain personal titles<dd>
-<% end %>
 						</dl>
 					</div>
 					<div class="span3">
@@ -58,13 +42,6 @@
 							<dd>Maintain stores<dd>
 <% end %>
 						</dl>
-						<h2>Taxation</h2>
-						<dl>
-<% if can? :read, Tax %>
-							<dt><%= link_to "Taxes", :admin_taxes %></dt>
-							<dd>Maintain taxes<dd>
-						</dl>
-<% end %>
 					</div>
 					<div class="span3">
 						<h2>Lists</h2>
@@ -72,6 +49,18 @@
 <% if can? :read, Brand %>
 							<dt><%= link_to "Contact Brands", :admin_brands %></dt>
 							<dd>Maintain brands for contacts</dd>
+<% end %>
+<% if can? :read, EmploymentType %>
+							<dt><%= link_to "Employment Types", :admin_employment_types %></dt>
+							<dd>Maintain employment types<dd>
+<% end %>
+<% if can? :read, Gender %>
+							<dt><%= link_to "Genders", :admin_genders %></dt>
+							<dd>Maintain genders<dd>
+<% end %>
+<% if can? :read, GuardianRelationship %>
+							<dt><%= link_to "Guardian Relationships", :admin_guardian_relationships %></dt>
+							<dd>Maintain guardian relationships<dd>
 <% end %>
 <% if can? :read, LensCoating %>
 							<dt><%= link_to "Lens Coatings", :admin_lens_coatings %></dt>
@@ -84,6 +73,14 @@
 <% if can? :read, LensType %>
 							<dt><%= link_to "Lens Types", :admin_lens_types %></dt>
 							<dd>Manage lens types</dd>
+<% end %>
+<% if can? :read, PersonalTitle %>
+							<dt><%= link_to "Personal Titles", :admin_personal_titles %></dt>
+							<dd>Maintain personal titles<dd>
+<% end %>
+<% if can? :read, Tax %>
+							<dt><%= link_to "Taxes", :admin_taxes %></dt>
+							<dd>Maintain taxes<dd>
 <% end %>
 						</dl>
 					</div>

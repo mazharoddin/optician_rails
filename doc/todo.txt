@@ -1,34 +1,6 @@
-Bugs
-====
-1. Breadcrumbs on the signin page are wrong
-
-Pivot
-=====
-1. Big market: practice management system (PMS)
-2. Niches:
- - Optician
- - Optometrist
- - Chiropractor
- - Physiotherapist
- - Massage Therapist
- - Acupuncture
- - Psychologist
- - Dentist
-3. Common:
- - Location or Locations
- - Employees (especially Doctors)
- - Rooms
- - Patients
- - Appointments
- - Invoicing
- - Medial Insurance
-4. Differences:
- - Industry specific information (i.e. prescriptions, notes, etc)
-
- 
 MVP List
 ========
-1. Re-install /:tenant/... URL's and enforce access to other accounts
+1. [DONE] Re-install /:tenant/... URL's and enforce access to other accounts
 2. Should patients, employees, opticians and optometrists all be "people"?
 3. How do people related to users (only some people are also users)?
 4. How do contacts brands relate to inventory?
@@ -37,11 +9,24 @@ MVP List
 7. Invoices don't work
 8. Dropdown lists should always use an "active_or" scope that also displays the currently selected option
 9. Why isn't the inventory bein disabled when the plan disables it?
+10. Remove the following from administration:
+ - Accounts
+ - [DONE] Countries
+ - [DONE] Employment Type
+ - [DONE] Genders
+ - [DONE] Guardian Relationships
+ - [DONE] Lens Coatings
+ - [DONE] Lens Materials
+ - [DONE] Lens Types
+ - [DONE] Personal Titles
+ - [DONE] Plans
+ - [DONE] States
+ - [DONE] Taxation
 
 
  
 Priority List
-1. Plans <-- Need to honor which features are enabled in the plan
+1. [DONE] Plans
 2. Permissions <-- Currently working on this using cancan
 3. Next Invoice/Dispensing/Patient/Inventory?? numbers (i.e. per tenant numbering, keep ID only for active record)
 4. Add/Remove Other to inventory
