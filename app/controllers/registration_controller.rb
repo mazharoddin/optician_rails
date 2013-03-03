@@ -5,14 +5,18 @@ class RegistrationController  < ApplicationController
   add_breadcrumb 'Registration', :registration_path
 
   def new
-	@account = Account.new
-	@employee = @account.employees.build
+    if current_user != nil
+		redirect_to '/' + current_user.account.subdomain
+	else
+		@account = Account.new
+		@employee = @account.employees.build
+	end
   end
 
   def create
 	@account = Account.new(params[:account])
 	if @account.save
-		redirect_to :root_path
+		redirect_to '/' + @account.subdomain
 	else
 		render 'new'
 	end

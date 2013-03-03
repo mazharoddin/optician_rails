@@ -29,6 +29,7 @@
 	<%= content_tag :span, "http://app.opticianplus.com/", :class => "add-on" %>
 	<%= f.input_field :subdomain, :class => "input-medium" %>
 	<% end %>
+	<%= f.input :plan_id, :label => "Plan", :collection => Plan.all %>
 
 </div>
 </div>

@@ -119,7 +119,7 @@ Optician::Application.routes.draw do
 			root :to => 'dashboard#index'
 		end
 		
-		root :to => 'dashboard#index'
+		root :to => 'dashboard#index', :as => 'dashboard'
 	end
-	root :to => 'dashboard#home', :as => 'home'
+	root :to => 'dashboard#home'
 end

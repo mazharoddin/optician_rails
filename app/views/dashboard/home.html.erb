@@ -1,1 +1,6 @@
-Blah
+<% @title = 'Home' %>
+<div class="page-header">
+	<h1>Welcome to Optician Plus</h1>
+</div>
+<p>If you want more information <a href="http://www.opticianplus.com/">check out our website</a>.</p>
+<p><%= link_to 'Login', new_user_session_path %> or <%= link_to 'Register', registration_path %></p>

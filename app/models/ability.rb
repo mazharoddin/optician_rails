@@ -27,8 +27,8 @@ class Ability
 
 	can :home, :dashboard
 	if account != nil
-		can :read, :dashboard
 		if user.super_administrator
+			can :read, :dashboard
 			can :manage, Account
 			can :manage, Brand
 			can :manage, Company
@@ -55,45 +55,48 @@ class Ability
 			can :manage, User
 			can :read, :admin_dashboard
 		else
-			if user.administrator
-				can :read, Account, :id => account.id
-				can :manage, Brand, :account_id => account.id
-				can :manage, Company, :account_id => account.id
-				can :manage, Employee, :account_id => account.id
-				can :manage, Store, :account_id => account.id
-				can :manage, User, :account_id => account.id
-				can :manage, Inventory, account.plan.inventory && :account_id => account.id
-				can :read, :admin_dashboard
-			else
-				can :read, Brand, :account_id => account.id
-				can :read, Inventory
-				
-				# Currently not checked
-				can :read, Store, :account_id => account.id
-			end
-			if user.administrator || user.dispensing_optician
-				can :manage, Dispensing, :account_id => account.id
-				can :manage, Optometrist, :account_id => account.id
-				can :manage, Prescription, :account_id => account.id
-			else
-				can :read, Dispensing, :account_id => account.id
-				can :read, Optometrist, :account_id => account.id
-				can :read, Prescription, :account_id => account.id
-			end
-			can :manage, Invoice, :account_id => account.id
-			can :manage, Patient, :account_id => account.id
+			if user.account_id == account.id
+				can :read, :dashboard #, user.account_id == account.id
+				if user.administrator
+					can :read, Account, :id => account.id
+					can :manage, Brand, :account_id => account.id
+					can :manage, Company, :account_id => account.id
+					can :manage, Employee, :account_id => account.id
+					can :manage, Store, :account_id => account.id
+					can :manage, User, :account_id => account.id
+					can :manage, Inventory, account.plan.inventory && :account_id => account.id
+					can :read, :admin_dashboard
+				else
+					can :read, Brand, :account_id => account.id
+					can :read, Inventory
+					
+					# Currently not checked
+					can :read, Store, :account_id => account.id
+				end
+				if user.administrator || user.dispensing_optician
+					can :manage, Dispensing, :account_id => account.id
+					can :manage, Optometrist, :account_id => account.id
+					can :manage, Prescription, :account_id => account.id
+				else
+					can :read, Dispensing, :account_id => account.id
+					can :read, Optometrist, :account_id => account.id
+					can :read, Prescription, :account_id => account.id
+				end
+				can :manage, Invoice, :account_id => account.id
+				can :manage, Patient, :account_id => account.id
 
-			# Currently not checked
-			can :read, Country
-			can :read, EmploymentType
-			can :read, Gender
-			can :read, GuardianRelationship
-			can :read, LensCoating
-			can :read, LensMaterial
-			can :read, LensType
-			can :read, PersonalTitle
-			can :read, Plan
-			can :read, State
+				# Currently not checked
+				can :read, Country
+				can :read, EmploymentType
+				can :read, Gender
+				can :read, GuardianRelationship
+				can :read, LensCoating
+				can :read, LensMaterial
+				can :read, LensType
+				can :read, PersonalTitle
+				can :read, Plan
+				can :read, State
+			end
 		end
 		cannot :void, Invoice, :read_only? => true
 		cannot :update, Invoice, :read_only? => true
