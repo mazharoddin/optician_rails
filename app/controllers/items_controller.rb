@@ -52,21 +52,25 @@ class ItemsController < ApplicationController
 
 	def accessories
 		add_breadcrumb "Accessories", accessories_invoice_items_path(@current_account, @invoice)
-		if params[:q] then
-			add_breadcrumb "Search Results", :inventory_services_inventory_path
-			@items = @current_account.accessories_inventory.where('description like ?', '%' + params[:q] + '%').order(:description).page(params[:page])
-		else
-			@items = @current_account.accessories_inventory.order(:description).page(params[:page])
+		if can? :read, :Inventory
+			if params[:q] then
+				add_breadcrumb "Search Results", :inventory_services_inventory_path
+				@items = @current_account.accessories_inventory.where('description like ?', '%' + params[:q] + '%').order(:description).page(params[:page])
+			else
+				@items = @current_account.accessories_inventory.order(:description).page(params[:page])
+			end
 		end
 	end
 	
 	def services
 		add_breadcrumb "Services", services_invoice_items_path(@current_account, @invoice)
-		if params[:q] then
-			add_breadcrumb "Search Results", :inventory_services_inventory_path
-			@items = @current_account.services_inventory.where('description like ?', '%' + params[:q] + '%').order(:description).page(params[:page])
-		else
-			@items = @current_account.services_inventory.order(:description).page(params[:page])
+		if can? :read, :Inventory
+			if params[:q] then
+				add_breadcrumb "Search Results", :inventory_services_inventory_path
+				@items = @current_account.services_inventory.where('description like ?', '%' + params[:q] + '%').order(:description).page(params[:page])
+			else
+				@items = @current_account.services_inventory.order(:description).page(params[:page])
+			end
 		end
 	end
 	

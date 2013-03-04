@@ -5,15 +5,9 @@ MVP List
 3. Permissions <-- Currently working on this using cancan
 4. [DONE] Inventory menu should be showing (and inventory not working) when the plan doesn't include inventory
 5. Next Invoice/Dispensing/Patient/Inventory?? numbers (i.e. per tenant numbering, keep ID only for active record)
-6. Merge Patient, Employee, Optician and Optometrist into Person with is_xxx boolean fields.
-   - Add current_user() to return current_person()??
-   - If that fails then merge all of then into User with is_xxx boolean fields
-7. How do contacts brands relate to inventory?
-8. Everywhere there is state it the list should change (using AJAX) to match the current country
-9. Dashboard need to be replaced with something friendlier until the appointments are ready
-10. Dropdown lists should always use an "active_or" scope that also displays the currently selected option
-11. Why isn't the inventory bein disabled when the plan disables it?
-12. Remove the following from administration:
+6. Everywhere there is state it the list should change (using AJAX) to match the current country
+7. Dashboard need to be replaced with something friendlier until the appointments are ready
+8. Remove the following from administration:
  - Accounts
  - [DONE] Countries
  - [DONE] Employment Type
@@ -26,14 +20,22 @@ MVP List
  - [DONE] Plans
  - [DONE] States
  - [DONE] Taxation
-13. Invoicing (without dispensing)
-14. Dispensing
-15. Calculate taxes correctly while using TaxHistory
+9. Invoicing (without dispensing)
+10. Dispensing
+11. Calculate taxes correctly while using TaxHistory
 
 Bug List
 ========
 1. Date input fields really suck
 2. Base Curve, Diameter, Prism1/2 and Base 1/2 are still varchar in the database
+
+Post MVP List
+=============
+1. Merge Patient, Employee, Optician and Optometrist into Person with is_xxx boolean fields.
+   - Add current_user() to return current_person()??
+   - If that fails then merge all of then into User with is_xxx boolean fields
+2. How do contacts brands relate to inventory?
+3. Dropdown lists should always use an "active_or" scope that also displays the currently selected option
 
 
 

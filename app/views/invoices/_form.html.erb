@@ -20,8 +20,10 @@
 <% end %>
 <% end %>
 				<div class="btn-group">
+<% if can? :read, Inventory %>
 					<%= link_to "Add Service", services_invoice_items_path(@current_account, @invoice), :class => "btn" %>
 					<%= link_to "Add Accessories", accessories_invoice_items_path(@current_account, @invoice), :class => "btn" %>
+<% end %>
 					<%= link_to "Add Other", new_invoice_item_path(@current_account, @invoice), :class => "btn" %>
 				</div>
 			</div>

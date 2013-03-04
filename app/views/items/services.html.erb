@@ -8,6 +8,9 @@
 	<button type"submit" class="btn btn-info">Search</button>
 </form>
 
+<% if @items == nil %>
+<p>Inventory not enabled</p>
+<% else %>
 <% if @items.empty? then %>
 <p>No items found</p>
 <% else %>
@@ -38,4 +41,5 @@
 	</tbody>
 </table>
 <%= paginate @items %>
+<% end %>
 <% end %>
