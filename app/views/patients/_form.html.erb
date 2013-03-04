@@ -69,7 +69,7 @@
 <div class="row">
 	<div class="span6">
 	<legend>Doctors</legend>
-	<%= f.association :optometrist %>
+	<%= f.association :optometrist, :collection => Optometrist.where('account_id = ?', @current_account) %>
 	</div>
 	<div class="span6">
 	<legend>Medical Conditions</legend>

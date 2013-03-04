@@ -1,15 +1,19 @@
 MVP List
 ========
 1. [DONE] Re-install /:tenant/... URL's and enforce access to other accounts
-2. Should patients, employees, opticians and optometrists all be "people"?
-3. How do people related to users (only some people are also users)?
-4. How do contacts brands relate to inventory?
-5. Everywhere there is state it the list should change (using AJAX) to match the current country
-6. Dashboard need to be replaced with something friendlier until the appointments are ready
-7. Invoices don't work
-8. Dropdown lists should always use an "active_or" scope that also displays the currently selected option
-9. Why isn't the inventory bein disabled when the plan disables it?
-10. Remove the following from administration:
+2. [DONE] Plans
+3. Permissions <-- Currently working on this using cancan
+4. Inventory menu should be showing (and inventory not working) when the plan doesn't include inventory
+5. Next Invoice/Dispensing/Patient/Inventory?? numbers (i.e. per tenant numbering, keep ID only for active record)
+6. Merge Patient, Employee, Optician and Optometrist into Person with is_xxx boolean fields.
+   - Add current_user() to return current_person()??
+   - If that fails then merge all of then into User with is_xxx boolean fields
+7. How do contacts brands relate to inventory?
+8. Everywhere there is state it the list should change (using AJAX) to match the current country
+9. Dashboard need to be replaced with something friendlier until the appointments are ready
+10. Dropdown lists should always use an "active_or" scope that also displays the currently selected option
+11. Why isn't the inventory bein disabled when the plan disables it?
+12. Remove the following from administration:
  - Accounts
  - [DONE] Countries
  - [DONE] Employment Type
@@ -22,19 +26,9 @@ MVP List
  - [DONE] Plans
  - [DONE] States
  - [DONE] Taxation
-
-
- 
-Priority List
-1. [DONE] Plans
-2. Permissions <-- Currently working on this using cancan
-3. Next Invoice/Dispensing/Patient/Inventory?? numbers (i.e. per tenant numbering, keep ID only for active record)
-4. Add/Remove Other to inventory
-5. Complete (finalise) invoice
-6. Add/Remove Services
-7. Add/Remove Accessories
-8. Calculate taxes correctly while using TaxHistory
-9. Dispensing...
+13. Invoicing (without dispensing)
+14. Dispensing
+15. Calculate taxes correctly while using TaxHistory
 
 Invoice
 -> Item
