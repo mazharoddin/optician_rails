@@ -38,7 +38,9 @@ class Ability
 			can :manage, EmploymentType
 			can :manage, Gender
 			can :manage, GuardianRelationship
-			can :manage, Inventory, account.plan.inventory => true
+			if account.plan.inventory
+				can :manage, Inventory, :account_id => account.id
+			end
 			can :manage, Invoice
 			can :manage, Item
 			can :manage, LensCoating
@@ -64,11 +66,15 @@ class Ability
 					can :manage, Employee, :account_id => account.id
 					can :manage, Store, :account_id => account.id
 					can :manage, User, :account_id => account.id
-					can :manage, Inventory, account.plan.inventory && :account_id => account.id
+					if account.plan.inventory
+						can :manage, Inventory, :account_id => account.id
+					end
 					can :read, :admin_dashboard
 				else
 					can :read, Brand, :account_id => account.id
-					can :read, Inventory
+					if account.plan.inventory
+						can :read, Inventory, :account_id => account.id
+					end
 					
 					# Currently not checked
 					can :read, Store, :account_id => account.id

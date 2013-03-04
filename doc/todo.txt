@@ -3,7 +3,7 @@ MVP List
 1. [DONE] Re-install /:tenant/... URL's and enforce access to other accounts
 2. [DONE] Plans
 3. Permissions <-- Currently working on this using cancan
-4. Inventory menu should be showing (and inventory not working) when the plan doesn't include inventory
+4. [DONE] Inventory menu should be showing (and inventory not working) when the plan doesn't include inventory
 5. Next Invoice/Dispensing/Patient/Inventory?? numbers (i.e. per tenant numbering, keep ID only for active record)
 6. Merge Patient, Employee, Optician and Optometrist into Person with is_xxx boolean fields.
    - Add current_user() to return current_person()??
@@ -29,6 +29,14 @@ MVP List
 13. Invoicing (without dispensing)
 14. Dispensing
 15. Calculate taxes correctly while using TaxHistory
+
+Bug List
+========
+1. Date input fields really suck
+2. Base Curve, Diameter, Prism1/2 and Base 1/2 are still varchar in the database
+
+
+
 
 Invoice
 -> Item
