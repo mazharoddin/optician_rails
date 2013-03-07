@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
 	add_breadcrumb "Invoices", :invoices_path
 
 	before_filter :find_invoice
-	before_filter :find_item, :only => [:edit, :show, :update]
+	before_filter :find_item, :only => [:destroy, :edit, :show, :update]
 	authorize_resource :class => 'Invoice'
 	
 	def index
@@ -27,6 +27,17 @@ class ItemsController < ApplicationController
 		else
 			render "xxx"
 		end
+	end
+
+	def destroy
+		if @item == nil
+			flash[:notice] = "Item not found"
+		else
+			@item.destroy
+			flash[:success] = "Item removed"
+		end
+		
+		redirect_to invoice_path(@invoice)
 	end
 	
 	def edit

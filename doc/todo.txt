@@ -20,9 +20,10 @@ MVP List
  - [DONE] Plans
  - [DONE] States
  - [DONE] Taxation
-9. Invoicing (without dispensing)
+9. Invoicing (without dispensing or inventory)
 10. Dispensing
 11. Calculate taxes correctly while using TaxHistory
+12. Show/Edit to patient and prescriptions
 
 Bug List
 ========

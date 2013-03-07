@@ -45,10 +45,12 @@
 				
 				</div>
 			</div>
+<% if can? :read, Inventory %>
 			<div class="well">
 				Item <input type="text" class="span5 search-query">
 				<button type"submit" class="btn">Add</button>
 			</div>
+<% end %>
 			<table class="table table-condensed">
 				<thead>
 					<tr>
@@ -76,7 +78,7 @@
 						<td><input type="text" value="99.00" class="currency input-small" disabled="disabled"></td>
 						<td>Tax B</td>
 						<td>Tax B</td>
-						<td><% if @invoice.read_only? == false %><a href="#remove-modal" role="button" data-toggle="modal" class="btn btn-danger pull-right">Remove</a><% end %></td>
+						<td><% if @invoice.read_only? == false %><a href="#" class="btn btn-primary">Edit</a><a href="#remove-modal" role="button" data-toggle="modal" class="btn btn-danger">Remove</a><% end %></td>
 					</tr>
 					<tr>
 						<td>+ Frames</td>
@@ -127,7 +129,7 @@
 						<td><input type="text" value="<%= item.total_price %>" class="currency input-small" disabled="disabled"></td>
 						<td><%= item.tax_a %></td>
 						<td><%= item.tax_b %></td>
-						<td><% if @invoice.read_only? == false %><a href="#remove-modal" role="button" data-toggle="modal" class="btn btn-danger pull-right">Remove</a><% end %></td>
+						<td><% if @invoice.read_only? == false %><a href="#" class="btn btn-primary">Edit</a><a href="#remove-modal" role="button" data-toggle="modal" class="btn btn-danger">Remove</a><% end %></td>
 					</tr>
 <% end %>
 <% end %>

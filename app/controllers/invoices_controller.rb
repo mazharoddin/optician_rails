@@ -38,11 +38,6 @@ class InvoicesController < ApplicationController
 	end
 	
 	def show
-		if @invoice.read_only?
-			render "show"
-		else
-			render "edit"
-		end
 	end
 	
 	def update

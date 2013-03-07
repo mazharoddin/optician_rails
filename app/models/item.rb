@@ -17,6 +17,15 @@ class Item < ActiveRecord::Base
   
   default_scope { order("id ASC") }
 
+  after_destroy do |item|
+    invoice = item.invoice
+    invoice.total = invoice.sub_total
+	invoice.taxes.each do |tax|
+	invoice.total = invoice.total + tax[:amount]
+	end
+	invoice.save
+  end
+
   after_save do |item|
     invoice = item.invoice
     invoice.total = invoice.sub_total

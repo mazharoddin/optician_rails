@@ -89,6 +89,7 @@ class Ability
 					can :read, Prescription, :account_id => account.id
 				end
 				can :manage, Invoice, :account_id => account.id
+				can :manage, Item, :account_id => account.id
 				can :manage, Patient, :account_id => account.id
 
 				# Currently not checked

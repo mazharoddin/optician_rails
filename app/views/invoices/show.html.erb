@@ -5,6 +5,33 @@
 
 	<div class="row">
 		<div class="span12">
+<% if can?(:set_patient, @invoice) || can?(:set_cash_sale, @invoice) %>
+			<div class="btn-toolbar">
+				<div class="btn-group">
+<% if can? :set_patient, @invoice %>
+				    <%= link_to "Find Patient", invoice_patients_path(@current_account, @invoice), :class => "btn" %>
+<% end %>
+<% if can? :set_cash_sale, @invoice %>
+				    <%= link_to "Cash Sale", invoice_cash_sale_path(@current_account, @invoice), :class => "btn", :method => :put %>
+<% end %>
+				</div>
+<% if @invoice.patient != nil then %>
+<% if can? :create, Dispensing %>
+				<div class="btn-group">
+					<%= link_to "Dispense Glasses", new_invoice_glasses_dispensing_path(@current_account, @invoice), :class => "btn" %>
+					<%= link_to "Dispense Conacts", new_invoice_contacts_dispensing_path(@current_account, @invoice), :class => "btn" %>
+				</div>
+<% end %>
+<% end %>
+				<div class="btn-group">
+<% if can? :read, Inventory %>
+					<%= link_to "Add Service", services_invoice_items_path(@current_account, @invoice), :class => "btn" %>
+					<%= link_to "Add Accessories", accessories_invoice_items_path(@current_account, @invoice), :class => "btn" %>
+<% end %>
+					<%= link_to "Add Other", new_invoice_item_path(@current_account, @invoice), :class => "btn" %>
+				</div>
+			</div>
+<% end %>
 			<div class="row">
 				<div class="span4">
 					<address>
@@ -22,10 +49,12 @@
 				
 				</div>
 			</div>
+<% if can? :read, Inventory %>
 			<div class="well">
 				Item <input type="text" class="span5 search-query">
 				<button type"submit" class="btn">Add</button>
 			</div>
+<% end %>
 			<table class="table table-condensed">
 				<thead>
 					<tr>
@@ -37,6 +66,7 @@
 						<th>Price</th>
 						<th>Tax A</th>
 						<th>Tax B</th>
+						<th>&nbsp;</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -47,11 +77,12 @@
 <% @invoice.dispensing.each do |dispensing| %>
 					<tr>
 						<td colspan="2"><%= dispensing.description %><!--(<a href="invoices_glasses.html">#123</a>)--></td>
-						<td>Unit Price</td>
+						<td><input type="text" value="Unit Price" class="currency input-small"></td>
 						<td colspan="2">&nbsp;</td>
-						<td>99</td>
+						<td><input type="text" value="99.00" class="currency input-small" disabled="disabled"></td>
 						<td>Tax B</td>
 						<td>Tax B</td>
+						<td><% if @invoice.read_only? == false %><a href="#" class="btn btn-primary">Edit</a><a href="#remove-modal" role="button" data-toggle="modal" class="btn btn-danger">Remove</a><% end %></td>
 					</tr>
 					<tr>
 						<td>+ Frames</td>
@@ -62,15 +93,6 @@
 						<td>&nbsp;</td>
 						<td>&nbsp;</td>
 						<td>&nbsp;</td>
-					</tr>
-					<tr>
-						<td>+ Plastic Lense OD</td>
-						<td><input type="text" value="Unit Price" class="currency input-small"></td>
-						<td><input type="text" value="Discount" class="currency input-small"></td>
-						<td><input type="text" value="Qty" class="qty input-small"></td>
-						<td><input type="text" value="Price" class="currency input-small" disabled="disabled"></td>
-						<td>&nbsp;</td>
-						<td>&nbsp;</td>
 						<td>&nbsp;</td>
 					</tr>
 					<tr>
@@ -79,6 +101,18 @@
 						<td><input type="text" value="Discount" class="currency input-small"></td>
 						<td><input type="text" value="Qty" class="qty input-small"></td>
 						<td><input type="text" value="Price" class="currency input-small" disabled="disabled"></td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>+ Plastic Lense OD</td>
+						<td><input type="text" value="Unit Price" class="currency input-small"></td>
+						<td><input type="text" value="Discount" class="currency input-small"></td>
+						<td><input type="text" value="Qty" class="qty input-small"></td>
+						<td><input type="text" value="Price" class="currency input-small" disabled="disabled"></td>
+						<td>&nbsp;</td>
 						<td>&nbsp;</td>
 						<td>&nbsp;</td>
 						<td>&nbsp;</td>
@@ -91,12 +125,15 @@
 					</tr>
 <% @invoice.items.each do |item| %>
 					<tr>
-						<td colspan="2"><%= item.description %><!--(<a href="invoices_glasses.html">#123</a>)--></td>
-						<td><input type="text" value="<%= item.unit_price %>" class="currency input-small"></td>
-						<td colspan="2">&nbsp;</td>
-						<td><input type="text" value="99.00" class="currency input-small" disabled="disabled"></td>
+						<td><%= link_to item.description, invoice_item_path(@current_account, @invoice, item) %></td>
+						<td><%= number_with_precision(item.unit_price, :precision => 2) %></td>
+						<td><%= number_with_precision(item.discount, :precision => 2) %></td>
+						<td><%= number_with_precision(item.qty, :precision => 2) %></td>
+						<td>&nbsp;</td>
+						<td><%= number_with_precision(item.total_price, :precision => 2) %></td>
 						<td><%= item.tax_a %></td>
 						<td><%= item.tax_b %></td>
+						<td><% if @invoice.read_only? == false %><%= link_to 'Edit', edit_invoice_item_path(@current_account, @invoice, item), :class => "btn btn-primary" %><a href="#remove-modal" role="button" onclick="removeItem('<%= invoice_item_path(@current_account, @invoice, item) %>')" class="btn btn-danger">Remove</a><% end %></td>
 					</tr>
 <% end %>
 <% end %>
@@ -104,27 +141,70 @@
 				<tfoot>
 					<tr>
 						<th colspan="5">Sub Total</th>
-						<th><input type="text" value="TBD" class="currency input-small" disabled="disabled"></th>
+						<th><%= number_with_precision(@invoice.sub_total, :precision => 2) %></th>
+						<th colspan="3">&nbsp;</th>
 					</tr>
 <% @invoice.taxes.each do |tax| %>
 					<tr>
 						<td colspan="5"><%= tax[:tax] %></td>
-						<td><input type="text" value="<%= tax[:amount] %>" class="currency input-small" disabled="disabled"></td>
+						<td><%= number_with_precision(tax[:amount], :precision => 2) %></th>
+						<th colspan="3">&nbsp;</th>
 					</tr>
 <% end %>
 					<tr>
 						<th colspan="5">Total</th>
-						<th><input type="text" value="<%= @invoice.total %>" class="currency input-small" disabled="disabled"></th>
+						<th><%= number_with_precision(@invoice.total, :precision => 2) %></th>
+						<th colspan="3">&nbsp;</th>
 					</tr>
 					<tr>
 						<td colspan="5">Paid</td>
-						<td><input type="text" value="<%= @invoice.paid %>" class="currency input-small" disabled="disabled"></td>
+						<td><%= number_with_precision(@invoice.paid, :precision => 2) %></th>
+						<th colspan="3">&nbsp;</th>
 					</tr>
 					<tr>
 						<th colspan="5">Balance</th>
-						<th><input type="text" value="<%= @invoice.balance %>" class="currency input-small" disabled="disabled"></th>
+						<th><%= number_with_precision(@invoice.balance, :precision => 2) %></th>
+						<th colspan="3">&nbsp;</th>
 					</tr>
 				</tfoot>
 			</table>
 		</div>
 	</div>
+		
+	<div id="remove-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<h3 id="myModalLabel">Remove Item</h3>
+		</div>
+		<div class="modal-body">
+			<p><strong>Warning!</strong> This action cannot be undone.</p>
+			<p>Are you sure you want to remove this item?</p>
+		</div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+			<a href="/dev/invoices/1" class="btn btn-danger" data-method="delete" rel="nofollow" id="remove-item-link">Remove Item</a>
+		</div>
+	</div>
+	
+	<div id="void-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<h3 id="myModalLabel">Void Transaction</h3>
+		</div>
+		<div class="modal-body">
+			<p><strong>Warning!</strong> This action cannot be undone.</p>
+			<p>Are you sure you want to void this transaction?</p>
+		</div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+			<%= link_to "Void Transaction", invoice_void_path(@current_account, @invoice), :class => "btn btn-danger" %>
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+		function removeItem(path)
+		{
+			$('#remove-item-link').prop('href', path);  // <-- Change the path here
+			$('#remove-modal').modal('show');
+		}
+	</script>
