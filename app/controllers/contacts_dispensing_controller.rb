@@ -25,7 +25,32 @@ class ContactsDispensingController < ApplicationController
 	end
 	
 	def new
-		@dispensing = @invoice.contacts_dispensing.build
+		add_breadcrumb "New", new_invoice_contacts_dispensing_path(@current_account, @invoice)
+		
+		@prescription = @invoice.patient.contacts_prescriptions.order(:rx_date).first()
+		if @prescription == nil
+			@dispensing = @invoice.contacts_dispensing.build
+		else
+			@dispensing = @invoice.contacts_dispensing.build({
+				:description => @prescription.description,
+				:rx_date => @prescription.rx_date,
+				:expiry_date => @prescription.expiry_date,
+				:optometrist_id => @prescription.optometrist_id,
+				:notes => @prescription.notes,
+				:od_sphere => @prescription.od_sphere,
+				:od_cylinder => @prescription.od_cylinder,
+				:od_axis => @prescription.od_axis,
+				:od_base_curve => @prescription.od_base_curve,
+				:od_diameter => @prescription.od_diameter,
+				:od_brand_id => @prescription.od_brand_id,
+				:os_sphere => @prescription.os_sphere,
+				:os_cylinder => @prescription.os_cylinder,
+				:os_axis => @prescription.os_axis,
+				:os_base_curve => @prescription.os_base_curve,
+				:os_diameter => @prescription.os_diameter,
+				:os_brand_id => @prescription.os_brand_id,
+				})
+		end
 	end
 	
 	def show
@@ -44,7 +69,7 @@ class ContactsDispensingController < ApplicationController
 	def find_invoice
 		@invoice = @current_account.invoices.find(params[:invoice_id])
 		add_breadcrumb '#' + @invoice.id.to_s, invoice_path(@current_account, @invoice)
-		add_breadcrumb "Contacts Dispensing", invoice_contacts_dispensing_path(@current_account, @invoice)
+		add_breadcrumb "Contacts Dispensing", invoice_contacts_dispensing_index_path(@current_account, @invoice)
 	end
 
 	def find_dispensing
