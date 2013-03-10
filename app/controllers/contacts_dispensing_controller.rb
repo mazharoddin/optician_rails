@@ -3,6 +3,7 @@ class ContactsDispensingController < ApplicationController
 
 	before_filter :find_invoice
 	before_filter :find_dispensing, :only => [:edit, :show, :update]
+	before_filter :find_brands, :only => [:create, :edit, :new, :show, :update]
 	authorize_resource	
 	
 	def index
@@ -11,6 +12,7 @@ class ContactsDispensingController < ApplicationController
 	
 	def create
 		@dispensing = @invoice.contacts_dispensing.build(params[:contacts_dispensing])
+		@dispensing.account_id = @current_account.id
 		@dispensing.patient = @invoice.patient
 		if @dispensing.save then
 			flash[:success] = "Contacts dispensing has been created."
@@ -77,6 +79,10 @@ class ContactsDispensingController < ApplicationController
 		add_breadcrumb @dispensing.rx_date, invoice_contacts_dispensing_path(@current_account, @invoice, @dispensing)
 	end
 
+	def find_brands
+		@brands = @current_account.brands
+	end
+	
 	def navbar
 	  @navbar_selected = 'invoices'
 	end

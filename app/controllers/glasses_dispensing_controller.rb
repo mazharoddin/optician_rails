@@ -13,6 +13,7 @@ class GlassesDispensingController < ApplicationController
 		add_breadcrumb "New", new_invoice_glasses_dispensing_path(@current_account, @invoice)
 
 		@dispensing = @invoice.glasses_dispensing.build(params[:glasses_dispensing])
+		@dispensing.account_id = @current_account.id
 		@dispensing.patient = @invoice.patient
 		if @dispensing.save then
 			flash[:success] = "Glasses dispensing has been created."
