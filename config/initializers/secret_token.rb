@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Optician::Application.config.secret_token = 'c153fbc2f381d08b3fdf7ee2478f345d3e274fa97f65012c773a94b0d415f5382686bb44bd28a7e3f430652a00cec33ab2c052f54b3db0942c497ad704da0d42'
+Optician::Application.config.secret_token = '733d7d5a745fc8afa2a3907ebfcf71b444194860e67e8f137dffcaf6e95d1f57597a3cbd59f81fe1fa89c3c258a839acd4ed1e236d45b6401ca7ad1a2ddc8842'
