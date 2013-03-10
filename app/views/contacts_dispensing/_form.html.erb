@@ -2,7 +2,7 @@
 	<%= f.input :description %>
 	<%= f.input :rx_date %>
 	<%= f.input :expiry_date %>
-	<%= f.association :optometrist %>
+	<%= f.association :optometrist, :collection => @current_account.optometrists %>
 	<%= f.input :notes, :input_html => { :class => 'input-xxlarge', :rows => 5 } %>
 
 	<table class="table table-condensed">
