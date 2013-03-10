@@ -53,9 +53,9 @@ class InvoicesController < ApplicationController
 		add_breadcrumb 'Select Patient', invoice_patients_path(@current_account, @invoice)
 		if params[:q] then
 			add_breadcrumb "Search Results", :patients_path
-			@patients = Patient.where('last_name like ? or first_name like ?', '%' + params[:q] + '%', '%' + params[:q] + '%').order(:last_name).order(:first_name).page(params[:page])
+			@patients = Patient.where('account_id = ?', @current_account).where('last_name like ? or first_name like ?', '%' + params[:q] + '%', '%' + params[:q] + '%').order(:last_name).order(:first_name).page(params[:page])
 		else
-			@patients = Patient.order(:last_name).order(:first_name).page(params[:page])
+			@patients = Patient.where('account_id = ?', @current_account).order(:last_name).order(:first_name).page(params[:page])
 		end
 	end
 	
