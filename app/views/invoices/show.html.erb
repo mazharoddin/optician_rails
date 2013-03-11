@@ -76,19 +76,44 @@
 					</tr>
 <% @invoice.dispensing.each do |dispensing| %>
 					<tr>
-						<td colspan="2"><%= dispensing.description %><!--(<a href="invoices_glasses.html">#123</a>)--></td>
+						<td colspan="2"><% if dispensing.type == 'GlassesDispensing' %>Glasses<% else %>Contacts<% end %> (<%= link_to '#' + dispensing.id.to_s, invoice_glasses_dispensing_path(@current_account, @invoice, dispensing) %>):<% if dispensing.description != nil %><br><%= dispensing.description %><% end %></td>
 						<td><input type="text" value="Unit Price" class="currency input-small"></td>
-						<td colspan="2">&nbsp;</td>
+						<td><input type="text" value="Qty" class="qty input-small"></td>
+						<td>&nbsp;</td>
 						<td><input type="text" value="99.00" class="currency input-small" disabled="disabled"></td>
 						<td>Tax B</td>
 						<td>Tax B</td>
 						<td><% if @invoice.read_only? == false %><a href="#" class="btn btn-primary">Edit</a><a href="#remove-modal" role="button" data-toggle="modal" class="btn btn-danger">Remove</a><% end %></td>
 					</tr>
+<% if dispensing.type == 'GlassesDispensing' %>
 					<tr>
 						<td>+ Frames</td>
 						<td><input type="text" value="Unit Price" class="currency input-small"></td>
 						<td><input type="text" value="Discount" class="currency input-small"></td>
-						<td><input type="text" value="Qty" class="qty input-small"></td>
+						<td>1</td>
+						<td><input type="text" value="Price" class="currency input-small" disabled="disabled"></td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+<% end %>
+					<tr>
+						<td>+ Plastic Lense OD
+						<% if dispensing.od_sphere != nil %><br>&nbsp;&nbsp;SPH: <% dispensing.od_sphere %><% end %>
+						<% if dispensing.od_cylinder != nil %><br>&nbsp;&nbsp;CYL: <% dispensing.od_cylinder %><% end %>
+						<% if dispensing.od_axis != nil %><br>&nbsp;&nbsp;AXIS: <% dispensing.od_axis %><% end %>
+						<% if dispensing.od_add != nil %><br>&nbsp;&nbsp;ADD: <% dispensing.od_add %><% end %>
+						<% if dispensing.od_prism1 != nil %><br>&nbsp;&nbsp;PRISM1: <% dispensing.od_prism1 %><% end %>
+						<% if dispensing.od_base1 != nil %><br>&nbsp;&nbsp;BASE1: <% dispensing.od_base1 %><% end %>
+						<% if dispensing.od_prism2 != nil %><br>&nbsp;&nbsp;PRISM2: <% dispensing.od_prism2 %><% end %>
+						<% if dispensing.od_base2 != nil %><br>&nbsp;&nbsp;BASE2: <% dispensing.od_base2 %><% end %>
+						<% if dispensing.od_base_curve!= nil %><br>&nbsp;&nbsp;BC: <% dispensing.od_base_curve %><% end %>
+						<% if dispensing.od_diameter != nil %><br>&nbsp;&nbsp;DIA: <% dispensing.od_diameter %><% end %>
+						</td>
+						<td><input type="text" value="Unit Price" class="currency input-small"></td>
+						<td><input type="text" value="Discount" class="currency input-small"></td>
+						<td>&nbsp</td>
 						<td><input type="text" value="Price" class="currency input-small" disabled="disabled"></td>
 						<td>&nbsp;</td>
 						<td>&nbsp;</td>
@@ -96,21 +121,21 @@
 						<td>&nbsp;</td>
 					</tr>
 					<tr>
-						<td>+ Plastic Lense OD</td>
+						<td>+ Plastic Lense OS
+						<% if dispensing.os_sphere != nil %><br>&nbsp;&nbsp;SPH: <% dispensing.os_sphere %><% end %>
+						<% if dispensing.os_cylinder != nil %><br>&nbsp;&nbsp;CYL: <% dispensing.os_cylinder %><% end %>
+						<% if dispensing.os_axis != nil %><br>&nbsp;&nbsp;AXIS: <% dispensing.os_axis %><% end %>
+						<% if dispensing.os_add != nil %><br>&nbsp;&nbsp;ADD: <% dispensing.os_add %><% end %>
+						<% if dispensing.os_prism1 != nil %><br>&nbsp;&nbsp;PRISM1: <% dispensing.os_prism1 %><% end %>
+						<% if dispensing.os_base1 != nil %><br>&nbsp;&nbsp;BASE1: <% dispensing.os_base1 %><% end %>
+						<% if dispensing.os_prism2 != nil %><br>&nbsp;&nbsp;PRISM2: <% dispensing.os_prism2 %><% end %>
+						<% if dispensing.os_base2 != nil %><br>&nbsp;&nbsp;BASE2: <% dispensing.os_base2 %><% end %>
+						<% if dispensing.os_base_curve!= nil %><br>&nbsp;&nbsp;BC: <% dispensing.os_base_curve %><% end %>
+						<% if dispensing.os_diameter != nil %><br>&nbsp;&nbsp;DIA: <% dispensing.os_diameter %><% end %>
+						</td>
 						<td><input type="text" value="Unit Price" class="currency input-small"></td>
 						<td><input type="text" value="Discount" class="currency input-small"></td>
-						<td><input type="text" value="Qty" class="qty input-small"></td>
-						<td><input type="text" value="Price" class="currency input-small" disabled="disabled"></td>
-						<td>&nbsp;</td>
-						<td>&nbsp;</td>
-						<td>&nbsp;</td>
-						<td>&nbsp;</td>
-					</tr>
-					<tr>
-						<td>+ Plastic Lense OD</td>
-						<td><input type="text" value="Unit Price" class="currency input-small"></td>
-						<td><input type="text" value="Discount" class="currency input-small"></td>
-						<td><input type="text" value="Qty" class="qty input-small"></td>
+						<td>&nbsp</td>
 						<td><input type="text" value="Price" class="currency input-small" disabled="disabled"></td>
 						<td>&nbsp;</td>
 						<td>&nbsp;</td>
