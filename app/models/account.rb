@@ -6,6 +6,7 @@ class Account < ActiveRecord::Base
   belongs_to :state
   
   has_many :accessories_inventory
+  has_many :appointments
   has_many :brands
   has_many :brand_histories
   has_many :companies

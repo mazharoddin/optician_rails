@@ -12,9 +12,12 @@
 					<div class="nav-collapse">
 						<ul class="nav">
 							<li <%= raw (@navbar_selected == 'dashboard') ? 'class="active"' : '' %>><%= link_to "Dashboard", dashboard_path(@current_account) %></li>
-							<% if can? :read, Invoice %><li <%= raw (@navbar_selected == 'invoices') ? 'class="active"' : '' %>><%= link_to "Invoices", invoices_path %></li><% end %>
+							<% if can? :read, Appointment %><li <%= raw (@navbar_selected == 'appointments') ? 'class="active"' : '' %>><%= link_to "Appointments", appointments_path %></li><% end %>
 							<% if can? :read, Patient %><li <%= raw (@navbar_selected == 'patients') ? 'class="active"' : '' %>><%= link_to "Patients", patients_path %></li><% end %>
+							<% if can? :read, Invoice %><li <%= raw (@navbar_selected == 'invoices') ? 'class="active"' : '' %>><%= link_to "Invoices", invoices_path %></li><% end %>
+							<li><a href="#">Payments</a></li>
 							<% if can? :read, Inventory %><li <%= raw (@navbar_selected == 'inventory') ? 'class="active"' : '' %>><%= link_to "Inventory", inventory_root_path %></li><% end %>
+							<li><a href="#">Reports</a></li>
 							<% if current_user.administrator || current_user.super_administrator %><li <%= raw (@navbar_selected == 'administration') ? 'class="active"' : '' %>><%= link_to "Administration", admin_root_path %></li><% end %>
 						</ul>
 

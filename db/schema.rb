@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130217220205) do
+ActiveRecord::Schema.define(:version => 20130312221708) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name",        :limit => 80,                   :null => false
@@ -32,6 +32,24 @@ ActiveRecord::Schema.define(:version => 20130217220205) do
 
   add_index "accounts", ["name"], :name => "index_accounts_on_name", :unique => true
   add_index "accounts", ["subdomain"], :name => "index_accounts_on_subdomain", :unique => true
+
+  create_table "appointments", :force => true do |t|
+    t.integer  "account_id",     :null => false
+    t.integer  "patient_id",     :null => false
+    t.integer  "optometrist_id", :null => false
+    t.integer  "inventory_id",   :null => false
+    t.datetime "start_at",       :null => false
+    t.integer  "duration",       :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.datetime "checkin_at"
+    t.datetime "cancel_at"
+  end
+
+  add_index "appointments", ["account_id"], :name => "index_appointments_on_account_id"
+  add_index "appointments", ["inventory_id"], :name => "index_appointments_on_inventory_id"
+  add_index "appointments", ["optometrist_id"], :name => "index_appointments_on_optometrist_id"
+  add_index "appointments", ["patient_id"], :name => "index_appointments_on_patient_id"
 
   create_table "brand_histories", :force => true do |t|
     t.integer  "brand_id"

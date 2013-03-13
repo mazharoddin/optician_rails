@@ -1,0 +1,37 @@
+<% @title = "Appointments" %>
+<div class="page-header">
+	<h1>Find Appointment<% if can? :create, Appointment %><%= link_to "New Appointment", new_appointment_path, :class => "btn btn-success pull-right" %><% end %></h1>
+</div>
+
+<form class="well form-search" method="get">
+	<input name="q" value="<%= params[:q] %>" type="text" class="search-query">
+	<button type"submit" class="btn btn-info">Search</button>
+</form>
+
+<% if @appointments.empty? then %>
+<p>No appointments found</p>
+<% else %>
+<table class="table table-condensed table-striped">
+	<thead>
+		<tr>
+			<th>Start At</th>
+			<th>Duration</th>
+			<th>Check In</th>
+			<th>Patient</th>
+			<th>Optometrist</th>
+		</tr>
+	</thead>
+	<tbody>
+<% @appointments.each do |appointment| %>
+		<tr>
+			<td><%= link_to appointment.start_at, appointment_path(@current_account, appointment) %></td>
+			<td><%= appointment.duration %>
+			<td><%= appointment.checkin_at %>
+			<td><%= appointment.patient %>
+			<td><%= appointment.optometrist %>
+		</tr>
+<% end %>
+	</tbody>
+</table>
+<%= paginate @appointments %>
+<% end %>

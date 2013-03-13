@@ -1,0 +1,16 @@
+<%= simple_form_for @appointment, :html => { :class => "form-horizontal" } do |f| %>
+	<%= f.association :patient, :collection => @current_account.patients %>
+	<%= f.association :optometrist, :collection => @current_account.optometrists %>
+	<%= f.association :inventory, :collection => @current_account.inventory.where("type = 'ServicesInventory' and appointment_type = true") %>
+	<%= f.input :start_at %>
+	<%= f.input :duration %>
+
+	<div class="form-actions">
+		<%= f.button :submit, :class => "btn btn-primary" %>
+<% if @appointment.new_record? %>
+		<%= link_to "Discard Changes", appointments_path, :class => "btn" %>
+<% else %>
+		<%= link_to "Discard Changes", appointment_path(@current_account, @appointment), :class => "btn" %>
+<% end %>
+	</div>
+<% end %>

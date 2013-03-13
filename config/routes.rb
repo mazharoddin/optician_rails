@@ -61,6 +61,7 @@ Optician::Application.routes.draw do
 	# Note: This route will make all actions in every controller accessible via GET requests.
 	# match ':controller(/:action(/:id))(.:format)'
 	scope ':subdomain' do
+		resources :appointments
 		resources :invoices do
 			get 'patients'
 			put 'patients/:id', :action => 'set_patient', :as => 'set_patient'

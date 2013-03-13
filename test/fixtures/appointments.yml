@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  account: 
+  patient: 
+  optometrist: 
+  inventory: 
+  start_at: 2013-03-12 08:44:34
+  duration: 1
+
+two:
+  account: 
+  patient: 
+  optometrist: 
+  inventory: 
+  start_at: 2013-03-12 08:44:34
+  duration: 1

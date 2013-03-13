@@ -11,7 +11,8 @@ class Patient < ActiveRecord::Base
   belongs_to :personal_title
   belongs_to :postal_country, :class_name => 'Country'
   belongs_to :postal_state, :class_name => 'State'
-  
+
+  has_many :appointments  
   has_many :contacts_prescriptions
   has_many :dispensing
   has_many :glasses_prescriptions

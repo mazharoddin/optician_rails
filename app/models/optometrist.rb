@@ -6,6 +6,7 @@ class Optometrist < ActiveRecord::Base
   belongs_to :business_state, :class_name => 'State'
   belongs_to :personal_title
 
+  has_many :appointments  
   has_many :contacts_prescription
   has_many :glasses_prescription
 
