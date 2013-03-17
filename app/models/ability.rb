@@ -30,7 +30,9 @@ class Ability
 		if user.super_administrator
 			can :read, :dashboard
 			can :manage, Account
-			can :manage, Appointment
+			if account.plan.appointments
+				can :manage, Appointment
+			end
 			can :manage, Brand
 			can :manage, Company
 			can :manage, Country
@@ -89,7 +91,9 @@ class Ability
 					can :read, Optometrist, :account_id => account.id
 					can :read, Prescription, :account_id => account.id
 				end
-				can :manage, Appointment, :account_id => account.id
+				if account.plan.appointments
+					can :manage, Appointment, :account_id => account.id
+				end
 				can :manage, Invoice, :account_id => account.id
 				can :manage, Item, :account_id => account.id
 				can :manage, Patient, :account_id => account.id

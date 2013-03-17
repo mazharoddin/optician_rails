@@ -1,5 +1,5 @@
 class Plan < ActiveRecord::Base
-  attr_accessible :inventory, :multistore, :name, :price
+  attr_accessible :appointments, :inventory, :multistore, :name, :price
   
   has_many :accounts
   

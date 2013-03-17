@@ -15,6 +15,7 @@
 	<thead>
 		<tr>
 			<th>Name</th>
+			<th>Appointments</th>
 			<th>Inventory</th>
 			<th>Multistore</th>
 			<th>Price</th>
@@ -24,6 +25,7 @@
 <% @plans.each do |plan| %>
 		<tr>
 			<td><%= link_to plan.name, admin_plan_path(@current_account, plan) %></td>
+			<td><%= plan.appointments %></td>
 			<td><%= plan.inventory %></td>
 			<td><%= plan.multistore %></td>
 			<td><%= number_with_precision(plan.price, :precision => 2) %></td>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130312221708) do
+ActiveRecord::Schema.define(:version => 20130317221352) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name",        :limit => 80,                   :null => false
@@ -345,13 +345,14 @@ ActiveRecord::Schema.define(:version => 20130312221708) do
   end
 
   create_table "plans", :force => true do |t|
-    t.string   "name",       :limit => 60,                                                   :null => false
-    t.boolean  "active",                                                  :default => true,  :null => false
-    t.boolean  "inventory",                                               :default => false, :null => false
-    t.boolean  "multistore",                                              :default => false, :null => false
-    t.decimal  "price",                    :precision => 10, :scale => 2,                    :null => false
-    t.datetime "created_at",                                                                 :null => false
-    t.datetime "updated_at",                                                                 :null => false
+    t.string   "name",         :limit => 60,                                                   :null => false
+    t.boolean  "active",                                                    :default => true,  :null => false
+    t.boolean  "inventory",                                                 :default => false, :null => false
+    t.boolean  "multistore",                                                :default => false, :null => false
+    t.decimal  "price",                      :precision => 10, :scale => 2,                    :null => false
+    t.datetime "created_at",                                                                   :null => false
+    t.datetime "updated_at",                                                                   :null => false
+    t.boolean  "appointments",                                              :default => false, :null => false
   end
 
   add_index "plans", ["name"], :name => "index_plans_on_name", :unique => true

@@ -8,11 +8,76 @@
 	<button type"submit" class="btn btn-info">Search</button>
 </form>
 
+<div class="btn-group">
+	<a href="#" class="btn">Day</a>
+	<a href="#" class="btn btn-primary">Week</a>
+	<a href="#" class="btn">Month</a>
+</div>
+
+<h2>Day View</h2>
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th></th>
+			<th>Dr X</th>
+			<th>Dr Y</th>
+			<th>Dr Z</th>
+		</tr>
+	</thead>
+	<tbody>
+<% @hours.each do |hour| %>
+		<tr>
+			<th><%= hour%>:00</th>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+<% end %>
+	</tbody>
+</table>
+
+<h2>Week View</h2>
+<table class="table">
+	<thead>
+		<tr>
+			<th></th>
+			<th>Monday<br>1/10/2013</th>
+			<th>Tuesday<br>2/10/2013</th>
+			<th>Wednesday<br>3/10/2013</th>
+			<th>Thursday<br>4/10/2013</th>
+			<th>Friday<br>5/10/2013</th>
+			<th>Saturday<br>6/10/2013</th>
+			<th>Sunday<br>7/10/2013</th>
+		</tr>
+	</thead>
+	<tbody>
+<% @hours.each do |hour| %>
+		<tr>
+			<th><%= hour%>:00</th>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+<% end %>
+	</tbody>
+</table>
+
+<h2>Month View</h2>
+<p>Should show how many appointments each optometrist has and if they are available. Perhaps us color for optometrist and * next to number for available.</p>
+
 <% if @appointments.empty? then %>
 <p>No appointments found</p>
 <% else %>
 <table class="table table-condensed table-striped">
-	<thead>
+<thead>
 		<tr>
 			<th>Start At</th>
 			<th>Duration</th>

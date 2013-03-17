@@ -7,6 +7,7 @@ class AppointmentsController < ApplicationController
 	
 	def index
 		@appointments = @current_account.appointments.page(params[:page])
+		@hours = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
 	end
 	
 	def create
