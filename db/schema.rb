@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130317221352) do
+ActiveRecord::Schema.define(:version => 20130318222017) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name",        :limit => 80,                   :null => false
@@ -336,6 +336,17 @@ ActiveRecord::Schema.define(:version => 20130317221352) do
   add_index "patients", ["personal_title_id"], :name => "index_patients_on_personal_title_id"
   add_index "patients", ["postal_country_id"], :name => "index_patients_on_postal_country_id"
   add_index "patients", ["postal_state_id"], :name => "index_patients_on_postal_state_id"
+
+  create_table "payment_methods", :force => true do |t|
+    t.string   "name",       :limit => 20,                   :null => false
+    t.integer  "account_id",                                 :null => false
+    t.boolean  "active",                   :default => true, :null => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
+  end
+
+  add_index "payment_methods", ["account_id", "name"], :name => "index_payment_methods_on_account_id_and_name", :unique => true
+  add_index "payment_methods", ["account_id"], :name => "index_payment_methods_on_account_id"
 
   create_table "personal_titles", :force => true do |t|
     t.string   "title",      :limit => 20,                   :null => false

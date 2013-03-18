@@ -51,6 +51,7 @@ class Ability
 			can :manage, LensType
 			can :manage, Optometrist
 			can :manage, Patient
+			can :manage, PaymentMethod
 			can :manage, PersonalTitle
 			can :manage, Plan
 			can :manage, Prescription
@@ -67,6 +68,7 @@ class Ability
 					can :manage, Brand, :account_id => account.id
 					can :manage, Company, :account_id => account.id
 					can :manage, Employee, :account_id => account.id
+					can :manage, PaymentMethod, :account_id => account.id
 					can :manage, Store, :account_id => account.id
 					can :manage, User, :account_id => account.id
 					if account.plan.inventory

@@ -1,0 +1,13 @@
+<%= simple_form_for [:admin, @payment_method], :html => { :class => "form-horizontal" } do |f| %>
+	<%= f.input :name %>
+	<%= f.input :active %>
+
+	<div class="form-actions">
+		<%= f.button :submit, :class => "btn btn-primary" %>
+<% if @payment_method.new_record? %>
+		<%= link_to "Discard Changes", admin_payment_methods_path, :class => "btn" %>
+<% else %>
+		<%= link_to "Discard Changes", admin_payment_method_path(@current_account, @payment_method), :class => "btn" %>
+<% end %>
+	</div>
+<% end %>

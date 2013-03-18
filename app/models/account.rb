@@ -27,6 +27,7 @@ class Account < ActiveRecord::Base
   has_many :lens_type_histories
   has_many :optometrists
   has_many :patients
+  has_many :payment_methods
   has_many :personal_titles
   has_many :personal_title_histories
   has_many :prescriptions

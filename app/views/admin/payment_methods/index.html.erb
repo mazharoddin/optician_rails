@@ -1,0 +1,31 @@
+<% @title = "Payment Methods" %>
+<div class="page-header">
+	<h1>Find Payment Method<% if can? :create, PaymentMethod %><%= link_to "New Payment Method", new_admin_payment_method_path, :class => "btn btn-success pull-right" %><% end %></h1>
+</div>
+
+<form class="well form-search" method="get">
+	<input name="q" value="<%= params[:q] %>" type="text" class="search-query">
+	<button type"submit" class="btn btn-info">Search</button>
+</form>
+
+<% if @payment_methods.empty? then %>
+<p>No payment methods found</p>
+<% else %>
+<table class="table table-condensed table-striped">
+	<thead>
+		<tr>
+			<th>Payment Method</th>
+			<th>Active</th>
+		</tr>
+	</thead>
+	<tbody>
+<% @payment_methods.each do |payment_method| %>
+		<tr>
+			<td><%= link_to payment_method.name, admin_payment_method_path(@current_account, payment_method) %></td>
+			<td><%= payment_method.active %>
+		</tr>
+<% end %>
+	</tbody>
+</table>
+<%= paginate @payment_methods %>
+<% end %>

@@ -74,6 +74,10 @@
 							<dt><%= link_to "Lens Types", :admin_lens_types %></dt>
 							<dd>Manage lens types</dd>
 <% end %>
+<% if can? :read, PaymentMethod %>
+							<dt><%= link_to "Companies", :admin_payment_methods %></dt>
+							<dd>Maintain payment methods<dd>
+<% end %>
 <% if can? :read, PersonalTitle %>
 							<dt><%= link_to "Personal Titles", :admin_personal_titles %></dt>
 							<dd>Maintain personal titles<dd>

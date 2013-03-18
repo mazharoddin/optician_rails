@@ -1,3 +1,17 @@
+Invoice Rules
+=============
+1. No changes can be made to an invoice once void_date != nil
+2. No changes can be made to an invoice once locked_date != nil
+   Problem: What if someone cancels dispensing after is has been ordered?
+   Options:
+     - Allow store manager to override?
+	 - Allow refund which cancels dispensing?
+3. No changes can be made to an invoice once complete_date != nil
+   Problem: Same as 2 but it's still safe for anyone to cancel dispensing.
+4. Payments cannot be made until complete_date != nil
+5. Accessories and Services can only be added if plan.inventory == true
+
+
 Common MVP List
 ===============
 1. [DONE] Re-install /:tenant/... URL's and enforce access to other accounts

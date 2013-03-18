@@ -1,0 +1,12 @@
+<% @title = "Show Payment Method" %>
+<div class="page-header">
+	<h1><%= @payment_method.name %> (Payment Method)<% if can? :update, @payment_method %><%= link_to "Edit Payment Method", edit_admin_payment_method_path(@current_account, @payment_method), :class => "btn btn-primary pull-right" %><% end %></h1>
+</div>
+
+
+<dl>
+	<dt>Name</dt>
+	<dd><%= @payment_method.name %></dd>
+	<dt>Active</dt>
+	<dd><%= @payment_method.active %></dd>
+</dl>

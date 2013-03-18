@@ -113,6 +113,7 @@ Optician::Application.routes.draw do
 			resources :lens_materials
 			resources :lens_types
 			resources :optometrists
+			resources :payment_methods
 			resources :personal_titles
 			resources :plans
 			resources :stores
