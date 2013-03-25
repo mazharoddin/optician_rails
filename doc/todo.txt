@@ -17,7 +17,13 @@ Common MVP List
 1. [DONE] Re-install /:tenant/... URL's and enforce access to other accounts
 2. [DONE] Plans
 3. Permissions <-- Currently working on this using cancan
-4. Next Patient numbes (i.e. per tenant numbering, keep ID only for active record)
+4. Next ... number
+ - Next patient number
+ - Next invoice number
+ - Next inventory number
+ - Next payment number
+ - Next dispensing number
+ - Next user number
 5. Everywhere there is state it the list should change (using AJAX) to match the current country
 6. Dashboard needs to show appointments for today
 7. Show/Edit to patient and prescriptions
@@ -33,8 +39,7 @@ Price in tiers for the number of in-house optometrists!! 1-3 $29; 4-8 $59; 9+ $1
 Optician MVP List
 =================
 1. [DONE] Inventory menu should be showing (and inventory not working) when the plan doesn't include inventory
-2. Next Invoice/Dispensing/Inventory?? numbers (i.e. per tenant numbering, keep ID only for active record)
-3. Remove the following from administration:
+2. Remove the following from administration:
  - Accounts
  - [DONE] Countries
  - [DONE] Employment Type
@@ -47,9 +52,9 @@ Optician MVP List
  - [DONE] Plans
  - [DONE] States
  - [DONE] Taxation
-4. Invoicing (without dispensing or inventory)
-5. Dispensing
-6. Calculate taxes correctly while using TaxHistory
+3. Invoicing (without dispensing or inventory)
+4. Dispensing
+5. Calculate taxes correctly while using TaxHistory
 
 Bug List
 ========
