@@ -3,9 +3,6 @@
 	<h1><%= @patient %> (Patient)</h1>
 </div>
 
-
-
-
 <ul class="nav nav-tabs">
 	<li><%= link_to "Profile", patient_path(@current_account, @patient) %></li>
 	<li class="active"><%= link_to "Glasses", patient_glasses_prescriptions_path(@current_account, @patient, @glasses_prescription) %></li>

@@ -1,6 +1,6 @@
 <% @title = "Employees" %>
 <div class="page-header">
-	<h1>Find Employee<% if can? :create, Employee %><%= link_to "New Employee", new_admin_employee_path, :class => "btn btn-success pull-right" %><% end %></h1>
+	<h1>Employees<% if can? :create, Employee %><%= link_to "New Employee", new_admin_employee_path, :class => "btn btn-success pull-right" %><% end %></h1>
 </div>
 
 <form class="well form-search" method="get">

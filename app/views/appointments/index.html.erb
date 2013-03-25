@@ -1,6 +1,6 @@
 <% @title = "Appointments" %>
 <div class="page-header">
-	<h1>Find Appointment<% if can? :create, Appointment %><%= link_to "New Appointment", new_appointment_path, :class => "btn btn-success pull-right" %><% end %></h1>
+	<h1>Appointments<% if can? :create, Appointment %><%= link_to "New Appointment", new_appointment_path, :class => "btn btn-success pull-right" %><% end %></h1>
 </div>
 
 <form class="well form-search" method="get">

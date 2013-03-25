@@ -1,6 +1,6 @@
 <% @title = "Payment Methods" %>
 <div class="page-header">
-	<h1>Find Payment Method<% if can? :create, PaymentMethod %><%= link_to "New Payment Method", new_admin_payment_method_path, :class => "btn btn-success pull-right" %><% end %></h1>
+	<h1>Payment Methods<% if can? :create, PaymentMethod %><%= link_to "New Payment Method", new_admin_payment_method_path, :class => "btn btn-success pull-right" %><% end %></h1>
 </div>
 
 <form class="well form-search" method="get">
