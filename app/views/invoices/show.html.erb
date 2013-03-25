@@ -83,7 +83,7 @@
 						<td><input type="text" value="99.00" class="currency input-small" disabled="disabled"></td>
 						<td>Tax B</td>
 						<td>Tax B</td>
-						<td><% if @invoice.read_only? == false %><a href="#" class="btn btn-primary">Edit</a><a href="#remove-modal" role="button" data-toggle="modal" class="btn btn-danger">Remove</a><% end %></td>
+						<td><% if @invoice.read_only? == false %><a href="#"><i class="icon-edit"></i></a><a href="#remove-modal" role="button" data-toggle="modal"><i class="icon-remove"></i></a><% end %></td>
 					</tr>
 <% if dispensing.type == 'GlassesDispensing' %>
 					<tr>
@@ -158,7 +158,7 @@
 						<td><%= number_with_precision(item.total_price, :precision => 2) %></td>
 						<td><%= item.tax_a %></td>
 						<td><%= item.tax_b %></td>
-						<td><% if @invoice.read_only? == false %><%= link_to 'Edit', edit_invoice_item_path(@current_account, @invoice, item), :class => "btn btn-primary" %><a href="#remove-modal" role="button" onclick="removeItem('<%= invoice_item_path(@current_account, @invoice, item) %>')" class="btn btn-danger">Remove</a><% end %></td>
+						<td><% if @invoice.read_only? == false %><a href="<%= edit_invoice_item_path(@current_account, @invoice, item) %>"><i class="icon-edit"></i></a><a href="#remove-modal" role="button" onclick="removeItem('<%= invoice_item_path(@current_account, @invoice, item) %>')"><i class="icon-remove"></i></a><% end %></td>
 					</tr>
 <% end %>
 <% end %>
