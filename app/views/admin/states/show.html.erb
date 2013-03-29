@@ -3,7 +3,7 @@
 	<h1><%= @state.name %> (State)<% if can? :edit, @state %><%= link_to "Edit State", edit_admin_country_state_path(@current_account, @country, @state), :class => "btn btn-primary pull-right" %><% end %></h1>
 </div>
 
-<dl>
+<dl class="dl-horizontal">
 	<dt>Name</dt>
 	<dd><%= @state.name %></dd>
 	<dt>Short Name</dt>

@@ -5,7 +5,7 @@
 
 <div class="row">
 	<div class="span6">
-		<dl>
+		<dl class="dl-horizontal">
 			<dt>Name</dt>
 			<dd><%= @location.name %></dd>
 			<dt>Email</dt>
@@ -31,7 +31,7 @@
 		</dl>
 	</div>
 	<div class="span6">
-		<dl>
+		<dl class="dl-horizontal">
 			<dt style="float: left; clear: left; width: 12ex">Monday<dt><dd><%= @location.monday_open.strftime('%H:%M') %> - <%= @location.monday_close.strftime('%H:%M') %></dd>
 			<dt style="float: left; clear: left; width: 12ex">Tuesday<dt><dd><%= @location.tuesday_open.strftime('%H:%M') %> - <%= @location.tuesday_close.strftime('%H:%M') %></dd>
 			<dt style="float: left; clear: left; width: 12ex">Wednesday<dt><dd><%= @location.wednesday_open.strftime('%H:%M') %> - <%= @location.wednesday_close.strftime('%H:%M') %></dd>

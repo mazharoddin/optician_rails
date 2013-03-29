@@ -3,8 +3,7 @@
 	<h1><%= @personal_title.title %> (Personal Title)<% if can? :edit, @personal_title %><%= link_to "Edit Personal Title", edit_admin_personal_title_path(@current_account, @personal_title), :class => "btn btn-primary pull-right" %><% end %></h1>
 </div>
 
-
-<dl>
+<dl class="dl-horizontal">
 	<dt>Title</dt>
 	<dd><%= @personal_title.title %></dd>
 	<dt>Active</dt>

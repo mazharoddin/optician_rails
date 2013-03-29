@@ -3,8 +3,7 @@
 	<h1><%= @lens_coating.name %> (Lens Coating)<% if can? :update, @lens_coating %><%= link_to "Edit Lens Coating", edit_admin_lens_coating_path(@current_account, @lens_coating), :class => "btn btn-primary pull-right" %><% end %></h1>
 </div>
 
-
-<dl>
+<dl class="dl-horizontal">
 	<dt>Name</dt>
 	<dd><%= @lens_coating.name %></dd>
 	<dt>Active</dt>

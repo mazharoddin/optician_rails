@@ -3,8 +3,7 @@
 	<h1><%= @optometrist %> (Optometrist)<% if can? :edit, @optometrist %><%= link_to "Edit Optometrist", edit_admin_optometrist_path(@current_account, @optometrist), :class => "btn btn-primary pull-right" %><% end %></h1>
 </div>
 
-
-<dl>
+<dl class="dl-horizontal">
 	<dt>Title</dt>
 	<dd><%= @optometrist.personal_title %></dd>
 	<dt>Last Name</dt>

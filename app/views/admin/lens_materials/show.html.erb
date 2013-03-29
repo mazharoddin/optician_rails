@@ -3,8 +3,7 @@
 	<h1><%= @lens_material.name %> (Lens Material)<% if can? :update, @lens_material %><%= link_to "Edit Lens Material", edit_admin_lens_material_path(@current_account, @lens_material), :class => "btn btn-primary pull-right" %><% end %></h1>
 </div>
 
-
-<dl>
+<dl class="dl-horizontal">
 	<dt>Name</dt>
 	<dd><%= @lens_material.name %></dd>
 	<dt>Active</dt>

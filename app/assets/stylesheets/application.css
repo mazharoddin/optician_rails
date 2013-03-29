@@ -11,3 +11,8 @@
  *= require_self
  *= require_tree .
 */
+.dl-horizontal > dd , .dl-horizontal > dt{
+  line-height: 20px;
+  /* Keep this the same as line-height */
+  min-height: 20px;
+}

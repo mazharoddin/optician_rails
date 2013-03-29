@@ -3,8 +3,7 @@
 	<h1><%= @tax.name %> (Tax)<% if can? :update, @tax %><%= link_to "Edit Tax", edit_admin_tax_path(@current_account, @tax), :class => "btn btn-primary pull-right" %><% end %></h1>
 </div>
 
-
-<dl>
+<dl class="dl-horizontal">
 	<dt>Name</dt>
 	<dd><%= @tax.name %></dd>
 	<dt>Rate</dt>
