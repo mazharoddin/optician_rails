@@ -1,0 +1,41 @@
+<% @title = "Locations" %>
+<div class="page-header">
+	<h1>Locations<% if can? :create, Location %><%= link_to "New Location", new_admin_location_path, :class => "btn btn-success pull-right" %><% end %></h1>
+</div>
+
+<form class="well form-search" method="get">
+	<input name="q" value="<%= params[:q] %>" type="text" class="search-query">
+	<button type"submit" class="btn btn-info">Search</button>
+</form>
+
+<% if @locations.empty? then %>
+<p>No locations found</p>
+<% else %>
+<table class="table table-condensed table-striped">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Address</th>
+			<th>City</th>
+			<th>Postal Code</th>
+			<th>State</th>
+			<th>Phone</th>
+			<th>Active</th>
+		</tr>
+	</thead>
+	<tbody>
+<% @locations.each do |location| %>
+		<tr>
+			<td><%= link_to location.name, admin_location_path(@current_account, location) %></td>
+			<td><%= location.address %></td>
+			<td><%= location.city %></td>
+			<td><%= location.postal_code %></td>
+			<td><%= location.state %></td>
+			<td><%= location.phone %></td>
+			<td><%= location.active %></td>
+		</tr>
+<% end %>
+	</tbody>
+</table>
+<%= paginate @locations %>
+<% end %>

@@ -1,4 +1,4 @@
-class Store < ActiveRecord::Base
+class Location < ActiveRecord::Base
   attr_accessible :active, :address, :city, :country_id, :email, :fax, :friday_close, :friday_open, :monday_close, :monday_open, :name, :phone, :postal_code, :saturday_close, :saturday_open, :state_id, :sunday_close, :sunday_open, :thursday_close, :thursday_open, :tuesday_close, :tuesday_open, :url, :wednesday_close, :wednesday_open
   
   belongs_to :account

@@ -37,9 +37,9 @@
 							<dt><%= link_to "Countries", :admin_countries %></dt>
 							<dd>Maintain countries<dd>
 <% end %>
-<% if can? :read, Store %>
-							<dt><%= link_to "Stores", :admin_stores %></dt>
-							<dd>Maintain stores<dd>
+<% if can? :read, Location %>
+							<dt><%= link_to "Locations", :admin_locations %></dt>
+							<dd>Maintain locations<dd>
 <% end %>
 						</dl>
 					</div>

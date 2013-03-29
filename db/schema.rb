@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130318222017) do
+ActiveRecord::Schema.define(:version => 20130328231439) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name",        :limit => 80,                   :null => false
@@ -263,6 +263,41 @@ ActiveRecord::Schema.define(:version => 20130318222017) do
     t.boolean  "active",                   :default => true, :null => false
   end
 
+  create_table "locations", :force => true do |t|
+    t.string   "name",            :limit => 60,                   :null => false
+    t.string   "email"
+    t.string   "url"
+    t.string   "phone",           :limit => 30
+    t.string   "fax",             :limit => 30
+    t.string   "address"
+    t.string   "city",            :limit => 60
+    t.integer  "state_id"
+    t.string   "postal_code",     :limit => 20
+    t.integer  "country_id"
+    t.time     "monday_open"
+    t.time     "monday_close"
+    t.time     "tuesday_open"
+    t.time     "tuesday_close"
+    t.time     "wednesday_open"
+    t.time     "wednesday_close"
+    t.time     "thursday_open"
+    t.time     "thursday_close"
+    t.time     "friday_open"
+    t.time     "friday_close"
+    t.time     "saturday_open"
+    t.time     "saturday_close"
+    t.time     "sunday_open"
+    t.time     "sunday_close"
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
+    t.boolean  "active",                        :default => true, :null => false
+    t.integer  "account_id",                                      :null => false
+  end
+
+  add_index "locations", ["account_id"], :name => "index_stores_on_account_id"
+  add_index "locations", ["country_id"], :name => "index_stores_on_country_id"
+  add_index "locations", ["state_id"], :name => "index_stores_on_state_id"
+
   create_table "optometrists", :force => true do |t|
     t.integer  "personal_title_id"
     t.string   "last_name",            :limit => 40,                   :null => false
@@ -356,14 +391,14 @@ ActiveRecord::Schema.define(:version => 20130318222017) do
   end
 
   create_table "plans", :force => true do |t|
-    t.string   "name",         :limit => 60,                                                   :null => false
-    t.boolean  "active",                                                    :default => true,  :null => false
-    t.boolean  "inventory",                                                 :default => false, :null => false
-    t.boolean  "multistore",                                                :default => false, :null => false
-    t.decimal  "price",                      :precision => 10, :scale => 2,                    :null => false
-    t.datetime "created_at",                                                                   :null => false
-    t.datetime "updated_at",                                                                   :null => false
-    t.boolean  "appointments",                                              :default => false, :null => false
+    t.string   "name",          :limit => 60,                                                   :null => false
+    t.boolean  "active",                                                     :default => true,  :null => false
+    t.boolean  "inventory",                                                  :default => false, :null => false
+    t.boolean  "multilocation",                                              :default => false, :null => false
+    t.decimal  "price",                       :precision => 10, :scale => 2,                    :null => false
+    t.datetime "created_at",                                                                    :null => false
+    t.datetime "updated_at",                                                                    :null => false
+    t.boolean  "appointments",                                               :default => false, :null => false
   end
 
   add_index "plans", ["name"], :name => "index_plans_on_name", :unique => true
@@ -421,41 +456,6 @@ ActiveRecord::Schema.define(:version => 20130318222017) do
   end
 
   add_index "states", ["country_id"], :name => "index_states_on_country_id"
-
-  create_table "stores", :force => true do |t|
-    t.string   "name",            :limit => 60,                   :null => false
-    t.string   "email"
-    t.string   "url"
-    t.string   "phone",           :limit => 30
-    t.string   "fax",             :limit => 30
-    t.string   "address"
-    t.string   "city",            :limit => 60
-    t.integer  "state_id"
-    t.string   "postal_code",     :limit => 20
-    t.integer  "country_id"
-    t.time     "monday_open"
-    t.time     "monday_close"
-    t.time     "tuesday_open"
-    t.time     "tuesday_close"
-    t.time     "wednesday_open"
-    t.time     "wednesday_close"
-    t.time     "thursday_open"
-    t.time     "thursday_close"
-    t.time     "friday_open"
-    t.time     "friday_close"
-    t.time     "saturday_open"
-    t.time     "saturday_close"
-    t.time     "sunday_open"
-    t.time     "sunday_close"
-    t.datetime "created_at",                                      :null => false
-    t.datetime "updated_at",                                      :null => false
-    t.boolean  "active",                        :default => true, :null => false
-    t.integer  "account_id",                                      :null => false
-  end
-
-  add_index "stores", ["account_id"], :name => "index_stores_on_account_id"
-  add_index "stores", ["country_id"], :name => "index_stores_on_country_id"
-  add_index "stores", ["state_id"], :name => "index_stores_on_state_id"
 
   create_table "tax_histories", :force => true do |t|
     t.integer  "tax_id",                                                                   :null => false

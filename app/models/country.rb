@@ -4,7 +4,7 @@ class Country < ActiveRecord::Base
 	belongs_to :account
 
 	has_many :states
-	has_many :stores
+	has_many :locations
 
     validates :name, :presence => true, :uniqueness => true, :length => { :maximum => 60 }
 	

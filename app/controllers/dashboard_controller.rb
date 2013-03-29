@@ -1,5 +1,5 @@
 class DashboardController < ApplicationController
-	before_filter :find_current_store, :only => [ :index ]
+	before_filter :find_current_location, :only => [ :index ]
 	
 	skip_before_filter :authenticate_user!, :only => [ :home ]
 
@@ -18,7 +18,7 @@ class DashboardController < ApplicationController
 	end
 
 	private
-	def find_current_store
-	  @current_store = @current_account.stores.first
+	def find_current_location
+	  @current_location = @current_account.locations.first
 	end
 end

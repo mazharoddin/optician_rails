@@ -1,0 +1,44 @@
+<% @title = "Show Location" %>
+<div class="page-header">
+	<h1><%= @location.name %> (Location)<% if can? :update, @location %><%= link_to "Edit Location", edit_admin_location_path(@current_account, @location), :class => "btn btn-primary pull-right" %><% end %></h1>
+</div>
+
+<div class="row">
+	<div class="span6">
+		<dl>
+			<dt>Name</dt>
+			<dd><%= @location.name %></dd>
+			<dt>Email</dt>
+			<dd><%= @location.email %></dd>
+			<dt>Website</dt>
+			<dd><%= @location.url %></dd>
+			<dt>Phone</dt>
+			<dd><%= @location.phone %></dd>
+			<dt>Fax</dt>
+			<dd><%= @location.fax %></dd>
+			<dt>Address</dt>
+			<dd><%= @location.address %></dd>
+			<dt>City</dt>
+			<dd><%= @location.city %></dd>
+			<dt>State</dt>
+			<dd><%= @location.state %></dd>
+			<dt>Postal Code</dt>
+			<dd><%= @location.postal_code %></dd>
+			<dt>Country</dt>
+			<dd><%= @location.country %></dd>
+			<dt>Active</dt>
+			<dd><%= @location.active %></dd>
+		</dl>
+	</div>
+	<div class="span6">
+		<dl>
+			<dt style="float: left; clear: left; width: 12ex">Monday<dt><dd><%= @location.monday_open.strftime('%H:%M') %> - <%= @location.monday_close.strftime('%H:%M') %></dd>
+			<dt style="float: left; clear: left; width: 12ex">Tuesday<dt><dd><%= @location.tuesday_open.strftime('%H:%M') %> - <%= @location.tuesday_close.strftime('%H:%M') %></dd>
+			<dt style="float: left; clear: left; width: 12ex">Wednesday<dt><dd><%= @location.wednesday_open.strftime('%H:%M') %> - <%= @location.wednesday_close.strftime('%H:%M') %></dd>
+			<dt style="float: left; clear: left; width: 12ex">Thursday<dt><dd><%= @location.thursday_open.strftime('%H:%M') %> - <%= @location.thursday_close.strftime('%H:%M') %></dd>
+			<dt style="float: left; clear: left; width: 12ex">Friday<dt><dd><%= @location.friday_open.strftime('%H:%M') %> - <%= @location.friday_close.strftime('%H:%M') %></dd>
+			<dt style="float: left; clear: left; width: 12ex">Saturday<dt><dd><%= @location.saturday_open.strftime('%H:%M') %> - <%= @location.saturday_close.strftime('%H:%M') %></dd>
+			<dt style="float: left; clear: left; width: 12ex">Sunday<dt><dd><%= @location.sunday_open.strftime('%H:%M') %> - <%= @location.sunday_close.strftime('%H:%M') %></dd>
+		</dl>
+	</div>
+</div>

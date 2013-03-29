@@ -116,7 +116,7 @@ Optician::Application.routes.draw do
 			resources :payment_methods
 			resources :personal_titles
 			resources :plans
-			resources :stores
+			resources :locations
 			resources :taxes
 			root :to => 'dashboard#index'
 		end

@@ -1,4 +1,5 @@
 <%= simple_form_for [@invoice, @dispensing], :html => { :class => "form-horizontal" } do |f| %>
+	<h2>Prescription</h2>
 	<%= f.input :description %>
 	<%= f.input :rx_date %>
 	<%= f.input :expiry_date %>
@@ -46,7 +47,104 @@
 			</tr>
 		</tbody>
 	</table>
-
+	<h2>Frames</h2>
+	<table class="table table-condensed">
+		<tbody>
+			<tr>
+				<th>Manufacturer</th>
+				<td><input type="text"></td>
+			</tr>
+			<tr>
+				<th>Model</th>
+				<td><input type="text"></td>
+			</tr>
+			<tr>
+				<th>Color</th>
+				<td><input type="text"></td>
+			</tr>
+			<tr>
+				<th>Eyesize</th>
+				<td><input type="text"></td>
+			</tr>
+			<tr>
+				<th>Bridge</th>
+				<td><input type="text"></td>
+			</tr>
+			<tr>
+				<th>Template</th>
+				<td><input type="text"></td>
+			</tr>
+			<tr>
+				<th>Price</th>
+				<td><input type="text"></td>
+			</tr>
+			<tr>
+				<th>Tax A</th>
+				<td><select><option>tax a</option></select></td>
+			</tr>
+			<tr>
+				<th>Tax B</th>
+				<td><select><option>tax b</option></select></td>
+			</tr>
+		</tbody>
+	</table>
+	<h2>Lenses</h2>
+	<table class="table table-condensed">
+		<thead>
+			<tr>
+				<th>&nbsp;</th>
+				<th>OD</th>
+				<th>OS</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th>Same as OD</th>
+				<td>&nbsp;</td>
+				<td><input type="checkbox"></td>
+			</tr>
+			<tr>
+				<th>Supplier</th>
+				<td><input type="text"></td>
+				<td><input type="text"></td>
+			</tr>
+			<tr>
+				<th>Model</th>
+				<td><input type="text"></td>
+				<td><input type="text"></td>
+			</tr>
+			<tr>
+				<th>Material</th>
+				<td><select><option>material</option></select></td>
+				<td><select><option>material</option></select></td>
+			</tr>
+			<tr>
+				<th>Type</th>
+				<td><select><option>type</option></select></td>
+				<td><select><option>type</option></select></td>
+			</tr>
+			<tr>
+				<th>Coating</th>
+				<td><input type="checkbox"> Coating A<br><input type="checkbox"> Coating B<br><input type="checkbox"> Coating C</td>
+				<td><input type="checkbox"> Coating A<br><input type="checkbox"> Coating B<br><input type="checkbox"> Coating C</td>
+			</tr>
+			<tr>
+				<th>Price</th>
+				<td><input type="text"></td>
+				<td><input type="text"></td>
+			</tr>
+			<tr>
+				<th>Tax A</th>
+				<td><select><option>tax a</option></select></td>
+				<td><select><option>tax a</option></select></td>
+			</tr>
+			<tr>
+				<th>Tax B</th>
+				<td><select><option>tax b</option></select></td>
+				<td><select><option>tax b</option></select></td>
+			</tr>
+		</tbody>
+	</table>
 	<div class="form-actions">
 		<%= f.button :submit, :class => "btn btn-primary" %>
 <% if @dispensing.new_record? %>

@@ -5,11 +5,28 @@
 
 	<div class="row">
 		<div class="span12">
+			<div class="row">
+				<div class="span4">
+					<address>
+						<strong><%= @invoice.name %></strong><br>
+						<%= @invoice.address %><br>
+						<%= @invoice.city %>, <%= @invoice.state %> <%= @invoice.postal_code %><br>
+						<%= @invoice.country %>
+					</address>
+				</div>
+				<div class="span4">
+					<p>Invoice: #<%= @invoice.id %></p>
+					<p>Date: <%= @invoice.invoice_date %></p>
+				</div>
+				<div class="span4">
+				
+				</div>
+			</div>
 <% if can?(:set_patient, @invoice) || can?(:set_cash_sale, @invoice) %>
 			<div class="btn-toolbar">
 				<div class="btn-group">
 <% if can? :set_patient, @invoice %>
-				    <%= link_to "Find Patient", invoice_patients_path(@current_account, @invoice), :class => "btn" %>
+					<a href="<%= invoice_patients_path(@current_account, @invoice) %>" class="btn"><i class="icon-search"></i></a><a href="#" class="btn"><i class="icon-plus"></i></a>
 <% end %>
 <% if can? :set_cash_sale, @invoice %>
 				    <%= link_to "Cash Sale", invoice_cash_sale_path(@current_account, @invoice), :class => "btn", :method => :put %>
@@ -30,29 +47,6 @@
 <% end %>
 					<%= link_to "Add Other", new_invoice_item_path(@current_account, @invoice), :class => "btn" %>
 				</div>
-			</div>
-<% end %>
-			<div class="row">
-				<div class="span4">
-					<address>
-						<strong><%= @invoice.name %></strong><br>
-						<%= @invoice.address %><br>
-						<%= @invoice.city %>, <%= @invoice.state %> <%= @invoice.postal_code %><br>
-						<%= @invoice.country %>
-					</address>
-				</div>
-				<div class="span4">
-					<p>Invoice: #<%= @invoice.id %></p>
-					<p>Date: <%= @invoice.invoice_date %></p>
-				</div>
-				<div class="span4">
-				
-				</div>
-			</div>
-<% if can? :read, Inventory %>
-			<div class="well">
-				Item <input type="text" class="span5 search-query">
-				<button type"submit" class="btn">Add</button>
 			</div>
 <% end %>
 			<table class="table table-condensed">

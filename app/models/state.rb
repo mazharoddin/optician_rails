@@ -3,6 +3,8 @@ class State < ActiveRecord::Base
 
   belongs_to :account
   belongs_to :country
+  
+  has_many :locations
 
   validates :name, :presence => true, :uniqueness => { :scope => :country_id }
   validates :short_name, :presence => true, :uniqueness => { :scope => :country_id }

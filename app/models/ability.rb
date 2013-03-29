@@ -56,7 +56,7 @@ class Ability
 			can :manage, Plan
 			can :manage, Prescription
 			can :manage, State
-			can :manage, Store
+			can :manage, Location
 			can :manage, Tax
 			can :manage, User
 			can :read, :admin_dashboard
@@ -69,7 +69,7 @@ class Ability
 					can :manage, Company, :account_id => account.id
 					can :manage, Employee, :account_id => account.id
 					can :manage, PaymentMethod, :account_id => account.id
-					can :manage, Store, :account_id => account.id
+					can :manage, Location, :account_id => account.id
 					can :manage, User, :account_id => account.id
 					if account.plan.inventory
 						can :manage, Inventory, :account_id => account.id
@@ -82,7 +82,7 @@ class Ability
 					end
 					
 					# Currently not checked
-					can :read, Store, :account_id => account.id
+					can :read, Location, :account_id => account.id
 				end
 				if user.administrator || user.dispensing_optician
 					can :manage, Dispensing, :account_id => account.id

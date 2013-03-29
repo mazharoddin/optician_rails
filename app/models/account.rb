@@ -25,6 +25,7 @@ class Account < ActiveRecord::Base
   has_many :lens_material_histories
   has_many :lens_types
   has_many :lens_type_histories
+  has_many :locations
   has_many :optometrists
   has_many :patients
   has_many :payment_methods
@@ -32,7 +33,6 @@ class Account < ActiveRecord::Base
   has_many :personal_title_histories
   has_many :prescriptions
   has_many :services_inventory
-  has_many :stores
   has_many :taxes
   has_many :tax_histories
   has_many :users
