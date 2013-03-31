@@ -2,6 +2,7 @@ class Admin::LocationsController < Admin::ApplicationController
 	add_breadcrumb "Locations", :admin_locations_path
 
 	before_filter :find_location, :only => [:edit, :show, :update]
+	before_filter :find_employees, :only => [:create, :edit, :new, :update]
 	authorize_resource	
 	
 	def index
@@ -66,5 +67,9 @@ class Admin::LocationsController < Admin::ApplicationController
 	def find_location
 		@location = @current_account.locations.find(params[:id])
 		add_breadcrumb @location.name, admin_location_path(@current_account, @location)
+	end
+
+	def find_employees
+		@employees = @current_account.employees
 	end
 end

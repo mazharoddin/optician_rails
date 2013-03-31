@@ -1,33 +1,48 @@
 <%= simple_form_for [:admin, @location], :html => { :class => "form-horizontal" } do |f| %>
+<h2>Location Details</h2>
 <div class="row">
-	<div class="span6">
-		<legend>General</legend>
+	<div class="span4">
 		<%= f.input :name %>
-		<%= f.input :email %>
-		<%= f.input :url %>
-		<%= f.input :phone %>
-		<%= f.input :fax %>
+		<%= f.input :company_name %>
 		<%= f.input :address %>
 		<%= f.input :city %>
 		<%= f.association :state %>
 		<%= f.input :postal_code %>
 		<%= f.association :country %>
+	</div>
+	<div class="span4">
+		<%= f.input :phone %>
+		<%= f.input :fax %>
+		<%= f.input :email %>
+		<%= f.input :url %>
+		<%= f.association :contact_person, :collection => @employees %>
 		<%= f.input :active %>
 	</div>
+	<div class="span4">
+		<div class="control-group">
+		  <label class="control-label" for="company_logo_preview">Preview</label>
+		  <div class="controls">
+			<img id="company_logo_preview" src="<%= @location.logo.url %>" class="img-polaroid">
+		  </div>
+		</div>
+		<%= f.input :logo %>
+	</div>
+</div>
+<h2>Location Hours</h2>
+<div class="row">
 	<div class="span6">
-		<legend>Hours</legend>
 		<table class="table table-condensed">
 			<thead>
-				<tr><th>&nbsp;</th><th>Open</th><th>Close</th></tr>
+				<tr><th colspan="2">&nbsp;</th><th>Open</th><th>Close</th></tr>
 			</thead>
 			<tbody>
-				<tr><th>Monday</th><td><%= f.input_field :monday_open %></td><td><%= f.input_field :monday_close %></td></tr>
-				<tr><th>Tuesday</th><td><%= f.input_field :tuesday_open %></td><td><%= f.input_field :tuesday_close %></td></tr>
-				<tr><th>Wednesday</th><td><%= f.input_field :wednesday_open %></td><td><%= f.input_field :wednesday_close %></td></tr>
-				<tr><th>Thursday</th><td><%= f.input_field :thursday_open %></td><td><%= f.input_field :thursday_close %></td></tr>
-				<tr><th>Friday</th><td><%= f.input_field :friday_open %></td><td><%= f.input_field :friday_close %></td></tr>
-				<tr><th>Saturday</th><td><%= f.input_field :saturday_open %></td><td><%= f.input_field :saturday_close %></td></tr>
-				<tr><th>Sunday</th><td><%= f.input_field :sunday_open %></td><td><%= f.input_field :sunday_close %></td></tr>
+				<tr><th>Monday</th><td><%= f.input_field :open_monday %></td><td><%= f.input_field :monday_open %></td><td><%= f.input_field :monday_close %></td></tr>
+				<tr><th>Tuesday</th><td><%= f.input_field :open_tuesday %></td><td><%= f.input_field :tuesday_open %></td><td><%= f.input_field :tuesday_close %></td></tr>
+				<tr><th>Wednesday</th><td><%= f.input_field :open_wednesday %></td><td><%= f.input_field :wednesday_open %></td><td><%= f.input_field :wednesday_close %></td></tr>
+				<tr><th>Thursday</th><td><%= f.input_field :open_thursday %></td><td><%= f.input_field :thursday_open %></td><td><%= f.input_field :thursday_close %></td></tr>
+				<tr><th>Friday</th><td><%= f.input_field :open_friday %></td><td><%= f.input_field :friday_open %></td><td><%= f.input_field :friday_close %></td></tr>
+				<tr><th>Saturday</th><td><%= f.input_field :open_saturday %></td><td><%= f.input_field :saturday_open %></td><td><%= f.input_field :saturday_close %></td></tr>
+				<tr><th>Sunday</th><td><%= f.input_field :open_sunday %></td><td><%= f.input_field :sunday_open %></td><td><%= f.input_field :sunday_close %></td></tr>
 			</tbody>
 		</table>
 	</div>

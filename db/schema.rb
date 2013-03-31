@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130328231439) do
+ActiveRecord::Schema.define(:version => 20130331105507) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name",        :limit => 80,                   :null => false
@@ -264,15 +264,15 @@ ActiveRecord::Schema.define(:version => 20130328231439) do
   end
 
   create_table "locations", :force => true do |t|
-    t.string   "name",            :limit => 60,                   :null => false
+    t.string   "name",              :limit => 60,                   :null => false
     t.string   "email"
     t.string   "url"
-    t.string   "phone",           :limit => 30
-    t.string   "fax",             :limit => 30
+    t.string   "phone",             :limit => 30
+    t.string   "fax",               :limit => 30
     t.string   "address"
-    t.string   "city",            :limit => 60
+    t.string   "city",              :limit => 60
     t.integer  "state_id"
-    t.string   "postal_code",     :limit => 20
+    t.string   "postal_code",       :limit => 20
     t.integer  "country_id"
     t.time     "monday_open"
     t.time     "monday_close"
@@ -288,10 +288,23 @@ ActiveRecord::Schema.define(:version => 20130328231439) do
     t.time     "saturday_close"
     t.time     "sunday_open"
     t.time     "sunday_close"
-    t.datetime "created_at",                                      :null => false
-    t.datetime "updated_at",                                      :null => false
-    t.boolean  "active",                        :default => true, :null => false
-    t.integer  "account_id",                                      :null => false
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
+    t.boolean  "active",                          :default => true, :null => false
+    t.integer  "account_id",                                        :null => false
+    t.string   "company_name",      :limit => 80
+    t.integer  "contact_person_id"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
+    t.boolean  "open_monday",                     :default => true, :null => false
+    t.boolean  "open_tuesday",                    :default => true, :null => false
+    t.boolean  "open_wednesday",                  :default => true, :null => false
+    t.boolean  "open_thursday",                   :default => true, :null => false
+    t.boolean  "open_friday",                     :default => true, :null => false
+    t.boolean  "open_saturday",                   :default => true, :null => false
+    t.boolean  "open_sunday",                     :default => true, :null => false
   end
 
   add_index "locations", ["account_id"], :name => "index_stores_on_account_id"

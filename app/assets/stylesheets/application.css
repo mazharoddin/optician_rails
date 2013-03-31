@@ -16,3 +16,9 @@
   /* Keep this the same as line-height */
   min-height: 20px;
 }
+select.time {
+  width: 9ex;
+}
+select.date {
+  width: 14ex;
+}

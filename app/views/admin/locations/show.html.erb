@@ -3,19 +3,14 @@
 	<h1><%= @location.name %> (Location)<% if can? :update, @location %><%= link_to "Edit Location", edit_admin_location_path(@current_account, @location), :class => "btn btn-primary pull-right" %><% end %></h1>
 </div>
 
+<h2>Location Details</h2>
 <div class="row">
-	<div class="span6">
+	<div class="span4">
 		<dl class="dl-horizontal">
-			<dt>Name</dt>
+			<dt>Location Name</dt>
 			<dd><%= @location.name %></dd>
-			<dt>Email</dt>
-			<dd><%= @location.email %></dd>
-			<dt>Website</dt>
-			<dd><%= @location.url %></dd>
-			<dt>Phone</dt>
-			<dd><%= @location.phone %></dd>
-			<dt>Fax</dt>
-			<dd><%= @location.fax %></dd>
+			<dt>Company Name</dt>
+			<dd><%= @location.company_name %></dd>
 			<dt>Address</dt>
 			<dd><%= @location.address %></dd>
 			<dt>City</dt>
@@ -26,19 +21,42 @@
 			<dd><%= @location.postal_code %></dd>
 			<dt>Country</dt>
 			<dd><%= @location.country %></dd>
+		</dl>
+	</div>
+	<div class="span4">
+		<dl class="dl-horizontal">
+			<dt>Telephone</dt>
+			<dd><%= @location.phone %></dd>
+			<dt>Fax</dt>
+			<dd><%= @location.fax %></dd>
+			<dt>Email</dt>
+			<dd><%= @location.email %></dd>
+			<dt>Website</dt>
+			<dd><%= @location.url %></dd>
+			<dt>Contact Person</dt>
+			<dd><%= @location.contact_person %></dd>
 			<dt>Active</dt>
 			<dd><%= @location.active %></dd>
 		</dl>
 	</div>
+	<div class="4">
+		<img id="company_logo_preview" src="<%= @location.logo.url %>" class="img-polaroid">
+	</div>
+</div>
+<div class="row">
 	<div class="span6">
+		<h2>Location Hours</h2>
 		<dl class="dl-horizontal">
-			<dt>Monday</dt><dd><%= @location.monday_open.strftime('%H:%M') %> - <%= @location.monday_close.strftime('%H:%M') %></dd>
-			<dt>Tuesday</dt><dd><%= @location.tuesday_open.strftime('%H:%M') %> - <%= @location.tuesday_close.strftime('%H:%M') %></dd>
-			<dt>Wednesday</dt><dd><%= @location.wednesday_open.strftime('%H:%M') %> - <%= @location.wednesday_close.strftime('%H:%M') %></dd>
-			<dt>Thursday</dt><dd><%= @location.thursday_open.strftime('%H:%M') %> - <%= @location.thursday_close.strftime('%H:%M') %></dd>
-			<dt>Friday</dt><dd><%= @location.friday_open.strftime('%H:%M') %> - <%= @location.friday_close.strftime('%H:%M') %></dd>
-			<dt>Saturday</dt><dd><%= @location.saturday_open.strftime('%H:%M') %> - <%= @location.saturday_close.strftime('%H:%M') %></dd>
-			<dt>Sunday</dt><dd><%= @location.sunday_open.strftime('%H:%M') %> - <%= @location.sunday_close.strftime('%H:%M') %></dd>
+			<dt>Monday</dt><dd><%= location_hours(@location.open_monday, @location.monday_open, @location.monday_close) %></dd>
+			<dt>Tuesday</dt><dd><%= location_hours(@location.open_tuesday, @location.tuesday_open, @location.tuesday_close) %></dd>
+			<dt>Wednesday</dt><dd><%= location_hours(@location.open_wednesday, @location.wednesday_open, @location.wednesday_close) %></dd>
+			<dt>Thursday</dt><dd><%= location_hours(@location.open_thursday, @location.thursday_open, @location.thursday_close) %></dd>
+			<dt>Friday</dt><dd><%= location_hours(@location.open_friday, @location.friday_open, @location.friday_close) %></dd>
+			<dt>Saturday</dt><dd><%= location_hours(@location.open_saturday, @location.saturday_open, @location.saturday_close) %></dd>
+			<dt>Sunday</dt><dd><%= location_hours(@location.open_sunday, @location.sunday_open, @location.sunday_close) %></dd>
 		</dl>
+	</div>
+	<div class="span6">
+		<h2>Location Taxes</h2>
 	</div>
 </div>
