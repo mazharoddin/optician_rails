@@ -20,6 +20,7 @@
 				<div class="span3 visible-desktop">
 <% if @current_location != nil then %>
 					<address class="well">
+						<img id="company_logo_preview" src="<%= @current_location.logo.url %>"><br>
 						<strong><%= @current_location.name %></strong><br>
 						<%= @current_location.address %><br>
 						<%= @current_location.city %>, <%= @current_location.state %>.<br>
