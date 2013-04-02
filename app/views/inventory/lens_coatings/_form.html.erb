@@ -1,0 +1,29 @@
+<%= simple_form_for [:inventory, @item], :html => { :class => "form-horizontal" } do |f| %>
+	<div class="row">
+		<div class="span6">
+			<%= f.association :manufacturer %>
+			<%= f.input :description %>
+			<%= f.input :upc %>
+			<%= f.association :supplier %>
+			<%= f.input :supplier_code %>
+			<%= f.input :active %>
+		</div>
+		<div class="span6">
+			<%= f.input :cost_price %>
+			<%= f.input :sugested_retail_price %>
+			<%= f.input :regular_retail_price %>
+			<%= f.input :current_retail_price %>
+			<%= f.association :tax_a %>
+			<%= f.association :tax_b %>
+		</div>
+	</div>
+
+	<div class="form-actions">
+		<%= f.button :submit, :class => "btn btn-primary" %>
+<% if @item.new_record? %>
+		<%= link_to "Discard Changes", inventory_accessories_inventory_index_path, :class => "btn" %>
+<% else %>
+		<%= link_to "Discard Changes", inventory_accessories_inventory_path(@current_account, @item), :class => "btn" %>
+<% end %>
+	</div>
+<% end %>

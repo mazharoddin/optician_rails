@@ -83,6 +83,7 @@ Optician::Application.routes.draw do
 			resources :contacts, :as => 'contacts_inventory'
 			resources :frames, :as => 'frames_inventory'
 			resources :lenses, :as => 'lens_inventory'
+			resources :lens_coatings, :as => 'lens_coatings_inventory'
 			resources :services, :as => 'services_inventory'
 			resources :accessories, :as => 'accessories_inventory'
 			root :to => 'inventory#index'

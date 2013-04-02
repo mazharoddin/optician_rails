@@ -32,6 +32,14 @@ class Inventory < ActiveRecord::Base
   def to_s
 	return description
   end
+
+  def type_name
+    if type == 'LensCoatingsInventory'
+	  'Lens Coatings'
+	else
+      type.sub('Inventory', '')
+	end
+  end
   
   def enabled?
     return @current_account.plan.inventory

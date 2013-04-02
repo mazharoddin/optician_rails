@@ -27,6 +27,7 @@ Common MVP List
 5. Everywhere there is state it the list should change (using AJAX) to match the current country
 6. Dashboard needs to show appointments for today
 7. Show/Edit to patient and prescriptions
+8. Move Lens Coatings from an Admin list to an inventory type
 
 Optometrist MVP List
 ====================

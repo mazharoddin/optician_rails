@@ -1,0 +1,2 @@
+class LensCoatingsInventory < Inventory
+end

@@ -18,4 +18,5 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'inventory', 'inventory'
   inflect.irregular 'lens', 'lenses'
   inflect.irregular 'dispensing', 'dispensing'
+  inflect.irregular 'lens_coating', 'lens_coatings'
 end
