@@ -2,6 +2,8 @@ class PatientsController < ApplicationController
 	add_breadcrumb "Patients", :patients_path
 
 	before_filter :find_patient, :only => [:edit, :show, :update, :dispensing, :invoices]
+	before_filter :find_personal_titles, :only => [:create, :edit, :new, :show, :update, :dispensing, :invoices]
+
 	authorize_resource	
 	
 	def index
@@ -17,8 +19,11 @@ class PatientsController < ApplicationController
 		add_breadcrumb "New", new_patient_path(@current_account)
 
 		@patient = @current_account.patients.build(params[:patient])
+		@patient.number = @current_account.next_patient_number if @patient.number == nil
 
 		if @patient.save then
+			@current_account.next_patient_number = @current_account.next_patient_number + 1
+			@current_account.save
 			flash[:success] = "Patient has been created."
 			redirect_to patient_path(@current_account, @patient)
 		else
@@ -40,8 +45,6 @@ class PatientsController < ApplicationController
 	
 	def show
 		add_breadcrumb @patient, patient_path(@current_account, @patient)
-		
-		@personal_titles = PersonalTitle.active(@patient.personal_title_id)
 	end
 	
 	def update
@@ -75,12 +78,16 @@ class PatientsController < ApplicationController
 	private
 	def find_patient
 	    if params[:patient_id] != nil then
-			@patient = @current_account.patients.find(params[:patient_id])
+			@patient = @current_account.patients.where('number = ?', params[:patient_id]).first!
 		else
-			@patient = @current_account.patients.find(params[:id])
+			@patient = @current_account.patients.where('number = ?', params[:id]).first!
 		end
 	end
 
+	def find_personal_titles
+		@personal_titles = PersonalTitle.active
+	end
+	
 	def navbar
 	  @navbar_selected = 'patients'
 	end

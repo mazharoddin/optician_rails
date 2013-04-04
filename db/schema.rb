@@ -11,23 +11,28 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130331105507) do
+ActiveRecord::Schema.define(:version => 20130404100916) do
 
   create_table "accounts", :force => true do |t|
-    t.string   "name",        :limit => 80,                   :null => false
-    t.string   "subdomain",   :limit => 69,                   :null => false
-    t.boolean  "active",                    :default => true, :null => false
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
+    t.string   "name",                   :limit => 80,                   :null => false
+    t.string   "subdomain",              :limit => 69,                   :null => false
+    t.boolean  "active",                               :default => true, :null => false
+    t.datetime "created_at",                                             :null => false
+    t.datetime "updated_at",                                             :null => false
     t.string   "url"
-    t.string   "phone",       :limit => 30
-    t.string   "fax",         :limit => 30
+    t.string   "phone",                  :limit => 30
+    t.string   "fax",                    :limit => 30
     t.string   "address"
-    t.string   "city",        :limit => 60
+    t.string   "city",                   :limit => 60
     t.integer  "state_id"
-    t.string   "postal_code", :limit => 20
+    t.string   "postal_code",            :limit => 20
     t.integer  "country_id"
-    t.integer  "plan_id",                                     :null => false
+    t.integer  "plan_id",                                                :null => false
+    t.integer  "next_patient_number",                  :default => 1,    :null => false
+    t.integer  "next_inventory_number",                :default => 1,    :null => false
+    t.integer  "next_invoice_number",                  :default => 1,    :null => false
+    t.integer  "next_payment_number",                  :default => 1,    :null => false
+    t.integer  "next_dispensing_number",               :default => 1,    :null => false
   end
 
   add_index "accounts", ["name"], :name => "index_accounts_on_name", :unique => true
@@ -249,6 +254,11 @@ ActiveRecord::Schema.define(:version => 20130331105507) do
     t.boolean  "active",                   :default => true, :null => false
   end
 
+  create_table "lens_coatings_inventory", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "lens_materials", :force => true do |t|
     t.string   "name",       :limit => 60,                   :null => false
     t.datetime "created_at",                                 :null => false
@@ -372,8 +382,10 @@ ActiveRecord::Schema.define(:version => 20130331105507) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.integer  "account_id",                             :null => false
+    t.integer  "number",                                 :null => false
   end
 
+  add_index "patients", ["account_id", "number"], :name => "index_patients_on_account_id_and_number", :unique => true
   add_index "patients", ["account_id"], :name => "index_patients_on_account_id"
   add_index "patients", ["employment_type_id"], :name => "index_patients_on_employment_type_id"
   add_index "patients", ["gender_id"], :name => "index_patients_on_gender_id"

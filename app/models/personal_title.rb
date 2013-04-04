@@ -9,7 +9,7 @@ class PersonalTitle < ActiveRecord::Base
 
   default_scope { order("title ASC") }
 
-  scope :active, lambda { |current_id| where('active = true or id = ?', current_id) }
+  scope :active, where('active = true')
   
   def to_s
 	return title

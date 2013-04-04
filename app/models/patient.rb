@@ -1,5 +1,5 @@
 class Patient < ActiveRecord::Base
-  attr_accessible :alergies, :birthday, :email, :employment_type_id, :first_name, :gender_id, :guardian_alt_phone, :guardian_name, :guardian_phone, :guardian_relationship_id, :home_address, :home_city, :home_country_id, :home_phone, :home_postal_code, :home_state_id, :last_name, :medical_other, :mobile_phone, :note, :occupation, :optometrist_id, :personal_title_id, :postal_address, :postal_city, :postal_country_id, :postal_postal_code, :postal_state_id, :preferred_name, :smoker, :work_ext, :work_phone
+  attr_accessible :alergies, :birthday, :email, :employment_type_id, :first_name, :gender_id, :guardian_alt_phone, :guardian_name, :guardian_phone, :guardian_relationship_id, :home_address, :home_city, :home_country_id, :home_phone, :home_postal_code, :home_state_id, :last_name, :medical_other, :mobile_phone, :note, :number, :occupation, :optometrist_id, :personal_title_id, :postal_address, :postal_city, :postal_country_id, :postal_postal_code, :postal_state_id, :preferred_name, :smoker, :work_ext, :work_phone
   
   belongs_to :account
   belongs_to :employment_type
@@ -32,6 +32,7 @@ class Patient < ActiveRecord::Base
   validates :medical_other, :length => { :maximum => 65535 }
   validates :mobile_phone, :length => { :maximum => 20 }
   validates :note, :length => { :maximum => 65535 }
+  validates :number, :numericality => { :integer_only => true, :greater_than => 0 }, :uniqueness => { :scope => :account_id }
   validates :occupation, :length => { :maximum => 80 }
   validates :postal_address, :length => { :maximum => 255 }
   validates :postal_city, :length => { :maximum => 80 }
@@ -56,5 +57,9 @@ class Patient < ActiveRecord::Base
 			    "#{first_name} #{last_name}"
 			end
 		end
+	end
+
+	def to_param
+		return number
 	end
 end

@@ -19,6 +19,7 @@
 <div class="row">
 	<div class="span6">
 	<legend>General</legend>
+		<%= f.input :number, :input_html => { :class => 'input-small' } %>
 		<%= f.association :personal_title, :collection => @personal_titles, :input_html => { :class => 'input-small' } %>
 		<%= f.input :first_name %>
 		<%= f.input :last_name %>

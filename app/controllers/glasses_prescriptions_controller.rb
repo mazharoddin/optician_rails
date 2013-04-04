@@ -56,7 +56,7 @@ class GlassesPrescriptionsController < ApplicationController
 	
 	private
 	def find_patient
-		@patient = @current_account.patients.find(params[:patient_id])
+		@patient = @current_account.patients.where('number = ?', params[:patient_id]).first!
 		add_breadcrumb @patient, patient_path(@current_account, @patient)
 		add_breadcrumb "Glasses Prescriptions", patient_glasses_prescriptions_path(@current_account, @patient)
 	end

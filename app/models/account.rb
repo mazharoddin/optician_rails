@@ -1,5 +1,5 @@
 class Account < ActiveRecord::Base
-  attr_accessible :active, :address, :city, :country_id, :employees_attributes, :fax, :name, :phone, :plan_id, :postal_code, :state_id, :subdomain, :url, :employees
+  attr_accessible :active, :address, :city, :country_id, :employees_attributes, :fax, :name, :next_dispensing_number, :next_inventory_number, :next_invoice_number, :next_patient_number, :next_payment_number, :phone, :plan_id, :postal_code, :state_id, :subdomain, :url, :employees
 
   belongs_to :country
   belongs_to :plan
@@ -42,6 +42,11 @@ class Account < ActiveRecord::Base
   validates :country_id, :presence => true
   validates :fax, :length => { :maximum => 30 }
   validates :name, :length => { :maximum => 60 }, :presence => true, :uniqueness => true
+  validates :next_patient_number, :numericality => { :only_integer => true, :greater_than => 0 }, :presence => true
+  validates :next_inventory_number, :numericality => { :only_integer => true, :greater_than => 0 }, :presence => true
+  validates :next_invoice_number, :numericality => { :only_integer => true, :greater_than => 0 }, :presence => true
+  validates :next_payment_number, :numericality => { :only_integer => true, :greater_than => 0 }, :presence => true
+  validates :next_dispensing_number, :numericality => { :only_integer => true, :greater_than => 0 }, :presence => true
   validates :phone, :length => { :maximum => 30 }
   validates :plan_id, :presence => true
   validates :postal_code, :length => { :maximum => 20 }
