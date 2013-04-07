@@ -1,5 +1,5 @@
 class Inventory < ActiveRecord::Base
-  attr_accessible :active, :appointment_type, :bridge, :colour, :cost_price, :current_retail_price, :description, :duration, :eyesize, :lens_coating_ids, :lens_material_id, :lens_type_id, :manufacturer_id, :model, :regular_retail_price, :stock_available, :stock_reorder, :sugested_retail_price, :supplier_code, :supplier_id, :tax_a_id, :tax_b_id, :template, :track_inventory, :type, :upc
+  attr_accessible :active, :appointment_type, :bridge, :colour, :cost_price, :current_retail_price, :description, :duration, :eyesize, :lens_coating_ids, :lens_material_id, :lens_type_id, :manufacturer_id, :model, :number, :regular_retail_price, :stock_available, :stock_reorder, :sugested_retail_price, :supplier_code, :supplier_id, :tax_a_id, :tax_b_id, :template, :track_inventory, :type, :upc
 
   belongs_to :manufacturer, :class_name => 'Company'
   belongs_to :supplier, :class_name => 'Company'
@@ -19,6 +19,7 @@ class Inventory < ActiveRecord::Base
   validates :duration, :numericality => { :greater_than_or_equal_to => 0 }, :allow_blank => true, :allow_nil => true
   validates :eyesize, :length => { :maximum => 10 }
   validates :model, :length => { :maximum => 60 }, :allow_blank => true, :allow_nil => true
+  validates :number, :numericality => { :integer_only => true, :greater_than => 0 }, :uniqueness => { :scope => :account_id }
   validates :regular_retail_price, :presence => true, :numericality => { :greater_than_or_equal_to => 0 }
   validates :stock_available, :numericality => true, :if => :track_inventory
   validates :stock_reorder, :numericality => { :greater_than_or_equal_to => 0 }, :allow_blank => true, :allow_nil => true, :if => :track_inventory
@@ -33,6 +34,10 @@ class Inventory < ActiveRecord::Base
 	return description
   end
 
+  def to_param
+	return number
+  end
+  
   def type_name
     if type == 'LensCoatingsInventory'
 	  'Lens Coatings'

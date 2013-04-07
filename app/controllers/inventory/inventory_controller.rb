@@ -37,7 +37,7 @@ class Inventory::InventoryController < Inventory::ApplicationController
 
 	private
 	def find_inventory
-		@item = Inventory.find(params[:id])
+		@item = Inventory.where('number = ?', params[:id]).first!
 		add_breadcrumb @item.description, inventory_path(@current_account, @item)
 	end
 end

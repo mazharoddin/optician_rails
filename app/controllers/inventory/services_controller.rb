@@ -19,7 +19,10 @@ class Inventory::ServicesController < Inventory::ApplicationController
 		@item = ServicesInventory.new(params[:services_inventory])
 		@item.track_inventory = false
 		@item.account_id = @current_account.id
+		@item.number = @current_account.next_inventory_number if @item.number == nil
 		if @item.save then
+			@current_account.next_patient_number = @current_account.next_patient_number + 1
+			@current_account.save
 			flash[:success] = "Services inventory has been created."
 			redirect_to :action => 'index', :controller => 'inventory'
 		else
@@ -51,7 +54,7 @@ class Inventory::ServicesController < Inventory::ApplicationController
 
 	private
 	def find_inventory
-		@item = ServicesInventory.find(params[:id])
+		@item = ServicesInventory.where('number = ?', params[:id]).first!
 		add_breadcrumb @item.description, inventory_services_inventory_path(@current_account, @item)
 	end
 end

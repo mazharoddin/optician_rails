@@ -19,7 +19,10 @@ class Inventory::LensCoatingsController < Inventory::ApplicationController
 		@item = LensCoatingsInventory.new(params[:lens_coatings_inventory])
 		@item.track_inventory = false
 		@item.account_id = @current_account.id
+		@item.number = @current_account.next_inventory_number if @item.number == nil
 		if @item.save then
+			@current_account.next_patient_number = @current_account.next_patient_number + 1
+			@current_account.save
 			flash[:success] = "Lens coatings inventory has been created."
 			redirect_to :action => 'index', :controller => 'inventory'
 		else
@@ -52,7 +55,7 @@ class Inventory::LensCoatingsController < Inventory::ApplicationController
 
 	private
 	def find_inventory
-		@item = LensCoatingsInventory.find(params[:id])
+		@item = LensCoatingsInventory.where('number = ?', params[:id]).first!
 		add_breadcrumb @item.description, inventory_lens_coatings_inventory_path(@current_account, @item)
 	end
 end

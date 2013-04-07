@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130404100916) do
+ActiveRecord::Schema.define(:version => 20130405065855) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name",                   :limit => 80,                   :null => false
@@ -192,8 +192,10 @@ ActiveRecord::Schema.define(:version => 20130404100916) do
     t.integer  "tax_a_id"
     t.integer  "tax_b_id"
     t.integer  "account_id",                                                                            :null => false
+    t.integer  "number",                                                                                :null => false
   end
 
+  add_index "inventory", ["account_id", "number"], :name => "index_inventory_on_account_id_and_number", :unique => true
   add_index "inventory", ["account_id"], :name => "index_inventory_on_account_id"
   add_index "inventory", ["manufacturer_id"], :name => "index_inventory_on_manufacturer_id"
   add_index "inventory", ["supplier_id"], :name => "index_inventory_on_supplier_id"

@@ -17,8 +17,11 @@ class Inventory::ContactsController < Inventory::ApplicationController
 		add_breadcrumb "New", :new_inventory_contacts_inventory_path
 
 		@item = ContactsInventory.new(params[:contacts_inventory])
+		@item.number = @current_account.next_inventory_number if @item.number == nil
 		@item.account_id = @current_account.id
 		if @item.save then
+			@current_account.next_patient_number = @current_account.next_patient_number + 1
+			@current_account.save
 			flash[:success] = "Contacts inventory has been created."
 			redirect_to :action => 'index', :controller => 'inventory'
 		else
@@ -50,7 +53,7 @@ class Inventory::ContactsController < Inventory::ApplicationController
 
 	private
 	def find_inventory
-		@item = ContactsInventory.find(params[:id])
+		@item = ContactsInventory.where('number = ?', params[:id]).first!
 		add_breadcrumb @item.description, inventory_contacts_inventory_path(@current_account, @item)
 	end
 end

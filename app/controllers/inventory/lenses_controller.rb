@@ -18,7 +18,10 @@ class Inventory::LensesController < Inventory::ApplicationController
 
 		@item = LensInventory.new(params[:lens_inventory])
 		@item.account_id = @current_account.id
+		@item.number = @current_account.next_inventory_number if @item.number == nil
 		if @item.save then
+			@current_account.next_patient_number = @current_account.next_patient_number + 1
+			@current_account.save
 			flash[:success] = "Lenses inventory has been created."
 			redirect_to :action => 'index', :controller => 'inventory'
 		else
@@ -53,7 +56,7 @@ class Inventory::LensesController < Inventory::ApplicationController
 
 	private
 	def find_inventory
-		@item = LensInventory.find(params[:id])
+		@item = LensInventory.where('number = ?', params[:id]).first!
 		add_breadcrumb @item.description, inventory_lens_inventory_path(@current_account, @item)
 	end
 end

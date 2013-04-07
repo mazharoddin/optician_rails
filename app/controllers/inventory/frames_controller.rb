@@ -17,8 +17,11 @@ class Inventory::FramesController < Inventory::ApplicationController
 		add_breadcrumb "New", :new_inventory_frames_inventory_path
 
 		@item = FramesInventory.new(params[:frames_inventory])
+		@item.number = @current_account.next_inventory_number if @item.number == nil
 		@item.account_id = @current_account.id
 		if @item.save then
+			@current_account.next_patient_number = @current_account.next_patient_number + 1
+			@current_account.save
 			flash[:success] = "Frames inventory has been created."
 			redirect_to :action => 'index', :controller => 'inventory'
 		else
@@ -50,7 +53,7 @@ class Inventory::FramesController < Inventory::ApplicationController
 
 	private
 	def find_inventory
-		@item = FramesInventory.find(params[:id])
+		@item = FramesInventory.where('number = ?', params[:id]).first!
 		add_breadcrumb @item.description, inventory_frames_inventory_path(@current_account, @item)
 	end
 end
