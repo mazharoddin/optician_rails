@@ -1,9 +1,22 @@
 ﻿<% @title = "Home" %>
 <div class="page-header">
-	<h1><% if user_signed_in? %>Welcome <%= current_user.first_name %><% else %>Not Logged In<% end %>!</h1>
+	<h1><% if user_signed_in? %>Welcome <%= current_user.first_name %><% else %>Not Logged In<% end %></h1>
 </div>
 <div class="row">
 	<div class="span9">
-		<p>Dashboard coming soon...</p>
+		<p>You are using the early access version of Optician Plus. During the early access program I will be enabling modules
+		every 1 to 2 weeks. This approach was selected because I want to make sure that our customers are happy with each module
+		before the next one is enabled.</p>
+		<p>The initial release enables the patient module which allows you to:</p>
+		<ul>
+		<li>Manage patient details</li>
+		<li>Record prescriptions and view prescription history</li>
+		</ul>
+		<p>In the coming weeks I will enable modules for appointments, dispensing, inventory management, invoicing, patient
+		recall, reporting and much more.</p>
+		<p><strong>I want to hear from you!</strong> The early access program is a chance for you to provide feedback that will
+		impact the development of Optician Plus. It doesn't matter if it is a questions, a comment or a suggestion about how to
+		better implement a feature. I want to hear from you. The fastest way to get a response is to email
+		<a href="mailto:rich@opticianplus.com">rich@opticianplus.com</a>.</p>
 	</div>
 </div>

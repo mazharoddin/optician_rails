@@ -18,9 +18,9 @@ Common MVP List
 2. [DONE] Plans
 3. Permissions <-- Currently working on this using cancan
 4. Next ... number
- - Next patient number
+ - [DONE] Next patient number
  - Next invoice number
- - Next inventory number
+ - [DONE] Next inventory number
  - Next payment number
  - Next dispensing number
  - Next user number
