@@ -21,7 +21,9 @@ group :assets do
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer'
-
+  
+  gem 'bootstrap-sass', '~> 2.2.2.0'
+  
   gem 'uglifier', '>= 1.0.3'
 end
 
@@ -42,10 +44,11 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
-gem 'bootstrap-sass', '~> 2.1.0.0'
-gem "kaminari", "~> 0.13.0"
-gem "simple_form", "~> 2.0.2"
-gem "breadcrumbs_on_rails", "~> 2.2.0"
-gem "devise"
-gem "cancan", "~> 1.6.8"
-gem "paperclip", "~> 3.4.1"
+gem 'kaminari', '~> 0.13.0'
+gem 'simple_form', '~> 2.0.2'
+gem 'breadcrumbs_on_rails', '~> 2.2.0'
+gem 'devise'
+gem 'cancan', '~> 1.6.8'
+gem 'paperclip', '~> 3.4.1'
+gem 'rspec', '~> 2.13.0'
+gem 'cucumber', '~> 1.3.1'

@@ -17,6 +17,7 @@
 <% end %>
 						</dl>
 					</div>
+<!--
 					<div class="span3">
 						<h2>Inventory</h2>
 						<dl>
@@ -30,19 +31,23 @@
 <% end %>
 						</dl>
 					</div>
+-->	
 					<div class="span3">
 						<h2>Geographic</h2>
 						<dl>
+<!--
 <% if can? :read, Country %>
 							<dt><%= link_to "Countries", :admin_countries %></dt>
 							<dd>Maintain countries<dd>
 <% end %>
+-->
 <% if can? :read, Location %>
 							<dt><%= link_to "Locations", :admin_locations %></dt>
 							<dd>Maintain locations<dd>
 <% end %>
 						</dl>
 					</div>
+<!--
 					<div class="span3">
 						<h2>Lists</h2>
 						<dl>
@@ -88,4 +93,5 @@
 <% end %>
 						</dl>
 					</div>
+-->
 				</div>
